@@ -1,0 +1,19 @@
+<!--pages/order/logistics.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="./status.wxs" module="status" />
+<view class='product-wrapper'>
+  <view class='product-img'>
+    <image src='{{imageBaseUrl}}{{string.getSplitFirst(trackingInfo.productImages)}}' mode="aspectFill" />
+  </view>
+  <view class='product-info'>
+    <view class='title'>{{status.formatLogisticsStatus(trackingInfo.status)}}</view>
+    <view class='desc'>{{trackingInfo.logisticsCompany}}{{trackingInfo.trackingNumber}}</view>
+  </view>
+</view>
+<view style='height:10px;background:#f2f2f2;'></view>
+<van-steps
+  steps="{{ steps }}"
+  active="{{ active }}"
+  direction="vertical"
+  active-color="#f44"
+/>

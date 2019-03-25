@@ -1,0 +1,15 @@
+module.exports = {
+  formatSkuStatus: function (status) {
+    var str = ''
+    if (status === '1') {
+      str = '正常'
+    } else if (status === '2') {
+      str = '已售罄'
+    } else if (status === '3') {
+      str = '已下架'
+    } else if (status === '4') {
+      str = '不存在'
+    }
+    return str;
+  }
+}

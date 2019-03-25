@@ -1,0 +1,27 @@
+<!--pages/order/payment.wxml-->
+<van-dialog id="van-dialog" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<van-cell title="订单状态" title-width="100px;" value="待付款"/>
+<van-cell title="支付状态" title-width="100px;">
+  <view slot="">
+    <span class="red">未支付</span>
+  </view>
+</van-cell>
+<van-cell title="支付金额" title-width="100px;">
+  <view slot="">
+    <span class="red">￥{{number.formatPrice(orderFee)}}</span>
+  </view>
+</van-cell>
+<van-cell title="支付宝账户" title-width="100px;">
+  <view slot="">
+    <span>{{alipayAccount}}</span>
+  </view>
+  <view slot="right-icon">
+    <view class="copy" bindtap='copy'>复制</view>
+  </view>
+</van-cell>
+<view class="tip">提示：通过支付宝打款后请点击确认付款，完成支付。在支付宝打款时，请备注您的收件人名称和电话，方便商家确认收款。</view>
+<view class='bottom-btn'>
+  <van-button size="large" bind:click="pay">确认付款</van-button>
+  <van-button size="large" class="detail-btn" bind:click="goDetail">查看详情</van-button>
+</view>

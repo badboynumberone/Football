@@ -1,0 +1,49 @@
+<!--pages/address/detail.wxml-->
+<van-dialog id="van-dialog" />
+<van-field
+    value="{{ receiverName }}"
+    clearable
+    label="姓名"
+    data-field-name="receiverName"
+    placeholder="请输入收货人姓名"
+    bind:blur="onInput"
+  />
+  <van-field
+    type="number"
+    value="{{ receiverPhone }}"
+    clearable
+    label="手机号"
+    data-field-name="receiverPhone"
+    placeholder="请输入收货人手机号"
+    bind:blur="onInput"
+  />
+<van-field
+    value="{{ receiverArea }}"
+    center
+    clearable
+    readonly
+    label="地区"
+    placeholder="请选择收货地区"
+    border="{{ false }}"
+    use-button-slot
+  >
+    <van-button slot="button" size="small" type="danger" bind:click="showAreaPopup">选择地区</van-button>
+  </van-field>
+  <van-field
+    value="{{ receiverDetail }}"
+    clearable
+    label="详细地址"
+    data-field-name="receiverDetail"
+    placeholder="请输入详细地址"
+    bind:blur="onInput"
+  />
+  <van-popup show="{{ show }}" position="bottom" bind:close="onAreaPopupClose">
+    <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="地区选择" bind:confirm="onAreaConfirm" bind:cancel="onAreaCancel"/>
+  </van-popup>
+
+<view class='bottom-btn'>
+  <van-button size="large" bind:click="saveAddress">保存并使用</van-button>
+  <van-button wx:if="{{ fromOrder === false && address.id}}" size="large" class="del-btn" bind:click="deleteAddress">删除收货地址</van-button>
+</view>
+
+

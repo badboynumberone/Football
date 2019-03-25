@@ -1,0 +1,23 @@
+module.exports = {
+  formatPrice: function (price) {
+    if (price !== undefined) {
+      return price / 100
+    } else {
+      return ''
+    }    
+  },
+
+  formatPrice2: function (minPrice, maxPrice) {
+    var _minPrice = parseInt(minPrice)
+    var _maxPrice = parseInt(maxPrice)
+    if (_minPrice < _maxPrice) {
+      return _minPrice / 100 + '-' + _maxPrice / 100
+    } else {
+      return _minPrice / 100
+    }
+  },
+
+  parseInt: function (price) {
+    return parseInt(price)
+  }
+}

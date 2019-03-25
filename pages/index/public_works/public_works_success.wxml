@@ -1,0 +1,12 @@
+<view class="main">
+    <view class="success_icon" style="margin-top:150rpx;text-align:center">
+        <icon type="success" size="40" />
+    </view>
+    <view class="success_title">
+        恭喜,发布作品成功！
+    </view>
+    <view class="options">
+        <view class="return_index" bindtap="toIndex">返回首页</view>
+        <view class="looking_works" bindtap="toWorkDetails" style="background:#fff;color:#63922F">查看我的作品</view>
+    </view>
+</view>

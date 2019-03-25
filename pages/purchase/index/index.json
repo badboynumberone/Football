@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "在线订购",
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "comp1001": "../../components/comp1001/index",
+    "comp1002": "../../components/comp1002/index"
+  }
+}

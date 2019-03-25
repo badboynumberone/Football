@@ -1,0 +1,63 @@
+<view class="main">
+	<view class="result_container">
+		<view class="result_bg">
+			<image class="result_bg_img fill" src="../../../images/rate-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+		</view>
+		<!--基本信息-->
+		<view class="result">
+			<view class="title">
+				<image  class="title_img" src="../../../images/base-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
+				<text style="margin-left:40rpx;color:#63922F">基本信息</text>
+			</view>
+			<view class="register-wrviewp" wx:if="{{pageIndex == 1}}">
+				<view class="form-group">
+					<view class="form-view">身份证号</view>
+					<view class="form-control">
+						<text class="indentity_num">4658791324568974312</text>
+					</view>
+				</view>
+
+				<view class="form-group">
+					<view class="form-view">姓名</view>
+					<view class="form-control">
+						<text class="name">张三</text>
+					</view>
+				</view>
+
+				<view class="form-group">
+					<view class="form-view">所在城市</view>
+					<view class="form-control ">
+						<text class="city">江苏省南京市</text>
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">1寸照片</view>
+					<view class="form-control" style="padding:10rpx 10rpx">
+						<view class="img_wrapper">
+							<image class="one_photo fill" src="../../../images/plus.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+						</view>				
+					</view>
+				</view>
+			</view>
+		</view>
+		<!--星级评定信息-->
+		<view class="result" style="margin-top:15rpx">
+			<view class="title">
+				<image  class="title_img" src="../../../images/rate-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
+				<text style="margin-left:40rpx;color:#63922F">星级评定信息</text>
+			</view>
+			<view class="honr_list">
+				<van-cell title="八星级" size="large"  is-link>
+					<view class="honr_time">
+						2018-10-20
+					</view>
+				</van-cell>
+			</view>
+		</view>
+	</view>
+	<!--底部生成电子证书按钮-->
+	<view class="bottom_btn">
+		生成电子版证书
+	</view>
+</view>
+

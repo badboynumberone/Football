@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "我的评论",
+    "usingComponents":{
+        "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+        "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+        "comment_item":"../../../components/comment_item/comment_item"
+    }
+}

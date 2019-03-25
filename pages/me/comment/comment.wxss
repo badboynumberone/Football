@@ -1,0 +1,5 @@
+@import '/common.wxss';
+.van-tab--active{
+    font-weight: bold  !important;
+    color: #62912F !important;
+}

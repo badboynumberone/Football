@@ -1,0 +1,6 @@
+<view class="main">
+    <!--我的收藏或作品-->
+    <view class="works_container">
+        <dynaic_item  style="width:100%;display:flex;flex-flow:row wrap"></dynaic_item>
+    </view>
+</view>

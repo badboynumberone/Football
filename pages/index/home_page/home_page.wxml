@@ -1,0 +1,13 @@
+<view class="main">
+    <!--个人信息-->
+    <profile-header personalInfo = "{{hotItem}}"></profile-header>
+    <!--个人动态-->
+    <view class="personal_works">
+        <view class="personal_select">
+            <van-tabs active="{{ worksIndex }}" bind:change="onChange" line-width="12" swipeable="true">
+                <van-tab title="作品"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap"></dynaic-item></van-tab>
+                <van-tab title="收藏"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap"></dynaic-item></van-tab>
+            </van-tabs>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,130 @@
+<view class="main">
+	<view class="register_container">
+		<view class="register_bg">
+			<image class="register_bg_img fill" src="../../../images/sign-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+		</view>
+		<view class="register">
+			<view class="title">
+				<image  class="title_img" src="{{pageIndex == 1 ? '../../../images/sign01.png':'../../../images/sign02.png'}}" style="height:40rpx;width:40rpx;display:inline-block" />
+				<text style="margin-left:40rpx;color:#63922F">{{pageIndex == 1 ? '参加者信息' : '联系人信息'}}</text>
+			</view>
+			<!--参加者信息-->
+			<view class="register-wrviewp" wx:if="{{pageIndex == 1}}">
+				<view class="form-group">
+					<view class="form-view">姓名</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入姓名" />
+					</view>
+				</view>
+
+				<view class="form-group">
+					<view class="form-view">身份证号</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入身份证号" />
+					</view>
+				</view>
+
+				<view class="form-group">
+					<view class="form-view">性别</view>
+					<view class="form-control ">
+						<picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
+							<view class="{{sexOffset?'picker':'picker unactive'}}">
+								{{sexOffset?sexArray[sexIndex]:'请选择性别'}}
+							</view>
+						</picker>	
+						<image class="down_arrow ct" src="../../../images/down_arrow.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">生日{{getNowDate}}</view>
+					<view class="form-control ">
+						<picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
+							<view class="{{birthDay != ''?'picker':'picker unactive'}}">
+								{{birthDay == ''? '请选择生日':birthDay}}
+							</view>
+						</picker>
+						<image class="down_arrow ct" src="../../../images/down_arrow.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+					</view>
+				</view>
+
+				<view class="form-group">
+					<view class="form-view">所在城市</view>
+					<view class="form-control">
+						<picker mode="region" bindchange="bindRegionChange" >
+							<view class="{{city!=false?'picker':'picker unactive'}}">
+							{{city!=false?city[0]+","+city[1]+","+city[2]:"请选择城市"}}
+							</view>
+						</picker>
+						<image class="down_arrow ct" src="../../../images/down_arrow.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+					</view>
+				</view>
+
+				<view class="form-group">
+					<view class="form-view">1寸照片</view>
+					<view class="form-control select-input" style="padding:10rpx 10rpx">
+						<view class="img_wrapper">
+							<image class="one_photo fill" src="../../../images/plus.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+						</view>
+						<view class="tips">
+							仅支持jpg、jpeg、png、gif文件，仅限上传一张，大小不超过2M
+						</view>					
+					</view>
+				</view>
+
+			</view>
+			<!--联系人信息-->
+			<view class="register-wrviewp" wx:if="{{pageIndex == 2}}">
+				<view class="form-group">
+					<view class="form-view">妈妈姓名</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入妈妈姓名" value="" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">妈妈手机号</view>
+					<view class="form-control select-input">
+						<input class="form-input " type="number" placeholder="请输入妈妈手机号" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">爸爸姓名</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入爸爸姓名" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">爸爸手机号</view>
+					<view class="form-control select-input">
+						<input class="form-input" type="number" placeholder="请输入爸爸手机号" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">通讯地址</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入通讯地址" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">邮编</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入邮编" />
+					</view>
+				</view>
+				<view class="form-group">
+					<view class="form-view">邮箱</view>
+					<view class="form-control select-input">
+						<input class="form-input" placeholder="请输入邮箱" />
+					</view>
+				</view>
+			</view>
+			<!--底部按钮-->
+			<view class="submit-wrviewp">
+				<view wx:if="{{pageIndex == 1}}" class="submit-btn">下一步</view>
+				<view wx:if="{{pageIndex == 2}}" class="submit-btn">立即注册</view>
+			</view>
+		</view>
+
+	</view>
+	
+</view>
+

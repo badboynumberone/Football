@@ -1,0 +1,91 @@
+import request from '../../../utils/request';
+import {checkLogin} from '../../../utils/util';
+const app = getApp();
+Page({
+
+    /**
+     * 页面的初始数据
+     */
+    data: {
+      headerType:'me',//页面内型
+      isLogin:false,//是否登录
+      functionList:[
+        {iconSrc:"../../../images/wdzp@2x.png",text:"我的作品",linkAddress:"",isNew:true},
+        {iconSrc:"../../../images/plscxz@2x.png",text:"我的收藏",linkAddress:"",isNew:false},
+        {iconSrc:"../../../images/wdpl@2x.png",text:"我的评论",linkAddress:"",isNew:false},
+        {iconSrc:"../../../images/wddd@2x.png",text:"我的订单",linkAddress:"",isAll:true,isNew:false},
+      ],//用户功能列表
+      pay_list:[
+        {iconSrc:"../../../images/dfk.png",text:"待付款",messageNum:0,linkAddress:""},
+        {iconSrc:"../../../images/dfh.png",text:"代发货",messageNum:0,linkAddress:""},
+        {iconSrc:"../../../images/dsh.png",text:"待收货",messageNum:0,linkAddress:""},
+        {iconSrc:"../../../images/dfk.png",text:"已完成",messageNum:0,linkAddress:""},
+        {iconSrc:"../../../images/thtk.png",text:"退货退款",messageNum:10,linkAddress:""},
+      ],//付款流程列表
+      userInfo:{},//用户信息
+      personalInfo:[
+        {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'关注',typeNum:0},
+        {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'粉丝',typeNum:0},
+        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'获赞',typeNum:0},
+        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'赞过',typeNum:0},
+      ],
+      userInfo:{nickName:undefined,avatarUrl:undefined},
+      waitingPaymentCount: '',
+      waitingShipmentCount: '',
+      waitingReceiveCount: '',
+      completedCount: '',
+      refundCount: '',
+    },
+  
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+    },
+    onShow(){
+      this.selectComponent("#profile-header").initData();
+      this.getOrderCount();
+    },
+    buyProcess(e){
+      if(!checkLogin(false,true)){
+        return;
+      }
+      switch (e.currentTarget.dataset.type) {
+        case 0:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=1'});break;}
+        case 1:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=1'});break;} 
+        case 2:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=2'});break;}
+        case 3:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=3'});break;}
+        case 4:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=4'});break;}
+        default:
+          break;
+      }  
+    },
+    navigateTo(e){
+      if(!checkLogin(false,true)){
+        return;
+      }
+      if(e.currentTarget.dataset.type==4){
+        wx.navigateTo({url: '/pages/purchase/address/detail'});
+      }
+      switch (e.currentTarget.dataset.type) {
+        case 0:{wx.navigateTo({url: '/pages/me/my_collection_works/my_collection_works'});break;}
+        case 1:{wx.navigateTo({url: '/pages/me/my_collection_works/my_collection_works'});break;} 
+        case 2:{wx.navigateTo({url: '/pages/me/comment/comment'});break;}
+        case 3:{wx.navigateTo({url: '/pages/purchase/order/list'});break;}
+        default:
+          break;
+      }  
+      
+    },
+    getOrderCount(){
+      let that = this;
+      request.post('/order/getOrderCount').then(function (data) {
+        console.log(data)
+        that.setData({
+          waitingPaymentCount: data.waitingPaymentCount,
+          waitingShipmentCount: data.waitingShipmentCount,
+          waitingReceiveCount: data.waitingReceiveCount
+        })
+      })
+    }
+  })

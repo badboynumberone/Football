@@ -1,0 +1,123 @@
+/* pages/refund/list.wxss */
+@import "/common.wxss";
+
+.order-item{
+  margin-bottom: 10px;
+}
+.order-item .order-header{
+  height: 45px;
+  background: #fff;
+  line-height: 45px;
+  box-sizing: border-box;
+  padding: 0px 10px;
+}
+
+.order-header .status{
+  float: right;
+  line-height: 45px;
+  font-size: 14px;
+  color: #df3f3f;
+}
+
+.order-header .order-no{
+  font-size: 14px;
+  color: #222;
+}
+
+.order-content{
+  box-sizing: border-box;
+  padding: 10px;
+  height: 120px;
+  background: #f8f8f8;
+}
+
+.product-img{
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.product-img image{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.product-info{
+  padding-top: 4px;
+  margin-left: 110px;
+}
+
+.product-info .title,.product-info .desc{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 22px;
+  font-size: 14px;
+  color: #222;
+}
+
+.product-info .title{
+  height: 44px;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.product-info .desc{
+  font-size: 12px;
+  color: #666;
+  line-height: 18px;
+}
+
+.product-info .num{
+  font-size: 14px;
+  color: #555;
+}
+
+.total{
+  padding-right: 10px;
+  text-align: right;
+  height: 33px;
+  line-height: 33px;
+  color: #e13e3f;
+  font-size: 18px;
+  background: #fff;
+}
+
+.total label{
+  font-size: 14px;
+  color: #333;
+}
+
+.total text{
+  font-size: 13px;
+}
+
+.order-operator{
+  text-align: right;
+  background: #fff;
+  padding: 0px 10px 10px 10px;
+}
+
+.order-operator button{
+  border-radius: 0px;
+  margin-left: 5px;
+  outline: 0;
+}
+
+.order-operator button::after{
+  border: none;
+}
+
+button[type=default]{
+  border: 1px solid #aaa;
+  color: #555;
+}
+
+button[type=primary] {
+  color:#df3f3f;
+  border: 1px solid #df3f3f;
+  background-color:#fff;
+}
+

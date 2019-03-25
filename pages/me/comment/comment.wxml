@@ -1,0 +1,9 @@
+<view class="main">
+    <!--查看评论-->
+    <view class="comment_title_wrapper">
+        <van-tabs active="{{ commentIndex }}" bind:change="onChange" line-width="12" swipeable="true">
+            <van-tab title="评论我的"><comment_item></comment_item></van-tab>
+            <van-tab title="我评论的"><comment_item></comment_item></van-tab>
+        </van-tabs>
+    </view>
+</view>

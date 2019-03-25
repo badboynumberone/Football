@@ -1,0 +1,71 @@
+<!--pages/product/index.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<!-- <view class="weui-loadmore" wx:if='{{isRefreshing}}'>
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore-tips">正在刷新...</view>
+</view> -->
+<!-- 搜索 -->
+<van-search wx:if="{{isSearch}}" value="{{ searchValue }}" placeholder="搜索商品" bind:search="onSearch" />
+ <block wx:if="{{productList.length> 0}}">
+<van-row>
+  <van-col span="8" data-sort="multiple" bindtap="refresh">
+    <view class='order-item {{multipleSort == "1" ? "active" : ""}}'>综合</view>
+  </van-col>
+  <van-col span="8" data-sort="price" bindtap="refresh">
+    <view class='order-item {{priceSort != "0" ? "active" : ""}}'>
+      价格
+      <view class='{{priceSort != "0" ? "upOrDown" : ""}} {{priceSort == "2" ? "down" : ""}}'></view>
+    </view>
+  </van-col>
+  <van-col span="8" data-sort="sale" bindtap="refresh">
+    <view class='order-item {{saleSort == "1" ? "active" : ""}}'>销量</view>
+  </van-col>
+</van-row>
+<scroll-view scroll-y>
+  <view wx:for="{{productList}}" wx:for-item="product" wx:key="id" class="record-item" data-id="{{product.id}}" bindtap="toProductDetail">
+    <view class='record-box'>
+      <view class='product-img'>
+        <image src="{{imageBaseUrl}}{{string.getSplitFirst(product.imageUrls)}}" />
+        <view class="sku-tip-wrapper" wx:if="{{product.quantity > 0 && product.quantity < 5}}"><view class="sku-tip">仅剩{{product.quantity}}件</view></view>
+        <view class="sold-out-tip-wrapper" wx:if="{{product.quantity <= 0}}"><view class="sold-out-tip">已售罄</view></view>
+      </view>
+      <view class='product-info'>
+        <view class='title'>
+        {{product.name}}
+        </view>
+        <view class='price'>
+          <text>¥</text>{{number.formatPrice2(product.skuMinPrice,product.skuMaxPrice)}}
+        </view>
+        <view class='sales'>销量：{{product.soldNum}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view wx:if='{{!isRefreshing}}' class="weui-loadmore">
+  <view wx:if='{{isLoadingMore}}'>
+    <view class="weui-loading"></view>
+    <view class="weui-loadmore-tips">正在加载更多...</view>
+  </view>
+  <view wx:elif='{{hasMoreData}}'>
+    <view class="weui-loadmore-tips" bindtap='onReachBottom'>点击加载更多</view>
+  </view>
+  <view wx:elif='{{productList.length > 0}}'>
+    <view class="weui-loadmore-tips">没有更多商品啦</view>
+  </view>
+  <view wx:else>
+    <view class="weui-loadmore-tips">暂无商品</view>
+  </view>
+</view>
+</block>
+<block wx:else>
+  <view class="empty" wx:if="{{isSearch}}">
+    <image src="../../images/search_empty.png" style="width: 200px;height: 200px;"></image>
+    <view style="font-size: 16px;">没有找到商品，请更换搜索条件再试试哦！</view>
+  </view>
+  <view class="empty" wx:else>
+    <image src="../../images/empty.png" style="width: 200px;height: 200px;"></image>
+    <view style="font-size: 16px;">亲，暂时无商品哦，去首页看看吧！</view>
+    <view class="go-home" bindtap='goHome'>去首页</view>
+  </view>
+</block>

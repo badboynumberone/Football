@@ -1,0 +1,70 @@
+<!--pages/order/list.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<van-dialog id="van-dialog" />
+<van-tabs swipe-threshold="5" bind:change="onChange" active="{{ active }}">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="待付款"></van-tab>
+  <van-tab title="待发货"></van-tab>
+  <van-tab title="待收货"></van-tab>
+  <van-tab title="已完成"></van-tab>
+  <van-tab title="交易关闭"></van-tab>
+</van-tabs>
+<block wx:if="{{orderList.length > 0 || orderList.length > 0}}">
+<scroll-view scroll-y style='background:#f2f2f2;'>
+  <view wx:for="{{orderList}}" wx:for-item="order" wx:key="id" class='order-item' data-order-id="{{order.id}}" bindtap='goDetail'>
+    <view class='order-header'>
+      <view class='status'>{{status.formatOrderStatus(order.orderStatus)}}</view>
+      <view class='order-no'>订单号：{{order.orderNo}}</view>
+    </view>
+    <view class='order-content'>
+      <view class='product-img'><image src="{{imageBaseUrl}}{{string.getSplitFirst(order.productImages)}}" /></view>
+      <view class='product-info'>
+        <view class='title'>{{order.productNames}}</view>
+        <view class='desc'>
+        </view>
+        <view class='num'>X{{order.productNum}}</view>
+      </view>
+    </view>
+    <view class='total'>
+      <label wx:if="{{order.paymentMethod === '2' && order.orderStatus === '0' && order.paymentTime}}" style="float:left;padding-left:10px;color: #df3f3f;">等待商家确认收款</label>
+      <label>实付款：</label>
+      <text>¥</text>{{number.formatPrice(order.orderFee)}}
+    </view>
+    <view class='order-operator'>
+      <button wx:if="{{((order.paymentMethod === '1' && order.orderStatus === '0') || (order.paymentMethod === '2' && order.orderStatus === '0' && !order.paymentTime))}}" type="default" size="mini" catchtap="cancelOrder" data-order-id="{{order.id}}" hover-class="other-button-hover">
+        取消订单
+      </button>
+      <button wx:if="{{((order.paymentMethod === '1' && order.orderStatus === '0') || (order.paymentMethod === '2' && order.orderStatus === '0' && !order.paymentTime)) && number.parseInt(order.leftTime) > 0}}" type="primary" size="mini" catchtap="pay" data-order="{{order}}" hover-class="other-button-hover">
+        {{order.paymentMethod === '1' ? '支付' + order.leftTimeStr : '确认付款'}}
+      </button>
+
+      <button wx:if="{{order.orderStatus === '1'}}" type="default" size="mini" catchtap="goRefundApply" data-order-id="{{order.id}}" data-refund-id="{{order.refundId}}" data-order-status="{{order.orderStatus}}" data-refund-status="{{order.refundStatus}}" hover-class="other-button-hover">
+        {{order.refundStatus && order.refundStatus !== '6' ? '查看退款申请' : '申请退款'}}
+      </button>
+
+      <button wx:if="{{order.orderStatus === '2'}}" type="default" size="mini" catchtap="goLogistics" data-order-id="{{order.id}}" hover-class="other-button-hover">
+        查看物流
+      </button>
+      <button wx:if="{{order.orderStatus === '2'}}" type="primary" size="mini" catchtap="confirmReceipt" data-order-id="{{order.id}}" hover-class="other-button-hover">
+        确认收货
+      </button>
+
+      <button wx:if="{{order.orderStatus === '3'}}" type="default" size="mini" catchtap="goLogistics" data-order-id="{{order.id}}" hover-class="other-button-hover">
+        查看物流
+      </button>
+      <button wx:if="{{order.orderStatus === '3'}}" type="default" size="mini" catchtap="goRefundApply" data-order-id="{{order.id}}" data-refund-id="{{order.refundId}}" data-order-status="{{order.orderStatus}}" data-refund-status="{{order.refundStatus}}" hover-class="other-button-hover">
+        {{order.refundStatus && order.refundStatus !== '6' ? '查看退货申请' : '申请退货'}}
+      </button>
+    </view>
+  </view>
+</scroll-view>
+</block>
+<block wx:else>
+  <view class="empty">
+  <image src="../../images/order_empty.png" style="width: 200px;height: 200px;"></image>
+  <view style="font-size: 16px;">您暂时还没有订单哦，去商城看看吧！</view>
+  <view class="go-home" bindtap='goHome'>去在线商城</view>
+  </view>
+</block>

@@ -1,0 +1,13 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "van-search": "/miniprogram_npm/vant-weapp/search/index",
+    "van-row": "/miniprogram_npm/vant-weapp/row/index",
+    "van-col": "/miniprogram_npm/vant-weapp/col/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "dynaic-item":"/components/dynaic_item/dynaic_item"
+  }
+}

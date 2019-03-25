@@ -1,0 +1,149 @@
+<view class="main">
+    <!--作者信息-->
+    <view class="works_author">
+        <view class="author_header">
+            <view class="author_img_wrapper" bindtap="toHomePage">
+                <image class="author_img fill" src="../../../images/demo.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+                </image>
+            </view>
+            <view class="author_info">
+                <view class="author_name">
+                    轻舞飞扬妞牛
+                </view>
+                <view class="author_public_time">
+                    2019-01-24 09:15
+                </view>
+            </view>
+        </view>
+        <concern-item offsetOne="{{true}}" offsetTwo="{{true}}"></concern-item>
+    </view>
+    <!--视频或图片-->
+    <view class="is_video_img">
+        <block wx:if="{{true}}">
+            <view class="works_banner">
+                <!-- 轮播图 -->
+                <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
+                    <block wx:for="{{6}}" wx:key="{{index}}" >
+                        <swiper-item style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
+                    </block>
+                </swiper>
+                <!--分页器-->
+                <view class="works_stepper">{{bannerIndex}}/6</view>
+            </view>
+        </block>
+        <block wx:else>
+            <video class="fill" src="" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
+                bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror="">
+            </video>
+        </block>
+    </view>
+    <!--动态文字信息-->
+    <view class="works_container">
+        <text class="works_title text-hidden">杜克大学对战北卡大学即将拉开帷幕</text>
+        <view class="works_content">
+            <text>这次的CS4其实是包括了2个版本，abode photoshop cs4，他充分利用无与伦比的编辑合成功能、更直观的用户体验来大幅度提高工作效率。另外一个版本是Adobe Photoshop CS4 Extended，他不仅仅包括CS4里所有的功能，还包括了编辑动画和3D功能还有高级图像分析的功能。</text>
+        </view>
+        <view class="works_tag">
+            <view class="tag" wx:for="{{6}}" wx:key="{{index}}">
+                足球小子
+            </view>     
+        </view>
+        <view class="works_loaction">
+            <van-icon name="location" style="font-size:32rpx;margin-top:10rpx;margin-right:10rpx" />
+            江苏省常州信息职业技术学院
+        </view>
+        <!--评论信息-->
+        <view class="rating_container">
+            <view class="works_rating_title"><text class="works_rating_name">评论</text><text class="rating_num">(0条)</text></view>
+            <view class="rating_content">
+                <view class="rating_wrapper">
+                    <view class="rating_item" wx:for="{{6}}" wx:key="{{index}}">
+                        <view class="rating_answer">
+                            <van-row>
+                                <van-col span="4" >
+                                    <view class="user_header_wrapper" bindtap="toHomePage">
+                                        <image class="fill" src="../../../images/demo.jpg"  />
+                                    </view>
+                                </van-col>
+                                <van-col span="20">
+                                    <view class="answer_info" style="margin-left:-14rpx">
+                                        <view class="answer_name">
+                                            <text>猫爪</text>
+                                        </view>
+                                        <view class="answer_time author_public_time" style="margin-top:0rpx">
+                                            <text>2019-01-28 19:28</text>
+                                        </view>
+                                        <view class="answer_content">
+                                            <text>是的发送到刚回归的撒个大公开大数据公开了！</text>
+                                        </view>
+                                        <view class="answer_btn">
+                                            <text>回复</text>
+                                        </view>
+                                    </view>
+                                </van-col>
+                            </van-row>
+                            
+                        </view>
+                        <view>
+                            <van-row custom-class="add_item">
+                                <van-col offset="3" span="21" >
+                                    <van-row >
+                                    <view style="padding:0 10rpx">
+                                        <van-col span="4">
+                                            <view class="user_header_wrapper" bindtap="toHomePage">
+                                                <image class="fill" src="../../../images/demo.jpg"  />
+                                            </view>
+                                        </van-col>
+                                        <van-col span="20">
+                                            <view class="answer_info">
+                                                <view class="answer_name">
+                                                    <text>猫爪</text>
+                                                </view>
+                                                <view class="answer_time author_public_time" style="margin-top:0rpx">
+                                                    <text>2019-01-28 19:28</text>
+                                                </view>
+                                                <view class="answer_content">
+                                                    <text><text class="recall">回复用户轻舞飞扬: </text>发发生过·1</text>
+                                                </view>
+                                                <view class="answer_btn">
+                                                    <text>回复</text>
+                                                </view>
+                                            </view>
+                                        </van-col>
+                                    </view>   
+                                    </van-row>
+                                </van-col>
+                            </van-row>
+                        </view>
+                    </view>
+                    <view class="end">
+                        <text>~THE END ~</text>
+                    </view>
+                    <view class="none_rating">
+                        <text>~暂无评论~</text>
+                    </view>
+                </view>
+                
+            </view>
+        </view>
+    </view>
+    <!--添加评论-->
+    <view class="add_rating">
+        <view class="input_wrapper">
+            <image class="write" src="../../../images/tjpl@2x.png" lazy-load="false" binderror="" bindload="" />
+            <input class="rating_input" placeholder="添加评论" >
+            </input>
+        </view>
+        <view class="icon_wrapper">
+            <view class="icon">
+              <image class="fill" src="../../../images/pldz@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+            </view>
+            <view class="icon">
+              <image class="fill" src="../../../images/plsc@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+            </view>
+            <view class="icon">
+              <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+            </view>
+        </view>
+    </view>
+</view>

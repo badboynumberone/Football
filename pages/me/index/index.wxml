@@ -1,0 +1,34 @@
+<view class="main">
+    <!--个人信息-->
+        <profile-header id="profile-header" bindrefresh="initData" isLogin="{{isLogin}}"  personalInfo="{{personalInfo}}" headerType="{{headerType}}"></profile-header>
+    <!--用户功能列表-->
+    <view class="personal_functions" wx:for="{{functionList}}" wx:key="{{index}}"  bindtap='navigateTo' data-type="{{index}}">
+        <view class='personal_item' >
+            <view class='to-arrow'>
+            <text wx:if="{{item.isAll}}" style="display:inline-block;vertical-align:middle;font-size:30rpx;margin-top:-10rpx;margin-right:10rpx;color:#C1C1C1">查看全部</text>
+            <van-icon name="arrow" color="#888"/>
+            </view>
+            <image style='width:20px;height:20px;vertical-align:middle;' src='{{item.iconSrc}}'></image>
+            <text style="display:inline-block;vertical-align:middle;margin-left:20rpx">{{item.text}}</text>
+            <view class="red_dot" wx:if="{{item.isNew}}"></view>
+        </view>
+    </view>
+    <!--用户购买流程-->
+    <view class="buy_process">
+        <view class="buy_process_item" wx:for="{{pay_list}}" wx:key="{{index}}" bindtap="buyProcess" data-type="{{index}}">
+            <image class="process_item_img" src="{{item.iconSrc}}" />
+            <view class="message_num" wx:if="{{item.messageNum}}">{{item.messageNum}}</view>
+            <text class="process_text">{{item.text}}</text>
+        </view>
+    </view>
+    <!--收货地址管理-->
+    <view class="personal_functions"  style="border-top:1rpx solid #F8F8F8" bindtap='navigateTo' data-type="4">
+        <view class='personal_item'>
+            <view class='to-arrow'>
+                <van-icon name="arrow" color="#888"/>
+            </view>
+            <image style='width:20px;height:20px;vertical-align:middle;' src='../../../images/shdz@2x.png'></image>
+            <text style="display:inline-block;vertical-align:middle;margin-left:20rpx">收货地址管理</text>
+        </view>
+    </view>
+</view>

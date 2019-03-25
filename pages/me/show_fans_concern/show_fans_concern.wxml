@@ -1,0 +1,15 @@
+<view class="main">
+    <!--关注或粉丝-->
+    <view class="item" wx:for="{{6}}">
+        <view class="item_wrapper">
+            <image class="fill" src="../../../images/demo.jpg" />
+        </view>
+        <view class="item_info">
+            <text class="item_name">梦蝶</text>
+            <view class="item_content">
+                <text class="item_works">作品 <text>18</text></text>
+                <text class="item_works">粉丝 <text>20</text></text>
+            </view>
+        </view>
+    </view>
+</view>

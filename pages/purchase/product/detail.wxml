@@ -1,0 +1,119 @@
+<!--pages/product/detail.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<block wx:if="{{hasNetwork}}">
+<block wx:if="{{isValid}}">
+<scroll-view scroll-y>
+  <!--轮播图-->
+  <swiper style='height:{{swiperHeight}}px;' indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{string.split(product.imageUrls)}}">
+      <swiper-item>
+        <image src="{{imageBaseUrl}}{{item}}" class="slide-image" mode="widthFix" style="width:100%;" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--商品文字信息-->
+  <view class='deital-info'>
+    <view class='product-name-wrapper'>
+      <view class='share'>
+        <button class="share-button" hover-class="none" open-type="share"></button>
+        <image style='width:16px;height:19px;' src='../../images/share.png'></image>
+        <view class='share-text'>分享</view>
+      </view>
+      <view class='product-name'>
+        {{product.name}}
+      </view>
+    </view>
+    <view class='product-desc'>
+      {{product.sellPoint}}
+    </view>
+    <view class='product-sales'>销量 {{product.soldNum}}</view>
+    <view class='procut-price'>
+      <text>¥</text>{{price}}
+    </view>
+  </view>
+  <view style='width:100%;height:10px;background:#f2f2f2;'></view>
+  <!--商品详情介绍-->
+  <view class='product-detail'>
+    <view class='title'>商品详情</view>
+    <view class='content'>
+      <rich-text nodes="{{product.richText}}" bindtap="tap"></rich-text>
+    </view>
+  </view>
+  <view style='height:55px;'></view>
+</scroll-view>
+
+<image style="position:fixed;right:5px;bottom:55px;width:50px;height:50px;z-index:2;" src="../../../images/home.png" bindtap='goHome'></image>
+<van-goods-action class="bottom-bar">
+  <van-goods-action-icon icon="chat" text="客服" open-type="contact" />
+  <van-goods-action-icon icon="cart" text="购物车" info="{{cartItemSize}}" bind:click="goCart" />
+  <block wx:if="{{product.quantity > 0}}">
+    <van-goods-action-button text="加入购物车" type="warning" bind:click="showAddCart" />
+    <van-goods-action-button text="立即购买" bind:click="showBuy" />
+  </block>
+  <block wx:else>
+    <van-goods-action-button text="查看更多商品" type="warning" bind:click="goHome" />
+  </block>
+  <view class='tips' wx:if="{{quantityTip}}">{{quantityTip}}</view>
+</van-goods-action>
+
+<van-popup show="{{ show }}" position="bottom" overlay="{{ true }}" bind:close="onClose">
+  <view class='cartPop'>
+    <icon class='closePop' type="cancel" size="20" color="#888" bindtap='onClose'></icon>
+    <view class='cart-product'>
+      <view class='cart-product-img'>
+      <image src="{{imageBaseUrl}}{{string.getSplitFirst(product.imageUrls)}}" mode="aspectFill" />
+      </view>
+      <view class='cart-product-info'>
+        <view class='product-name'>
+          {{product.name}}
+        </view>
+        <view class='procut-price'>
+          <text>¥</text>{{selectedSkuPrice}}
+        </view>
+
+      </view>
+    </view>
+    <view class='speclist'>
+      <view class='spec-item' wx:for="{{specList}}" wx:for-item="spec">
+        <view class='title'>{{spec.name}}</view>
+        <view class='spec-content'>
+          <view class="spec-btn {{ skuState[spec.name][index] !== 'disable' ? (spec.active == value ? 'active' : '') : 'disable' }}" data-spec-name="{{spec.name}}" data-spec-value="{{value}}" wx:for="{{spec.valueList}}" wx:for-item="value" wx:for-index="index" bindtap="skuClick">{{value}}</view>
+        </view>
+      </view>
+      <view class='spec-item' style='margin-bottom:15px;'>
+        <view class='chart-num'>
+          <van-stepper value="{{selectedSkuNum}}" integer min="{{skuMinNum}}" max="{{skuMaxNum}}" bind:change="onSkuNumChange" />
+        </view>
+        <text class='goods-num'>剩余{{remaindSkuNum}}件</text>
+        <view class='title'>数量</view>
+      </view>
+    </view>
+    <view>
+      <block wx:if="{{phone}}">
+        <button wx:if="{{addCart}}" type="default" bindtap="default" class='addChartBtn' bindtap='addToCart'>加入购物车</button>
+        <button wx:else type="default" bindtap="default" class='addChartBtn' bindtap='goSubmit'>立即购买</button>
+      </block>
+      <block wx:else>
+      <button wx:if="{{addCart}}" type="default" bindtap="default" class='addChartBtn' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">加入购物车</button>
+        <button wx:else type="default" bindtap="default" class='addChartBtn' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">立即购买</button>
+      </block>
+    </view>
+  </view>
+</van-popup>
+</block>
+<block wx:else>
+  <view class="invalid">
+  <image src="../../images/product_invalid.png" style="width: 200px;height: 200px;"></image>
+  <view style="font-size: 16px;">亲，该商品已失效，去看看其他商品吧！</view>
+  <view class="go-home" bindtap='goHome'>去首页</view>
+  </view>
+</block>
+</block>
+<block wx:else>
+  <view class="invalid">
+  <image src="../../images/network_error.png" style="width: 200px;height: 200px;"></image>
+  <view style="font-size: 16px;">呀，网络不给力，请稍后再试</view>
+  <view class="go-home" bindtap='refresh'>刷新重试</view>
+  </view>
+</block>

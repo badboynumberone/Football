@@ -1,0 +1,47 @@
+<view class="main">
+	<view class="rate">
+		<view class="rate_bg">
+			<image class="rate_bg_img fill" src="../../../images/rate-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+		</view>
+		<view class="rate-wrap">
+			<view class="panel-title">
+				<view class="star_level">
+					<image src="../../../images/detail-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
+					<text style="margin-left:40rpx;color:#63922F">八星级</text>
+				</view>
+				<text>2018-10-20</text>
+			</view>
+			<view class="form-group">
+				<label class="form-label">证书号</label>
+				<view class="form-control">
+					<text class="certificate_num" selectable="false" space="false" decode="false">16091230418</text>
+				</view>
+			</view>
+			<view class="form-group">
+				<label class="form-label">证书
+					<text>(点击查看)</text>
+				</label>
+				<view class="form-control">
+					<image class="form-image" src="" bindtap="" />
+				</view>
+			</view>
+			<view class="form-group">
+				<label class="form-label">现场视频
+					<text>(点击查看)</text>
+				</label>
+				<view class="form-control">
+					<video src="" style="width:150rpx; height:150rpx" />
+				</view>
+			</view>
+			<view class="form-group">
+				<label class="form-label">现场照片
+					<text>(点击查看)</text>
+				</label>
+				<view class="form-control">
+					<image class="form-image" src="" />
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+

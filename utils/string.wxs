@@ -1,0 +1,8 @@
+module.exports = {
+  split: function (str) {
+    return str.split(',');
+  },
+  getSplitFirst: function (str) {
+    return str.split(',')[0];
+  }
+}

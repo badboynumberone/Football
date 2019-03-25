@@ -1,0 +1,45 @@
+<!--pages/refund/list.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<van-dialog id="van-dialog" />
+<van-tabs swipe-threshold="4" bind:change="onChange" active="{{ active }}">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="待审核"></van-tab>
+  <van-tab title="待寄回退货"></van-tab>
+  <van-tab title="待商家收货"></van-tab>
+  <van-tab title="拒绝收货"></van-tab>
+  <van-tab title="拒绝退单"></van-tab>
+  <van-tab title="退单完成"></van-tab>
+  <van-tab title="退款关闭"></van-tab>
+</van-tabs>
+<scroll-view scroll-y style='background:#f2f2f2;'>
+  <view wx:for="{{refundOrderList}}" wx:for-item="refundOrder" wx:key="id" class='order-item' data-refund-order-id="{{refundOrder.id}}" bindtap='goDetail'>
+    <view class='order-header'>
+      <view class='status'>{{status.formatRefundStatus(refundOrder.refundStatus)}}</view>
+      <view class='order-no'>退单号：{{refundOrder.refundNo}}</view>
+    </view>
+    <view class='order-content'>
+      <view class='product-img'><image src="{{imageBaseUrl}}{{string.getSplitFirst(refundOrder.productImages)}}" /></view>
+      <view class='product-info'>
+        <view class='title'>{{refundOrder.productNames}}</view>
+        <view class='desc'>
+        </view>
+        <view class='num'>X{{refundOrder.productNum}}</view>
+      </view>
+    </view>
+    <view class='total'>
+      <label>实付款：</label>
+      <text>¥</text>{{number.formatPrice(refundOrder.orderFee)}}
+    </view>
+    <view class='order-operator'>
+      <button wx:if="{{refundOrder.refundStatus === '0'}}" type="default" size="mini" catchtap="cancelRefundOrder" data-refund-order-id="{{refundOrder.id}}" hover-class="other-button-hover">
+        取消申请
+      </button>
+
+      <button wx:if="{{refundOrder.refundStatus === '1'}}" type="default" size="mini" catchtap="goLogistics" data-refund-order-id="{{refundOrder.id}}" hover-class="other-button-hover">
+        填写物流信息
+      </button>
+    </view>
+  </view>
+</scroll-view>

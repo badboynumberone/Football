@@ -1,0 +1,42 @@
+<!--评论组件-->
+<view class="praise_item">
+	<van-row>
+		<van-col span="4">
+			<view class="user_img">
+				<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+			</view>
+		</van-col>
+		<van-col span="16" >
+			<view class="praise_item_info">
+				<view>
+					<text class="praise_to" >梦蝶 <text class="green_text">赞了我</text></text>
+				</view>
+				<view>
+					<text class="praise_time" >2019-01-28 19:29</text>
+				</view>
+				<view style="margin-top:15rpx">
+					<view class="praise_content" >
+					<van-row>
+						<van-col span="4">
+							<view class="dynaic_img_wrapper" >
+								<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" /> 
+							</view>
+						</van-col>
+						<van-col span="16" offset="4">
+							<view class="dynaic_info">
+								<view style="margin-bottom:10rpx">
+									<text class="dynaic_name">梅西真棒</text>
+								</view>
+								<view>
+									<text class="dynaic_content two-hidden" >展现足球的撒广大大哥大护法恢复巅峰对话梵蒂冈发发火辅导费哈哈好的伐对方的观点。</text>
+								</view>
+							</view>
+						</van-col>
+					</van-row>
+					</view>
+				</view>
+			</view>
+		</van-col>
+	</van-row>
+</view>
+

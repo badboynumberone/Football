@@ -1,0 +1,39 @@
+/* pages/order/logistics.wxss */
+.product-wrapper{
+  padding: 10px;
+  height: 100px;
+}
+
+.product-wrapper .product-img{
+  width: 100px;
+  height: 100px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+}
+
+.product-wrapper .product-img image{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.product-wrapper .product-info{
+  margin-left: 110px;
+}
+
+.product-wrapper .title,.product-wrapper .desc{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 26px;
+  font-size: 16px;
+  color: #222;
+}
+
+.product-wrapper .desc{
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+  line-height: 18px;
+}

@@ -1,0 +1,28 @@
+@import '/common.wxss';
+
+.main{
+    position: relative;
+}
+.success_bg{
+    width: 750rpx;
+    height: 1200rpx;
+    
+}
+.success_text{
+    top: 300rpx;
+}
+.confirm{
+    position: fixed;
+    bottom:0rpx;
+    left: 0rpx;
+    background: #63922F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100rpx;
+    color: #fff;
+    overflow: hidden;
+    z-index: 9;
+
+}

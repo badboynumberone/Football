@@ -1,0 +1,26 @@
+.concern{
+    width: 150rpx;
+    font-size: 34rpx;
+    color: #639231;
+    border:1px solid #639231;
+    border-radius: 40rpx;
+    height: 50rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.concern_add{
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+}
+.concerned{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    background: #639231;
+    text-indent: -10rpx;
+}
+

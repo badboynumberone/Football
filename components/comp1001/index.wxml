@@ -1,0 +1,31 @@
+<!--components/cmp1001/index.wxml-->
+<wxs src="../../utils/string.wxs" module="string" />
+<wxs src="../../utils/number.wxs" module="number" />
+<view class="main">
+  <!-- 搜索 -->
+  <van-search value="{{ searchValue }}" placeholder="搜索商品" bind:search="onSearch" />
+  <!-- 轮播图 -->
+  <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{pageData.carouselList.data}}" wx:key="index">
+      <swiper-item>
+        <image src="{{imageBaseUrl}}{{item.imageUrl}}" data-item="{{item}}" class="slide-image" mode="widthFix" style="width:100%;" bindtap="itemAction"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 猜您喜欢 -->
+  <view class="mall-wrapper">
+    <view class="mall-title">{{pageData.recommendList.title}}</view>
+    <van-row>
+      <block wx:for="{{pageData.recommendList.data}}" wx:key="index">
+      <van-col span="12" data-item="{{item}}" bindtap="itemAction">
+        <view class="goods-item goods-list-item">
+          <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.imageUrl)}}" style="width:100%;height:{{productHeight}}px;" mode="scaleToFill" />
+          <view class='goods-name '>{{item.name}}</view>
+          <view class='goods-price'>
+            <text>¥</text>{{number.formatPrice2(item.skuMinPrice,item.skuMaxPrice)}}</view>
+        </view>
+      </van-col>
+      </block>
+    </van-row>
+  </view>
+</view>

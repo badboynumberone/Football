@@ -1,0 +1,47 @@
+/* pages/order/payment.wxss */
+@import "/common.wxss";
+
+.red{
+  color: #e13e3f;
+}
+
+.copy {
+  display: inline-block;
+  color: #de4041;
+  margin-left: 5px;
+  border: 1px solid #de4041;
+  padding: 0 10px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+}
+
+.bottom-btn {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.bottom-btn button {
+  background: #df3f3f;
+  width: 100%;
+  height: 45px;
+  margin-top: 10px;
+  color: #fff;
+}
+
+.bottom-btn .detail-btn button {
+  background: #fff;
+  border: 1px solid #df3f3f;
+  color: #df3f3f;
+}
+
+.tip {
+  margin-top: 10px;
+  line-height: 1.5;
+  padding:10px 15px;
+  color:rgb(145, 143, 143);
+  font-size:14px;
+}

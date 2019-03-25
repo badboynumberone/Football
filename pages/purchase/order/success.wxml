@@ -1,0 +1,11 @@
+<!--pages/order/success.wxml-->
+<wxs src="../../../utils/number.wxs" module="number" />
+<view class='pay-success'>
+  <image src='../../images/ok.png'></image>
+  <view class='tips'>订单支付成功！</view>
+  <view class='price'><text>￥</text>{{number.formatPrice(orderFee)}}</view>
+</view>
+<van-cell-group>
+  <van-cell title="支付方式" value="微信支付" />
+</van-cell-group>
+<button type="primary" class='addChartBtn' bindtap='goOrderDetail'>查看详情</button>

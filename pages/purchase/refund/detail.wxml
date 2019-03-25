@@ -1,0 +1,50 @@
+<!--pages/refund/detail.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<van-dialog id="van-dialog" />
+<scroll-view scroll-y style='background:#f2f2f2;'>
+  <view class='order-header'>
+    <view class='status'>{{status.formatRefundStatus(refundOrder.refundStatus)}}</view>
+    <van-icon style='vertical-align:middle;' name="passed" color='#df3f3f' size='16px' />
+    {{status.getRefundStatusTip(refundOrder.refundType, refundOrder.refundStatus)}}</view>
+  <view class='order-products'>
+    <view class='product-wrapper' wx:for="{{itemList}}">
+      <view class='product-img'>
+        <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.productImage)}}" mode="aspectFill" />
+      </view>
+      <view class='product-info'>
+        <view class='title'>{{item.productName}}</view>
+        <view class='desc'>{{item.specDesc}}</view>
+        <view class='num'>X{{item.num}}</view>
+        <view class='price'>
+          <text>¥</text>{{number.formatPrice(item.price)}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="order-info">
+    <van-cell-group border="false">
+      <van-cell title="{{refundOrder.refundType === '1' ? '退款编号' : '退货编号'}}" value="{{refundOrder.refundNo}}" />
+      <van-cell title="订单编号" value="{{order.orderNo}}" />
+      <van-cell title="申请时间" value="{{refundOrder.createTime}}" />
+      <van-cell title="退款金额" value="￥{{number.formatPrice(order.orderFee)}}" />
+      <van-cell title="{{refundOrder.refundType === '1' ? '退款原因' : '退货原因'}}" value="{{status.formatRefundReason(refundOrder.refundReason)}}" />
+      <van-cell title="退货凭据" wx:if="{{refundOrder.refundType === '2'}}" value="{{status.formatCredentialType(refundOrder.credentialType)}}" />
+      <van-cell title="问题说明" value="{{refundOrder.refundRemark}}" />
+    </van-cell-group>
+  </view>
+  <view class='upload' wx:if="{{refundOrder.refundType === '2'}}">
+    <view class='title'>凭证</view>
+    <view class='img-group'>
+      <view class='img-wrapper' wx:for="{{credentialImageArray}}" bindtap='previewImage' data-img-src="{{item}}">
+        <image src='{{imageBaseUrl}}{{item}}'></image>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<van-goods-action class="bottom-bar">
+  <van-goods-action-button wx:if="{{refundOrder.refundStatus === '1'}}" text="填写物流信息" type="warning" bind:click="goLogistics" />
+  <van-goods-action-button wx:else text="订单详情" type="warning" bind:click="goOrderDetail" />
+  <van-goods-action-button wx:if="{{refundOrder.refundStatus === '0'}}" text="取消申请" bind:click="cancelRefundOrder" />
+</van-goods-action>

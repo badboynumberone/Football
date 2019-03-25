@@ -1,0 +1,141 @@
+/* pages/refund/detail.wxss */
+@import "/common.wxss";
+
+.order-header{
+  padding: 10px;
+  font-size: 13px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.order-header .status{
+  float: right;
+  color: #df3f3f;
+}
+
+
+.order-products{
+  background: #fff;
+  padding-left: 10px;
+}
+
+.product-wrapper{
+  border-bottom: 1px solid #eee;
+  padding: 10px 10px 10px 0px;
+  box-sizing: border-box;
+  height: 120px;
+}
+
+.product-wrapper .product-img{
+  width: 100px;
+  height: 100px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+}
+
+.product-wrapper .product-img image{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.product-wrapper .product-info{
+  margin-left: 110px;
+}
+
+.product-wrapper .title,.product-wrapper .desc{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 22px;
+  font-size: 14px;
+  color: #222;
+}
+
+.product-wrapper .title{
+  height: 44px;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.product-wrapper .desc{
+  font-size: 12px;
+  color: #666;
+  height: 18px;
+  line-height: 18px;
+}
+
+.product-wrapper .price{
+  color: #e13e3f;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.product-wrapper .num{
+  float: right;
+  font-size: 14px;
+  color: #555;
+  line-height: 28px;
+}
+
+.product-wrapper .price text{
+  font-size: 12px;
+}
+
+.upload{
+  padding: 0px 10px;
+  background: #fff;
+}
+
+.upload .title{
+  font-size: 13px;
+  line-height: 40px;
+}
+
+.upload .img-group{
+  overflow: hidden;
+}
+
+.upload .img-wrapper{
+  width: 100px;
+  height: 100px;
+  float: left;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.upload .img-wrapper image{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.order-info{
+  padding: 10px 0px;
+}
+.order-info .van-cell{
+  padding: 5px 10px;
+  border-bottom: 0;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.order-info .van-cell::after,.order-info .van-cell-group::after{
+  border: 0;
+}
+
+.bottom-bar .van-button--warning{
+  background-color: #222222;
+  border: 1px solid #222;
+}
+
+.bottom-bar .van-button--danger{
+  background-color: #df3f3f;
+  border: 1px solid #df3f3f;
+}

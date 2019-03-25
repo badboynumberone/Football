@@ -1,0 +1,28 @@
+<view class="main">
+    <image class="query_bg fill" src="../../../images/login-bg.png"  lazy-load="false" binderror="" bindload="" />
+    <view class="achievement_wrapper cl">
+        <form class="" report-submit="false" bindsubmit="queryResult">
+            
+            <van-tabs active="{{ active }}" bind:change="onOptionsChange" color="#63912F" border="true" custom-class="nav">
+                <van-tab title="证书号">
+                    <view class="input_info"> 
+                        <van-cell-group>
+                            <van-field custom-class="input_content" data-type="1" bind:input="numChange" value="{{ certificateNum }}" type="number" placeholder="请输入证书号" border="{{ false }}" />
+                        </van-cell-group>
+                    </view>
+                </van-tab>
+                <van-tab title="身份证号">
+                    <view class="input_info"> 
+                        <van-cell-group>
+                            <van-field custom-class="input_content" data-type="2" bind:input="numChange" value="{{ indentityNum }}" type="number" placeholder="请输入身份证号" border="{{ false }}" />
+                        </van-cell-group>
+                    </view>
+                </van-tab>
+            </van-tabs>
+            <button class="query_btn" type="default" form-type="submit"  style="background:#63912F;border:none;border-radius:0rpx;color:#fff">查询</button>
+        </form>
+    </view>
+    <van-dialog id="van-dialog" />
+</view>
+
+  

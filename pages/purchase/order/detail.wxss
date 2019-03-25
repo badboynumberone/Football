@@ -1,0 +1,186 @@
+/* pages/order/detail.wxss */
+@import "/common.wxss";
+
+.order-header{
+  height: 45px;
+  background: #fff;
+  line-height: 45px;
+  box-sizing: border-box;
+  padding: 0px 10px;
+  margin-bottom: 10px;
+}
+
+.order-header .status{
+  float: right;
+  line-height: 45px;
+  font-size: 14px;
+  color: #62912f;
+}
+
+.order-header .order-no{
+  font-size: 14px;
+  color: #222;
+}
+
+.order-address{
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.order-address image{
+  margin-top: 22px;
+  float: left;
+}
+
+.address-info{
+  margin-left: 30px;
+}
+
+.address-info text{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.address-info .address{
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 18px;
+  height: 36px;
+}
+
+.order-products{
+  background: #fff;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.product-wrapper{
+  border-bottom: 1px solid #eee;
+  padding: 10px 10px 10px 0px;
+  box-sizing: border-box;
+}
+
+.product-wrapper .product-img{
+  width: 100px;
+  height: 100px;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  float: left;
+}
+
+.product-wrapper .product-img image{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.product-wrapper .product-info{
+  margin-left: 110px;
+}
+
+.product-wrapper .title,.product-wrapper .desc{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 22px;
+  font-size: 14px;
+  color: #222;
+}
+
+.product-wrapper .title{
+  height: 44px;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.product-wrapper .desc{
+  font-size: 12px;
+  color: #666;
+  height: 18px;
+  line-height: 18px;
+}
+
+.product-wrapper .price{
+  color: #e13e3f;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.product-wrapper .num{
+  float: right;
+  font-size: 14px;
+  color: #555;
+  line-height: 28px;
+}
+
+.product-wrapper .price text{
+  font-size: 12px;
+}
+
+.total{
+  padding-right: 10px;
+  text-align: right;
+  height: 45px;
+  line-height: 45px;
+  color: #e13e3f;
+  font-size: 18px;
+  background: #fff;
+}
+
+.total label{
+  font-size: 14px;
+  color: #333;
+}
+
+.total text{
+  font-size: 13px;
+}
+
+.order-operator{
+  height: 51px;
+  box-sizing: border-box;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  text-align: right;
+  background: #fff;
+  padding: 10px;
+}
+
+.order-operator button{
+  border-radius: 0px;
+  margin-left: 5px;
+  outline: 0;
+}
+
+.order-operator button::after{
+  border: none;
+}
+
+button[type=default]{
+  border: 1px solid #aaa;
+  color: #555;
+}
+
+button[type=primary] {
+  color:#62912f;
+  border: 1px solid #62912f;
+  background-color:#fff;
+}
+
+.copy {
+  display: inline-block;
+  color: #de4041;
+  margin-left: 5px;
+  border: 1px solid #de4041;
+  padding: 0 10px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+}
+
+

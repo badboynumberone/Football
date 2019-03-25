@@ -1,0 +1,46 @@
+@import '/common.wxss';
+.main{
+    position: relative;
+}
+.achievement_wrapper{
+    top: 280rpx;
+    
+}
+
+.nav{
+    background: transparent;
+}
+
+.input_info{
+    width: 600rpx;
+    height: 80rpx;
+    border-radius: 5rpx;
+    display: flex;
+    align-items: center;
+    margin: 70rpx; 
+}
+.input_info input{
+    width: 100%;
+    font-size: 30rpx;
+    padding-left: 15rpx;
+}
+.query_btn{
+    width: 600rpx;
+    border: none;
+    font-size: 35rpx;
+    color: #fff;
+    background: #63912F;
+    border:none;
+    z-index: 999;
+}
+.van-tabs__wrap{
+    width: 90% !important;
+    margin:  0 auto;
+}
+.van-tab--active{
+    font-weight: bold !important;
+    color: #63912F !important;
+}
+.input_content{
+    width: 100%;
+}

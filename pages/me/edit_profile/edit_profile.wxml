@@ -1,0 +1,50 @@
+<view class="main">
+    <!--编辑项目栏目-->
+    <view class="edit_content">
+        <!--头像-->
+        <view class="edit_item" >
+            <van-cell title="头像" is-link custom-class="van" center="true" bind:click="chooseImage">
+            <view class="header_img_wraper" style="background:url('/images/mrtx.png') no-repeat center/cover">
+                 <image class="fill" src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+            </view>
+            <view class="mask_content" style="height:100rpx"></view>
+            </van-cell>
+        </view> 
+        
+        <!--昵称-->
+        <view class="edit_item">
+            <van-cell title="昵称"  center="true"  >
+                <view class="edit_username_container">
+                    <van-field value="{{ userName }}" placeholder="Apple520" border="{{ false }}"  bind:change="getUsername" input-align="right" maxlength="10" clearable="true" bind:clear="clearContent" />
+                </view>
+            </van-cell>
+        </view>
+        <!--性别-->
+        <view class="edit_item">
+            <van-cell title="性别" is-link center="true" >
+                <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
+                    <view class="{{sexOffset?'picker':'picker unactive'}}">
+                        {{sexArray[sexIndex]}}
+                    </view>
+                </picker>
+            </van-cell>
+        </view>
+        <!--生日-->
+        <view class="edit_item">
+            <van-cell title="生日" is-link center="true">
+                <picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
+                    <view class="{{birthDay != ''?'picker':'picker unactive'}}">
+                        {{birthDay || '未填写'}}
+                    </view>
+                </picker>
+            </van-cell>
+        </view>
+        <!--个性签名-->
+        <view class="edit_item edit_item_title">
+            <text class="edit_item_title_wrapper">个性签名</text>
+            <textarea value="{{signature}}" bindchange="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了" />
+        </view>
+    </view>
+    <!--保存按钮-->
+    <bottom-btn text="保存" bindtap="preserve"></bottom-btn>
+</view>

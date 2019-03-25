@@ -1,0 +1,31 @@
+<!--pages/address/list.wxml-->
+<block wx:if="{{addressList.length > 0 || addressList.length > 0}}">
+<scroll-view scroll-y style="padding-bottom:65px;">
+  <van-radio-group value="{{ selected }}" bind:change="onAddressChange">
+  <view class="address-item" wx:for="{{addressList}}">
+    <view wx:if="{{ fromOrder ===  true }}" class='check-wrap'>
+      <van-radio name="{{item.id}}" checked-color="#df3f3f"></van-radio>
+    </view>
+    <view wx:else class='check-wrap' style="width: 10px;">
+    </view>
+    <view class='edit-wrap'>
+      <van-icon name="edit" data-item-id="{{item.id}}" bindtap='goDetail'/>
+    </view>
+    <view class='address-info'>
+      <view class='name-phone'>{{item.name}} {{item.phone}}</view>
+      <view class='address' wx:if="{{item.provinceCode == 110000 || item.provinceCode == 120000 || item.provinceCode == 310000 || item.provinceCode == 500000}}">{{item.provinceName}}{{item.areaName}}{{item.detail}}</view>
+      <view class='address' wx:else>{{item.provinceName}}{{item.cityName}}{{item.areaName}}{{item.detail}}</view>
+    </view>
+  </view>
+  </van-radio-group>
+</scroll-view>
+</block>
+<block wx:else>
+  <view class="empty">
+  <image src="../../images/no_address.png" style="width: 200px;height: 200px;"></image>
+  <view style="font-size: 16px;">您还没有收货地址哦！</view>
+  </view>
+</block>
+<view class='bottom-btn'>
+  <van-button size="large" bind:click="goDetail">新增地址</van-button>
+</view>

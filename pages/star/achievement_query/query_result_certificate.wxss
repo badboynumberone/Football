@@ -1,0 +1,48 @@
+@import '/common.wxss';
+.main{
+    background:#f1f1f1;
+    margin-bottom:150rpx;
+}
+.rate_bg{
+    width: 100%;
+    height: 250rpx;
+}
+.rate-wrap{
+    width: 90%;
+    padding: 30rpx 20rpx;
+    margin: 0rpx auto;
+    background: #fff;
+    border-radius: 10rpx;
+    position: relative;
+    top: -100rpx;
+    -moz-box-shadow:0px 2px 4px #858585; -webkit-box-shadow:0px 2px 4px #858585; box-shadow:0px 2px 4px #858585;
+}
+.panel-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.star_level{
+    display: flex;
+    align-items: center;
+}
+.panel-title >text{
+    font-size: 34rpx;
+    color: #666;
+}
+.form-group{
+    padding: 20rpx 0;
+}
+.form-image{
+    width: 150rpx;
+    height: 150rpx;
+}
+.certificate_num{
+    color: #333;
+}
+.form-label{
+    font-size: 34rpx;
+}
+.form-control{
+    margin-top: 25rpx
+}

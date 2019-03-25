@@ -1,0 +1,79 @@
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<van-dialog id="van-dialog" />
+<view class='main'>
+  <view class='address-wrapper' bindtap='goAddressList'>
+    <view class='address-bg'>
+      <view class='to-arrow'>
+        <van-icon name="arrow" color="#888" />
+      </view>
+      <view class='address-info' wx:if="{{preOrderData.receiverName}}">
+        <text>{{preOrderData.receiverName}}  {{preOrderData.receiverPhone}}</text>
+        <view class='address'>{{preOrderData.receiverAddress}}</view>
+      </view>
+      <view class='address-tip' wx:else bindtap='goAddressList'>
+        请选择收货地址
+      </view>
+    </view>
+  </view>
+
+  <view class='cart-group'>
+    <view class='cart-group-title'>
+      商城自营
+    </view>
+    <view class='cart-product' wx:for="{{preOrderData.validItemList}}">
+      <view class='product-wrapper'>
+        <view class='product-img'>
+          <image src="{{imageBaseUrl}}{{item.imageUrl}}" mode="aspectFill" />
+        </view>
+        <view class='product-info'>
+          <view class='title'>
+            {{item.productName}}
+          </view>
+          <view class='desc'>
+            {{item.specDesc}}
+          </view>
+          <view class='num'>X{{ item.num }}</view>
+          <view class='price'>
+            <text>¥</text>{{number.formatPrice(item.price)}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-cell-group>
+    <van-cell title="配送方式" value="普通快递" />
+    <van-field value="{{buyerRemark}}" clearable label="留言" placeholder="点击给商家留言，不超过50个字" data-field-name="buyerRemark" bind:blur="onInput" />
+    <view class='total'>
+      <label>合计：</label>
+      <text>¥</text>{{number.formatPrice(preOrderData.productFee)}}
+    </view>
+  </van-cell-group>
+  <view style='height:10px;'></view>
+  <van-cell-group>
+    <van-cell title="商品金额" value="¥{{number.formatPrice(preOrderData.productFee)}}" />
+    <van-cell title="运费" value="+ ¥{{number.formatPrice(preOrderData.postFee)}}" />
+  </van-cell-group>
+  <view style='height:50px;'></view>
+
+  <van-submit-bar price="{{ number.parseInt(preOrderData.totalFee) }}" button-text="提交订单" bind:submit="submit" />
+</view>
+
+<van-dialog wx:if="{{preOrderData.invalidItemList.length > 0}}" class="tip-dialog" use-slot show show-cancel-button show-confirm-button confirm-button-text="移除无效商品" cancel-button-text="返回购物车修改" title="以下商品暂时无法购买！" bind:confirm="deleteInvalidItem" bind:cancel="goCart">
+  <scroll-view scroll-y style='height:180px;'>
+    <view class='tip-product-wrapper' wx:for="{{preOrderData.invalidItemList}}">
+      <view class='product-img'>
+        <image src="{{imageBaseUrl}}{{item.imageUrl}}" mode="aspectFill" />
+        <view class='tips'>{{status.formatSkuStatus(item.status)}}</view>
+      </view>
+      <view class='product-info'>
+        <view class='title'>{{item.productName}}</view>
+        <view class='desc'>{{item.specDesc}}</view>
+        <view class='num'>X{{ item.num }}</view>
+        <view class='price'>
+          <text>¥</text>{{number.formatPrice(item.price)}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</van-dialog>

@@ -1,0 +1,19 @@
+<!--关注或编辑组件-->
+<view class="concern">
+	<block wx:if="{{offsetOne}}">
+		<block wx:if="{{offsetTwo}}">
+			<image class="concern_add" src="/images/gz@2x.png" />
+			<view>关注</view>
+		</block>
+		<block wx:else>
+			<view class="concerned">
+				已关注
+			</view>
+		</block>
+	</block>
+	<block wx:else>
+		<image class="concern_add" src="/images/bj@2x.png" />
+		<view>编辑</view>
+	</block>
+</view>
+

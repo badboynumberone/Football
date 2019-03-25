@@ -1,0 +1,4 @@
+<!--底部按钮-->
+<view class='bottom-btn'>
+  <van-button size="large">{{text}}</van-button>
+</view>

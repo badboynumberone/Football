@@ -1,0 +1,80 @@
+#van-dialog .dialog-index--van-dialog__cancel {
+  color:#62912f!important;
+}
+#van-dialog .dialog-index--van-dialog__confirm {
+  color:#727272!important;
+}
+.van-tabs__line {
+  background-color:#62912f!important;
+}
+/* 公共样式 */
+.main{
+  width: 100%;
+  height: 100%;
+}
+view,text{
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0rpx;
+  margin: 0rpx;
+  box-sizing: border-box;
+}
+.clearfix:after { display: table; content: " "; clear: both;}
+
+.clearfix{ zoom: 1;}
+.fill{
+  width: 100%;
+  height: 100%;
+}
+.text-hidden{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.margin{
+  margin: 0 auto;
+}
+
+.fl{
+  float: left;
+}
+
+.fr{
+  float: right;
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+.center {  
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.ct {  
+	position: absolute;
+	top: 50%;
+    transform: translateY(-50%);
+}
+.cl {  
+	position: absolute;
+	left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 保存按钮 */
+.bottom_btn{
+  position: fixed;
+  bottom:0rpx;
+  background: #62912f;
+  width: 100%;
+  height: 45px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

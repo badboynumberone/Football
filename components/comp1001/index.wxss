@@ -1,0 +1,84 @@
+/* components/cmp1001/index.wxss */
+
+.main{
+  background: #f1f1f1;
+}
+
+.menu-item > view{
+  text-align: center;
+  padding: 10px 0px;
+  background: #fff;
+}
+
+.mall-wrapper{
+  margin-top: 10px;
+  background: #fff;
+}
+
+.mall-wrapper .mall-title{
+  height: 48px;
+  line-height: 48px;
+  font-size: 16px;
+  color: #333;
+  font-family: "微软雅黑";
+  padding-left: 10px;
+}
+
+.mall-dp{
+  width: 100%;
+  box-sizing: border-box;
+  height: 225px;
+  padding: 0px 10px 15px 10px;
+}
+
+.goods-item{
+  box-sizing: border-box;
+  padding: 0px 5px;
+  text-align: center;
+}
+
+.goods-item .goods-name{
+  width:100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #333;
+}
+
+.goods-item .goods-price{
+  color: #d33d3c;
+  font-size: 13px;
+}
+
+.goods-item .goods-price text{
+  font-size: 12px;
+}
+
+.active-goods-item{
+  width: 105px;
+  float: left;
+  text-align: left;
+}
+
+.goods-list-item{
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.goods-list-item .goods-name{
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  -webkit-line-clamp: 2;
+  font-size: 14px;
+  height: 40px;
+}
+
+.goods-list-item .goods-price{
+  font-size: 13px;
+}

@@ -1,0 +1,26 @@
+<!--个人信息头部-->
+<view class="personal_info">
+	<button type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo" bindgetuserinfo="login">
+		<view class="personal_info_top">
+			<view class="personal_header_wrapper" >
+				<image class="personal_img fill" src="{{ userInfo.userHeader || '/images/mrtx.png'}}" />
+			</view>
+			<view class="personal_info_wrapper">
+				<view class="personal_name text-hidden">
+					<text>{{userInfo.userName || '未登录'}}</text>
+				</view>
+				<view class="personal_autograph text-hidden" style="display:flex;">
+					<text>{{userInfo.signContent || '点击登录'}}</text>
+				</view>
+				<concern-item wx:if="{{isLogin}}" style="margin-top:10rpx" offsetOne="{{offsetOne}}" offsetTwo="{{offsetTwo}}"></concern-item>
+			</view>
+		</view>
+	</button>
+	<view class="personal_info_bottom">
+		<view class="personal_item" wx:for="{{personalInfo}}" wx:key="{{index}}" bindtap="navigateTo" data-url="{{item.typeUrl}}" data-type="{{index}}">
+			<text class="personal_num">{{item.typeNum}} </text>
+			<text class="personal_item_name">{{item.typeName}}</text>
+		</view>
+	</view>
+</view>
+

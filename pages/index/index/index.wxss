@@ -1,0 +1,28 @@
+/**index.wxss**/
+@import '/common.wxss';
+.title_type{
+    font-size: 35rpx;
+    position: relative;
+}
+
+.van-tab--active{
+    color: #639231 !important;
+    font-weight: bold !important;
+}
+.van-tabs__line{
+    background: #639231 !important;
+}
+
+.public_btn{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    position: fixed;
+    right: 0px;
+    bottom:0rpx;
+}
+
+.van-tab{
+    background: #f1f1f1 !important;
+    border-bottom:1px solid #f9f9f9;
+}

@@ -1,0 +1,70 @@
+module.exports = {
+  formatRefundStatus: function (status) {
+    var str = ''
+    if (status === '0') {
+      str = '待审核'
+    } else if (status === '1') {
+      str = '待寄回退货'
+    } else if (status === '2') {
+      str = '待商家收货'
+    } else if (status === '3') {
+      str = '拒绝收货'
+    } else if (status === '4') {
+      str = '拒绝退单'
+    } else if (status === '5') {
+      str = '退单完成'
+    } else if (status === '6') {
+      str = '退款关闭'
+    }
+    return str;
+  },
+
+  getRefundStatusTip: function (type, status) {
+    var str = ''
+    var typeStr = type === '1' ? '退款' : '退货'
+    if (status === '0') {
+      str = typeStr + '申请提交成功，等待商家处理！'
+    } else if (status === '1') {
+      str = '商家审核通过，等待买家寄回退货！'
+    } else if (status === '2') {
+      str = '已寄回退货，等待卖家收货！'
+    } else if (status === '3') {
+      str = '商家未收到货，拒绝退款！'
+    } else if (status === '4') {
+      str = '商家拒绝退款！'
+    } else if (status === '5') {
+      str = '商家同意退款，退款成功！'
+    } else if (status === '6') {
+      str = typeStr + '申请已取消！'
+    }
+    return str;
+  },
+
+  formatRefundReason: function (reason) {
+    var str = ''
+    if (reason === '101') {
+      str = '不想买了'
+    } else if (reason === '102') {
+      str = '多买/错买'
+    } else if (reason === '103') {
+      str = '未按约定时间发货'
+    } else if (reason === '201') {
+      str = '不想买了'
+    } else if (reason === '202') {
+      str = '质量问题'
+    } else if (reason === '203') {
+      str = '商品与描述不符'
+    }
+    return str;
+  },
+
+  formatCredentialType: function (credentialType) {
+    var str = ''
+    if (credentialType === '0') {
+      str = '无凭证'
+    } else if (credentialType === '1') {
+      str = '有质检报告'
+    }
+    return str;
+  }
+}

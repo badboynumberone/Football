@@ -1,0 +1,31 @@
+<!--pages/refund/logistics.wxml-->
+<van-dialog id="van-dialog" />
+<van-cell title="物流公司" value="{{logisticsCompanyName !== '' ? logisticsCompanyName : '请选择物流公司'}}" is-link bind:click="showLogisticsCompany" />
+<van-field
+  value="{{ trackingNumber }}"
+  clearable
+  input-align="right"
+  label="快递单号"
+  data-field-name="trackingNumber"
+  placeholder="请输入快递单号"
+  bind:blur="onInput"
+/>
+
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  overlay="{{ true }}"
+  bind:close="hideLogisticsCompany"
+>
+  <van-radio-group value="{{ logisticsCompanyId }}" style="margin: 60px 10px;">
+    <van-cell-group>
+      <van-cell wx:for="{{logisticsCompanyList}}" wx:key="index" title="{{item.name}}" clickable data-item="{{item}}" bind:click="onSelectLogisticsCompany">
+        <van-radio name="{{item.id}}" checked-color="#e53f41"/>
+      </van-cell>      
+    </van-cell-group>
+  </van-radio-group>
+</van-popup>
+
+<view class='bottom-btn'>
+  <van-button size="large" bind:click="saveLogistics">提交</van-button>
+</view>

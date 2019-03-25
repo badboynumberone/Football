@@ -1,0 +1,137 @@
+<!--pages/cart/index.wxml-->
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<block wx:if="{{hasLoaded}}">
+<block wx:if="{{validItemList.length > 0 || invalidItemList.length > 0}}">
+<van-dialog id="van-dialog" />
+<scroll-view scroll-y style='background:#f2f2f2;'>
+  <view class='cart-group' wx:if="{{validItemList.length > 0}}">
+    <view class='cart-group-title'>
+      <view wx:if="{{isEdit === false}}" class='edit' bindtap='edit'>编辑</view>
+      <view wx:else class='edit' bindtap='finish'>完成</view>
+      <van-checkbox value="{{ isSelectAll }}" checked-color="#e53f41" bind:change="onAllSkuChange">商城自营</van-checkbox>
+    </view>
+    <view class='cart-group-content'>
+      <van-checkbox-group value="{{ selectedSkuIdList }}" bind:change="onSkuChange">
+        <van-swipe-cell right-width="{{ 65 }}" wx:for="{{validItemList}}" async-close bind:close="onSkuDelete" data-item="{{item}}">
+          <van-cell-group>
+            <view class='cart-product'>
+              <view class='radio-wrapper'>
+                <van-checkbox name="{{item.skuId}}" checked-color="#e53f41"></van-checkbox>
+              </view>
+              <view class='product-wrapper'>
+                <view class='product-img' data-item="{{item}}" bindtap='toProductDetail'>
+                  <image src="{{imageBaseUrl}}{{item.imageUrl}}" mode="aspectFill" />
+                  <view class="sku-tip-wrapper" wx:if="{{item.quantity > 0 && item.quantity < 5}}"><view class="sku-tip">仅剩{{item.quantity}}件</view></view>
+                  <view class="sold-out-tip-wrapper" wx:if="{{item.quantity <= 0}}"><view class="sold-out-tip">已售罄</view></view>
+                </view>
+                <view class='product-info'>
+                  <view data-item="{{item}}" bindtap='toProductDetail'>
+                    <view class='title'>
+                      {{item.productName}}
+                    </view>
+                    <view class='desc'>
+                      {{item.specDesc}}
+                    </view>
+                    <view class='price'>
+                      <text>¥</text>{{number.formatPrice(item.price)}}
+                    </view>
+                  </view>
+                  <view class='cart-num'>
+                    <van-stepper value="{{ number.parseInt(item.num) }}" min="{{ 1 }}" max="{{item.quantity}}" data-item="{{item}}" bind:change="onSkuNumChange" bind:overlimit="onSkuNumOverLimit" />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </van-cell-group>
+          <view slot="right">删除</view>
+        </van-swipe-cell>
+      </van-checkbox-group>
+    </view>
+  </view>
+  <view class='cart-group' wx:if="{{invalidItemList.length > 0}}">
+    <view class='cart-group-title'>
+      <view class='edit' bindtap='deleteInvalidItem'>清除所有失效商品</view>
+      <text>失效商品</text>
+    </view>
+    <view class='cart-group-content'>
+      <view class='cart-product' wx:for="{{invalidItemList}}">
+        <view class='radio-wrapper'>
+          <view class='product-lose'>失效</view>
+        </view>
+        <view class='product-wrapper'>
+          <view class='product-img'>
+            <image src="{{imageBaseUrl}}{{item.imageUrl}}" mode="aspectFill" />
+          </view>
+          <view class='product-info'>
+            <view class='title'>
+              {{item.productName}}
+            </view>
+            <view class='desc'>
+              {{item.specDesc}}
+            </view>
+            <view class='price'>
+              <text>¥</text>{{number.formatPrice(item.price)}}
+            </view>
+            <view class='cart-num'>
+              <van-stepper value="{{ item.num }}" disabled />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class='settlement' wx:if="{{validItemList.length > 0}}">
+  <van-row class="settlement-row">
+    <van-col span="5">
+      <view class='checkAll'>
+        <van-checkbox id="selectAllCheckbox" value="{{ isSelectAll }}" checked-color="#e53f41" bind:change="onAllSkuChange">全选</van-checkbox>
+      </view>
+    </van-col>
+    <van-col span="11">
+      <view class='total'>
+        <view wx:if="{{isEdit === false}}" class='total-desc'>
+          <label>总计：</label>
+          <text>¥</text>{{totalPrice}}
+        </view>
+        <view wx:if="{{isEdit === false}}" class='info'>不含运费</view>
+      </view>
+    </van-col>
+    <van-col span="8">
+      <button wx:if="{{isEdit === false}}" type="default" bindtap="default" class='settlementBtn' bindtap='goSubmit'>结算</button>
+      <button wx:else type="default" bindtap="default" class='settlementBtn' bindtap='remove'>删除</button>
+    </van-col>
+  </van-row>
+</view>
+
+<van-dialog wx:if="{{invalidItemList.length > 0}}" class="tip-dialog" use-slot show show-confirm-button confirm-button-text="我知道了" title="以下商品暂时无法购买！">
+  <scroll-view scroll-y style='height:180px;'>
+    <view class='tip-product-wrapper' wx:for="{{invalidItemList}}">
+      <view class='product-img'>
+        <image src="{{imageBaseUrl}}{{item.imageUrl}}" mode="aspectFill" />
+        <view class='tips'>{{status.formatSkuStatus(item.status)}}</view>
+      </view>
+      <view class='product-info'>
+        <view class='title'>{{item.productName}}</view>
+        <view class='desc'>{{item.specDesc}}</view>
+        <view class='num'>X{{ item.num }}</view>
+        <view class='price'>
+          <text>¥</text>{{number.formatPrice(item.price)}}
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</van-dialog>
+</block>
+<block wx:else>
+  <view class="empty">
+  <image src="../../images/empty.png" style="width: 200px;height: 200px;"></image>
+  <view style="font-size: 16px;">亲，您的购物车是空哒~去首页看看吧！</view>
+  <view class="go-home" bindtap='goHome'>去首页</view>
+  </view>
+</block>
+</block>
+<block wx:else>
+</block>

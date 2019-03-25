@@ -1,0 +1,109 @@
+<!--pages/refund/apply.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<van-dialog id="van-dialog" />
+<scroll-view scroll-y style='background:#f2f2f2;'>
+  <view class='order-header'>
+    <view>订单号：{{order.orderNo}}</view>
+    <view>订单金额：
+      <text>￥{{number.formatPrice(order.orderFee)}}</text>
+    </view>
+  </view>
+  <view class='order-products'>
+    <view class='product-wrapper' wx:for="{{itemList}}">
+      <view class='product-img'>
+        <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.productImage)}}" mode="aspectFill" />
+      </view>
+      <view class='product-info'>
+        <view class='title'>{{item.productName}}</view>
+        <view class='desc'>{{item.specDesc}}</view>
+        <view class='num'>X{{item.num}}</view>
+        <view class='price'>
+          <text>¥</text>{{number.formatPrice(item.price)}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-cell-group>
+    <van-cell class="refund-money" title="退款金额" value="￥{{number.formatPrice(order.orderFee)}}" />
+    <van-cell title="{{refundType === '1' ? '退款原因' : '退货原因'}}" value="{{refundReason !== '' ? status.formatRefundReason(refundReason) : (refundType === '1' ? '请选择退款原因' : '请选择退货原因')}}" is-link bind:click="showReason" />
+    <van-cell title="申请凭据" value="{{credentialType !== '' ? status.formatCredentialType(credentialType) : '请选择申请凭据'}}" is-link wx:if="{{refundType === '2'}}" bind:click="showCredentialType" />
+    <van-field
+    value="{{ refundRemark }}"
+    clearable
+    label="问题说明"
+    data-field-name="refundRemark"
+    placeholder="最多填写200字"
+    bind:blur="onInput"
+  />
+  </van-cell-group>
+  <view class='upload' wx:if="{{refundType === '2' && credentialType === '1'}}">
+    <view class='title'>上传凭证</view>
+    <view class='img-group'>
+      <view class='img-wrapper' wx:for="{{credentialImageArray}}" bindtap='previewImage' data-img-src="{{item}}">
+        <image src='{{imageBaseUrl}}{{item}}'></image>
+        <van-icon data-img-src="{{item}}" class='close' size="16px" name="clear" color="#555" catchtap='removeCredentialImage'/>
+      </view>
+      <view wx:if="{{credentialImageArray.length < 6}}" class='img-wrapper new-img' bindtap='chooseImage'>
+        <!-- <van-icon size='40px' color="#aaa" name="icon-plus" /> -->
+        <text>+</text>
+      </view>
+    </view>
+    <view class='tips'>
+      最多上传6张，支持jpeg、jpg、png格式，大小不超过4m
+    </view>
+  </view>
+</scroll-view>
+<van-goods-action class="bottom-bar">
+  <van-goods-action-button text="提交申请" bind:click="applySubmit" />
+</van-goods-action>
+<van-popup
+  show="{{ isShowReason }}"
+  position="bottom"
+  overlay="{{ true }}"
+  bind:close="hideReason"
+>
+  <van-radio-group value="{{ refundReason }}" style="margin: 60px 10px;">
+    <van-cell-group wx:if="{{refundType === '1'}}">
+      <van-cell title="不想买了" clickable data-name="101" bind:click="onSelectReason">
+        <van-radio name="101" checked-color="#e53f41"/>
+      </van-cell>
+      <van-cell title="多买/错买" clickable data-name="102" bind:click="onSelectReason">
+        <van-radio name="102" checked-color="#e53f41"/>
+      </van-cell>
+      <van-cell title="未按约定时间发货" clickable data-name="103" bind:click="onSelectReason">
+        <van-radio name="103" checked-color="#e53f41"/>
+      </van-cell>
+    </van-cell-group>
+    <van-cell-group wx:else>
+      <van-cell title="不想买了" clickable data-name="201" bind:click="onSelectReason">
+        <van-radio name="201" checked-color="#e53f41"/>
+      </van-cell>
+      <van-cell title="质量问题" clickable data-name="202" bind:click="onSelectReason">
+        <van-radio name="202" checked-color="#e53f41"/>
+      </van-cell>
+      <van-cell title="商品与描述不符" clickable data-name="203" bind:click="onSelectReason">
+        <van-radio name="203" checked-color="#e53f41"/>
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+</van-popup>
+
+<van-popup
+  show="{{ isShowCredentialType }}"
+  position="bottom"
+  overlay="{{ true }}"
+  bind:close="hideCredentialType"
+>
+  <van-radio-group value="{{ credentialType }}" style="margin: 60px 10px;">
+    <van-cell-group>
+      <van-cell title="无凭证" clickable data-name="0" bind:click="onSelectCredentialType">
+        <van-radio name="0" checked-color="#e53f41"/>
+      </van-cell>
+      <van-cell title="有质检报告" clickable data-name="1" bind:click="onSelectCredentialType">
+        <van-radio name="1" checked-color="#e53f41"/>
+      </van-cell>
+    </van-cell-group>
+  </van-radio-group>
+</van-popup>

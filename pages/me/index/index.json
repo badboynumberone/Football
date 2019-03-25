@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "我的主场",
+    "usingComponents":{
+        "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+        "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+        "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+        "dynaic-item":"/components/dynaic_item/dynaic_item",
+        "concern-item":"/components/concern/concern",
+        "profile-header":"/components/profile_header/profile_header"
+    }
+}

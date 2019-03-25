@@ -1,0 +1,91 @@
+<!--components/cmp1002/index.wxml-->
+<wxs src="../../utils/string.wxs" module="string" />
+<wxs src="../../utils/number.wxs" module="number" />
+<view class="main">
+  <!-- 搜索 -->
+  <van-search value="{{ searchValue }}" placeholder="搜索商品" bind:search="onSearch" />
+  <!-- 轮播图 -->
+  <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{pageData.carouselList.data}}">
+      <swiper-item>
+        <image src="{{imageBaseUrl}}{{item.imageUrl}}" data-item="{{item}}" class="slide-image" mode="widthFix" style="width:100%;" bindtap="itemAction"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 导航 -->
+  <van-row>
+    <block wx:for="{{pageData.navigationList.data}}">
+    <van-col span="6" class="menu-item" data-item="{{item}}" bindtap="itemAction">
+      <image src="{{imageBaseUrl}}{{item.imageUrl}}" style="width:32px;height:32px;" />
+      <view style="text-lign:center;font-size:12px;">{{item.title}}</view>
+    </van-col>
+    </block>
+  </van-row>
+  <!-- 大牌云集 -->
+  <view class="mall-wrapper">
+    <view class="mall-title">{{pageData.majorList.title}}</view>
+    <view class="mall-dp">
+      <image src="{{imageBaseUrl}}{{pageData.majorList.data[0].imageUrl}}" mode="widthFix" style="width:100%;height:100%;" data-item="{{pageData.majorList.data[0]}}" bindtap="itemAction" />
+    </view>
+  </view>
+  <!-- 今日惊喜 -->
+  <view class="mall-wrapper swiper-container">
+    <view class="mall-header">
+      <view class="mall-title">{{pageData.todayList.title}}</view>
+      <view class="dots">
+        <block wx:for="{{pageData.todayList.data}}" wx:key="unique">
+          <view data-i='{{index}}' bindtap='fn' class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>
+    </view>
+    <swiper class="swiper" style='height:175px;' indicator-dots="{{indicatorDots2}}" indicator-color="#d3d3d3" indicator-active-color="#2d2d2d" autoplay="{{autoplay2}}" interval="{{interval}}" duration="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange">      
+      <swiper-item wx:for="{{pageData.todayList.data}}" wx:for-item="groupList">
+        <van-row>
+          <van-col span="8" data-item="{{item}}" bindtap="itemAction" wx:for="{{groupList}}" wx:for-item="item">
+            <view class='goods-item'>
+              <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.imageUrl)}}" style="width:100%;height:120px;" mode="aspectFill" />
+              <view class='goods-name'>{{item.name}}</view>
+              <view class='goods-price'>
+                <text>¥</text>{{number.formatPrice2(item.skuMinPrice,item.skuMaxPrice)}}</view>
+            </view>
+          </van-col>            
+        </van-row>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 精选活动 -->
+  <view class="mall-wrapper">
+    <view class="mall-title">{{pageData.activityList1.title}}</view>
+    <view class="mall-dp" style='height:165px;' wx:if="{{pageData.activityList1.data[0].imageUrl}}" data-item="{{pageData.activityList1.data[0]}}" bindtap="itemAction">
+      <image src="{{imageBaseUrl}}{{pageData.activityList1.data[0].imageUrl}}" style="width:100%;height:100%;" mode="aspectFill" />
+    </view>
+    <scroll-view style="height: 165px;" scroll-x>
+      <view style='width:2000px;'>
+        <block wx:for="{{pageData.activityList2.data}}">
+        <view class='goods-item active-goods-item' data-item="{{item}}" bindtap="itemAction">
+          <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.imageUrl)}}" style="width:100%;height:105px;" mode="aspectFill" />
+          <view class='goods-name'>{{item.name}}</view>
+          <view class='goods-price'>
+            <text>¥</text>{{number.formatPrice2(item.skuMinPrice,item.skuMaxPrice)}}</view>
+        </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 猜您喜欢 -->
+  <view class="mall-wrapper">
+    <view class="mall-title">{{pageData.recommendList.title}}</view>
+    <van-row>
+      <block wx:for="{{pageData.recommendList.data}}">
+      <van-col span="12" data-item="{{item}}" bindtap="itemAction">
+        <view class="goods-item goods-list-item">
+          <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.imageUrl)}}" style="width:100%;height:{{productHeight}}px;" mode="scaleToFill" />
+          <view class='goods-name '>{{item.name}}</view>
+          <view class='goods-price'>
+            <text>¥</text>{{number.formatPrice2(item.skuMinPrice,item.skuMaxPrice)}}</view>
+        </view>
+      </van-col>
+      </block>
+    </van-row>
+  </view>
+</view>

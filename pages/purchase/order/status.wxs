@@ -1,0 +1,66 @@
+module.exports = {
+  formatOrderStatus: function (status) {
+    var str = ''
+    if (status === '0') {
+      str = '待付款'
+    } else if (status === '1') {
+      str = '待发货'
+    } else if (status === '2') {
+      str = '待收货'
+    } else if (status === '3') {
+      str = '已完成'
+    } else if (status === '4') {
+      str = '交易关闭'
+    }
+    return str;
+  },
+
+  formatSkuStatus: function (status) {
+    var str = ''
+    if (status === '1') {
+      str = '正常'
+    } else if (status === '2') {
+      str = '已售罄'
+    } else if (status === '3') {
+      str = '已下架'
+    } else if (status === '4') {
+      str = '不存在'
+    } else if (status === '5') {
+      str = '库存不足'
+    }
+    return str;
+  },
+
+  formatLogisticsStatus: function (status) {
+    var str = ''
+    if (status === '0') {
+      str = '在途中'
+    } else if (status === '1') {
+      str = '已揽收'
+    } else if (status === '2') {
+      str = '疑难'
+    } else if (status === '3') {
+      str = '已签收'
+    } else if (status === '4') {
+      str = '退签'
+    } else if (status === '5') {
+      str = '同城派送中'
+    } else if (status === '6') {
+      str = '退回'
+    } else if (status === '7') {
+      str = '转单'
+    }
+    return str;
+  },
+
+  formatPaymentMethod: function (paymentMethod) {
+    var str = ''
+    if (paymentMethod === '1') {
+      str = '微信支付'
+    } else if (paymentMethod === '2') {
+      str = '线下支付'
+    }
+    return str;
+  }
+
+}

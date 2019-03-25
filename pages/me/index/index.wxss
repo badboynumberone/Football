@@ -1,0 +1,61 @@
+.personal_item{
+    background: #fff;
+    height: 45px;
+    line-height: 45px;
+    padding: 0px 10px;
+    font-size: 15px;
+  }
+  
+  .to-arrow{
+    float: right;
+  }
+  .personal_functions{
+      position: relative;
+      border-bottom: 1rpx solid #F8F8F8;
+  }
+  .red_dot{
+      width: 10rpx;
+      height: 10rpx;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #DE3F3F;
+      position: absolute;
+      left: 235rpx;
+      top: 33rpx
+  }
+  .buy_process{
+      display: flex;
+      flex-flow: row nowrap;
+  }
+  .buy_process_item{
+      width: 20%;
+      position: relative;
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      padding: 25rpx 0;
+  }
+  .buy_process_item image{
+      width: 70rpx;
+      height: 50rpx;
+  }
+  .process_text{
+      font-size: 30rpx;
+      padding-top:15rpx 
+  }
+.message_num{
+    position: absolute;
+    width: 50rpx;
+    line-height: 50rpx;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: #DE3F3F;
+    border-radius: 50%;
+    top: 0rpx;
+    right: 30rpx;
+    font-size: 28rpx;
+    color: #fff;
+}
+
+

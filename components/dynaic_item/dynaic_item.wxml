@@ -1,0 +1,51 @@
+<!--动态组件-->
+
+<view class="works_item" wx:for="{{6}}" wx:key="{{index}}" bindtap="navigateTo">
+	
+	<view class="works_img_wrapper">
+		<image class="works_image fill" src="/images/demo.jpg" />
+		<view class="video" wx:if="{{true}}">
+			<image class="fill" src="/images/bf@2x.png" />
+		</view>
+		<view class="img" wx:else>
+			
+			<image class="img_wrapper" src="/images/image@2x.png" />
+			
+			<view class="img_number">
+				9
+			</view>
+		</view>
+	</view>
+	<view class="works_name text-hidden">
+	 	<text>梅西真棒</text>	
+	</view>
+	<view class="works_container text-hidden">
+		<text>来一场痛痛快快的旅行吧哈哈</text>
+	</view>
+	<view class="publisher_info">
+		<view class="publisher">
+			<view class="publisher_header_wrapper">
+				<image class="fill" src="" />
+			</view>
+			<span class="publisher_name text-hidden">
+				<text>小猪你按省份我问他按时发顺丰</text>
+			</span>
+		</view>
+		<view class="collection_wrapper">
+			<view class="collection_icon_wrapper">
+				<image
+				 class="collection_like fill"
+				 src="/images/zxzicon@2x.png"
+				 mode="aspectFit|aspectFill|widthFix"
+				 lazy-load="false"
+				 binderror=""
+				 bindload=""
+				/>
+			</view>
+			<span class="collection_num">
+				13546
+			</span>
+		</view>
+	</view>
+</view>
+

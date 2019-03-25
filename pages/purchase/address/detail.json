@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "编辑收货地址",
+  "usingComponents": {
+    "van-field": "/miniprogram_npm/vant-weapp/field/index",
+    "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
+    "van-area": "/miniprogram_npm/vant-weapp/area/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+  }
+}

@@ -1,0 +1,83 @@
+<!--pages/order/detail.wxml-->
+<wxs src="../../../utils/string.wxs" module="string" />
+<wxs src="../../../utils/number.wxs" module="number" />
+<wxs src="./status.wxs" module="status" />
+<van-dialog id="van-dialog" />
+<scroll-view scroll-y style='background:#f2f2f2;'>
+  <view class='order-header'>
+    <view class='status'>{{status.formatOrderStatus(order.orderStatus)}}</view>
+    <view class='order-no'>
+    订单号：{{order.orderNo}}
+    <view class="copy" bindtap='copyOrderNo'>复制</view>
+    </view>
+  </view>
+
+  <view class='order-address'>
+    <image src='../../images/address_order_icon.png' style='width:20px;height:23px;'></image>
+    <view class='address-info'>
+      <text>{{order.receiverName}}  {{order.receiverPhone}}</text>
+      <view class='address'>{{order.receiverAddress}}</view>
+    </view>
+  </view>
+
+  <view class='order-products'>
+    <view class='product-wrapper' wx:for="{{itemList}}">
+      <view class='product-img'>
+        <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.productImage)}}" mode="aspectFill" />
+      </view>
+      <view class='product-info'>
+        <view class='title'>{{item.productName}}</view>
+        <view class='desc'>{{item.specDesc}}</view>
+        <view class='num'>X{{item.num}}</view>
+        <view class='price'>
+          <text>¥</text>{{number.formatPrice(item.price)}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-cell-group>
+    <van-cell title="支付方式" value="{{status.formatPaymentMethod(order.paymentMethod)}}" />
+    <van-cell wx:if="{{order.paymentMethod === '2'}}" title="支付宝账号" value="{{alipayAccount}}" />
+    <van-cell title="配送方式" value="普通快递" />
+    <van-cell title="留言" value="{{order.buyerRemark}}" />
+  </van-cell-group>
+  <view style='height:10px;'></view>
+  <van-cell-group>
+    <van-cell title="商品金额" value="¥{{number.formatPrice(order.productFee)}}" />
+    <van-cell title="运费" value="+ ¥{{number.formatPrice(order.postFee)}}" />
+    <view class='total'>
+      <label>合计：</label>
+      <text>¥</text>{{number.formatPrice(order.orderFee)}}
+    </view>
+  </van-cell-group>
+  <view style='height:61px;text-align:right;'>
+    <view wx:if="{{order.paymentMethod === '2' && order.orderStatus === '0' && order.paymentTime}}" style="font-size:14px;color: #df3f3f;padding-top:10px;padding-right:10px;">等待商家确认收款</view>
+  </view>
+</scroll-view>
+
+<view class='order-operator' wx:if="{{(order.paymentMethod === '1' && order.orderStatus === '0') || (order.paymentMethod === '2' && order.orderStatus === '0' && !order.paymentTime) || order.orderStatus === '1' || order.orderStatus === '2' || order.orderStatus === '3'}}">
+  <button wx:if="{{((order.paymentMethod === '1' && order.orderStatus === '0') || (order.paymentMethod === '2' && order.orderStatus === '0' && !order.paymentTime))}}" type="default" size="mini" bindtap="cancelOrder" hover-class="other-button-hover">
+    取消订单
+  </button>
+  <button wx:if="{{((order.paymentMethod === '1' && order.orderStatus === '0') || (order.paymentMethod === '2' && order.orderStatus === '0' && !order.paymentTime))}}" type="primary" size="mini" bindtap="pay" hover-class="other-button-hover">
+    {{order.paymentMethod === '1' ? '支付' : '确认付款'}}
+  </button>
+
+  <button wx:if="{{order.orderStatus === '1'}}" type="default" size="mini" catchtap="goRefundApply" data-order-id="{{order.id}}" hover-class="other-button-hover">
+    {{refundOrder.refundStatus && refundOrder.refundStatus !== '6' ? '查看退款申请' : '申请退款'}}
+  </button>
+
+  <button wx:if="{{order.orderStatus === '2'}}" type="default" size="mini" catchtap="goLogistics" data-order-id="{{order.id}}" hover-class="other-button-hover">
+    查看物流
+  </button>
+  <button wx:if="{{order.orderStatus === '2'}}" type="primary" size="mini" catchtap="confirmReceipt" data-order-id="{{order.id}}" hover-class="other-button-hover">
+    确认收货
+  </button>
+
+  <button wx:if="{{order.orderStatus === '3'}}" type="default" size="mini" catchtap="goLogistics" data-order-id="{{order.id}}" hover-class="other-button-hover">
+    查看物流
+  </button>
+  <button wx:if="{{order.orderStatus === '3'}}" type="default" size="mini" catchtap="goRefundApply" data-order-id="{{order.id}}" hover-class="other-button-hover">
+    {{refundOrder.refundStatus && refundOrder.refundStatus !== '6' ? '查看退货申请' : '申请退货'}}
+  </button>
+</view>

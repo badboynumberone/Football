@@ -1,0 +1,32 @@
+<view class="main">
+    <!--搜索框-->
+    <view class="" field-class="search_box" custom-class="search_box">
+       <van-search value="{{ searchValue }}" placeholder="请输入搜索关键词搜索" maxlength="20" bind:change="getSearchValue" bind:search = "searchValue" bind:clear="clearContent" maxlength="20" />
+    </view>
+    <!--历史记录-->
+    <view class="search_history" wx:if="{{!isHistory}}">
+        <view class="history_title">
+            <text class="search_title">历史搜索</text>
+            <image class="letter" src="../../../images/sssc@2x.png" style="width:30rpx;height:30rpx" bindtap = "clearHistory"/>
+        </view>
+        <view class="history_content">
+            <view class="history_items" wx:for="{{searchHistory}}" wx:key="{{index}}" data-value = "{{item}}" bindtap = "searchTag">
+               {{item}}
+            </view>
+            <view class="clear_history">
+                <image class="fill" src="../../../images/sssc@2x.png"  />
+            </view>
+        </view>
+    </view>
+    <!--搜索后的内容-->
+    <view class="searched_wrapper" wx:else>
+            <van-tabs wx:if="{{worksContent.length}}" active="{{ worksIndex }}" bind:change="onChange" line-width="12" swipeable="true">
+                <van-tab title="最热"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap"></dynaic-item></van-tab>
+                <van-tab title="最新"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap"></dynaic-item></van-tab>
+                <van-tab title="视频"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap"></dynaic-item></van-tab>
+                <van-tab title="图片"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap"></dynaic-item></van-tab>
+            </van-tabs>
+            <image wx:else class="empty cl" src="../../../images/empty.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+    </view>
+    
+</view>

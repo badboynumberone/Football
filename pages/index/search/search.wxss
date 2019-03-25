@@ -1,0 +1,44 @@
+@import '/common.wxss';
+.van-search{
+    background-color: #fff !important;
+}
+.van-search__field{
+    border:1px solid #EAEAEA !important;
+}
+
+.search_history{
+    width: 700rpx;
+    margin: 30rpx auto 0;
+}
+.history_title{
+    color: #8B8B8B;
+    margin-bottom: 20rpx;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history_content{
+    display: flex;
+    flex-flow: row wrap;
+}
+.history_items{
+    padding: 10rpx 20rpx;
+    font-size: 30rpx;
+    margin-right:30rpx;
+    margin-bottom: 20rpx;
+    background: #f1f1f1; 
+}
+.van-tab--active{
+    color: #639231 !important;
+    font-weight: bold !important;
+}
+.van-tabs__line{
+    background: #639231 !important;
+}
+.searched_wrapper{
+    position: relative;
+}
+.empty{
+    top: 200rpx
+}
