@@ -1,27 +1,28 @@
 /* pages/address/list.wxss */
+@import '/common.wxss';
 .address-item{
   height: 88px;
   border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .check-wrap{
   box-sizing: border-box;
-  width: 50px;
-  height: 88px;
+  
   float: left;
-  padding: 33px 10px;
+  padding: 20px 10px;
 }
 
 .edit-wrap{
   line-height: 50px;
   width: 50px;
-  float: right;
-  text-align: center;
-  padding-top: 20px;
 }
 
 .address-info{
   padding: 10px 0px;
+  flex: 1;
 }
 
 .address-info .name-phone{
@@ -32,15 +33,8 @@
 }
 
 .address{
-  text-overflow: ellipsis;
   font-size: 13px;
   color: #333;
-  white-space: normal;
-  -webkit-line-clamp: 2;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  height: 36px;
-  overflow: hidden;
 }
 
 .bottom-btn{
@@ -55,7 +49,7 @@
 .bottom-btn button{
   background: #62912f;
   width: 100%;
-  height: 45px;
+  
   color: #fff;
 }
 

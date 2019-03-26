@@ -1,4 +1,6 @@
+import {requestTest} from '../../../utils/request';
 //index.js
+
 //获取应用实例
 const app = getApp()
 
@@ -22,7 +24,7 @@ Page({
   //banner页面跳转
   navigateTo(e){
     wx.navigateTo({
-      url: e.currentTarget.dataset.item+"?bannerId="+this.data.bannerId
+      url: e.currentTarget.dataset.item+"?bannerId="+e.currentTarget.dataset.type
     });
   },
   //点击导航栏
@@ -31,7 +33,20 @@ Page({
   },
   //初始化数据
   initData(){
-
+    //获取首页轮播图
+    let that =this;
+    requestTest("/banner/getList",{method:"POST"}).then(function(res){
+      if(res){
+         let result = res;
+         that.setData({bannerInfo:result});
+      }
+    }).catch(function(err){
+      wx.showToast({
+        title: '轮播图加载失败，请稍后重试',
+        icon: 'none',
+        duration: 1500,
+      });
+    })
   },
   //下拉刷新
   onPullDownRefresh(){

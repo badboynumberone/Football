@@ -65,14 +65,27 @@ function showErrorToast(msg) {
     image: '/static/images/icon_error.png'
   })
 }
+//数组分块
+export const chunk = (arr, size) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+//数组由左到右依次执行
+export const pipeFunctions = (...fns) => fns.reduce((f, g) => (...args) => g(f(...args)));
 
+//将参数数组映射到该函数的输入
+export const spreadOver = fn => argsArr => fn(...argsArr);
 
-
-
-
+//countBy - 返回每个分组数组中元素的数量
+export const countBy = (arr, fn) =>
+arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => {
+  acc[val] = (acc[val] || 0) + 1;
+  return acc;
+}, {});
 module.exports = {
   checkLogin,
   updateUserInfo,
   getUserInfo,
-  showErrorToast
+  showErrorToast,
+  chunk
 }

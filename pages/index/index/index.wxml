@@ -1,28 +1,30 @@
 <!--index.wxml-->
 <view class="main">
-  <!-- 搜索 -->
-  <van-search value="{{ searchValue }}" placeholder="搜索商品" bind:focus="onFocus" readonly/>
-  <!-- 轮播图 -->
-  <swiper indicator-dots="true" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#fff" autoplay="true" interval="3000" duration="800" circular="true">
-    <block wx:for="{{6}}" wx:key="index">
-      <swiper-item>
-        <image src="../../../images/demo.jpg" data-item="/pages/index/banner_details/banner_details" data-type="{{bannerId}}" class="slide-image" mode="widthFix" style="width:100%;" bindtap="navigateTo"/>
-      </swiper-item>
-    </block>
-  </swiper>
-  <!--导航-->
-  <view class="dynaic_container">
-    <view class="personal_select" style="background:#fff">
-            <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-                <van-tab title="最热" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
-                <van-tab title="最新" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
-                <van-tab title="视频" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
-                <van-tab title="图片" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
-            </van-tabs>
+  <scroll-view  scroll-y="true" >
+    <!-- 搜索 -->
+    <van-search value="{{ searchValue }}" placeholder="搜索商品" bind:focus="onFocus" readonly/>
+    <!-- 轮播图 -->
+    <swiper indicator-dots="true" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#fff" autoplay="true" interval="3000" duration="800" circular="true">
+      <block wx:for="{{bannerInfo}}" wx:key="index">
+        <swiper-item>
+          <image class="fill" src="{{item.bannImg}}"  data-item="/pages/index/banner_details/banner_details" data-type="{{item.id}}" class="slide-image" mode="scaleToFill" style="width:100%;" bindtap="navigateTo"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--导航-->
+    <view class="dynaic_container">
+      <view class="personal_select" style="background:#fff">
+              <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
+                  <van-tab title="最热" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
+                  <van-tab title="最新" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
+                  <van-tab title="视频" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
+                  <van-tab title="图片" custom-class="bg"><dynaic-item style="width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1"></dynaic-item></van-tab>
+              </van-tabs>
+      </view>
     </view>
-  </view>
-  <!--发布作品按钮-->
-  <view class="public_btn">
-    <image class="fill" src="../../../images/fb@2x.png" bindtap="navigateToPublic" />
-  </view>
+    <!--发布作品按钮-->
+    <view class="public_btn">
+      <image class="fill" src="../../../images/fb@2x.png" bindtap="navigateToPublic" />
+    </view>
+  </scroll-view>
 </view>

@@ -97,7 +97,7 @@ Page({
       }).then(function (data) {
         console.log(data)
         wx.navigateTo({
-          url: '/pages/order/list?orderStatus=0'
+          url: '/pages/purchase/order/list?orderStatus=0'
         })
       }, function (err) {
       })
@@ -108,7 +108,7 @@ Page({
 
   goDetail() {
     wx.navigateTo({
-      url: '/pages/order/detail?id=' + this.data.orderId
+      url: '/pages/purchase/order/detail?id=' + this.data.orderId
     })
   }
 })

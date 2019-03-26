@@ -1,5 +1,6 @@
 {
   "enablePullDownRefresh": true,
+  "navigationBarTitleText": "个人主页",
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "van-search": "/miniprogram_npm/vant-weapp/search/index",

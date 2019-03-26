@@ -1,4 +1,5 @@
 {
+    "navigationBarTitleText":"提交订单",
     "usingComponents": {
       "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
       "van-cell": "/miniprogram_npm/vant-weapp/cell/index",

@@ -9,7 +9,6 @@
   <van-tab title="待发货"></van-tab>
   <van-tab title="待收货"></van-tab>
   <van-tab title="已完成"></van-tab>
-  <van-tab title="交易关闭"></van-tab>
 </van-tabs>
 <block wx:if="{{orderList.length > 0 || orderList.length > 0}}">
 <scroll-view scroll-y style='background:#f2f2f2;'>
@@ -63,7 +62,7 @@
 </block>
 <block wx:else>
   <view class="empty">
-  <image src="../../images/order_empty.png" style="width: 200px;height: 200px;"></image>
+  <image src="../../../images/order_empty.png" style="width: 200px;height: 200px;"></image>
   <view style="font-size: 16px;">您暂时还没有订单哦，去商城看看吧！</view>
   <view class="go-home" bindtap='goHome'>去在线商城</view>
   </view>

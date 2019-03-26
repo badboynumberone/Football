@@ -33,7 +33,7 @@ view,text{
 }
 .options view{
     border:1px solid #63922F;
-    width: 280rpx;
+    width: 320rpx;
     line-height: 100rpx;
     text-align: center;
     margin: 20rpx;

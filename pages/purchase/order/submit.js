@@ -11,15 +11,16 @@ Page({
   data: {
     imageBaseUrl: app.globalData.imageBaseUrl,
     skuList: null,
-    buyerRemark: ''
+    buyerRemark: '',
+    preOrderData:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //获取传过来用户购买商品的信息
     var skuList = JSON.parse(options.skuListJson)
-    console.log(skuList)
     var that = this
     request.post('/order/getPreOrder', skuList).then(function (data) {
       console.log(data)
@@ -29,91 +30,54 @@ Page({
         skuList: skuList,
         preOrderData: data
       })
+      //从全局获取默认的地址
       var address = app.globalData.address
       if (address) {
-        that.data.preOrderData.receiverName = address.name
-        that.data.preOrderData.receiverPhone = address.phone        
-        var receiverAddress = ''
+        that.data.preOrderData.receiverName = address.name;
+        that.data.preOrderData.receiverPhone = address.phone;        
+        var receiverAddress = '';
         if (address.provinceCode === '110000' || address.provinceCode === '120000' || address.provinceCode === '310000' || address.provinceCode === '500000') {
-          receiverAddress = address.provinceName + address.areaName + address.detail
+          receiverAddress = address.provinceName + address.areaName + address.detail;
         } else {
-          receiverAddress = address.provinceName + address.cityName + address.areaName + address.detail
+          receiverAddress = address.provinceName + address.cityName + address.areaName + address.detail;
         }
-        that.data.preOrderData.receiverAddress = receiverAddress
+        that.data.preOrderData.receiverAddress = receiverAddress;
         that.setData({
           preOrderData: that.data.preOrderData
         })
       }
     }, function (err) {
+      console.log(err)
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var address = app.globalData.address
+    console.log(app.globalData.address)
+    var address = app.globalData.address;
     if (address) {
-      this.data.preOrderData.receiverName = address.name
-      this.data.preOrderData.receiverPhone = address.phone
-      var receiverAddress = ''
+      this.data.preOrderData.receiverName = address.name;
+      this.data.preOrderData.receiverPhone = address.phone;
+      var receiverAddress = '';
       if (address.provinceCode === '110000' || address.provinceCode === '120000' || address.provinceCode === '310000' || address.provinceCode === '500000') {
-        receiverAddress = address.provinceName + address.areaName + address.detail
+        receiverAddress = address.provinceName + address.areaName + address.detail;
       } else {
-        receiverAddress = address.provinceName + address.cityName + address.areaName + address.detail
+        receiverAddress = address.provinceName + address.cityName + address.areaName + address.detail;
       }
-      this.data.preOrderData.receiverAddress = receiverAddress
+      this.data.preOrderData.receiverAddress = receiverAddress;
       this.setData({
         preOrderData: this.data.preOrderData
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    
   },
 
   goAddressList() {
     wx.navigateTo({
-      url: '/pages/address/list?fromOrder=true',
+      url: '/pages/purchase/address/list?fromOrder=true',
     })
   },
 
@@ -197,12 +161,12 @@ Page({
                 //   duration: 1000
                 // })
                 wx.navigateTo({
-                  url: '/pages/order/success?orderId=' + orderId + '&orderFee=' + orderFee
+                  url: '/pages/purchase/order/success?orderId=' + orderId + '&orderFee=' + orderFee
                 })
               },
               fail(res) {
                 wx.navigateTo({
-                  url: '/pages/order/list'
+                  url: '/pages/purchase/order/list'
                 })
               }
             })
@@ -216,7 +180,7 @@ Page({
         } else if (paymentMethod === '2') {
           // 线下支付
           wx.navigateTo({
-            url: '/pages/order/payment?orderId=' + orderId + '&orderFee=' + orderFee + '&alipayAccount=' + alipayAccount
+            url: '/pages/purchase/order/payment?orderId=' + orderId + '&orderFee=' + orderFee + '&alipayAccount=' + alipayAccount
           })
         }
       }, function (err) {

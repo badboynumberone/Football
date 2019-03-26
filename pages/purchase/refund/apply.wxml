@@ -1,4 +1,5 @@
 <!--pages/refund/apply.wxml-->
+<!-- 申请退货或者退款 -->
 <wxs src="../../../utils/string.wxs" module="string" />
 <wxs src="../../../utils/number.wxs" module="number" />
 <wxs src="./status.wxs" module="status" />

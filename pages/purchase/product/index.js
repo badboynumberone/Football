@@ -34,37 +34,9 @@ Page({
       categoryId: options.categoryId ? options.categoryId : '',
       brandId: options.brandId ? options.brandId : ''
     })
-    wx.startPullDownRefresh()
+    this.initData();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+  initData(){
     if (this.data.isRefreshing || this.data.isLoadingMore) {
       return
     }
@@ -111,6 +83,9 @@ Page({
         isRefreshing: false
       })
     })
+  },
+  onPullDownRefresh: function () {
+    this.initData();
   },
 
   /**
@@ -167,17 +142,13 @@ Page({
     });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  },
+  
 
   toProductDetail:function(e){    
     var id = e.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
-      url: '/pages/product/detail?id=' + id
+      url: '/pages/purchase/product/detail?id=' + id
     })
   },
 
@@ -202,7 +173,7 @@ Page({
       priceSort: priceSort,
       saleSort: saleSort
     })
-    wx.startPullDownRefresh()
+    this.initData();
   },
 
   onSearch: function (e) {
@@ -217,7 +188,7 @@ Page({
 
   goHome() {
     wx.switchTab({
-      url: '/pages/index/index',
+      url: '/pages/purchase/index/index',
     })
   }
 })

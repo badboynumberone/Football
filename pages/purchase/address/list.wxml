@@ -2,19 +2,21 @@
 <block wx:if="{{addressList.length > 0 || addressList.length > 0}}">
 <scroll-view scroll-y style="padding-bottom:65px;">
   <van-radio-group value="{{ selected }}" bind:change="onAddressChange">
-  <view class="address-item" wx:for="{{addressList}}">
+  <view class="address-item" wx:for="{{addressList}}" wx:key="{{index}}">
+    <!-- 控制单选框的出现 -->
     <view wx:if="{{ fromOrder ===  true }}" class='check-wrap'>
+      
       <van-radio name="{{item.id}}" checked-color="#df3f3f"></van-radio>
     </view>
     <view wx:else class='check-wrap' style="width: 10px;">
     </view>
-    <view class='edit-wrap'>
-      <van-icon name="edit" data-item-id="{{item.id}}" bindtap='goDetail'/>
-    </view>
     <view class='address-info'>
       <view class='name-phone'>{{item.name}} {{item.phone}}</view>
-      <view class='address' wx:if="{{item.provinceCode == 110000 || item.provinceCode == 120000 || item.provinceCode == 310000 || item.provinceCode == 500000}}">{{item.provinceName}}{{item.areaName}}{{item.detail}}</view>
-      <view class='address' wx:else>{{item.provinceName}}{{item.cityName}}{{item.areaName}}{{item.detail}}</view>
+      <view class='address text-hidden' wx:if="{{item.provinceCode == 110000 || item.provinceCode == 120000 || item.provinceCode == 310000 || item.provinceCode == 500000}}">{{item.provinceName}}{{item.areaName}}{{item.detail}}</view>
+      <view class='address text-hidden' wx:else>{{item.provinceName}}{{item.cityName}}{{item.areaName}}{{item.detail}}</view>
+    </view>
+    <view class='edit-wrap'  data-item-id="{{item.id}}" bindtap='goDetail'>
+      <van-icon name="edit"/>
     </view>
   </view>
   </van-radio-group>

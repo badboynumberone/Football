@@ -1,18 +1,17 @@
-<view class="main">
+<view class="main" wx:if="{{bannerDetail}}">
     <view class="layout">
         <!--标题-->
-        <text class="title">审时度势，精心谋划--河南省校足办工作研讨会在南京奥体中心小镇召开舒服撒爱是飞洒发</text>
+        <text class="title">{{bannerDetail.bannTitle}}</text>
         <view class="banner_content">
             <!--图片-->
             <view class="img_video_wrapper">
-                <image class="activity_img fill" src="../../../images/demo.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" wx:if="{{videoOrImg}}">
+                <image wx:if="{{bannerDetail.bannImg}}" class="activity_img" src="{{bannerDetail.bannImg}}"  lazy-load="false" style="width:100%;height:450rpx" >
                 </image>
-                <video class="activity_video" src="" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
-                    bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror="" wx:else>
+                <video wx:if="{{bannerDetail.bannVoid}}" class="activity_video" src="{{bannerDetail.bannImg}}" style="width:100%">
                 </video>
             </view>
             <!--内容-->
-            <text class="banner_info">在Web编码中，CSS默认应用的Web字体是有限的，虽然在新版本的CSS3，我们可以通过新增的@font-face属性来引入特殊的浏览器加载字体。浏览器中展示网页文字内容时，文字字体都会按照设计师在css中定义的字体族的顺序来进行显示。什么是字体族？字体族就是你在css代码中看到“font-family”的代码内的一类字体名称，例如下面这行代码：</text>
+            <text class="banner_info">{{bannerDetail.content}}</text>
             <!--活动链接-->
             <view class="activity_link_wrapper">
                 <text class="activity_link" selectable="false" space="false" decode="false">活动链接 <text>http://huodong.com</text></text> 

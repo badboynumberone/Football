@@ -1,4 +1,5 @@
 <view class="main">
+    
     <!--个人信息-->
         <profile-header id="profile-header" bindrefresh="initData" isLogin="{{isLogin}}"  personalInfo="{{personalInfo}}" headerType="{{headerType}}"></profile-header>
     <!--用户功能列表-->

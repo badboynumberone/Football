@@ -11,6 +11,17 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      console.log(options)
+      if(options.title == "myWorks"){
+        wx.setNavigationBarTitle({
+          title: "我的作品"
+        });
+      }
+      if(options.title=="myCollections"){
+        wx.setNavigationBarTitle({
+          title: "我的收藏"
+        });
+      }
     },
   
     /**

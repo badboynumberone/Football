@@ -181,7 +181,7 @@ Page({
       skuList.push(sku)
     }
     wx.navigateTo({
-      url: '/pages/order/submit?skuListJson=' + JSON.stringify(skuList)
+      url: '/pages/purchase/order/submit?skuListJson=' + JSON.stringify(skuList)
     })
   },
 
@@ -347,7 +347,7 @@ Page({
 
   goHome() {
     wx.switchTab({
-      url: '/pages/index/index',
+      url: '/pages/purchase/index/index',
     })
   },
 

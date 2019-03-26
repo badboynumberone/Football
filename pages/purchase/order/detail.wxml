@@ -13,7 +13,7 @@
   </view>
 
   <view class='order-address'>
-    <image src='../../images/address_order_icon.png' style='width:20px;height:23px;'></image>
+    <image src='../../../images/address_order_icon.png' style='width:20px;height:23px;'></image>
     <view class='address-info'>
       <text>{{order.receiverName}}  {{order.receiverPhone}}</text>
       <view class='address'>{{order.receiverAddress}}</view>
@@ -21,7 +21,7 @@
   </view>
 
   <view class='order-products'>
-    <view class='product-wrapper' wx:for="{{itemList}}">
+    <view class='product-wrapper' wx:for="{{itemList}}" wx:key="{{index}}">
       <view class='product-img'>
         <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.productImage)}}" mode="aspectFill" />
       </view>

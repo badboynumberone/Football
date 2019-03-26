@@ -34,6 +34,9 @@ Component({
     login(e){
       if(!wx.getStorageSync('nickName') && this.properties.headerType=='me'){
         //登录流程
+        wx.showLoading({
+          title: '正在登录中...',
+        })
         var that = this
         if (e.detail.errMsg === 'getUserInfo:ok') {
           let data = {
@@ -50,12 +53,15 @@ Component({
             iv: e.detail.iv
           }).then(function (data) {
             console.log(data)
+            wx.hideLoading();
             let userData = {
               userName:data.nickname,
               userHeader:data.headImgUrl
             }
             updateUserInfo(userData);
             that.initData();
+          }).catch(function(err){
+            wx.hideLoading();
           })
         }
       }else{
@@ -87,7 +93,8 @@ Component({
     initData(){
       this.setData({
         ['userInfo.userName']:wx.getStorageSync('userName'),
-        ['userInfo.userHeader']:wx.getStorageSync('userHeader')
+        ['userInfo.userHeader']:wx.getStorageSync('userHeader'),
+        ['userInfo.signContent']:wx.getStorageSync('signContent')
       })
     }
   }

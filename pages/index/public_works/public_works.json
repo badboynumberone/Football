@@ -3,6 +3,9 @@
     "usingComponents":{
         "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
         "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
-        "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index"
+        "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+        "van-field": "/miniprogram_npm/vant-weapp/field/index",
+        "bottom-btn":"../../../components/bottom_btn/bottom_btn",
+        "van-transition": "/miniprogram_npm/vant-weapp/transition/index"
     }
 }

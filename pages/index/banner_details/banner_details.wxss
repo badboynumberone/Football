@@ -27,7 +27,6 @@ view{
 }
 .img_video_wrapper{
     width: 100%;
-    height: 400rpx;
     margin-bottom: 30rpx;
 }
 .banner_info{

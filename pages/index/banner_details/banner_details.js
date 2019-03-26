@@ -1,10 +1,13 @@
+import {requestTest} from '../../../utils/request';
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      videoOrImg:true
+      videoOrImg:true,
+      bannerId:null,
+      bannerDetail:{}
     },
   
     /**
@@ -12,16 +15,11 @@ Page({
      */
     onLoad: function (options) {
       console.log(options)
+      this.setData({
+        bannerId:options.bannerId
+      })
       this.getData();
     },
-  
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-  
-    },
-  
     /**
      * 生命周期函数--监听页面显示
      */
@@ -29,41 +27,25 @@ Page({
   
     },
   
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-  
-    },
-  
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-  
-    },
-  
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-  
-    },
-  
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-  
-    },
-  
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-  
-    },
+    
     getData(){
-
+      let that = this;
+      requestTest("/banner/getInfo",{method:"POST",data:{
+        id:this.data.bannerId
+      }}).then(function(res){
+        if(res){
+          that.setData({
+            bannerDetail:res
+          })
+        }
+      }).catch(function(err){
+        console.log("数据获取失败")
+        wx.showToast({
+          title: '页面加载失败请稍后重试',
+          icon: 'none',
+          duration: 1500,
+          mask: false,
+        });
+      })
     }
   })

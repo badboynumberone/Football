@@ -43,14 +43,7 @@ Page({
       active: active,
       orderStatus: orderStatus
     })
-    wx.startPullDownRefresh();
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    this.initData();
   },
 
   /**
@@ -60,24 +53,11 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    clearInterval(this.data.timer)
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  initData(){
     if (this.data.isRefreshing || this.data.isLoadingMore) {
       return
     }
@@ -156,6 +136,9 @@ Page({
       })
     })
   },
+  onPullDownRefresh: function () {
+    this.initData();
+  },
 
   /**
    * 页面上拉触底事件的处理函数
@@ -199,13 +182,7 @@ Page({
     });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
+  
   goDetail(e) {
     var orderId = e.currentTarget.dataset.orderId
     wx.navigateTo({
@@ -240,7 +217,7 @@ Page({
       active: active,
       orderStatus: orderStatus
     })
-    wx.startPullDownRefresh();
+    this.initData();
   },
 
   cancelOrder(e) {

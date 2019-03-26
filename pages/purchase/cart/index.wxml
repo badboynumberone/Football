@@ -127,9 +127,9 @@
 </block>
 <block wx:else>
   <view class="empty">
-  <image src="../../images/empty.png" style="width: 200px;height: 200px;"></image>
+  <image src="../../../images/empty.png" style="width: 200px;height: 200px;"></image>
   <view style="font-size: 16px;">亲，您的购物车是空哒~去首页看看吧！</view>
-  <view class="go-home" bindtap='goHome'>去首页</view>
+  <view class="go-home" bindtap='goHome'>前往在线商城</view>
   </view>
 </block>
 </block>

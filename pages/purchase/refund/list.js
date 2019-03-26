@@ -24,41 +24,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.startPullDownRefresh();
+    this.initData();
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh(){
+    this.initData();
+  },
+  initData: function () {
+    //判断是否正在更新或者是在加载更多，如果是，则停止
     if (this.data.isRefreshing || this.data.isLoadingMore) {
       return
     }
@@ -68,21 +43,25 @@ Page({
     })
     var that = this;
     that.data.pageNo = 1;
+    //获取退货列表传入页面内型，页面大小退货状态
     request.post('/refundOrder/getRefundOrderList', {
       pageNo: that.data.pageNo,
       pageSize: that.data.pageSize,
       refundStatus: that.data.refundStatus
     }).then(function (data) {
+      //如果获取的退货信息小于10,则没有更多,无法刷新
       if (data.length < that.data.pageSize) {
         that.setData({
-          "hasMoreData": false,
-          isRefreshing: false
+          "hasMoreData": false
         })
       }
+      //设置退货信息
       that.setData({
         refundOrderList: data
       })
+      //停止下拉刷新
       wx.stopPullDownRefresh();
+      //把刷新状态改成可以刷新
       that.setData({
         isRefreshing: false
       })
@@ -98,10 +77,12 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
+  //页面触底加载更多
   onReachBottom: function () {
     if (this.data.isRefreshing || this.data.isLoadingMore || !this.data.hasMoreData) {
       return
     }
+    // 更改状态
     this.setData({
       isLoadingMore: true
     })
@@ -110,22 +91,26 @@ Page({
       console.log('没有更多退单啦')
       return;
     }
+    //发送请求加载更多
     request.post('/refundOrder/getRefundOrderList', {
       pageNo: that.data.pageNo + 1,
       pageSize: that.data.pageSize,
       refundStatus: that.data.refundStatus
     }).then(function (data) {
       if (data.length < that.data.pageSize) {
+        //没有更多了
         that.setData({
           "hasMoreData": false
         })
       }
+      //如果数据大于0,页面数增加一同时数据添加一条
       if (data.length > 0) {
         that.setData({
           "pageNo": that.data.pageNo + 1,
           "refundOrderList": that.data.refundOrderList.concat(data)
         })
       }
+      //再继续更改加载状态
       that.setData({
         isLoadingMore: false
       })
@@ -137,20 +122,14 @@ Page({
     });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
+  //跳转到退货详情页面
   goDetail(e) {
     var refundOrderId = e.currentTarget.dataset.refundOrderId
     wx.navigateTo({
-      url: '/pages/refund/detail?id=' + refundOrderId
+      url: '/pages/purchase/refund/detail?id=' + refundOrderId
     })
   },
-
+  //导航栏跳转
   onChange(e) {
     var active = e.detail.index
     var refundStatus = ''
@@ -175,15 +154,16 @@ Page({
       active: active,
       refundStatus: refundStatus
     })
-    wx.startPullDownRefresh();
+    this.initData();
   },
-
+  //取消申请退款
   cancelRefundOrder(e) {
     var that = this
     Dialog.confirm({
       title: '取消申请',
       message: '确认要取消申请吗？'
     }).then(() => {
+      //获取退货id之后发送退货请求
       var refundOrderId = e.target.dataset.refundOrderId
       console.log('取消申请:' + refundOrderId)
       request.post('/refundOrder/cancelRefundOrder', {
@@ -205,7 +185,7 @@ Page({
 
     })
   },
-
+  //更新订单列表状态
   updateRefundOrderStatus(refundOrderId, refundStatus) {
     console.log('更新列表订单状态')
     for (var i = 0; i < this.data.refundOrderList.length; i++) {
@@ -218,7 +198,7 @@ Page({
       refundOrderList: this.data.refundOrderList
     })
   },
-
+  //删除订单
   removeRefundOrder(refundOrderId) {
     console.log('移除列表订单')
     var delIndex = null
@@ -235,11 +215,11 @@ Page({
       })
     }
   },
-
+  //去退货物流信息
   goLogistics(e) {
     var refundOrderId = e.target.dataset.refundOrderId
     wx.navigateTo({
-      url: '/pages/refund/logistics?refundOrderId=' + refundOrderId,
+      url: '/pages/purchase/refund/logistics?refundOrderId=' + refundOrderId,
     })
   }
 })

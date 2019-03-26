@@ -1,5 +1,6 @@
 // pages/product/detail.js
 import request from '../../../utils/request'
+import {checkLogin} from '../../../utils/util';
 const app = getApp()
 
 Page({
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    productId:'',
     imageBaseUrl: app.globalData.imageBaseUrl,
     indicatorDots: true,
     indicatorColor: '#ccc',
@@ -40,55 +42,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var id = options.id
+    var id = options.id;
+    this.setData({
+      productId:id
+    })
     this.init(id)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onshow(){
+    this.init(this.data.productId)
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
     var shareDesc = this.data.product.shareDesc
     if (!shareDesc) {
@@ -207,6 +169,9 @@ Page({
   },
 
   showAddCart: function(){
+    if(!checkLogin(true,false)){
+      return;
+    }
     this.setData({
       show: true,
       addCart: true
@@ -214,6 +179,9 @@ Page({
   },
 
   showBuy: function () {
+    if(!checkLogin(true,false)){
+      return;
+    }
     this.setData({
       show: true,
       addCart: false
@@ -275,8 +243,11 @@ Page({
   },
 
   goCart() {
-    wx.switchTab({
-      url: '/pages/cart/index'
+    if(!checkLogin(true,false)){
+        return;
+    }
+    wx.navigateTo({
+      url: '/pages/purchase/cart/index'
     })
   },
 
@@ -316,6 +287,7 @@ Page({
       num: selectedSkuNum
     }
     skuList.push(sku)
+    console.log(skuList)
     wx.navigateTo({
       url: '/pages/purchase/order/submit?skuListJson=' + JSON.stringify(skuList)
     })
@@ -562,22 +534,7 @@ Page({
     })
   },
 
-  getPhoneNumber: function (e) {
-    console.log(e)
-    var that = this
-    if (e.detail.errMsg === 'getPhoneNumber:ok') {
-      request.post('/customer/bindPhone', {
-        encryptedData: e.detail.encryptedData,
-        iv: e.detail.iv
-      }).then(function (data) {
-        wx.setStorageSync('phone', data.phone)
-        that.setData({
-          phone: data.phone
-        })
-      }, function (err) {
-      })
-    }    
-  },
+  
 
   goHome() {
     wx.switchTab({

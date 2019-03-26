@@ -31,7 +31,7 @@
         </view>
         <!--生日-->
         <view class="edit_item">
-            <van-cell title="生日" is-link center="true">
+            <van-cell title="生日" is-link center="true" bind:click="bindDateChange">
                 <picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
                     <view class="{{birthDay != ''?'picker':'picker unactive'}}">
                         {{birthDay || '未填写'}}

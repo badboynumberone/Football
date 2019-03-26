@@ -1,4 +1,5 @@
 <!--pages/product/index.wxml-->
+<!--商品列表-->
 <wxs src="../../../utils/string.wxs" module="string" />
 <wxs src="../../../utils/number.wxs" module="number" />
 <!-- <view class="weui-loadmore" wx:if='{{isRefreshing}}'>

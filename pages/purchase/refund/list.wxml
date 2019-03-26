@@ -1,5 +1,6 @@
 <!--pages/refund/list.wxml-->
 <wxs src="../../../utils/string.wxs" module="string" />
+<!-- 退货退款 -->
 <wxs src="../../../utils/number.wxs" module="number" />
 <wxs src="./status.wxs" module="status" />
 <van-dialog id="van-dialog" />

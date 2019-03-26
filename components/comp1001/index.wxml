@@ -28,4 +28,8 @@
       </block>
     </van-row>
   </view>
+  <!--购物车按钮-->
+  <view class="cart_btn">
+    <image class="fill" src="../../images/gwcxf@2x.png" bindtap="navigateToCart" />
+  </view>
 </view>

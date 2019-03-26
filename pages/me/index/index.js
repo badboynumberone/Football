@@ -16,11 +16,11 @@ Page({
         {iconSrc:"../../../images/wddd@2x.png",text:"我的订单",linkAddress:"",isAll:true,isNew:false},
       ],//用户功能列表
       pay_list:[
-        {iconSrc:"../../../images/dfk.png",text:"待付款",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/dfh.png",text:"代发货",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/dsh.png",text:"待收货",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/dfk.png",text:"已完成",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/thtk.png",text:"退货退款",messageNum:10,linkAddress:""},
+        {iconSrc:"../../../images/dfk.png",text:"待付款",messageNum:0},
+        {iconSrc:"../../../images/dfh.png",text:"待发货",messageNum:0},
+        {iconSrc:"../../../images/dsh.png",text:"待收货",messageNum:0},
+        {iconSrc:"../../../images/ywc.png",text:"已完成"},
+        {iconSrc:"../../../images/thtk.png",text:"退货退款"},
       ],//付款流程列表
       userInfo:{},//用户信息
       personalInfo:[
@@ -51,11 +51,11 @@ Page({
         return;
       }
       switch (e.currentTarget.dataset.type) {
-        case 0:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=1'});break;}
+        case 0:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=0'});break;}
         case 1:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=1'});break;} 
         case 2:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=2'});break;}
         case 3:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=3'});break;}
-        case 4:{wx.navigateTo({url: '/pages/purchase/order/list?orderStatus=4'});break;}
+        case 4:{wx.navigateTo({url: '/pages/purchase/refund/list'});break;}
         default:
           break;
       }  
@@ -65,26 +65,24 @@ Page({
         return;
       }
       if(e.currentTarget.dataset.type==4){
-        wx.navigateTo({url: '/pages/purchase/address/detail'});
+        wx.navigateTo({url: '/pages/purchase/address/list'});
       }
       switch (e.currentTarget.dataset.type) {
-        case 0:{wx.navigateTo({url: '/pages/me/my_collection_works/my_collection_works'});break;}
-        case 1:{wx.navigateTo({url: '/pages/me/my_collection_works/my_collection_works'});break;} 
+        case 0:{wx.navigateTo({url: "/pages/me/my_collection_works/my_collection_works?title=myWorks"});break;}
+        case 1:{wx.navigateTo({url: "/pages/me/my_collection_works/my_collection_works?title=myCollections"});break;} 
         case 2:{wx.navigateTo({url: '/pages/me/comment/comment'});break;}
         case 3:{wx.navigateTo({url: '/pages/purchase/order/list'});break;}
         default:
           break;
       }  
-      
     },
     getOrderCount(){
       let that = this;
       request.post('/order/getOrderCount').then(function (data) {
-        console.log(data)
         that.setData({
-          waitingPaymentCount: data.waitingPaymentCount,
-          waitingShipmentCount: data.waitingShipmentCount,
-          waitingReceiveCount: data.waitingReceiveCount
+          ["pay_list[0].messageNum"]: data.waitingPaymentCount,
+          ["pay_list[1].messageNum"]: data.waitingShipmentCount,
+          ["pay_list[2].messageNum"]: data.waitingReceiveCount
         })
       })
     }

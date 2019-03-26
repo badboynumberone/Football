@@ -82,3 +82,15 @@
 .goods-list-item .goods-price{
   font-size: 13px;
 }
+.cart_btn{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  position: fixed;
+  right: 0px;
+  bottom:0rpx;
+}
+.fill{
+  width: 100%;
+  height: 100%;
+}

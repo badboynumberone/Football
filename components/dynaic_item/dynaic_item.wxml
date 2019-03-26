@@ -1,6 +1,6 @@
 <!--动态组件-->
 
-<view class="works_item" wx:for="{{6}}" wx:key="{{index}}" bindtap="navigateTo">
+<view class="works_item" wx:for="{{20}}" wx:key="{{index}}" bindtap="navigateTo">
 	
 	<view class="works_img_wrapper">
 		<image class="works_image fill" src="/images/demo.jpg" />

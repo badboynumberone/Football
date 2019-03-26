@@ -1,15 +1,27 @@
 {
   "pages": [
+    "pages/me/index/index",
+    "pages/purchase/cart/index",
+    "pages/purchase/product/index",
+    "pages/purchase/refund/apply",
+    "pages/purchase/refund/detail",
+    "pages/purchase/refund/list",
+    "pages/purchase/address/list",
+    "pages/purchase/refund/logistics",
+    "pages/purchase/order/payment",
+    "pages/purchase/order/success",
+    "pages/purchase/index/index",
+    "pages/index/public_works/public_works_success",
+    "pages/index/public_works/public_works",
     "pages/index/index/index",
     "pages/index/search/search",
     "pages/index/works_details/works_details",
     
     "pages/me/edit_profile/edit_profile",
     
-    "pages/purchase/mine/index",
     
     
-    
+    "pages/me/my_collection_works/my_collection_works",
     "pages/star/star_intro/star_intro",
     "pages/star/achievement_query/query_result_identity",
     "pages/star/sign_up/sign_up_success",
@@ -25,38 +37,38 @@
     "pages/me/show_fans_concern/show_fans_concern",
     
     
-    "pages/purchase/page/index",
-    "pages/me/index/index",
+    
+    
     "pages/index/home_page/home_page",
     "components/profile_header/profile_header",
     
-    "pages/index/public_works/public_works",
+    
     "components/concern/concern",
     "components/dynaic_item/dynaic_item",
-    "pages/index/public_works/public_works_success",
+    "components/bottom_btn/bottom_btn",
+    
     
     "pages/star/achievement_query/query_result_electrical",
-    "pages/purchase/index/index",
-    "pages/purchase/cart/index",
-    "pages/purchase/product/index",
+    
+    
+    
     "pages/purchase/product/detail",
     "pages/purchase/order/list",
     "pages/purchase/order/detail",
     "pages/purchase/order/submit",
-    "pages/purchase/order/payment",
-    "pages/purchase/address/list",
+    
+    
     "pages/purchase/address/detail",
-    "pages/purchase/refund/list",
+    
     "pages/purchase/order/logistics",
-    "pages/purchase/refund/detail",
-    "pages/purchase/refund/apply",
-    "pages/purchase/order/success",
-    "pages/purchase/refund/logistics"
+    "components/comment_item/comment_item"
+    
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "首页",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

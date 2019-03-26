@@ -100,6 +100,11 @@ Component({
           })
         }
       }
+    },
+    navigateToCart(){
+      wx.navigateTo({
+        url: '/pages/purchase/cart/index'
+      });
     }
   }
 })

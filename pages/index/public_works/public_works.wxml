@@ -1,65 +1,56 @@
 <view class="main">
     <view class="works_content_top">
-        <view class="works_select" wx:if="{{false}}">
-            <view class="add_img">
-                <image src="../../../images/添加图片@2x.png" />
+        <view class="works_select" wx:if="{{!upLoadContent.length}}">
+            <view class="add_img" bindtap="addImg">
+                <image src="../../../images/tjtp@2x.png" />
                 添加图片
             </view>
-            <view class="add_video">
-                <image src="../../../images/添加视频@2x.png" />
+            <view class="add_video" bindtap="addVideo">
+                <image src="../../../images/tjsp@2x.png" />
                 添加视频
             </view>
         </view>
-        <view class="works_list">
-            <view class="list_item" wx:for="{{4}}">
-                <image class="list_item_img fill" src="../../../images/demo.jpg"  lazy-load="false" binderror="" bindload="" />
-                <image class="delete_item" src="../../../images/缩略图删除@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
-                <text class="video_time">02:56:16</text>    
-                <view class="mark">
+        <view class="works_list" wx:if="{{upLoadContent.length}}">
+            <view class="list_item" wx:for="{{upLoadContent}}" wx:key="{{index}}" bindtap="clearItem">
+                <image wx:if="videoOrImg" class="list_item_img fill" src="{{item}}"  lazy-load="false" binderror="" bindload="" />
+                <image wx:if="videoOrImg" class="delete_item"  data-num="{{index}}" src="../../../images/sltsc@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+                <text  wx:if="!videoOrImg" class="video_time" wx:if="">02:56:16</text>    
+                <view  wx:if="!videoOrImg" class="mark">
                 </view>
             </view>
-            <view class="add_item"><text>+</text></view>
+            <view class="add_item" wx:if="{{!plusControl || !(upLoadContent.length==8)}}" bindtap="addItem"><text>+</text></view>
         </view>
         <view class="works_title">
             <view class="work_title_tag">
                 标题:
             </view>
-            <input class="input_title" type="text" placeholder="给作品起个响亮的标题吧~限制4-20字之内" maxlength="20"  />
+            <van-field value="{{ title }}"  class="input_title" placeholder="给作品起个响亮的标题吧~限制4-20字之内" border="{{ false }}" maxlength="20"  bind:change="onTitleChange"/>
         </view>
         <view class="works_intro">
-            <textarea class="works_intro_content"  placeholder="请输入作品简介哦..."  maxlength="600"></textarea>
+            <textarea value="{{content}}" class="works_intro_content"  placeholder="请输入作品简介哦..."  maxlength="600" bindinput="onContentChange"></textarea>
             <view class="letter_count">
-                0/600
+                {{currentFontNum}}/600
             </view>
         </view>
         <view class="location_wrapper"> 
                 <van-cell
-                title="所在位置"
+                title="{{address || '点击获取所在位置'}}"
                 icon="location"
                 is-link
+                bind:click="getLocation"
                 style="width:100%;border:none"
                 />
         </view>
     </view>
     <view class="works_content_bottom">
         <view class="add_tag">
-            <view class="tag">
-                <view class="tag_content">
-                    足球小子
-                </view>
-                <view class="delete_tag">
-                    <image class="fill" src="../../../images/缩略图删除@2x.png"/>
+            <view class="tag" wx:for="{{keyWords}}" wx:key="{{index}}" >
+                <view class="tag_content">{{item}}</view>
+                <view class="delete_tag" bindtap="deleteKey" data-num="{{index}}">
+                    <image class="fill" src="../../../images/sltsc@2x.png"/>
                 </view>
             </view>
-            <view class="tag" wx:for="{{6}}">
-                <view class="tag_content">
-                    足球小子沙发
-                </view>
-                <view class="delete_tag">
-                    <image class="fill" src="../../../images/缩略图删除@2x.png"/>
-                </view>
-            </view>
-            <view class="tag add_key">
+            <view class="tag add_key" bindtap="addKeyWords" wx:if="{{!(keyWords.length==8)}}">
                 <view class="tag_content">
                     + 关键词
                 </view>
@@ -71,16 +62,15 @@
                 推荐关键词
             </view>
             <view class="intro_keywords">
-                <view class="keywords_item">
-                    足球
-                </view>
-                <view class="keywords_item">
-                    足球小子真棒
-                </view>
+                <view class="keywords_item" wx:for="{{introKey}}" wx:key="{{index}}" data-name="{{item}}" bindtap="addIntroKey">{{item}}</view>
             </view>
         </view>
     </view>
-    <view class="public_btn" bindtap="navigateToPublicSuccess">
-        发布
+    <bottom-btn text="发布" bindtap="publicWorks"></bottom-btn>
+    <!--输入框-->
+    <view class="input_field" wx:if="{{show}}">
+        <view class="input_field_wrapper" hover-class="none" hover-stop-propagation="false" >
+            <van-field style="height:50rpx" input-class="add_class" value="{{ keywords }}" focus="{{true}}" placeholder="请输入1~10字之间的关键词" border="{{ false }}" bind:change="onKeyChange" bind:blur="onKeyBlur" bind:confirm="onKeyConfirm" maxlength="8"/>
+        </view>
     </view>
 </view>

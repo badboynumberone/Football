@@ -7,6 +7,7 @@
     data-field-name="receiverName"
     placeholder="请输入收货人姓名"
     bind:blur="onInput"
+    bind:clear="clearContent"
   />
   <van-field
     type="number"
@@ -16,6 +17,7 @@
     data-field-name="receiverPhone"
     placeholder="请输入收货人手机号"
     bind:blur="onInput"
+    bind:clear="clearContent"
   />
 <van-field
     value="{{ receiverArea }}"
@@ -36,6 +38,7 @@
     data-field-name="receiverDetail"
     placeholder="请输入详细地址"
     bind:blur="onInput"
+    bind:clear="clearContent"
   />
   <van-popup show="{{ show }}" position="bottom" bind:close="onAreaPopupClose">
     <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="地区选择" bind:confirm="onAreaConfirm" bind:cancel="onAreaCancel"/>

@@ -4,8 +4,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-      videoOrImg:true,//图片还是视频
-      bannerIndex:1,//轮播图索引
+      authorInfo:[],//用户信息
+      isMyWorks:true,//true代表是自己
+      bannerIndex:1
     },
   
     /**
