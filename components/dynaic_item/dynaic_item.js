@@ -31,9 +31,6 @@ Component({
         url: '/pages/index/works_details/works_details'
       });
     },
-    handleClick(){
-      console.log(this.properties.dynaicInfo)
-    },
   },
   
 })
