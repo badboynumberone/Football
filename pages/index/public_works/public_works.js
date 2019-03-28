@@ -1,6 +1,6 @@
 import {upLoadFile} from '../../../utils/request';
 import {request,post,requestTest} from '../../../utils/request';
-import {chunk} from '../../../utils/util';
+import {chunk,showErrorToast} from '../../../utils/util';
 Page({
 
     /**
@@ -27,13 +27,25 @@ Page({
     onLoad: function (options) {
     },
     onShow(){
-      this.initData()
+      this.getKey()
     },
     //初始化数据
-    initData(){
+    getKey(){
       //获取推荐关键词
-      requestTest("/contomerKeyword/getKeyWord",{method:"POST"}).then(function(res){console.log(res)}).catch(function(err){
-        console.log(err)
+      let that =this;
+      requestTest("/contomerKeyword/getKeyWord",{method:"POST"}).then(function(res){
+        try{
+          res = JSON.parse(res);
+        }catch(e){
+
+        }
+        let keyWords = [];
+        res.adminKeyWordList.forEach(function(item){
+          keyWords.push(item.content)
+        })
+        that.setData({
+          introKey:keyWords
+        })
       })
     },
 
@@ -156,11 +168,14 @@ Page({
       this.setLocation();
     },
     setLocation(){
+      wx.showLoading({
+        title:"位置获取中。。。",mask: true
+      });
       let that = this;
       wx.getLocation({
         success: function (res) {
           console.log(res)
-      //保存到data里面的location里面
+          //保存到data里面的location里面
           that.setData({
             location: {
               longitude: res.longitude,  
@@ -169,20 +184,27 @@ Page({
           })
           var qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
             that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
-
           wx.request({
             url: qqMapApi,
             data: {},
             method: 'GET',
             success: (res) => {
               console.log(res.data)
-
             //取位置名
               that.setData({
                 address: res.data.result.address
               })
+              wx.hideLoading();  
+            },
+            fail:function(){
+              wx.hideLoading();
+              wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
             }
           });
+        },
+        fail:function(){
+          wx.hideLoading();
+          wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
         }
       })
     },
@@ -226,6 +248,9 @@ Page({
     addIntroKey(e){
       let keyWords = this.data.keyWords;
       if(keyWords.includes(e.currentTarget.dataset.name)){
+        wx.showToast({
+          title: '已添加！',icon: 'none',duration: 1500,mask: false
+        });
         return;
       }
       keyWords.push(e.currentTarget.dataset.name);
@@ -256,14 +281,14 @@ Page({
         data:obj
       }).then(function(res){
         //返回作品id
-        if(res.statusCode == 200){
+        
+        if(res.produtionId){
           wx.redirectTo({
-            url: '/pages/index/public_works/public_works_success'
+            url: '/pages/index/public_works/public_works_success?worksId='+res.produtionId
           });
         }
       }).catch(function(err){
-        console.log(err)
+        showErrorToast("发布失败,请稍后重试")
       })
     }
-
   })

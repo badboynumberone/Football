@@ -83,7 +83,7 @@ Page({
 
   goCart() {
     wx.switchTab({
-      url: '/pages/cart/index'
+      url: '/pages/purchase/cart/index'
     })
   },
 
@@ -184,6 +184,7 @@ Page({
           })
         }
       }, function (err) {
+        console.log(err)
         wx.showToast({
           title: err.errmsg,
           icon: 'none',

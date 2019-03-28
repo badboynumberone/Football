@@ -4,13 +4,17 @@ Page({
      * 页面的初始数据
      */
     data: {
-      videoOrImg:true
+      videoOrImg:true,
+      worksId:'',//作品ID
     },
   
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      this.setData({
+        worksId:options.worksId
+      })
     },
   
     toIndex(){
@@ -20,7 +24,7 @@ Page({
     },
     toWorkDetails(){
       wx.redirectTo({
-        url: '/pages/index/works_details/works_details'
+        url: '/pages/index/works_details/works_details?worksId='+this.data.worksId
       });
     }
   })

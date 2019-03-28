@@ -18,7 +18,7 @@ view,text{
 
 .works_item{
     width: 50%;
-    padding: 20rpx;
+    padding: 0 15rpx 15rpx;
     background: #fff;
     background-clip: content-box;
 }
@@ -38,13 +38,14 @@ view,text{
     font-weight: bold;
     line-height: 45rpx;
     text-align: left;
-    padding: 0 10rpx;
+    padding: 5rpx 10rpx;
+    color: #222;
 }
 .works_container{
     font-size: 14px;
-    color: #ccc;
+    color: #666666;
     text-align: left;
-    padding: 0 10rpx;
+    padding: 0 10rpx 10rpx;
 }
 .publisher_info{
     display: flex;
@@ -62,18 +63,24 @@ view,text{
 }
 .publisher_name{
     width: 140rpx;
+    font-size: 24rpx;
 }
 .publisher_header_wrapper{
-    width: 50rpx;
-    height: 50rpx;
+    width: 40rpx;
+    height: 40rpx;
     border-radius: 50%;
     overflow: hidden;
     background: #ccc;
     flex-flow: row nowrap;
+    margin-right: 5rpx;
+}
+.publisher_header_wrapper text{
+    font-size: 24rpx;
 }
 .collection_wrapper{
     display: flex;
     align-items: center;
+    font-size: 26rpx;
 }
 .collection_icon_wrapper{
     position: relative;
@@ -82,6 +89,7 @@ view,text{
     overflow: hidden;
     
 }
+
 .video,.img{
     position: absolute;
     width: 50rpx;

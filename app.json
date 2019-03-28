@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/me/index/index",
+    "pages/index/index/index",
     "pages/index/works_details/works_details",
+    "pages/me/index/index",
+    
     
     "pages/purchase/cart/index",
     "pages/purchase/product/index",
@@ -15,7 +17,7 @@
     "pages/purchase/index/index",
     "pages/index/public_works/public_works_success",
     "pages/index/public_works/public_works",
-    "pages/index/index/index",
+    
     "pages/index/search/search",
     
     

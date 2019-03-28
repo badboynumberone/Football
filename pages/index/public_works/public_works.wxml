@@ -24,7 +24,7 @@
             <view class="work_title_tag">
                 标题:
             </view>
-            <van-field value="{{ title }}"  class="input_title" placeholder="给作品起个响亮的标题吧~限制4-20字之内" border="{{ false }}" maxlength="20"  bind:change="onTitleChange"/>
+            <van-field value="{{ title }}" style="padding-left:5px !important"  class="input_title" placeholder="给作品起个响亮的标题吧~限制4-20字之内" border="{{ false }}" maxlength="20"  bind:change="onTitleChange"/>
         </view>
         <view class="works_intro">
             <textarea value="{{content}}" class="works_intro_content"  placeholder="请输入作品简介哦..."  maxlength="600" bindinput="onContentChange"></textarea>
@@ -50,7 +50,7 @@
                     <image class="fill" src="../../../images/sltsc@2x.png"/>
                 </view>
             </view>
-            <view class="tag add_key" bindtap="addKeyWords" wx:if="{{!(keyWords.length==8)}}">
+            <view class="tag add_key" bindtap="addKeyWords" wx:if="{{!(keyWords.length>=8)}}">
                 <view class="tag_content">
                     + 关键词
                 </view>

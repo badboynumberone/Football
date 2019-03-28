@@ -19,7 +19,7 @@
 				<text class="get_content"> 朱老师</text>
 			</view>
 		</view>
-		<view class="line_wrapper" style="border-bottom:1rpx solid #f1f1f1">
+		<view class="line_wrapper" style="border-bottom:1rpx solid #f1f1f1;padding-bottom:30rpx">
 			<text class="input_name" selectable="false" space="false" decode="false">联系方式:</text>
 			<view class="input_content">
 				<text class="get_content">18273627281</text>
@@ -30,7 +30,7 @@
 				<text>南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...</text>
 			</view>
 			<view class="station_img_wrapper">
-				<image class="station_img" src="../../../images/demo.jpg" style="width:100%" lazy-load="false" binderror="" bindload="" />
+				<image class="station_img fill" src="../../../images/demo.jpg" style="width:100%" lazy-load="false" binderror="" bindload="" />
 			</view>
 		</view>
 	</view>

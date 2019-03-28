@@ -5,7 +5,7 @@
             <text>一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...</text>
         </view>
         <view class="star_img">
-            <image class="detail_img fill" src="./../../../images/demo.jpg" mode="widthFix" lazy-load="true" binderror="" bindload="" />
+            <image class="detail_img fill" src="./../../../images/demo.jpg" lazy-load="true" binderror="" bindload="" />
         </view>
     </view>
     <view class="star_item">
@@ -14,7 +14,7 @@
             <text>一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...</text>
         </view>
         <view class="star_img">
-            <image class="good_img fill" src="./../../../images/demo.jpg" mode="widthFix" lazy-load="true" binderror="" bindload="" />
+            <image class="good_img fill" src="./../../../images/demo.jpg"  lazy-load="true" binderror="" bindload="" />
         </view>
     </view>
 </view>

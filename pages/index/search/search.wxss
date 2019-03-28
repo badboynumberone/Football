@@ -23,11 +23,12 @@
     flex-flow: row wrap;
 }
 .history_items{
-    padding: 10rpx 20rpx;
-    font-size: 30rpx;
+    padding: 14rpx 35rpx;
+    font-size: 26rpx;
     margin-right:30rpx;
     margin-bottom: 20rpx;
     background: #f1f1f1; 
+    color: #222;
 }
 .van-tab--active{
     color: #639231 !important;
@@ -41,4 +42,18 @@
 }
 .empty{
     top: 200rpx
+}
+.search_title{
+    font-size: 30rpx;
+}
+.dynaic_style{
+    width:100%;display:flex;flex-flow:row wrap;background:#f1f1f1;padding-top: 15rpx;
+}
+.ending_wrapper view{
+    width: 100%;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 24rpx;
+    color: #666;
+    background: #f1f1f1;
 }

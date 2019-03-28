@@ -1,15 +1,4 @@
-view,text{
-    padding: 0rpx;
-    margin: 0rpx;
-    box-sizing: border-box;
-}
-.clearfix:after { display: table; content: " "; clear: both;}
-
-.clearfix{ zoom: 1;}
-.fill{
-    width: 100%;
-    height: 100%;
-}
+@import '/common.wxss';
 .img_bg{
     background: #ccc;
 }
@@ -34,20 +23,21 @@ view,text{
     
 }
 .author_img_wrapper{
-    width: 100rpx;
-    height: 100rpx;
+    width: 90rpx;
+    height: 90rpx;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 15rpx;
 }
 .author_name{
-    font-size: 35rpx;
+    font-size: 32rpx;
     font-weight: bold;
+    font-size: #222;
 }
 
 .author_public_time{
     font-size: 30rpx;
-    color:#666;
+    color:#999;
     margin-top: 10rpx;
 }
 .is_author{
@@ -72,14 +62,14 @@ view,text{
     padding: 0rpx 20rpx;
 }
 .works_title{
-    font-size: 40rpx;
+    font-size: 36rpx;
     font-weight: bold;
     line-height: 80rpx;
 }
 .works_content{
-    font-size: 34rpx;
+    font-size: 32rpx;
     line-height: 55rpx;
-    color: #8F8F8F;
+    color: #666;
 }
 .works_tag{
     display: flex;
@@ -87,9 +77,10 @@ view,text{
     margin: 10rpx 0;
 }
 .tag{
-    padding: 10rpx 20rpx;
-    font-size: 30rpx;
+    padding: 14rpx 23rpx;
+    font-size: 26rpx;
     background: #F7F7F7;
+    color: #1e1e1e;
     border-radius: 10rpx;
     margin-bottom: 20rpx;
     margin-right: 10rpx;
@@ -101,7 +92,9 @@ view,text{
     color:#666;
     padding-bottom: 15rpx;
 }
-.rating_container
+.rating_container{
+    padding-bottom:80rpx;
+}
 .title_wrapper{
     
     padding: 20rpx 0;
@@ -109,9 +102,10 @@ view,text{
 }
 .title_wrapper .title{
     font-weight: bold;
+    font-size: 34rpx;
 }
 .title_wrapper .rating_num{
-    font-size: 14px;
+    font-size: 28rpx;
     color: #666;
 }
 .rating_item{
@@ -120,8 +114,8 @@ view,text{
     border-top:1rpx solid #f1f1f1;
 }
 .img_wrapper{
-    width: 90rpx;
-    height: 90rpx;
+    width: 70rpx;
+    height: 70rpx;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -130,22 +124,23 @@ view,text{
     justify-content: space-between;
 }
 .name{
-    font-size: 16px;
+    font-size: 28rpx;
     font-weight: bold;
+    color: #222222;
 }
 .answer{
-    font-size: 14px;
-    color: #666;
+    font-size: 24rpx;
+    color: #666666;
 }
 .time{
-    font-size: 13px;
-    color: #ccc;
+    font-size: 24rpx;
+    color: #999999;
     position: relative;
     top: -5rpx;
 }
 .rating_content{
-    font-size: 14px;
-    color: #333;
+    font-size: 26rpx;
+    color: #2f2f2f;
 }
 .adding{
     border-top:1rpx solid #f1f1f1;
@@ -173,30 +168,31 @@ view,text{
 }
 .input_wrapper{
     flex: 1;
+    
+    padding: 10rpx 20rpx;
+}
+.input_box{
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 10rpx;
+    justify-content: space-between;
+    background: #f1f1f1;
+    border-radius: 50rpx;
+    overflow: hidden;
+    height: 60rpx;
 }
 .write{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 9;
     width: 30rpx;
     height: 30rpx;
-    left: 30rpx;
-    margin-top: 4rpx;
+    margin-left: 10rpx;
+    margin-right: 10rpx;
 }
 .rating_input{
-    border-radius: 50rpx;
-    background: #f1f1f1;
-    height: 60rpx;
-    width: 100%;
-    font-size: 32rpx;
-    overflow: hidden;
-    padding-left: 60rpx;
-    padding-right:20rpx; 
+    background: #f1f1f1 !important;
+    font-size: 30rpx;
+    
+}
+.van-cell--borderless{
+    padding: 0px !important;
 }
 .icon_wrapper{
     display: flex;
@@ -265,14 +261,13 @@ view,text{
 }
 .works_stepper{
     position: absolute;
-    bottom:20rpx;
     right:20rpx;
     font-size: 12px;
     color: #fff;
     border-radius:25rpx;
-    width: 80rpx;
-    height: 40rpx;
-    background: rgba(0, 0, 0, 0.5);
+    width: 76rpx;
+    height: 41rpx;
+    background: #5D5554;
     display: flex;
     align-items: center;
     justify-content: center; 
@@ -287,3 +282,20 @@ view,text{
     top: -7px;
     right: -12px;
 }
+.stepper_wrapper{
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 70rpx;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30rpx;
+    color: #fff;
+    font-family: SourceHanSansCN-Regular;
+}
+.answer_who{
+    font-weight: bold;
+}
+

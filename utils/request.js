@@ -231,7 +231,7 @@ const remove = (url, options) => {
 function upLoadFile(filePath){
   return new Promise(function(resolve,reject){
     wx.uploadFile({
-      url: 'http://p77s6f.natappfree.cc/oss/upload', // 仅为示例，非真实的接口地址
+      url: 'http://47.100.97.141:8080/mall-api-wxapp/oss/upload', // 仅为示例，非真实的接口地址
       filePath: filePath[0],
       name: 'file',
       header:{

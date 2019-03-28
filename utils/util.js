@@ -82,7 +82,7 @@ export const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
     arr.slice(i * size, i * size + size)
   );
-//数组由左到右依次执行
+//由左到右依次执行
 export const pipeFunctions = (...fns) => fns.reduce((f, g) => (...args) => g(f(...args)));
 
 //将参数数组映射到该函数的输入
@@ -100,5 +100,6 @@ module.exports = {
   updateUserInfo,
   getUserInfo,
   showErrorToast,
-  chunk
+  chunk,
+  pipeFunctions
 }

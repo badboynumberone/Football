@@ -1,50 +1,41 @@
 <!--动态组件-->
 
-<view class="works_item" wx:for="{{20}}" wx:key="{{index}}" bindtap="navigateTo">
+<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.productionId}}" data-coustmoerid="{{item.coustmoerId}}">
 	
 	<view class="works_img_wrapper">
 		<image class="works_image fill" src="/images/demo.jpg" />
-		<view class="video" wx:if="{{true}}">
+		<view class="video" wx:if="{{item.fileType==2}}">
 			<image class="fill" src="/images/bf@2x.png" />
 		</view>
 		<view class="img" wx:else>
 			
-			<image class="img_wrapper" src="/images/image@2x.png" />
+			<image class="img_wrapper" src="{{'/images/image@2x.png' || item.fileUrl[0]}}" />
 			
 			<view class="img_number">
-				9
+				{{item.fileUrl.length}}
 			</view>
 		</view>
 	</view>
 	<view class="works_name text-hidden">
-	 	<text>梅西真棒</text>	
+	 	<text>{{item.title}}</text>	
 	</view>
 	<view class="works_container text-hidden">
-		<text>来一场痛痛快快的旅行吧哈哈</text>
+		<text>{{item.content}}</text>
 	</view>
 	<view class="publisher_info">
 		<view class="publisher">
 			<view class="publisher_header_wrapper">
-				<image class="fill" src="" />
+				<image class="fill" src="{{item.headImg}}" />
 			</view>
-			<span class="publisher_name text-hidden">
-				<text>小猪你按省份我问他按时发顺丰</text>
-			</span>
+			<view class="publisher_name text-hidden">
+				<text>{{item.nickname}}</text>
+			</view>
 		</view>
 		<view class="collection_wrapper">
 			<view class="collection_icon_wrapper">
-				<image
-				 class="collection_like fill"
-				 src="/images/zxzicon@2x.png"
-				 mode="aspectFit|aspectFill|widthFix"
-				 lazy-load="false"
-				 binderror=""
-				 bindload=""
-				/>
+				<image class="collection_like fill" src="{{item.isPraise?'/images/zxzicon@2x.png':'/images/zicon@2x.png'}}"/>
 			</view>
-			<span class="collection_num">
-				13546
-			</span>
+			<text class="collection_num">{{item.assist}}</text>
 		</view>
 	</view>
 </view>

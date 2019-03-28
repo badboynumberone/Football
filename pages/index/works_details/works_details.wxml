@@ -29,7 +29,10 @@
                     </block>
                 </swiper>
                 <!--分页器-->
-                <view class="works_stepper">{{bannerIndex}}/6</view>
+                <view class="stepper_wrapper" >
+                    <text class="stepper_title">阳光体育娃娃足球工程</text>
+                    <view class="works_stepper ct">{{bannerIndex}}/6</view>
+                </view>
             </view>
         </block>
         <block wx:else>
@@ -60,29 +63,29 @@
             </view>
             <view class="rating_item_wrapper">
                 <van-row custom-class="rating_item" >
-                    <van-col span="3" style="">
-                        <view class="img_wrapper" style="margin-left:15rpx">
+                    <van-col span="2" style="">
+                        <view class="img_wrapper">
                             <image class="fill" src="../../../images/demo.jpg"   />
                         </view>
                     </van-col>
-                    <van-col offset="1" span="20" >
+                    <van-col offset="1" span="21" >
                         <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
                         <text class="time">2019-01-28 19:28</text>
                         <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
                     </van-col>
                 </van-row>
                 <van-row >
-                    <van-col offset="4" span="20" custom-class="adding" >
+                    <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
-                            <van-col span="3">
+                            <van-col span="2">
                                 <view class="img_wrapper">
                                     <image class="fill" src="../../../images/demo.jpg"   />
                                 </view>
                             </van-col>
-                            <van-col offset="1" span="20">
+                            <van-col offset="1" span="21">
                                 <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
                                 <text class="time">2019-01-28 19:28</text>
-                                <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                                <view class="rating_content"><text class="answer_who">回复用户坏男孩: </text><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
                             </van-col>
                         </van-row>
                     </van-col>
@@ -90,29 +93,29 @@
             </view>
             <view class="rating_item_wrapper">
                 <van-row custom-class="rating_item" >
-                    <van-col span="3" style="">
-                        <view class="img_wrapper" style="margin-left:15rpx">
+                    <van-col span="2" style="">
+                        <view class="img_wrapper">
                             <image class="fill" src="../../../images/demo.jpg"   />
                         </view>
                     </van-col>
-                    <van-col offset="1" span="20" >
+                    <van-col offset="1" span="21" >
                         <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
                         <text class="time">2019-01-28 19:28</text>
                         <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
                     </van-col>
                 </van-row>
                 <van-row >
-                    <van-col offset="4" span="20" custom-class="adding" >
+                    <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
-                            <van-col span="3">
+                            <van-col span="2">
                                 <view class="img_wrapper">
                                     <image class="fill" src="../../../images/demo.jpg"   />
                                 </view>
                             </van-col>
-                            <van-col offset="1" span="20">
+                            <van-col offset="1" span="21">
                                 <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
                                 <text class="time">2019-01-28 19:28</text>
-                                <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                                <view class="rating_content"><text class="answer_who">回复用户坏男孩: </text><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
                             </van-col>
                         </van-row>
                     </van-col>
@@ -127,9 +130,10 @@
     <!--添加评论-->
     <view class="add_rating">
         <view class="input_wrapper">
-            <image class="write" src="../../../images/tjpl@2x.png" lazy-load="false" binderror="" bindload="" />
-            <input class="rating_input" placeholder="添加评论" >
-            </input>
+            <view class="input_box" hover-class="none" hover-stop-propagation="false">
+                <image class="write" src="../../../images/tjpl@2x.png" lazy-load="false" binderror="" bindload="" />
+                <van-field style="width:100%" input-class="rating_input" value="{{ value }}"  placeholder="添加评论" border="{{ false }}" bind:change="onChange" />
+            </view>
         </view>
         <view class="icon_wrapper">
             <view class="icon">
