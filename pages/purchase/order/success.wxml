@@ -1,7 +1,7 @@
 <!--pages/order/success.wxml-->
 <wxs src="../../../utils/number.wxs" module="number" />
 <view class='pay-success'>
-  <image src='../../images/ok.png'></image>
+  <image src='../../../images/ok.png'></image>
   <view class='tips'>订单支付成功！</view>
   <view class='price'><text>￥</text>{{number.formatPrice(orderFee)}}</view>
 </view>

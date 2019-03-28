@@ -52,55 +52,6 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   showReason() {
     this.setData({
       isShowReason: true
@@ -138,13 +89,13 @@ Page({
       credentialType: e.target.dataset.name
     })
   },
-
+  //数据双向绑定
   onInput(e) {
     var fieldName = e.target.dataset.fieldName
     this.data[fieldName] = e.detail.value
     this.setData(this.data)
   },
-
+  //选择图片上传
   chooseImage() {
     var that = this
     wx.chooseImage({
@@ -216,7 +167,7 @@ Page({
       }
     })
   },
-
+  //预览图片
   previewImage(e) {
     var current = this.data.imageBaseUrl + e.currentTarget.dataset.imgSrc
     var credentialImageArray = this.data.credentialImageArray
@@ -229,7 +180,7 @@ Page({
       urls: urls // 需要预览的图片http链接列表
     })
   },
-
+  //提交申请
   applySubmit() {
     var that = this
     var typeStr = this.data.refundType === '1' ? '退款' : '退货'
@@ -281,7 +232,7 @@ Page({
 
     })
   },
-
+  // 删除该凭证
   removeCredentialImage(e) {
     var that = this
     Dialog.confirm({

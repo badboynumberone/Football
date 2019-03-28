@@ -6,21 +6,20 @@
 		<view class="register">
 			<view class="title">
 				<image  class="title_img" src="{{pageIndex == 1 ? '../../../images/sign01.png':'../../../images/sign02.png'}}" style="height:40rpx;width:40rpx;display:inline-block" />
-				<text style="margin-left:40rpx;color:#63922F">{{pageIndex == 1 ? '参加者信息' : '联系人信息'}}</text>
+				<text style="margin-left:20rpx;color:#63922F">{{pageIndex == 1 ? '参加者信息' : '联系人信息'}}</text>
 			</view>
 			<!--参加者信息-->
 			<view class="register-wrviewp" wx:if="{{pageIndex == 1}}">
 				<view class="form-group">
 					<view class="form-view">姓名</view>
-					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入姓名" />
+					<view class="form-control select-input" style="padding-left:10rpx">
+						<van-field input-class="form-input" placeholder-style="background:#EFF3F6" value="{{ Name }}" placeholder="请输入姓名" data-name="Name" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
-
 				<view class="form-group">
 					<view class="form-view">身份证号</view>
-					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入身份证号" />
+					<view class="form-control select-input" style="padding-left:10rpx">
+						<van-field type="number" input-class="form-input" value="{{ identityNum }}"  placeholder-style="background:#EFF3F6" placeholder="请输入身份证号" data-name="identityNum" border="{{ false }}" bind:change="onChange" maxlength: />
 					</view>
 				</view>
 
@@ -36,7 +35,7 @@
 					</view>
 				</view>
 				<view class="form-group">
-					<view class="form-view">生日{{getNowDate}}</view>
+					<view class="form-view">生日</view>
 					<view class="form-control ">
 						<picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
 							<view class="{{birthDay != ''?'picker':'picker unactive'}}">
@@ -59,11 +58,11 @@
 					</view>
 				</view>
 
-				<view class="form-group">
+				<view style="padding:20rpx 0">
 					<view class="form-view">1寸照片</view>
 					<view class="form-control select-input" style="padding:10rpx 10rpx">
-						<view class="img_wrapper">
-							<image class="one_photo fill" src="../../../images/plus.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+						<view class="img_wrapper" bindtap="uploadImg">
+							<image class="one_photo fill" src="{{photoUrl || '../../../images/plus.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 						</view>
 						<view class="tips">
 							仅支持jpg、jpeg、png、gif文件，仅限上传一张，大小不超过2M
@@ -77,50 +76,53 @@
 				<view class="form-group">
 					<view class="form-view">妈妈姓名</view>
 					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入妈妈姓名" value="" />
+						<van-field input-class="form-input" value="{{ motherName }}" placeholder="请输入妈妈姓名" data-name="motherName" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">妈妈手机号</view>
 					<view class="form-control select-input">
-						<input class="form-input " type="number" placeholder="请输入妈妈手机号" />
+						<van-field type="number" input-class="form-input" value="{{ motherPhone }}" placeholder="请输入妈妈手机号" data-name="motherPhone" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">爸爸姓名</view>
 					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入爸爸姓名" />
+						<van-field input-class="form-input" value="{{ dadName }}" placeholder="请输入爸爸姓名" data-name="dadName" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">爸爸手机号</view>
 					<view class="form-control select-input">
-						<input class="form-input" type="number" placeholder="请输入爸爸手机号" />
+						<van-field type="number" input-class="form-input" value="{{ dadPhone }}" placeholder="请输入爸爸手机号" data-name="dadPhone" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">通讯地址</view>
 					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入通讯地址" />
+						<van-field input-class="form-input" value="{{ address }}" placeholder="请输入通讯地址" data-name="address" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">邮编</view>
 					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入邮编" />
+						<van-field type="number" input-class="form-input" value="{{ emailNum }}" placeholder="请输入邮编" data-name="emailNum" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">邮箱</view>
 					<view class="form-control select-input">
-						<input class="form-input" placeholder="请输入邮箱" />
+						<van-field input-class="form-input" value="{{ email }}" placeholder="请输入邮箱" data-name="email" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 			</view>
 			<!--底部按钮-->
 			<view class="submit-wrviewp">
-				<view wx:if="{{pageIndex == 1}}" class="submit-btn">下一步</view>
-				<view wx:if="{{pageIndex == 2}}" class="submit-btn">立即注册</view>
+				<view wx:if="{{pageIndex == 1}}" class="submit-btn" bindtap="nextStep">下一步</view>
+				<view wx:if="{{pageIndex == 2}}" class="btn_wrapper" hover-class="none" hover-stop-propagation="false">
+					<view  class="submit-btn" bindtap="goBack">上一步</view>
+					<view  class="submit-btn" bindtap="submit">立即提交</view>
+				</view>
 			</view>
 		</view>
 

@@ -1,4 +1,5 @@
 <!--pages/refund/logistics.wxml-->
+<!--退货填写物流信息-->
 <van-dialog id="van-dialog" />
 <van-cell title="物流公司" value="{{logisticsCompanyName !== '' ? logisticsCompanyName : '请选择物流公司'}}" is-link bind:click="showLogisticsCompany" />
 <van-field

@@ -2,7 +2,6 @@
     <image class="query_bg fill" src="../../../images/login-bg.png"  lazy-load="false" binderror="" bindload="" />
     <view class="achievement_wrapper cl">
         <form class="" report-submit="false" bindsubmit="queryResult">
-            
             <van-tabs active="{{ active }}" bind:change="onOptionsChange" color="#63912F" border="true" custom-class="nav">
                 <van-tab title="证书号">
                     <view class="input_info"> 

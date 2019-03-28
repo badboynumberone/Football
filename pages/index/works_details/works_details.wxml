@@ -1,3 +1,4 @@
+<wxs src="../../../utils/number.wxs" module="number" />
 <view class="main">
     <!--作者信息-->
     <view class="works_author">
@@ -15,7 +16,7 @@
                 </view>
             </view>
         </view>
-        <concern-item offsetOne="{{true}}" offsetTwo="{{true}}"></concern-item>
+        <concern-item bindtap="handelConcern" wx:if="{{isMyWorks}}" offsetOne="{{true}}" offsetTwo="{{true}}"></concern-item>
     </view>
     <!--视频或图片-->
     <view class="is_video_img">
@@ -54,78 +55,74 @@
         </view>
         <!--评论信息-->
         <view class="rating_container">
-            <view class="works_rating_title"><text class="works_rating_name">评论</text><text class="rating_num">(0条)</text></view>
-            <view class="rating_content">
-                <view class="rating_wrapper">
-                    <view class="rating_item" wx:for="{{6}}" wx:key="{{index}}">
-                        <view class="rating_answer">
-                            <van-row>
-                                <van-col span="4" >
-                                    <view class="user_header_wrapper" bindtap="toHomePage">
-                                        <image class="fill" src="../../../images/demo.jpg"  />
-                                    </view>
-                                </van-col>
-                                <van-col span="20">
-                                    <view class="answer_info" style="margin-left:-14rpx">
-                                        <view class="answer_name">
-                                            <text>猫爪</text>
-                                        </view>
-                                        <view class="answer_time author_public_time" style="margin-top:0rpx">
-                                            <text>2019-01-28 19:28</text>
-                                        </view>
-                                        <view class="answer_content">
-                                            <text>是的发送到刚回归的撒个大公开大数据公开了！</text>
-                                        </view>
-                                        <view class="answer_btn">
-                                            <text>回复</text>
-                                        </view>
-                                    </view>
-                                </van-col>
-                            </van-row>
-                            
+            <view class="title_wrapper">
+                <text class="title">评论</text><text class="rating_num">  (0条)</text>
+            </view>
+            <view class="rating_item_wrapper">
+                <van-row custom-class="rating_item" >
+                    <van-col span="3" style="">
+                        <view class="img_wrapper" style="margin-left:15rpx">
+                            <image class="fill" src="../../../images/demo.jpg"   />
                         </view>
-                        <view>
-                            <van-row custom-class="add_item">
-                                <van-col offset="3" span="21" >
-                                    <van-row >
-                                    <view style="padding:0 10rpx">
-                                        <van-col span="4">
-                                            <view class="user_header_wrapper" bindtap="toHomePage">
-                                                <image class="fill" src="../../../images/demo.jpg"  />
-                                            </view>
-                                        </van-col>
-                                        <van-col span="20">
-                                            <view class="answer_info">
-                                                <view class="answer_name">
-                                                    <text>猫爪</text>
-                                                </view>
-                                                <view class="answer_time author_public_time" style="margin-top:0rpx">
-                                                    <text>2019-01-28 19:28</text>
-                                                </view>
-                                                <view class="answer_content">
-                                                    <text><text class="recall">回复用户轻舞飞扬: </text>发发生过·1</text>
-                                                </view>
-                                                <view class="answer_btn">
-                                                    <text>回复</text>
-                                                </view>
-                                            </view>
-                                        </van-col>
-                                    </view>   
-                                    </van-row>
-                                </van-col>
-                            </van-row>
+                    </van-col>
+                    <van-col offset="1" span="20" >
+                        <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
+                        <text class="time">2019-01-28 19:28</text>
+                        <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                    </van-col>
+                </van-row>
+                <van-row >
+                    <van-col offset="4" span="20" custom-class="adding" >
+                        <van-row>
+                            <van-col span="3">
+                                <view class="img_wrapper">
+                                    <image class="fill" src="../../../images/demo.jpg"   />
+                                </view>
+                            </van-col>
+                            <van-col offset="1" span="20">
+                                <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
+                                <text class="time">2019-01-28 19:28</text>
+                                <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                            </van-col>
+                        </van-row>
+                    </van-col>
+                </van-row> 
+            </view>
+            <view class="rating_item_wrapper">
+                <van-row custom-class="rating_item" >
+                    <van-col span="3" style="">
+                        <view class="img_wrapper" style="margin-left:15rpx">
+                            <image class="fill" src="../../../images/demo.jpg"   />
                         </view>
-                    </view>
-                    <view class="end">
-                        <text>~THE END ~</text>
-                    </view>
-                    <view class="none_rating">
-                        <text>~暂无评论~</text>
-                    </view>
-                </view>
-                
+                    </van-col>
+                    <van-col offset="1" span="20" >
+                        <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
+                        <text class="time">2019-01-28 19:28</text>
+                        <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                    </van-col>
+                </van-row>
+                <van-row >
+                    <van-col offset="4" span="20" custom-class="adding" >
+                        <van-row>
+                            <van-col span="3">
+                                <view class="img_wrapper">
+                                    <image class="fill" src="../../../images/demo.jpg"   />
+                                </view>
+                            </van-col>
+                            <van-col offset="1" span="20">
+                                <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
+                                <text class="time">2019-01-28 19:28</text>
+                                <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                            </van-col>
+                        </van-row>
+                    </van-col>
+                </van-row> 
+            </view>
+            <view class="ending">
+                {{'~暂无评论~' || '~THE END~'}}
             </view>
         </view>
+          
     </view>
     <!--添加评论-->
     <view class="add_rating">
@@ -136,13 +133,16 @@
         </view>
         <view class="icon_wrapper">
             <view class="icon">
-              <image class="fill" src="../../../images/pldz@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+                <text class="like_num">{{number.formatNum(100)}}</text>
+                <image class="fill" src="../../../images/zxzicon@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
             <view class="icon">
-              <image class="fill" src="../../../images/plsc@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+                <text class="collection_num">{{number.formatNum(100)}}</text>
+                <image class="fill" src="../../../images/plsc@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
             <view class="icon">
-              <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+                <text class="share_num">{{number.formatNum(100)}}</text>
+                <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
         </view>
     </view>

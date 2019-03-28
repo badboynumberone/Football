@@ -34,9 +34,7 @@ Component({
     login(e){
       if(!wx.getStorageSync('nickName') && this.properties.headerType=='me'){
         //登录流程
-        wx.showLoading({
-          title: '正在登录中...',
-        })
+        
         var that = this
         if (e.detail.errMsg === 'getUserInfo:ok') {
           let data = {
@@ -46,6 +44,9 @@ Component({
           updateUserInfo(data);
           let that =this;
           console.log(e)
+          wx.showLoading({
+            title: '正在登录中...',
+          })
           request.post('/customer/bindWechatUserInfo', {
             rawData: e.detail.rawData,
             signature: e.detail.signature,

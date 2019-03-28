@@ -28,11 +28,6 @@ const request = (url, options) => {
             reject(res.data)
           }
         } else if (res.statusCode === 401) {
-          wx.showToast({
-            title: res.data,
-            icon: 'none',
-            duration: 1000
-          })
           wx.removeStorage({
             key: 'accessToken',
             success(res) {
@@ -48,11 +43,7 @@ const request = (url, options) => {
             duration: 1000
           })
         } else {
-          wx.showToast({
-            title: '请求失败，请稍后再试！',
-            icon: 'none',
-            duration: 1000
-          })
+          console.log("请求失败")
         }
       },
       fail(error) {
@@ -144,6 +135,65 @@ const requestTest = (url, options) => {
     })
   })
 }
+const starRequest = (url, options) => {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: base.starHost + url,
+      method: options.method,
+      data: options.method === 'GET' ? options.data : JSON.stringify(options.data),
+      header: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': wx.getStorageSync('accessToken'),
+        'Shop-Id': base.testshopId
+      },
+      success(res) {
+        // console.log('success')
+        console.log(res)
+        if (res.statusCode === 200) {
+          if (res.data.errcode === '0') {
+            resolve(res.data.data)
+          } else if (res.data.errcode === '-1') {
+            wx.showToast({
+              title: res.data.errmsg,
+              icon: 'none',
+              duration: 1000
+            })
+            reject(res.data)
+          } else {
+            reject(res.data)
+          }
+        } else if (res.statusCode === 401) {
+          console.log("登录失效")
+          wx.removeStorage({
+            key: 'accessToken',
+            success(res) {
+              autoLogin(function () {
+                post(url, options).then(resolve, reject)
+              })
+            }
+          })
+        } else if (res.statusCode === 417) {
+          wx.showToast({
+            title: res.data,
+            icon: 'none',
+            duration: 1000
+          })
+        }else{
+          console.log("请求失败")
+          reject("请求失败")
+        }
+      },
+      fail(error) {
+        console.log("请求失败")
+        reject(error)
+      },
+      complete(res) {
+        // console.log('complete')
+        // console.log(res)
+      }
+    })
+  })
+}
 function autoLogin(callback) {
   console.log('小程序登录中...')
   wx.login({
@@ -181,7 +231,7 @@ const remove = (url, options) => {
 function upLoadFile(filePath){
   return new Promise(function(resolve,reject){
     wx.uploadFile({
-      url: 'http://q8bda5.natappfree.cc/oss/upload', // 仅为示例，非真实的接口地址
+      url: 'http://p77s6f.natappfree.cc/oss/upload', // 仅为示例，非真实的接口地址
       filePath: filePath[0],
       name: 'file',
       header:{
@@ -209,6 +259,7 @@ function upLoadFile(filePath){
 }
 
 module.exports = {
+  starRequest,
   requestTest,
   request,
   upLoadFile,

@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/me/index/index",
+    "pages/index/works_details/works_details",
+    
     "pages/purchase/cart/index",
     "pages/purchase/product/index",
     "pages/purchase/refund/apply",
@@ -15,7 +17,7 @@
     "pages/index/public_works/public_works",
     "pages/index/index/index",
     "pages/index/search/search",
-    "pages/index/works_details/works_details",
+    
     
     "pages/me/edit_profile/edit_profile",
     
@@ -61,7 +63,8 @@
     "pages/purchase/address/detail",
     
     "pages/purchase/order/logistics",
-    "components/comment_item/comment_item"
+    "components/comment_item/comment_item",
+    "pages/web/index"
     
     
   ],

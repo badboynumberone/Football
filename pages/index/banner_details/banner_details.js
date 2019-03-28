@@ -47,5 +47,18 @@ Page({
           mask: false,
         });
       })
+    },
+    //活动链接
+    activityLink(){
+      console.log(0)
+      wx.navigateTo({
+        url: '/pages/web/index?link='+this.data.bannerDetail.bannH5Url
+      });
+    },
+    //去参加
+    goJion(){
+      wx.navigateTo({
+        url: '/pages/index/public_works/public_works'
+      });
     }
   })

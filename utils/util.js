@@ -15,6 +15,18 @@ export function getUserInfo(dataArr){
     return object;
 }
 
+//清空用户信息
+export function resetUserInfo(){
+  wx.removeStorageSync('nickName');
+  wx.removeStorageSync('avatarUrl');
+  wx.removeStorageSync('userName');
+  wx.removeStorageSync('userHeader');
+  wx.removeStorageSync('birthDay'); 
+  wx.removeStorageSync('signature'); 
+  wx.removeStorageSync('sexIndex');     
+  wx.removeStorageSync('phone');                                                                               
+}
+
 //检查session是否过期
 export function checkSession() {
   wx.checkSession({
@@ -83,6 +95,7 @@ arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => 
   return acc;
 }, {});
 module.exports = {
+  resetUserInfo,
   checkLogin,
   updateUserInfo,
   getUserInfo,

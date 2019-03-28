@@ -1,5 +1,6 @@
 //app.js
 import auth from '/utils/auth'
+import {resetUserInfo} from '/utils/util'
 import '/utils/refresh.js'
 App({
   onLaunch: function () {
@@ -21,6 +22,7 @@ App({
       fail: function () {
         // session_key 已经失效，需要重新执行登录流程
         // 重新登录
+        resetUserInfo();
         auth.login()
       }
     })

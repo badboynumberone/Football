@@ -1,7 +1,10 @@
 @import '/common.wxss';
 .main{
-    margin-bottom: 120rpx;
-    background: #F1F1F1;
+    
+}
+.register_container{
+    background: #f1f1f1;
+    margin-bottom: 10rpx;
 }
 .register_bg{
     width: 100%;
@@ -27,10 +30,11 @@
     color: #666;
 }
 .form-view{
-    font-size: 34rpx;
+    font-size: 16px;
 }
 .form-group{
     padding: 20rpx 0;
+    height: 166rpx;
 }
 .form-control{
     margin-top: 25rpx;
@@ -57,21 +61,45 @@
     position: fixed;
     bottom:0rpx;
     left: 0rpx;
-    background: #63922F;
+    background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 10rpx 30rpx;
     height: 100rpx;
     color: #fff;
     overflow: hidden;
     z-index: 9;
 }
+.submit-wrviewp > .submit-btn{
+    width: 100%;
+    height: 100%;
+}
+.submit-wrviewp .btn_wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.submit-wrviewp .btn_wrapper > .submit-btn{
+    flex: 1;
+    margin: 0 10rpx;
+}
+.submit-wrviewp .submit-btn{
+    background: #63922F;
+    border-radius: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
 .select-input{
     padding: 8rpx 0;
 }
-.form-input{
-    padding: 0 10rpx
+.van-field__input{
+    background: #EFF3F6 !important;
 }
 .unactive{
     color: #808080;
@@ -79,10 +107,11 @@
 .down_arrow{
     position: absolute;
     right:10rpx;
-    
     width: 30rpx;
     height: 20rpx;
 }
-
+.form-control .van-cell{
+    padding: 0rpx !important;
+}
 
 

@@ -13,7 +13,6 @@ function login () {
         code: res.code
       }).then(function (data) {
         wx.setStorageSync('accessToken', data.accessToken)
-
       }, function (err) {
           login()
       })

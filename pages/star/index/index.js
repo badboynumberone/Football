@@ -1,4 +1,5 @@
 import {checkLogin} from '../../../utils/util';
+import {starRequest} from '../../../utils/request';
 Page({
 
     /**
@@ -25,7 +26,11 @@ Page({
      */
     onLoad: function (options) {
     },
-  
+    onShow(){
+      // starRequest("/area/getCityTree",{method:"POST"}).then(function(res){
+      //   console.log(res)
+      // }).catch(function(err){console.log(err)})
+    },
     navigateTo(e){
       if(!checkLogin(true)){
         return;

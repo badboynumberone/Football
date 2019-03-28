@@ -5,6 +5,7 @@ Page({
      */
     data: {
       authorInfo:[],//用户信息
+      worksInfo:[],
       isMyWorks:true,//true代表是自己
       bannerIndex:1
     },
@@ -24,6 +25,9 @@ Page({
       wx.navigateTo({
         url: '/pages/index/home_page/home_page'
       });
+    },
+    //处理关注
+    handelConcern(){
+
     }
-    
   })

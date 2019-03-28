@@ -40,59 +40,10 @@ Page({
     }, function (err) {
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
+  //前往订单详情页面
   goOrderDetail() {
     wx.navigateTo({
-      url: '/pages/order/detail?id=' + this.data.order.id,
+      url: '/pages/purchase/order/detail?id=' + this.data.order.id,
     })
   },
 
@@ -108,14 +59,14 @@ Page({
       urls: urls // 需要预览的图片http链接列表
     })
   },
-
+  //前往退货物流信息页面
   goLogistics() {
     var refundOrderId = this.data.refundOrder.id
     wx.navigateTo({
       url: '/pages/refund/logistics?refundOrderId=' + refundOrderId,
     })
   },
-
+  //取消退款申请
   cancelRefundOrder() {
     var that = this
     Dialog.confirm({

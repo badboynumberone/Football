@@ -1,5 +1,5 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-import {post,get} from '../../../utils/request';
+import {post,get,starRequest} from '../../../utils/request';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
 const app=getApp();
 
@@ -11,7 +11,7 @@ Page({
     data: {
       active:0,
       certificateNum:'',
-      indentityNum:''
+      indentityNum:'',
     },
     // onChange(event) {
     //   const { picker, value, index } = event.detail;
@@ -43,19 +43,19 @@ Page({
     queryResult(){
       if(!this.data.active){//证书查询
         if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(this.data.certificateNum)){
-          Dialog.alert({
-            message: '证书号码格式不正确，请重新输入'
-          })
+          wx.showToast({title: '证书号码格式不正确，请重新输入',icon: 'none',duration: 1500});
         }
-        post('/shopPage/getShopHomePage').then(function(res){console.log(res)}).catch(function(err){console.log(err)})
+        starRequest('/shopPage/getShopHomePage').then(function(res){console.log(res)}).catch(function(err){console.log(err)})
         console.log(this.data.certificateNum)
       }else{//身份证查询
         if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(this.data.indentityNum)){
-          Dialog.alert({
-            message: '身份证号码格式不正确，请重新输入'
-          })
+          wx.showToast({title: '身份证号码格式不正确，请重新输入',icon: 'none',duration: 1500});
         }
-        post('/shopPage/getShopHomePage').then(function(res){
+        starRequest('/user/getSignUpDetail',{
+          method:"POST",
+          
+        }).then(function(res){
+          console.log(res)
           //需要处理返回来的错误消息
           // 得到用户信息之后走本地存储
           //最后跳转页面

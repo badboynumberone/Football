@@ -140,6 +140,23 @@ Page({
         return;
       }
       let that = this;
+      wx.getSetting({
+        success(res) {
+          if (!res.authSetting['scope.userLocation']) {
+            wx.authorize({
+              scope: 'scope.userLocation',
+              success() {
+                that.setLocation();
+                return;
+              }
+            })
+          }
+        }
+      })
+      this.setLocation();
+    },
+    setLocation(){
+      let that = this;
       wx.getLocation({
         success: function (res) {
           console.log(res)
@@ -234,7 +251,10 @@ Page({
         address:this.data.address,
         keywordList:this.data.keyWords
       }
-      post("/publishProdution/insert",obj).then(function(res){
+      requestTest("/publishProdution/insert",{
+        method:"POST",
+        data:obj
+      }).then(function(res){
         //返回作品id
         if(res.statusCode == 200){
           wx.redirectTo({
