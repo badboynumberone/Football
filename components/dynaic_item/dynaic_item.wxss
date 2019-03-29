@@ -34,7 +34,7 @@ view,text{
     position: relative;
 }
 .works_name{
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     line-height: 45rpx;
     text-align: left;
@@ -42,7 +42,7 @@ view,text{
     color: #222;
 }
 .works_container{
-    font-size: 14px;
+    font-size: 15px;
     color: #666666;
     text-align: left;
     padding: 0 10rpx 10rpx;
@@ -50,7 +50,7 @@ view,text{
 .publisher_info{
     display: flex;
     justify-content: space-between;
-    font-size: 28rpx;
+    font-size: 30rpx;
     flex-flow: row nowrap;
     color: #9A9A9A;
     padding: 0 10rpx 10rpx;
@@ -66,8 +66,8 @@ view,text{
     font-size: 24rpx;
 }
 .publisher_header_wrapper{
-    width: 40rpx;
-    height: 40rpx;
+    width: 50rpx;
+    height: 50rpx;
     border-radius: 50%;
     overflow: hidden;
     background: #ccc;

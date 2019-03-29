@@ -21,6 +21,11 @@ module.exports = {
     return parseInt(price)
   },
   formatNum: function (num){
+    num = num ? num : 0;
     return num > 99 ? '99+' : num;
+  },
+  formatTime: function(time){
+    
   }
+    
 }

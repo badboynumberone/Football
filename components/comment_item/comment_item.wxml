@@ -6,7 +6,7 @@
 				<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 			</view>
 		</van-col>
-		<van-col span="18" offset="2">
+		<van-col span="17" offset="3">
 			<view class="comment_info">
 				<view>
 					<text class="comment_to" >我回复时尚大魔头</text>

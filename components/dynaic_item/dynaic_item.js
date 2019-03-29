@@ -27,9 +27,11 @@ Component({
    */
   methods: {
     navigateTo(e){
-      wx.navigateTo({
-        url: '/pages/index/works_details/works_details'
-      });
+      if(e.currentTarget.dataset.produtionid){
+        wx.navigateTo({
+          url: '/pages/index/works_details/works_details?worksId='+e.currentTarget.dataset.produtionid
+        });
+      }
     },
   },
   

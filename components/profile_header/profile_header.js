@@ -34,7 +34,6 @@ Component({
     login(e){
       if(!wx.getStorageSync('nickName') && this.properties.headerType=='me'){
         //登录流程
-        
         var that = this
         if (e.detail.errMsg === 'getUserInfo:ok') {
           let data = {
@@ -95,7 +94,7 @@ Component({
       this.setData({
         ['userInfo.userName']:wx.getStorageSync('userName'),
         ['userInfo.userHeader']:wx.getStorageSync('userHeader'),
-        ['userInfo.signContent']:wx.getStorageSync('signContent')
+        ['userInfo.signature']:wx.getStorageSync('signature')
       })
     }
   }

@@ -169,7 +169,7 @@ Page({
     },
     setLocation(){
       wx.showLoading({
-        title:"位置获取中。。。",mask: true
+        title:"正在定位中。。。",mask: true
       });
       let that = this;
       wx.getLocation({

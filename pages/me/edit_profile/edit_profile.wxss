@@ -1,12 +1,42 @@
 @import '/common.wxss';
-.header_img_wraper{
+.item{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rpx 20rpx;
+    width: 100%;
+    height: 120rpx;
+    border-bottom: 1rpx solid #f1f1f1;
+    font-size: 30rpx;
+    align-items: center;
+}
+.content_wrapper{
+    margin-right: 40rpx;
+}
+.arrow{
+    width: 15rpx;
+    height: 25rpx;
+}
+.content{
+    display: flex;
+    
+    align-items: center;
+    justify-content: flex-end
+}
+ .header_img_wraper{
     width: 90rpx;
     height: 90rpx;
     overflow: hidden;
     border-radius: 50%;
     background: #ccc;
-    position: relative;
+    
 }
+.clear_padding .van-cell{
+    padding: 0rpx !important;
+}
+.bg{
+    background: #f1f1f1;
+}
+/*
 .van{
     position: relative;
     padding: 50rpx 0;
@@ -40,15 +70,9 @@
 .edit_item_title_wrapper{
     font-size: 14px;
     white-space: nowrap;
+    color: #222;
 }
-.edit_item_title textarea{
-    font-size: 15px;
-    width: 500rpx;
-    padding: 0rpx;
-    margin: 0rpx;
-    position: relative;
-    top: -15rpx;
-}
+*/
 .picker{
     font-size: 30rpx;
     padding: 10rpx 0;
@@ -56,3 +80,17 @@
 .unactive{
     color: #808080;
 }
+/*
+.edit_item_title .van-cell{
+    padding: 0rpx;
+}
+*/
+.textarea{
+    font-size: 15px;
+    width: 450rpx !important;
+    height: 200rpx !important;
+    padding: 0rpx;
+    margin: 0rpx;
+    position: relative;
+    top: 0rpx
+} 

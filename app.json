@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index/index",
+    "pages/me/edit_profile/edit_profile",
+    
     "pages/index/works_details/works_details",
     "pages/me/index/index",
     
@@ -21,7 +23,7 @@
     "pages/index/search/search",
     
     
-    "pages/me/edit_profile/edit_profile",
+    
     
     
     

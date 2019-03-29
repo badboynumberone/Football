@@ -14,7 +14,7 @@ Page({
               {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0},
               {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0}]//分页信息
   },
-  onLoad(){
+  onShow(){
     this.initData();
   },
   //搜索栏跳转
@@ -70,11 +70,6 @@ Page({
          that.setData({bannerInfo:result});
       }
     }).catch(function(err){
-      wx.showToast({
-        title: '轮播图加载失败，请稍后重试',
-        icon: 'none',
-        duration: 1500,
-      });
     })
     //获取列表
     this.getDynaicList(0,1);

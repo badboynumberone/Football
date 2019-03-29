@@ -69,7 +69,15 @@ export function checkLogin(isToast = false,isSwitch = false) {
   }
   return true;
 }
-
+//获取当前时间
+function getNowTime(){
+    function addZero(val){
+      return val<10 ? '0'+val:val;
+    }
+    let day = new Date();
+    return day.getFullYear() + "-" + addZero(day.getMonth() + 1) + "-" + addZero(day.getDate())+" "+
+      + addZero(day.getHours()) + ":" + addZero(day.getMinutes()) + ":" + addZero(day.getSeconds());
+}
 //提示错误信息
 function showErrorToast(msg) {
   wx.showToast({
@@ -95,6 +103,7 @@ arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => 
   return acc;
 }, {});
 module.exports = {
+  getNowTime,
   resetUserInfo,
   checkLogin,
   updateUserInfo,

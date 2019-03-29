@@ -2,18 +2,16 @@
 <view class="concern">
 	<block wx:if="{{offsetOne}}">
 		<block wx:if="{{offsetTwo}}">
-			<image class="concern_add" src="/images/gz@2x.png" />
-			<view>关注</view>
+			<text class="concerned">已关注</text>
 		</block>
 		<block wx:else>
-			<view class="concerned">
-				已关注
-			</view>
+			<image class="concern_add" src="/images/gz@2x.png" />
+			<text>关注</text>
 		</block>
 	</block>
 	<block wx:else>
 		<image class="concern_add" src="/images/bj@2x.png" />
-		<view>编辑</view>
+		<text>编辑</text>
 	</block>
 </view>
 

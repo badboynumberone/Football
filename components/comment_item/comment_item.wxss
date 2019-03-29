@@ -16,15 +16,15 @@
     background: #666;
 }
 .comment_to{
-    font-size: 35rpx;
+    font-size: 28rpx;
     font-weight: bold;
 }
 .comment_time{
-    font-size: 30rpx;
+    font-size: 24rpx;
     color: #ccc;
 }
 .comment_content{
-    font-size: 32rpx;
+    font-size: 26rpx;
     color: #333;
 }
 

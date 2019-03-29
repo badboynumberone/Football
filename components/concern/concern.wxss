@@ -1,10 +1,10 @@
 .concern{
-    width: 150rpx;
-    font-size: 34rpx;
+    width: 140rpx;
+    height: 50rpx;
+    font-size: 30rpx;
     color: #639231;
     border:1px solid #639231;
     border-radius: 40rpx;
-    height: 50rpx;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +21,6 @@
     text-align: center;
     color: #fff;
     background: #639231;
-    text-indent: -10rpx;
+    
 }
 

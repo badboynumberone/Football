@@ -1,22 +1,26 @@
 <wxs src="../../../utils/number.wxs" module="number" />
+<van-dialog id="van-dialog" />
 <view class="main">
     <!--作者信息-->
     <view class="works_author">
         <view class="author_header">
-            <view class="author_img_wrapper" bindtap="toHomePage">
-                <image class="author_img fill" src="../../../images/demo.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+            <view class="author_img_wrapper" bindtap="toHomePage" data-customer="{{worksInfo.coustmoerId}}">
+                <image class="author_img fill" src="{{worksInfo.headImgUrl || '../../../images/demo.jpg'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                 </image>
             </view>
             <view class="author_info">
                 <view class="author_name">
-                    轻舞飞扬妞牛
+                    {{worksInfo.nickname}}
                 </view>
                 <view class="author_public_time">
-                    2019-01-24 09:15
+                    {{worksInfo.produtionCreatTime}}
+                    <!-- 2019-01-24 09:15 -->
                 </view>
             </view>
         </view>
-        <concern-item bindtap="handelConcern" wx:if="{{isMyWorks}}" offsetOne="{{true}}" offsetTwo="{{true}}"></concern-item>
+        <view class="" bindtap="handleConcern">
+            <concern-item  wx:if="{{worksInfo.isAuth}}" wx:if="{{isMyWorks}}" offsetOne="{{true}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
+        </view>
     </view>
     <!--视频或图片-->
     <view class="is_video_img">
@@ -24,98 +28,69 @@
             <view class="works_banner">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
-                    <block wx:for="{{6}}" wx:key="{{index}}" >
-                        <swiper-item style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
-                    </block>
+                        <swiper-item wx:for="{{worksInfo.produtionFileUrl}}" wx:key="{{index}}" style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
                 </swiper>
                 <!--分页器-->
                 <view class="stepper_wrapper" >
-                    <text class="stepper_title">阳光体育娃娃足球工程</text>
-                    <view class="works_stepper ct">{{bannerIndex}}/6</view>
+                    <text class="stepper_title">娃娃足球工程项目</text>
+                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{worksInfo.produtionFileUrl.length}}</view>
                 </view>
             </view>
         </block>
         <block wx:else>
-            <video class="fill" src="" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
+            <video class="fill" src="{{worksInfo.produtionFileUrl}}" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
                 bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror="">
             </video>
         </block>
     </view>
     <!--动态文字信息-->
     <view class="works_container">
-        <text class="works_title text-hidden">杜克大学对战北卡大学即将拉开帷幕</text>
+        <text class="works_title text-hidden">{{worksInfo.produtionTitle}}</text>
         <view class="works_content">
-            <text>这次的CS4其实是包括了2个版本，abode photoshop cs4，他充分利用无与伦比的编辑合成功能、更直观的用户体验来大幅度提高工作效率。另外一个版本是Adobe Photoshop CS4 Extended，他不仅仅包括CS4里所有的功能，还包括了编辑动画和3D功能还有高级图像分析的功能。</text>
+            <text>{{worksInfo.produtionTitle}}</text>
         </view>
         <view class="works_tag">
-            <view class="tag" wx:for="{{6}}" wx:key="{{index}}">
-                足球小子
+            <view class="tag" wx:for="{{worksInfo.keyWord}}" wx:key="{{index}}">
+                {{item}}
             </view>     
         </view>
         <view class="works_loaction">
             <van-icon name="location" style="font-size:32rpx;margin-top:10rpx;margin-right:10rpx" />
-            江苏省常州信息职业技术学院
+            {{worksInfo.publishAddress}}
         </view>
         <!--评论信息-->
         <view class="rating_container">
             <view class="title_wrapper">
-                <text class="title">评论</text><text class="rating_num">  (0条)</text>
+                <text class="title">评论</text><text class="rating_num">  ({{worksInfo.produtionNum}}条)</text>
             </view>
-            <view class="rating_item_wrapper">
+            <view class="rating_item_wrapper" wx:for="{{rating}}" wx:key="{{index}}">
                 <van-row custom-class="rating_item" >
-                    <van-col span="2" style="">
+                    <van-col span="2" style="" data-costomer="{{item.costomerId}}">
                         <view class="img_wrapper">
-                            <image class="fill" src="../../../images/demo.jpg"   />
+                            <image class="fill" src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
+                            {{item.commentNickName}}
                         </view>
                     </van-col>
                     <van-col offset="1" span="21" >
-                        <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
-                        <text class="time">2019-01-28 19:28</text>
-                        <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
+                        <view class="first"><text class="name">{{item.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">回复</text></view>
+                        <text class="time">{{item.creatTime}}</text>
+                        <view class="rating_content"><text>{{item.content}}</text></view>
                     </van-col>
                 </van-row>
-                <van-row >
+                <van-row wx:for="{{item.commentChild}}" wx:key="{{idx}}" wx:for-item="itemName" wx:for-index="idx">
                     <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
                             <van-col span="2">
-                                <view class="img_wrapper">
-                                    <image class="fill" src="../../../images/demo.jpg"   />
+                                <view class="img_wrapper" data-custom="{{item.costomerId}}">
+                                    <image class="fill" src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
                                 </view>
                             </van-col>
-                            <van-col offset="1" span="21">
-                                <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
-                                <text class="time">2019-01-28 19:28</text>
-                                <view class="rating_content"><text class="answer_who">回复用户坏男孩: </text><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
-                            </van-col>
-                        </van-row>
-                    </van-col>
-                </van-row> 
-            </view>
-            <view class="rating_item_wrapper">
-                <van-row custom-class="rating_item" >
-                    <van-col span="2" style="">
-                        <view class="img_wrapper">
-                            <image class="fill" src="../../../images/demo.jpg"   />
-                        </view>
-                    </van-col>
-                    <van-col offset="1" span="21" >
-                        <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
-                        <text class="time">2019-01-28 19:28</text>
-                        <view class="rating_content"><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
-                    </van-col>
-                </van-row>
-                <van-row >
-                    <van-col offset="3" span="21" custom-class="adding" >
-                        <van-row>
-                            <van-col span="2">
-                                <view class="img_wrapper">
-                                    <image class="fill" src="../../../images/demo.jpg"   />
+                            <van-col offset="1" span="21" >
+                                <view class="" style="margin-left:11rpx">
+                                    <view class="first"><text class="name">{{itemName.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}">回复</text></view>
+                                    <text class="time">{{itemName.creatTime}}</text>
+                                    <view class="rating_content"><text class="answer_who">回复用户{{itemName.childCommentNickName}}: </text><text>{{itemName.content}}</text></view>
                                 </view>
-                            </van-col>
-                            <van-col offset="1" span="21">
-                                <view class="first"><text class="name">沙雕</text><text class="answer">回复</text></view>
-                                <text class="time">2019-01-28 19:28</text>
-                                <view class="rating_content"><text class="answer_who">回复用户坏男孩: </text><text>发凡大风大浪的第三方登录卡饭你倒过来看</text></view>
                             </van-col>
                         </van-row>
                     </van-col>
@@ -132,20 +107,20 @@
         <view class="input_wrapper">
             <view class="input_box" hover-class="none" hover-stop-propagation="false">
                 <image class="write" src="../../../images/tjpl@2x.png" lazy-load="false" binderror="" bindload="" />
-                <van-field style="width:100%" input-class="rating_input" value="{{ value }}"  placeholder="添加评论" border="{{ false }}" bind:change="onChange" />
+                <van-field style="width:100%" focus="{{isFocus}}" bind:blur="blurRating" bind:confirm="addRating" input-class="rating_input" data-bind="ratingContent" value="{{ ratingContent }}"  placeholder="{{placeHoderValue}}" border="{{ false }}" bind:change="onChange" />
             </view>
         </view>
         <view class="icon_wrapper">
-            <view class="icon">
-                <text class="like_num">{{number.formatNum(100)}}</text>
-                <image class="fill" src="../../../images/zxzicon@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+            <view class="icon"  bindtap="handleClick" data-type="1">
+                <text class="like_num" wx:if="{{number.parseInt(worksInfo.produtionAssist)}}">{{number.formatNum(worksInfo.produtionAssist)}}</text>
+                <image class="fill" src="{{worksInfo.isPraise ? '../../../images/zxzicon@2x.png':'../../../images/zicon@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
+            </view>
+            <view class="icon"  bindtap="handleClick">
+                <text class="collection_num" wx:if="{{number.parseInt(worksInfo.productionCollection)}}"  data-type="2">{{number.formatNum(worksInfo.productionCollection)}}</text>
+                <image class="fill" src="{{worksInfo.isCollection ? '../../../images/plscxz@2x.png':'../../../images/plsc@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
             <view class="icon">
-                <text class="collection_num">{{number.formatNum(100)}}</text>
-                <image class="fill" src="../../../images/plsc@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
-            </view>
-            <view class="icon">
-                <text class="share_num">{{number.formatNum(100)}}</text>
+                <text class="share_num" wx:if="{{number.parseInt(worksInfo.produtionRepeat)}}" >{{number.formatNum(worksInfo.produtionRepeat)}}</text>
                 <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
         </view>

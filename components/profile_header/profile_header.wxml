@@ -10,7 +10,7 @@
 					<text>{{userInfo.userName || '未登录'}}</text>
 				</view>
 				<view class="personal_autograph text-hidden">
-					<text wx:if="{{userInfo.userName}}">{{userInfo.signContent || '世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了'}}</text>
+					<text wx:if="{{userInfo.userName}}">{{userInfo.signature || '世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了'}}</text>
 					<text wx:else>点击登录</text>
 				</view>
 				

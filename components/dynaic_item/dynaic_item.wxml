@@ -1,6 +1,6 @@
 <!--动态组件-->
 
-<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.productionId}}" data-coustmoerid="{{item.coustmoerId}}">
+<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}">
 	
 	<view class="works_img_wrapper">
 		<image class="works_image fill" src="/images/demo.jpg" />
@@ -8,9 +8,7 @@
 			<image class="fill" src="/images/bf@2x.png" />
 		</view>
 		<view class="img" wx:else>
-			
 			<image class="img_wrapper" src="{{'/images/image@2x.png' || item.fileUrl[0]}}" />
-			
 			<view class="img_number">
 				{{item.fileUrl.length}}
 			</view>
@@ -24,7 +22,7 @@
 	</view>
 	<view class="publisher_info">
 		<view class="publisher">
-			<view class="publisher_header_wrapper">
+			<view class="publisher_header_wrapper" style="margin-right:10rpx">
 				<image class="fill" src="{{item.headImg}}" />
 			</view>
 			<view class="publisher_name text-hidden">
@@ -32,7 +30,7 @@
 			</view>
 		</view>
 		<view class="collection_wrapper">
-			<view class="collection_icon_wrapper">
+			<view class="collection_icon_wrapper" style="margin-right:10rpx;margin-top:-2rpx">
 				<image class="collection_like fill" src="{{item.isPraise?'/images/zxzicon@2x.png':'/images/zicon@2x.png'}}"/>
 			</view>
 			<text class="collection_num">{{item.assist}}</text>

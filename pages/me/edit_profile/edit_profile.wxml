@@ -1,50 +1,79 @@
 <view class="main">
     <!--编辑项目栏目-->
-    <view class="edit_content">
-        <!--头像-->
-        <view class="edit_item" >
-            <van-cell title="头像" is-link custom-class="van" center="true" bind:click="chooseImage">
-            <view class="header_img_wraper" style="background:url('/images/mrtx.png') no-repeat center/cover">
-                 <image class="fill" src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+    <view class="edit_content" >
+        <view class="item" hover-class="bg" bindtap="chooseImage">
+            <view class="title">
+                头像
             </view>
-            <view class="mask_content" style="height:100rpx"></view>
-            </van-cell>
-        </view> 
-        
-        <!--昵称-->
-        <view class="edit_item">
-            <van-cell title="昵称"  center="true"  >
-                <view class="edit_username_container">
-                    <van-field value="{{ userName }}" placeholder="Apple520" border="{{ false }}"  bind:change="getUsername" input-align="right" maxlength="10" clearable="true" bind:clear="clearContent" />
+            <view class="content">
+                <view class="content_wrapper">
+                    <image class="header_img_wraper" src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
                 </view>
-            </van-cell>
+                <image class="arrow" src="../../../images/xjjt.png" />
+            </view>
         </view>
-        <!--性别-->
-        <view class="edit_item">
-            <van-cell title="性别" is-link center="true" >
-                <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
-                    <view class="{{sexOffset?'picker':'picker unactive'}}">
-                        {{sexArray[sexIndex]}}
-                    </view>
-                </picker>
-            </van-cell>
+
+        <view class="item" hover-class="bg">
+            <view class="title" bindtap="hanle">
+                昵称
+            </view>
+            <view class="content">
+                <view class="content_wrapper" style="position:absolute;right:16px">
+                    <input type="text" value="{{userName}}" placeholder="请输入用户名" placeholder-style='text-align:right' style="width:200rpx;text-align:right" data-name="userName" bindfocus="onFocus" bindinput="onChange" maxlength="10" bindblur="onBlur"/>
+                </view>
+                <view bindtap="clear" hover-class="none" hover-stop-propagation="false" style="position:relative;right:-6rpx;top:4rpx">
+                    <image wx:if="{{isClearShow}}" class="arrow" src="../../../images/ssqc@2x.png" style="width:30rpx;height:30rpx" />
+                </view>
+                
+            </view>
         </view>
-        <!--生日-->
-        <view class="edit_item">
-            <van-cell title="生日" is-link center="true" bind:click="bindDateChange">
-                <picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
-                    <view class="{{birthDay != ''?'picker':'picker unactive'}}">
-                        {{birthDay || '未填写'}}
-                    </view>
-                </picker>
-            </van-cell>
+
+        <view class="item" hover-class="bg" bindtap="handleClick">
+            <view class="title">
+                性别
+            </view>
+            <view class="content">
+                <view class="content_wrapper">
+                    <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
+                        <view class="{{sexOffset?'picker':'picker unactive'}}">
+                            {{sexArray[sexIndex]}}
+                        </view>
+                    </picker>
+                </view>
+                <image class="arrow" src="../../../images/xjjt.png" />
+            </view>
         </view>
-        <!--个性签名-->
-        <view class="edit_item edit_item_title">
-            <text class="edit_item_title_wrapper">个性签名</text>
-            <textarea value="{{signature}}" bindchange="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了" />
+
+        <view class="item" hover-class="bg">
+            <view class="title">
+                生日
+            </view>
+            <view class="content">
+                <view class="content_wrapper">
+                    <picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
+                        <view class="{{birthDay != ''?'picker':'picker unactive'}}">
+                            {{birthDay || '未填写'}}
+                        </view>
+                    </picker>
+                </view>
+                <image class="arrow" src="../../../images/xjjt.png" />
+            </view>
+        </view>
+        
+        <view class="item" style="border:none;height:240rpx;">
+            <view class="title">
+                个性签名
+            </view>
+            <view class="content">
+                <view class="content_wrapper" style="margin-right:20rpx">
+                    <van-field type="textarea" input-class="textarea" value="{{ signature }}" bind:change="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了"/>
+                </view>
+            </view>
         </view>
     </view>
     <!--保存按钮-->
-    <bottom-btn text="保存" bindtap="preserve"></bottom-btn>
+    <view class="" bindtap="preserve">
+        <bottom-btn text="保存" ></bottom-btn>
+    </view>
+    
 </view>
