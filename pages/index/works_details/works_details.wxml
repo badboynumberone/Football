@@ -28,17 +28,17 @@
             <view class="works_banner">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
-                        <swiper-item wx:for="{{worksInfo.produtionFileUrl}}" wx:key="{{index}}" style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
+                        <swiper-item wx:for="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" wx:key="{{index}}" style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
                 </swiper>
                 <!--分页器-->
                 <view class="stepper_wrapper" >
                     <text class="stepper_title">娃娃足球工程项目</text>
-                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{worksInfo.produtionFileUrl.length}}</view>
+                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{number.formatStringToArray(worksInfo.produtionFileUrl).length}}</view>
                 </view>
             </view>
         </block>
         <block wx:else>
-            <video class="fill" src="{{worksInfo.produtionFileUrl}}" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
+            <video class="fill" src="{{worksInfo.produtionFileUrl.trim('[').trime(']')}}" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
                 bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror="">
             </video>
         </block>
@@ -51,7 +51,7 @@
         </view>
         <view class="works_tag">
             <view class="tag" wx:for="{{worksInfo.keyWord}}" wx:key="{{index}}">
-                {{item}}
+                {{item.keyword}}
             </view>     
         </view>
         <view class="works_loaction">
@@ -65,8 +65,8 @@
             </view>
             <view class="rating_item_wrapper" wx:for="{{rating}}" wx:key="{{index}}">
                 <van-row custom-class="rating_item" >
-                    <van-col span="2" style="" data-costomer="{{item.costomerId}}">
-                        <view class="img_wrapper">
+                    <van-col span="2" style="" >
+                        <view class="img_wrapper" bindtap="toHomePage" data-customer="{{item.costomerId}}">
                             <image class="fill" src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
                             {{item.commentNickName}}
                         </view>
@@ -81,7 +81,7 @@
                     <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
                             <van-col span="2">
-                                <view class="img_wrapper" data-custom="{{item.costomerId}}">
+                                <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
                                     <image class="fill" src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
                                 </view>
                             </van-col>
@@ -97,7 +97,7 @@
                 </van-row> 
             </view>
             <view class="ending">
-                {{'~暂无评论~' || '~THE END~'}}
+                {{rating.length ? bottomFont:'~NOTHING~'}}
             </view>
         </view>
           

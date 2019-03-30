@@ -13,8 +13,7 @@ Component({
     personalInfo:{
       type:Array,
       value:[]
-    },
-    isLogin:Boolean,
+    },//获取用户关注粉丝获赞赞过的情况
   },
   /**
    * 组件的初始数据
@@ -23,16 +22,15 @@ Component({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     offsetOne:false,
     offsetTwo:true,
-    userInfo:{}
+    userInfo:{},//用户信息
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    
     login(e){
-      if(!wx.getStorageSync('nickName') && this.properties.headerType=='me'){
+      if(!wx.getStorageSync('userName') && this.properties.headerType=='me'){
         //登录流程
         var that = this
         if (e.detail.errMsg === 'getUserInfo:ok') {
@@ -46,20 +44,20 @@ Component({
           wx.showLoading({
             title: '正在登录中...',
           })
-          request.post('/customer/bindWechatUserInfo', {
-            rawData: e.detail.rawData,
-            signature: e.detail.signature,
-            encryptedData: e.detail.encryptedData,
-            iv: e.detail.iv
-          }).then(function (data) {
-            console.log(data)
+          request.post('/customer/getCustomerInfo').then(function (res) {
+            console.log(res)
             wx.hideLoading();
-            let userData = {
-              userName:data.nickname,
-              userHeader:data.headImgUrl
+            if(res.errcode==0){
+              let userData = {
+                userName:res.data.nickname,
+                userHeader:res.data.headImgUrl,
+                sexIndex:res.data.sex,
+                birthDay:res.data.birthday,
+                signature:res.data.sign
+              }
+              updateUserInfo(userData);
+              that.initData();
             }
-            updateUserInfo(userData);
-            that.initData();
           }).catch(function(err){
             wx.hideLoading();
           })

@@ -1,5 +1,5 @@
 <!--动态组件-->
-
+<wxs src="../../utils/number.wxs" module="number" />
 <view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}">
 	
 	<view class="works_img_wrapper">
@@ -10,7 +10,8 @@
 		<view class="img" wx:else>
 			<image class="img_wrapper" src="{{'/images/image@2x.png' || item.fileUrl[0]}}" />
 			<view class="img_number">
-				{{item.fileUrl.length}}
+				<!-- {{item.fileUrl}} -->
+				{{number.formatStringToArray(item.fileUrl).length}}
 			</view>
 		</view>
 	</view>

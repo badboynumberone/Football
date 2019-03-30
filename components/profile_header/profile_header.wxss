@@ -13,11 +13,10 @@
 }
 .personal_info_top{
     display: flex;
-    padding: 20rpx 30rpx;
+    padding: 20rpx 0rpx;
     align-items: center;
     border-bottom:1rpx solid #F5F5F5;
     position: relative;
-    align-items: center;
 }
 .personal_info_top:after{
     position: absolute;
@@ -38,13 +37,13 @@
 .personal_name{
     font-size: 35rpx;
     font-weight: bold;
+    line-height: 40rpx;
 }
 .personal_autograph{
+    line-height: 55rpx;
     font-size: 30rpx;
     width: 420rpx;
     color: #ccc;
-    height: 60rpx;
-    
     text-align: left;
 }
 .personal_info_bottom{
@@ -77,13 +76,8 @@ button::after {
     background-color: #fff;
   }
 .personal_info_wrapper{
-    
     display: flex;
     flex-flow: column wrap;
-    justify-content: flex-start;
     align-items: flex-start;
-}
-.personal_autograph{
-    margin-top: -20rpx;
 }
 

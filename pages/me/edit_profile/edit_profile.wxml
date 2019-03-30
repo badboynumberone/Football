@@ -34,7 +34,7 @@
             </view>
             <view class="content">
                 <view class="content_wrapper">
-                    <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
+                    <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker">
                         <view class="{{sexOffset?'picker':'picker unactive'}}">
                             {{sexArray[sexIndex]}}
                         </view>
@@ -60,13 +60,13 @@
             </view>
         </view>
         
-        <view class="item" style="border:none;height:240rpx;">
+        <view class="item" style="border:none;height:120rpx;">
             <view class="title">
                 个性签名
             </view>
-            <view class="content">
+            <view class="content" style="margin-top:127rpx">
                 <view class="content_wrapper" style="margin-right:20rpx">
-                    <van-field type="textarea" input-class="textarea" value="{{ signature }}" bind:change="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了"/>
+                    <textarea class="textarea" value="{{ signature }}" bindinput="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了"/>
                 </view>
             </view>
         </view>

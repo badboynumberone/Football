@@ -13,14 +13,17 @@ Page({
       ratingContent:'',//评论内容
       rating:[],//评论信息
       totalPage:null,//总页数
-      totalSize:null,//评论总页数
+      totalSize:null,//评论总条数数
       placeHoderValue:'添加评论',//默认输入框字段
       isFocus:false,//是否有光标
       firstUserId:0,//一级评论用户id
       secondUserId:0,//二级用户评论id
       showTitle:'添加成功',//提示内容
+      nowCommentPageIndex:1,//当前评论页数
       nowCommentIndex:0,//当前评论的下标
       nowReplyUser:'',//当前回复用户
+      isLoading:false,//是否正在加载
+      bottomFont:'Loading',
     },
   
     /**
@@ -30,30 +33,49 @@ Page({
       this.setData({
         worksId:options.worksId
       })
-    },
-    onShow(){
       this.getData();
-      this.getRating();
+      this.getRating(this.data.nowCommentPageIndex);
+    },
+    //触底加载更多评论
+    onReachBottom(){
+      if(this.data.nowCommentPageIndex>=this.data.totalPage || this.data.isLoading){
+        this.setData({
+          bottomFont:'~THE ENDING~'
+        })
+        return;
+      }
+      this.getRating(this.data.nowCommentPageIndex+1)
+     
+      this.setData({
+        nowCommentPageIndex:this.data.nowCommentPageIndex+1
+      })
     },
     //获取评论
     getRating(pageNo){
       let that = this;
+      console.log(pageNo)
+      this.setData({isLoading:true})
       requestTest('/publishProdution/getProdutionComment',{
         method:"POST",
         data:{
           produtionId:that.data.worksId,
           pageNo,
-          pageSize:20
+          pageSize:10
         }
       }).then(function(res){
         that.setData({
-          rating:res.dataList,
+          rating:that.data.rating.concat(res.dataList),
           totalPage:parseInt(res.totalPage),
-          totalSize:parseInt(res.totalSize)
+          totalSize:parseInt(res.totalSize),
+          isLoading:false
         })
-        console.log(that.data.rating)
+        console.log(res.totalPage)
       }).catch(function(err){
-        console.log("获取评论失败")
+        console.log("获取评论列表失败")
+        that.setData({
+          isLoading:false
+        })
+        return;
       })
     },
     //用户离开输入框

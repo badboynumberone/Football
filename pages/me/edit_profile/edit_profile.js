@@ -113,7 +113,7 @@ Page({
     //设置签名内容
     getText(e){
       this.setData({
-        signature:e.detail
+        signature:e.detail.value
       })
 
     },

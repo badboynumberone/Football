@@ -42,4 +42,7 @@
             </view>
         </view>
     </view>
+    <view class="ending">
+        {{siteInfo.length ? (siteInfo.length ? 'Loading' : '~NOTHING~'):'Loading'}}
+    </view>
 </view>

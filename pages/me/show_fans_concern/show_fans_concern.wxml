@@ -1,15 +1,20 @@
-<view class="main">
+<view class="main" style="border-top:1rpx solid #f1f1f1">
     <!--关注或粉丝-->
-    <view class="item" wx:for="{{6}}">
+    <view class="item" wx:for="{{contentList}}" wx:key="{{index}}" data-customer="{{item.id}}">
         <view class="item_wrapper">
-            <image class="fill" src="../../../images/demo.jpg" />
+            <image class="fill" src="{{item.headImg || '../../../images/mrtx.png'}}" />
         </view>
         <view class="item_info">
-            <text class="item_name">梦蝶</text>
+            <text class="item_name">{{item.nickname}}</text>
             <view class="item_content">
-                <text class="item_works">作品 <text>18</text></text>
-                <text class="item_works">粉丝 <text>20</text></text>
+                <text class="item_works">作品 <text>{{item.produtionNum}}</text></text>
+                <text class="item_works">粉丝 <text>{{item.fenSiNum}}</text></text>
             </view>
         </view>
+    </view>
+
+    <!--懒加载-->
+    <view class="ending">
+        {{ bottomFont}}
     </view>
 </view>

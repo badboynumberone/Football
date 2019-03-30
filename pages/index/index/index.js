@@ -9,12 +9,12 @@ Page({
     bannerInfo:[],//导航栏信息
     navIndex:0,//导航地址
     isrefresh:false,//刷新控制
-    pageInfo:[{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0},
-              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0},
-              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0},
-              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0}]//分页信息
+    pageInfo:[{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
   },
-  onShow(){
+  onLoad(){
     this.initData();
   },
   //搜索栏跳转
@@ -52,7 +52,17 @@ Page({
         ["pageInfo["+index+"].totalPage"]:res.totalPage,
         ["pageInfo["+index+"].totalSize"]:res.totalSize
       })
-      console.log(that.data.pageInfo)
+      if(!that.data.pageInfo[that.data.navIndex].dynaicInfo.length){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
+        })
+      }
+      console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
+      if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+        })
+      }
     }).catch(function(err){
       wx.showToast({
         title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,
@@ -63,6 +73,12 @@ Page({
   //初始化数据
   initData(){
     //获取首页轮播图
+    this.getBanner();
+    //获取列表
+    this.getDynaicList(0,1);
+  },
+  getBanner(){
+    //获取首页轮播图
     let that =this;
     requestTest("/banner/getList",{method:"POST"}).then(function(res){
       if(res){
@@ -71,14 +87,16 @@ Page({
       }
     }).catch(function(err){
     })
-    //获取列表
-    this.getDynaicList(0,1);
   },
   //下拉刷新
   onPullDownRefresh(){
     if(this.data.isrefresh || this.data.isLoading){
       return;
     }
+    this.getBanner();
+    this.setData({
+      ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'}
+    })
     this.getDynaicList(this.data.navIndex,1);
     wx.stopPullDownRefresh();
   },
@@ -91,10 +109,7 @@ Page({
   //触底加载
   onReachBottom(){
     let that =this;
-    if(this.data.isLoading || this.data.isrefresh){
-      return;
-    }
-    if(this.data.pageInfo[that.data.navIndex].nowPageIndex >=this.data.pageInfo[that.data.navIndex].totalPage){
+    if(this.data.isLoading || this.data.isrefresh || this.data.pageInfo[that.data.navIndex].nowPageIndex >=this.data.pageInfo[that.data.navIndex].totalPage){
       return;
     }
     this.setData({
@@ -112,7 +127,16 @@ Page({
         ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,
         ["pageInfo["+that.data.navIndex+"].totalSize"]:res.totalSize
       })
-      console.log(that.data.pageInfo)
+      if(!that.data.pageInfo[that.data.navIndex].dynaicInfo){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
+        })
+      }
+      if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+        })
+      }
     }).catch(function(err){
       wx.showToast({
         title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,

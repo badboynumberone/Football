@@ -13,7 +13,6 @@ const request = (url, options) => {
       },
       success(res) {
         // console.log('success')
-        console.log(res)
         if (res.statusCode === 200) {
           if (res.data.errcode === '0') {
             resolve(res.data.data)
