@@ -153,7 +153,7 @@
     align-items: center;
     justify-content: center;
     color: #666;
-    font-size: 14px;
+    font-size: 24rpx;
     border-top:1rpx solid #f1f1f1;
 }
 .add_rating{

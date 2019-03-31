@@ -1,23 +1,16 @@
+import {requestTest} from '../../../utils/request';
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      functionList:[
-        {iconSrc:"../../../images/我的作品@2x.png",text:"我的作品",linkAddress:"",isNew:true},
-        {iconSrc:"../../../images/评论-收藏-选中@2x.png",text:"我的收藏",linkAddress:"",isNew:false},
-        {iconSrc:"../../../images/我的评论@2x.png",text:"我的评论",linkAddress:"",isNew:false},
-        {iconSrc:"../../../images/我的订单@2x.png",text:"我的订单",linkAddress:"",isAll:true,isNew:false},
-      ],//用户功能列表
-      pay_list:[
-        {iconSrc:"../../../images/待付款.png",text:"待付款",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/待发货.png",text:"代发货",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/待收货.png",text:"待收货",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/待付款.png",text:"已完成",messageNum:0,linkAddress:""},
-        {iconSrc:"../../../images/退货退款.png",text:"退货退款",messageNum:10,linkAddress:""},
-      ],//付款流程列表
-      
+      contentList:[],//关注粉丝列表
+      totalPage:2,//总页数
+      totalSize:2,//总数
+      nowPageIndex:0,//当前页数
+      isLoading:false,//判断是否正在加载
+      bottomFont:'Loading'//到底了
     },
   
     /**
@@ -26,62 +19,107 @@ Page({
     onLoad: function (options) {
       if(options.pageType==0 && options.isMe=='me'){
         wx.setNavigationBarTitle({
-          title: '我的关注'
+          title: '关注'
         });
+        this.getConcern(1,'',this.data.nowPageIndex+1,20);
           //根据options.userId请求获取数据
       }else if(options.pageType==1 && options.isMe=='me'){
         wx.setNavigationBarTitle({
-          title: '我的粉丝'
+          title: '粉丝'
         });
+        this.getFans(1,'',this.data.nowPageIndex+1,20);
+      }else if(options.pageType==0 && options.isMe=='home'){
+        wx.setNavigationBarTitle({
+          title: '关注'
+        });
+        this.getConcern(2);
+      }else if(options.pageType==1 && options.isMe=='home'){
+        wx.setNavigationBarTitle({
+          title: '粉丝'
+        });
+        this.getFans(2);
       }
     },
-  
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-  
+    //获取关注的人
+    getConcern(type,userId,pageNo,pageSize){
+      if(this.data.nowPageIndex>=this.data.totalPage || this.data.isLoading){
+        return;
+      }
+      let that = this;
+      this.setData({
+        isLoading:true
+      })
+      requestTest("/costomerProdutions/getFollow",{
+        method:"POST",
+        data:{
+          type,
+          cosId : userId,
+          pageNo,
+          pageSize
+        }
+      }).then(function(res){
+        console.log(res)
+        
+        that.setData({
+          contentList:that.data.contentList.concat(res.dataList),
+          totalPage:res.totalPage,
+          totalSize:res.totalSize,
+          nowPageIndex:that.data.nowPageIndex+1,
+          isLoading:false
+        })
+        if(!that.data.contentList.length){
+          that.setData({
+            bottomFont:"~NOTHING~"
+          })
+          return;
+        }
+        if(that.data.nowPageIndex>=that.data.totalPage){
+          that.setData({
+            bottomFont:"~THE ENDING~"
+          })
+        }
+        
+      }).catch(function(err){
+        console.log("获取关注失败")
+      })
     },
-  
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-  
-    },
-  
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-  
-    },
-  
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-  
-    },
-  
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-  
-    },
-  
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-  
-    },
-  
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-  
+    getFans(type,userId,pageNo){
+      if(this.data.nowPageIndex>=this.data.totalPage || this.data.isLoading){
+        return;
+      }
+      let that = this;
+      this.setData({
+        isLoading:true
+      })
+      requestTest("/costomerProdutions/getCostomerFenSi",{
+        method:"POST",
+        data:{
+          type,
+          cosId : userId,
+          pageNo
+        }
+      }).then(function(res){
+        console.log(res)        
+        that.setData({
+          contentList:that.data.contentList.concat(res.dataList),
+          totalPage:res.totalPage,
+          totalSize:res.totalSize,
+          nowPageIndex:that.data.nowPageIndex+1,
+          isLoading:false
+        })
+        if(!that.data.contentList.length){
+          that.setData({
+            bottomFont:"~NOTHING~"
+          })
+          return;
+        }
+        if(that.data.nowPageIndex>=that.data.totalPage){
+          that.setData({
+            bottomFont:"~THE ENDING~"
+          })
+        }
+      }).catch(function(err){
+        console.log("获取粉丝失败失败")
+      })
     }
   })

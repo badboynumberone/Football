@@ -269,6 +269,7 @@ Page({
         wx.showToast({title: '作品内容不能小于6位哦哦！',icon: 'none',duration:1500});
         return;
       }
+      
       let obj = {
         fileUrlList:this.data.upLoadContent,
         title:this.data.title,
@@ -276,6 +277,7 @@ Page({
         address:this.data.address,
         keywordList:this.data.keyWords
       }
+      console.log(obj)
       requestTest("/publishProdution/insert",{
         method:"POST",
         data:obj

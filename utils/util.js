@@ -44,7 +44,7 @@ export function checkSession() {
 }
 //检查登录状态
 export function checkLogin(isToast = false,isSwitch = false) {
-  if (!wx.getStorageSync('nickName') && !checkSession()) {
+  if (!wx.getStorageSync('userName') && !checkSession()) {
     if (isToast) {
       wx.showModal({
         title: '还没有登录,暂不可用',

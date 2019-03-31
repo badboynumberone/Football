@@ -5,8 +5,8 @@
     border-bottom:1rpx solid #f1f1f1;
 }
 .item_wrapper{
-    width: 100rpx;
-    height: 100rpx;
+    width: 90rpx;
+    height: 90rpx;
     border-radius: 50%;
     overflow: hidden;
     margin-right: 30rpx;
@@ -14,11 +14,25 @@
 .item_content{
     margin-top: 10rpx;
 }
+.item_name{
+    font-size: 32rpx;
+    font-weight: bold;
+}
 .item_works{
-    font-size: 35rpx;
+    font-size: 30rpx;
     margin-right: 10rpx;
     color: #A5A5A5;
 }
 .item_works text{
     color: #63922F;
+}
+.ending{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 24rpx;
+    border-top:1rpx solid #f1f1f1;
 }

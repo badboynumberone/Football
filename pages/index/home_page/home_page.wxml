@@ -1,6 +1,6 @@
 <view class="main">
     <!--个人信息-->
-    <profile-header personalInfo = "{{hotItem}}"></profile-header>
+    <profile-header headerType="home" personalInfo = "{{hotItem}}" ></profile-header>
     <!--个人动态-->
     <view class="personal_works">
         <view class="personal_select">

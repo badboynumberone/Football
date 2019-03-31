@@ -26,9 +26,7 @@
               </van-tabs>
               <!--底部信息-->
               <view class="ending_wrapper">
-                  <view>
-                    {{pageInfo[navIndex].nowPageIndex < pageInfo[navIndex].totalPage ? 'Loading...':'~THE ENDING~'}}
-                  </view>
+                    {{pageInfo[navIndex].bottomFont || (pageInfo[navIndex].length ? (pageInfo[navIndex].length ? 'Loading' : '~NOTHING~'):'Loading')}}
               </view>
       </view>
     </view>
