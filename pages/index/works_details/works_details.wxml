@@ -1,5 +1,6 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 <van-dialog id="van-dialog" />
+<van-transition show="true" name="fade" >
 <view class="main">
     <!--作者信息-->
     <view class="works_author">
@@ -115,10 +116,12 @@
                 <text class="like_num" wx:if="{{number.parseInt(worksInfo.produtionAssist)}}">{{number.formatNum(worksInfo.produtionAssist)}}</text>
                 <image class="fill" src="{{worksInfo.isPraise ? '../../../images/zxzicon@2x.png':'../../../images/zicon@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
+            <van-transition name="fade" duration="{{ { enter: 300, leave: 1000 } }}">
             <view class="icon"  bindtap="handleClick">
                 <text class="collection_num" wx:if="{{number.parseInt(worksInfo.productionCollection)}}"  data-type="2">{{number.formatNum(worksInfo.productionCollection)}}</text>
-                <image class="fill" src="{{worksInfo.isCollection ? '../../../images/plscxz@2x.png':'../../../images/plsc@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
+                <image class="style fill" src="{{worksInfo.isCollection ? '../../../images/plscxz@2x.png':'../../../images/plsc@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
+            </van-transition>
             <view class="icon">
                 <text class="share_num" wx:if="{{number.parseInt(worksInfo.produtionRepeat)}}" >{{number.formatNum(worksInfo.produtionRepeat)}}</text>
                 <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
@@ -126,3 +129,4 @@
         </view>
     </view>
 </view>
+</van-transition>

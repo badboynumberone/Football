@@ -3,4 +3,8 @@
     <view class="works_container">
         <dynaic_item  style="width:100%;display:flex;flex-flow:row wrap"></dynaic_item>
     </view>
+    <!--底部信息-->
+    <view class="ending_wrapper">
+        {{pageInfo[navIndex].bottomFont}}
+    </view>
 </view>

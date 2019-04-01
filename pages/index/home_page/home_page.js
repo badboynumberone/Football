@@ -18,10 +18,8 @@ Page({
       pageInfo:[
         {dynaicInfo:[],nowPageIndex:1,totalPage:2,totalSize:0,bottomFont:'Loading'},
         {dynaicInfo:[],nowPageIndex:1,totalPage:2,totalSize:0,bottomFont:'Loading'}
-      ],//动态信息
-      //当前页数
-      //所有页数
-      //动态总数
+      ],
+      isLoading:false
     },
   
     /**
@@ -109,7 +107,7 @@ Page({
       this.getDynaic(this.data.userId,e.detail.index+1,1,20)
     },
     //获取用户动态信息
-    getDynaic(userId='',type=1,pageNo=1,pageSize=20){
+    getDynaic(userId='',type=1,pageNo=1,pageSize=6){
       let that = this;
       requestTest("/costomerHomePage/costomerPageList",{
         method:"POST",
@@ -149,16 +147,22 @@ Page({
       });
     },
     onReachBottom(){
-      if(this.data.bottomFont=="~THE ENDING~" || this.data.bottomFont=="~NOTHING~"){
+      console.log(this.data.pageInfo[this.data.navIndex].bottomFont)
+      if(this.data.pageInfo[this.data.navIndex].bottomFont=="~THE ENDING~" || this.data.pageInfo[this.data.navIndex].bottomFont=="~NOTHING~"){
         return;
       }
+      console.log("haha")
       try{
-        getDynaic(this.data.userId,e.detail.index+1,this.data.navIndex+1,20)
+        this.setData({
+          isLoading:true
+        })
+        this.getDynaic(this.data.userId,this.data.navIndex,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,6)
       }catch(e){
         return;
       }
       this.setData({
-        navIndex:this.data.navIndex+1
+        ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:that.data.pageInfo[that.data.navIndex].nowPageIndex+1,
+        isLoading:false
       })
     }
   })

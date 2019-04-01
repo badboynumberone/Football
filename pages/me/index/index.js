@@ -1,5 +1,6 @@
 import request from '../../../utils/request';
 import {checkLogin} from '../../../utils/util';
+import {requestTest} from '../../../utils/request';
 const app = getApp();
 Page({
 
@@ -45,7 +46,29 @@ Page({
     onShow(){
       this.selectComponent("#profile-header").initData();
       this.getOrderCount();
+      // this.getMenuCount();
     },
+    //获取导航数量
+    // getMenuCount(){
+    //   let that = this;
+    //   requestTest("/costomerHomePage/headInfo",{
+    //     method:"POST",
+    //     data:{
+    //       type:1
+    //     }
+    //   }).then(function(res){
+    //     console.log(res)
+    //     that.setData({
+    //       ['personalInfo[0].typeNum']:res.gaunZhu,
+    //       ['personalInfo[1].typeNum']:res.fenSiNum,
+    //       ['personalInfo[2].typeNum']:res.huoZan,
+    //       ['personalInfo[3].typeNum']:res.zanGuo
+    //     })
+    //   }).catch(function(){
+    //     console.log("获取菜单数量失败")
+    //   })
+    // },
+    //购买流程
     buyProcess(e){
       if(!checkLogin(false,true)){
         return;

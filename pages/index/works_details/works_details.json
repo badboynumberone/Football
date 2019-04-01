@@ -6,6 +6,7 @@
         "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
         "concern-item":"/components/concern/concern",
         "van-field": "/miniprogram_npm/vant-weapp/field/index",
-        "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+        "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+        "van-transition": "/miniprogram_npm/vant-weapp/transition/index"
     }
 }

@@ -9,10 +9,10 @@ Page({
     bannerInfo:[],//导航栏信息
     navIndex:0,//导航地址
     isrefresh:false,//刷新控制
-    pageInfo:[{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
-              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
-              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
-              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
+    pageInfo:[{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
   },
   onLoad(){
     this.initData();
@@ -34,21 +34,17 @@ Page({
     this.setData({
       navIndex:e.detail.index
     })
-    if(this.data.pageInfo[e.detail.index].dynaicInfo.length || this.data.pageInfo[e.detail.index].nowPageIndex >=this.data.pageInfo[e.detail.index].totalPage){
-      return;
-    }
     this.getDynaicList(this.data.navIndex,1);
   },
-  getDynaicList(index,pageNo){
+  getDynaicList(index,pageNo,pageSize=6){
     let that = this;
     requestTest("/appIndex/pageList",{method:"POST",data:{
       type:index+1,
       pageNo:pageNo,
-      pageSize:20
+      pageSize
     }}).then(function(res){
       that.setData({
-        ["pageInfo["+index+"].dynaicInfo"]:res.dataList,
-        ["pageInfo["+index+"].nowPageIndex"]:that.data.pageInfo[index].nowPageIndex+1,
+        ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
         ["pageInfo["+index+"].totalPage"]:res.totalPage,
         ["pageInfo["+index+"].totalSize"]:res.totalSize
       })
@@ -108,40 +104,16 @@ Page({
   },
   //触底加载
   onReachBottom(){
-    let that =this;
-    if(this.data.isLoading || this.data.isrefresh || this.data.pageInfo[that.data.navIndex].nowPageIndex >=this.data.pageInfo[that.data.navIndex].totalPage){
+    if(this.data.pageInfo[this.data.navIndex].bottomFont=="~THE ENDING~" || this.data.pageInfo[this.data.navIndex].bottomFont=="~NOTHING~"){
+      return;
+    }
+    try{
+      this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,6)
+    }catch(e){
       return;
     }
     this.setData({
-      isLoading:true
+      ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:this.data.pageInfo[this.data.navIndex].nowPageIndex+1
     })
-    requestTest("/appIndex/pageList",{method:"POST",data:{
-      type:that.data.navIndex+1,
-      pageNo:that.data.pageInfo[that.data.navIndex].nowPageIndex,
-      pageSize:20
-    }}).then(function(res){
-      that.setData({
-        isLoading:false,
-        ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
-        ["pageInfo["+that.data.navIndex+"].nowPageIndex"]:that.data.pageInfo[that.data.navIndex].nowPageIndex+1,
-        ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,
-        ["pageInfo["+that.data.navIndex+"].totalSize"]:res.totalSize
-      })
-      if(!that.data.pageInfo[that.data.navIndex].dynaicInfo){
-        that.setData({
-          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
-        })
-      }
-      if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
-        that.setData({
-          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
-        })
-      }
-    }).catch(function(err){
-      wx.showToast({
-        title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,
-      });
-      return;
-    }) 
   }
 })

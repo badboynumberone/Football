@@ -33,52 +33,54 @@ Page({
       this.setData({
         worksId:options.worksId
       })
-      
-      this.getRating(this.data.nowCommentPageIndex);
+      this.getRating(options.worksId,1,5);
     },
     onShow(){
       this.getData();
     },
     //触底加载更多评论
     onReachBottom(){
-      if(this.data.nowCommentPageIndex>=this.data.totalPage || this.data.isLoading){
-        this.setData({
-          bottomFont:'~THE ENDING~'
-        })
+      if(this.data.bottomFont=="~THE ENDING~" || this.data.bottomFont=="~NOTHING~"){
         return;
       }
-      this.getRating(this.data.nowCommentPageIndex+1)
-     
+      try{
+        this.getRating(this.data.worksId,this.data.nowCommentPageIndex+1,5)
+      }catch(e){
+        return;
+      }
       this.setData({
         nowCommentPageIndex:this.data.nowCommentPageIndex+1
       })
     },
     //获取评论
-    getRating(pageNo){
+    getRating(produtionId,pageNo,pageSize=10){
       let that = this;
-      console.log(pageNo)
       this.setData({isLoading:true})
       requestTest('/publishProdution/getProdutionComment',{
         method:"POST",
         data:{
-          produtionId:that.data.worksId,
+          produtionId,
           pageNo,
-          pageSize:10
+          pageSize,
         }
       }).then(function(res){
         that.setData({
           rating:that.data.rating.concat(res.dataList),
           totalPage:parseInt(res.totalPage),
           totalSize:parseInt(res.totalSize),
-          isLoading:false
         })
-        console.log(res.totalPage)
+        if(that.data.nowCommentPageIndex>=that.data.totalPage){
+          that.setData({
+            bottomFont:'~THE ENDING~'
+          })
+        }
+        if(!that.rating.length){
+          that.setData({
+            bottomFont:'~NOTHING~'
+          })
+        }
       }).catch(function(err){
         console.log("获取评论列表失败")
-        that.setData({
-          isLoading:false
-        })
-        return;
       })
     },
     //用户离开输入框
