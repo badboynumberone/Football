@@ -52,11 +52,7 @@ view,text{
     margin-top: 5rpx;
 }
 
-.personal_info_bottom{
-    display: flex;
-    margin-top: 30rpx;
-    padding-bottom: 30rpx;
-}
+
 .personal_item{
     flex: 1;
     display: flex;
@@ -72,12 +68,7 @@ view,text{
     font-size: 30rpx;
     color: #767676;
 }
-.personal_select{
-    display: flex;
-    justify-content: space-around;
-    padding: 20rpx 0rpx;
 
-}
 .works{
     font-size: 35rpx;
     position: relative;
@@ -175,3 +166,90 @@ view,text{
 .van-tabs__line{
     background: #639231 !important;
 }
+.ending_wrapper{
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 24rpx;
+    border-top:1rpx solid #f1f1f1;
+}
+.dynaic_style{
+    width:100%;display:flex;flex-flow:row wrap;padding-top: 15rpx;justify-content: flex-start;
+}
+
+
+.personal_info{
+    border-bottom: 10rpx solid #F1F1F1;
+}
+.personal_info_top{
+    display: flex;
+    padding: 20rpx 0rpx;
+    align-items: center;
+    border-bottom:1rpx solid #F5F5F5;
+    position: relative;
+}
+.personal_info_top:after{
+    position: absolute;
+    content:"";
+    top:0px;
+    background: #E0E0E0;
+    width: 780rpx;
+    left: -30rpx;
+    height: 1rpx;
+}
+.personal_header_wrapper{
+    width: 150rpx;
+    height: 150rpx;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 30rpx;
+}
+.personal_name{
+    font-size: 35rpx;
+    font-weight: bold;
+    line-height: 40rpx;
+}
+.personal_autograph{
+    line-height: 55rpx;
+    font-size: 30rpx;
+    width: 420rpx;
+    color: #ccc;
+    text-align: left;
+}
+.personal_info_bottom{
+    display: flex;
+    padding-bottom: 30rpx;
+}
+.personal_item{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.personal_num{
+    font-weight: bold;
+    line-height: 70rpx;
+    font-size: 32rpx;
+}
+.personal_item_name{
+    font-size: 30rpx;
+    color: #767676;
+}
+.userinfo{
+    background: none !important;
+}
+button::after {
+    border: none
+}  
+.button-hover,.other-button-hover {
+    background-color: #fff;
+  }
+.personal_info_wrapper{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+}
+

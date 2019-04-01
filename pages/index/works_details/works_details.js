@@ -33,8 +33,11 @@ Page({
       this.setData({
         worksId:options.worksId
       })
-      this.getData();
+      
       this.getRating(this.data.nowCommentPageIndex);
+    },
+    onShow(){
+      this.getData();
     },
     //触底加载更多评论
     onReachBottom(){

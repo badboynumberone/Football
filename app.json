@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/index/index",
     "pages/me/edit_profile/edit_profile",
-    
+    "pages/imageCut/imageCut",
     "pages/index/works_details/works_details",
     "pages/me/index/index",
     
