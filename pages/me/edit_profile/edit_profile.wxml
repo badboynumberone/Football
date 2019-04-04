@@ -1,24 +1,24 @@
 <view class="main">
     <!--编辑项目栏目-->
     <view class="edit_content" >
-        <view class="item" hover-class="bg" bindtap="chooseImage">
+        <view class="item" hover-class="bg" bindtap="chooseImage" hover-stay-time="200">
             <view class="title">
                 头像
             </view>
             <view class="content">
-                <view class="content_wrapper">
-                    <image class="header_img_wraper" src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                <view class="content_wrapper"style="margin-right:40rpx">         
+                    <image class="header_img_wraper" style="border-radius:50%"  src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
                 </view>
                 <image class="arrow" src="../../../images/xjjt.png" />
             </view>
         </view>
 
-        <view class="item" hover-class="bg">
+        <view class="item" hover-class="bg" hover-stay-time="200">
             <view class="title" bindtap="hanle">
                 昵称
             </view>
             <view class="content">
-                <view class="content_wrapper" style="position:absolute;right:16px">
+                <view class="content_wrapper" style="position:absolute;right:35px">
                     <input type="text" value="{{userName}}" placeholder="请输入用户名" placeholder-style='text-align:right' style="width:200rpx;text-align:right" data-name="userName" bindfocus="onFocus" bindinput="onChange" maxlength="10" bindblur="onBlur"/>
                 </view>
                 <view bindtap="clear" hover-class="none" hover-stop-propagation="false" style="position:relative;right:-6rpx;top:4rpx">
@@ -28,36 +28,36 @@
             </view>
         </view>
 
-        <view class="item" hover-class="bg" bindtap="handleClick">
-            <view class="title">
-                性别
-            </view>
-            <view class="content">
-                <view class="content_wrapper">
-                    <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker">
-                        <view class="{{sexOffset?'picker':'picker unactive'}}">
-                            {{sexArray[sexIndex]}}
-                        </view>
-                    </picker>
+        <view class="item" hover-class="bg" hover-stay-time="200">
+            <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker" style="width:100%">
+                <view class="content">
+                    <view class="title">
+                        性别
+                    </view>
+                    <view class="content_wrapper">
+                            <view class="{{sexOffset}}">
+                                {{sexArray[sexIndex]}}
+                            </view>
+                            <image class="arrow" src="../../../images/xjjt.png" />
+                    </view>
                 </view>
-                <image class="arrow" src="../../../images/xjjt.png" />
-            </view>
+            </picker>  
         </view>
 
-        <view class="item" hover-class="bg">
-            <view class="title">
-                生日
-            </view>
-            <view class="content">
-                <view class="content_wrapper">
-                    <picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange">
+        <view class="item" hover-class="bg" hover-stay-time="200">
+            <picker mode="date"  start="1940-01-01" end="{{nowDate}}" bindchange="bindDateChange" style="width:100%">
+                <view class="content">
+                    <view class="title">
+                        生日
+                    </view>
+                    <view class="content_wrapper">
                         <view class="{{birthDay != ''?'picker':'picker unactive'}}">
                             {{birthDay || '未填写'}}
                         </view>
-                    </picker>
+                        <image class="arrow" src="../../../images/xjjt.png" />
+                    </view>
                 </view>
-                <image class="arrow" src="../../../images/xjjt.png" />
-            </view>
+            </picker>
         </view>
         
         <view class="item" style="border:none;height:120rpx;">

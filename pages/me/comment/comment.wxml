@@ -1,9 +1,15 @@
 <view class="main">
     <!--查看评论-->
     <view class="comment_title_wrapper">
-        <van-tabs active="{{ commentIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-            <van-tab title="评论我的"><comment_item></comment_item></van-tab>
-            <van-tab title="我评论的"><comment_item></comment_item></van-tab>
+        <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
+            <van-tab title="评论我的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
+            <van-tab title="我评论的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
         </van-tabs>
     </view>
+    <!--底部信息-->
+    <view class="ending_wrapper" wx:if="{{!(pageInfo[navIndex].bottomFont=='~NOTHING~' && pageInfo[navIndex].nothingImg !='')}}">
+        {{pageInfo[navIndex].bottomFont}}
+    </view>
+    <!--空缺页-->
+    <no-thing wx:else src="{{pageInfo[navIndex].nothingImg}}" text="{{pageInfo[navIndex].text}}" font="去首页" url="/pages/index/index/index" />
 </view>

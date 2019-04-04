@@ -3,7 +3,7 @@
     <view  type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo">
 		<view class="personal_info_top" style="padding:20rpx 14px;">
 			<view class="personal_header_wrapper" >
-				<image class="personal_img fill" src="{{ singleInfo.headImg || '/images/mrtx.png'}}" />
+				<image class="personal_img fill" style="border-radius:50%" src="{{ singleInfo.headImg || '/images/mrtx.png'}}" />
 			</view>
 			<view class="personal_info_wrapper">
 				<view class="personal_name text-hidden">

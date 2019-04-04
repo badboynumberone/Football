@@ -5,6 +5,9 @@ module.exports = {
 }
 
 function login () {
+  wx.showLoading({
+    title: '正在加载中...',
+  })
   wx.login({
     success: res => {
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -12,7 +15,9 @@ function login () {
       request.post('/customer/login', {
         code: res.code
       }).then(function (data) {
+        wx.hideLoading()
         wx.setStorageSync('accessToken', data.accessToken)
+        wx.setStorageSync('userId',data.id)
       }, function (err) {
           login()
       })

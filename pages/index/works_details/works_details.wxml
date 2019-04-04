@@ -6,7 +6,7 @@
     <view class="works_author">
         <view class="author_header">
             <view class="author_img_wrapper" bindtap="toHomePage" data-customer="{{worksInfo.coustmoerId}}">
-                <image class="author_img fill" src="{{worksInfo.headImgUrl || '../../../images/demo.jpg'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+                <image class="author_img fill" style="border-radius:50%"  src="{{worksInfo.headImgUrl || '../../../images/demo.jpg'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                 </image>
             </view>
             <view class="author_info">
@@ -55,7 +55,7 @@
                 {{item.keyword}}
             </view>     
         </view>
-        <view class="works_loaction">
+        <view class="works_loaction" wx:if="{{worksInfo.publishAddress}}">
             <van-icon name="location" style="font-size:32rpx;margin-top:10rpx;margin-right:10rpx" />
             {{worksInfo.publishAddress}}
         </view>
@@ -68,7 +68,7 @@
                 <van-row custom-class="rating_item" >
                     <van-col span="2" style="" >
                         <view class="img_wrapper" bindtap="toHomePage" data-customer="{{item.costomerId}}">
-                            <image class="fill" src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
+                            <image class="fill" style="border-radius:50%"  src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
                             {{item.commentNickName}}
                         </view>
                     </van-col>
@@ -83,7 +83,7 @@
                         <van-row>
                             <van-col span="2">
                                 <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
-                                    <image class="fill" src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
+                                    <image class="fill" style="border-radius:50%"  src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
                                 </view>
                             </van-col>
                             <van-col offset="1" span="21" >
@@ -116,15 +116,14 @@
                 <text class="like_num" wx:if="{{number.parseInt(worksInfo.produtionAssist)}}">{{number.formatNum(worksInfo.produtionAssist)}}</text>
                 <image class="fill" src="{{worksInfo.isPraise ? '../../../images/zxzicon@2x.png':'../../../images/zicon@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
-            <van-transition name="fade" duration="{{ { enter: 300, leave: 1000 } }}">
             <view class="icon"  bindtap="handleClick">
                 <text class="collection_num" wx:if="{{number.parseInt(worksInfo.productionCollection)}}"  data-type="2">{{number.formatNum(worksInfo.productionCollection)}}</text>
                 <image class="style fill" src="{{worksInfo.isCollection ? '../../../images/plscxz@2x.png':'../../../images/plsc@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
-            </van-transition>
-            <view class="icon">
+            <view class="icon" style="position:relative;">
+                <button open-type="share" style="position:absolute;width:100%;height:100%;border:none !important;background:transparent !important"></button>
                 <text class="share_num" wx:if="{{number.parseInt(worksInfo.produtionRepeat)}}" >{{number.formatNum(worksInfo.produtionRepeat)}}</text>
-                <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />
+                <image class="fill" src="../../../images/plfx@2x.png" mode="" lazy-load="false" binderror="" bindload="" />  
             </view>
         </view>
     </view>

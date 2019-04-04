@@ -1,6 +1,6 @@
 import {upLoadFile} from '../../../utils/request';
 import {request,post,requestTest} from '../../../utils/request';
-import {chunk,showErrorToast} from '../../../utils/util';
+import {showErrorToast,checkLogin} from '../../../utils/util';
 Page({
 
     /**
@@ -9,7 +9,7 @@ Page({
     data: {
       localContent:[],
       videoOrImg:true,//true代表上传的是图片，false代表上传的是视频
-      upLoadContent:['saf'],//已上传内容
+      upLoadContent:[],//已上传内容
       plusControl:true,
       title:'',//标题
       content:'',//内容
@@ -27,6 +27,9 @@ Page({
     onLoad: function (options) {
     },
     onShow(){
+      this.setData({
+        upLoadContent:getApp().globalData.imageSrc
+      })
       this.getKey()
     },
     //初始化数据
@@ -37,7 +40,7 @@ Page({
         try{
           res = JSON.parse(res);
         }catch(e){
-
+          res =res
         }
         let keyWords = [];
         res.adminKeyWordList.forEach(function(item){
@@ -52,39 +55,15 @@ Page({
     //添加图片
     addImg(){
       let _this =this;
-      let counter = 8 - this.data.upLoadContent.length;
       wx.chooseImage({
-        count: counter,
+        count: 1,
         sizeType: ['original','compressed'],
         sourceType: ['album','camera'],
-        success: (result)=>{
-          if(result.errMsg=="chooseImage:ok"){
-            let localUrl = result.tempFilePaths;
-            localUrl.forEach((element,index) => {
-              let imageName = element.substring(71,element.length-1)
-              if(_this.data.localContent.includes(imageName)){
-                localUrl.splice(index,1)
-              }
-            });
-            let imgArray=chunk(localUrl,1);
-            imgArray.map(function(item){
-                upLoadFile(item).then(function(res){
-                  let img =_this.data.upLoadContent;
-                  img.push(res);
-                  let localContent = _this.data.localContent;
-                  localUrl.forEach((element,index) => {
-                    let imageName = element.substring(71,element.length-1)
-                    localContent.push(imageName);
-                  });
-                  _this.setData({
-                    localContent:localContent,
-                    upLoadContent:img,
-                    videoOrImg:true,
-                  })
-                }).catch(function(err){
-                  console.log(err)
-                  console.log('上传失败')
-                });
+        success: (res)=>{
+          if(res.errMsg=="chooseImage:ok"){
+            var tempFilePaths = res.tempFilePaths[0];
+            wx.navigateTo({
+              url: `/pages/imageCut/imageCut?imageSrc=${tempFilePaths}`,
             })
           }
         }
@@ -261,12 +240,21 @@ Page({
     },
     //提交作品
     publicWorks(){
+      
+      if(this.data.upLoadContent==false){
+        wx.showToast({title: '请添加视频或图片！',icon: 'none',duration:1500});
+        return;
+      }
       if(this.data.title.length<4){
         wx.showToast({title: '标题不能小于4位哦！',icon: 'none',duration:1500});
         return;
       }
       if(this.data.content.length<6){
         wx.showToast({title: '作品内容不能小于6位哦哦！',icon: 'none',duration:1500});
+        return;
+      }
+      if(this.data.keyWords.length<=0){
+        wx.showToast({title: '请添加关键词！',icon: 'none',duration:1500});
         return;
       }
       
@@ -283,7 +271,6 @@ Page({
         data:obj
       }).then(function(res){
         //返回作品id
-        
         if(res.produtionId){
           wx.redirectTo({
             url: '/pages/index/public_works/public_works_success?worksId='+res.produtionId

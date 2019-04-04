@@ -46,7 +46,6 @@
     padding: 15rpx 0;
     font-weight: bold;
     font-size: 34rpx;
-    background: #f1f1f1;
 }
 .registration_img{
     width: 40rpx;
@@ -58,13 +57,15 @@
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
-    background: #f1f1f1;
 }
 .registration_site_item{
     padding: 10rpx;
     width: 370rpx;
     height: 370rpx;
     position: relative;
+}
+.registration_site_item image{
+    border: 1px solid #ccc;
 }
 .site_info{
     bottom:10rpx;

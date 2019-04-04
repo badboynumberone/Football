@@ -24,7 +24,7 @@
 	<view class="publisher_info">
 		<view class="publisher">
 			<view class="publisher_header_wrapper" style="margin-right:10rpx">
-				<image class="fill" src="{{item.headImg}}" />
+				<image class="fill" style="border-radius: 50%"  src="{{item.headImg}}" />
 			</view>
 			<view class="publisher_name text-hidden">
 				<text>{{item.nickname}}</text>

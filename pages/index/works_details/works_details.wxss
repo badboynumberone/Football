@@ -198,6 +198,9 @@
     display: flex;
 
 }
+.icon button::after{
+    border: none !important;
+}
 .add_rating .icon{
     height: 50rpx;
     width: 50rpx;

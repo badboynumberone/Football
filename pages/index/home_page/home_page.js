@@ -82,7 +82,6 @@ Page({
       requestTest("/costomerHomePage/headInfo",{
         method:"POST",
         data:{
-          type:2,
           cosId:id
         }
       }).then(function(res){
@@ -147,22 +146,16 @@ Page({
       });
     },
     onReachBottom(){
-      console.log(this.data.pageInfo[this.data.navIndex].bottomFont)
       if(this.data.pageInfo[this.data.navIndex].bottomFont=="~THE ENDING~" || this.data.pageInfo[this.data.navIndex].bottomFont=="~NOTHING~"){
         return;
       }
-      console.log("haha")
       try{
-        this.setData({
-          isLoading:true
-        })
-        this.getDynaic(this.data.userId,this.data.navIndex,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,6)
+        this.getDynaic(this.data.userId,this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,6)
       }catch(e){
         return;
       }
       this.setData({
-        ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:that.data.pageInfo[that.data.navIndex].nowPageIndex+1,
-        isLoading:false
+        ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:this.data.pageInfo[this.data.navIndex].nowPageIndex+1,
       })
     }
   })

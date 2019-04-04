@@ -49,6 +49,7 @@ App({
   },
   globalData: {
     imageBaseUrl: 'https://wxlittleprogram.oss-cn-shanghai.aliyuncs.com/',
-    searchHistory:[]
+    searchHistory:[],
+    imageSrc:[],
   }
 })

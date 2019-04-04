@@ -1,5 +1,5 @@
 import {upLoadFile,requestTest} from '../../../utils/request';
-import {updateUserInfo,getUserInfo} from '../../../utils/util';
+import {updateUserInfo,getUserInfo,sleep} from '../../../utils/util';
 const app = getApp();
 Page({
 
@@ -22,7 +22,7 @@ Page({
     onChange(e){
       let name = e.currentTarget.dataset.name;
       this.setData({
-        isClearShow:true,
+        isClearShow:(e.detail.value?true : false),
         [name]:e.detail.value
       })
       console.log(this.data.userName)
@@ -33,9 +33,13 @@ Page({
       })
     },
     onBlur(){
-      this.setData({
-        isClearShow:false
+      let that = this;
+      sleep(500).then(function(res){
+        that.setData({
+          isClearShow:false
+        })
       })
+      
     },
     onShow(){
       this.initData();
@@ -44,25 +48,27 @@ Page({
     //初始化数据
     initData(){
       let result=getUserInfo(['userName','userHeader','sixIndex','birthDay','signature']);
-      this.setData(result);
+      this.setData(result)
+      console.log(this.data.userHeader)
       this.setData({
         sexIndex:wx.getStorageSync('sexIndex') || 0
       })
-      if(app.globalData.imageSrc){
+      if(app.globalData.imageSrc !=false){
         this.setData({
-          userHeader:app.globalData.imageSrc
+          userHeader:app.globalData.imageSrc.join('')
         })
       }
     },
     onUnload(){
       console.log('离开了')
-      getApp().globalData.imageSrc=''
+      getApp().globalData.imageSrc=[]
     },
     //清空
     clear(){
       this.setData({
         userName:''
       })
+      console.log(this.data.userName)
     },
     //选择头像
     chooseImage(){
@@ -75,7 +81,7 @@ Page({
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           var tempFilePaths = res.tempFilePaths[0];
           wx.navigateTo({
-            url: `/pages/imageCut/imageCut?imageSrc=${tempFilePaths}`,
+            url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
           })
         }
       })

@@ -11,7 +11,12 @@
     position: relative;
 }
 .content_wrapper{
-    margin-right: 40rpx;
+    display: flex;
+    align-items: center;
+}
+.content_wrapper image{
+
+    margin-left: 40rpx;
 }
 .arrow{
     width: 15rpx;
@@ -19,9 +24,8 @@
 }
 .content{
     display: flex;
-    
     align-items: center;
-    justify-content: flex-end
+    justify-content: space-between;
 }
  .header_img_wraper{
     width: 90rpx;
@@ -40,43 +44,6 @@
 .item .van-cell{
     padding-top:0px !important; 
 }
-/*
-.van{
-    position: relative;
-    padding: 50rpx 0;
-}
-.header_img_wraper{
-    position: absolute;
-	top: 50%;
-    transform: translateY(-50%);
-    right: 100rpx;
-}
-.edit_username_container{
-    margin-right: 10rpx;
-    
-}
-
-.clear_content{
-    width: 30rpx;
-    height: 30rpx;
-    right:20rpx;
-    z-index: 9;
-}
-.personalized_signature textarea{
-    width: 800rpx;
-    height: 300rpx;
-}
-.edit_item_title{
-    display: flex;
-    justify-content: space-between;
-    padding: 20rpx 30rpx 0 ;
-}
-.edit_item_title_wrapper{
-    font-size: 14px;
-    white-space: nowrap;
-    color: #222;
-}
-*/
 .picker{
     font-size: 30rpx;
     padding: 10rpx 0;
@@ -84,11 +51,7 @@
 .unactive{
     color: #808080;
 }
-/*
-.edit_item_title .van-cell{
-    padding: 0rpx;
-}
-*/
+
 .textarea{
     font-size: 15px;
     width: 450rpx !important;

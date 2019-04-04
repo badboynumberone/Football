@@ -10,7 +10,9 @@ Page({
       totalSize:1,//总数
       nowPageIndex:1,//当前页数
       api:'',//当前请求接口
-      bottomFont:'Loading'//到底了
+      bottomFont:'Loading',//到底了
+      nothingImg:'',//空缺图片
+      text:''//空缺文字
     },
   
     /**
@@ -20,46 +22,54 @@ Page({
       if(options.pageType==0 && options.isMe=='me'){
         wx.setNavigationBarTitle({
           title: '关注',
-          api:"/costomerProdutions/getFollow",
-          type:1,
-          userId:''
         });
-        this.getData("/costomerProdutions/getFollow",1,'',1,20);
+        this.setData({
+          nothingImg:'../../images/gz.png',
+          api:"/costomerProdutions/getFollow",
+          text:'还没有关注，赶紧去首页看看吧！',
+          userId:wx.getStorageSync("userId")
+        })
+        this.getData("/costomerProdutions/getFollow",wx.getStorageSync("userId"),1,20);
           //根据options.userId请求获取数据
       }else if(options.pageType==1 && options.isMe=='me'){
         wx.setNavigationBarTitle({
           title: '粉丝',
-          api:"/costomerProdutions/getCostomerFenSi",
-          type:1,
-          userId:''
+          
         });
-        this.getData("/costomerProdutions/getCostomerFenSi",1,'',1,20);
+        this.setData({
+          api:"/costomerProdutions/getCostomerFenSi",
+          nothingImg:'../../images/fs.png',
+          text:'还没有粉丝，赶紧去首页看看吧！',
+          userId:wx.getStorageSync("userId")
+        })
+        this.getData("/costomerProdutions/getCostomerFenSi",wx.getStorageSync("userId"),1,20);
       }else if(options.pageType==0 && options.isMe=='home'){
         wx.setNavigationBarTitle({
-          title: '关注',
-          api:"/costomerProdutions/getFollow",
-          type:2,
-          userId:options.userId
+          title: '关注'
         });
-        this.getData("/costomerProdutions/getFollow",2,options.userId,1,20);
+        this.setData({
+          api:"/costomerProdutions/getFollow",
+          userId:options.userId
+        })
+        this.getData("/costomerProdutions/getFollow",options.userId,1,20);
       }else if(options.pageType==1 && options.isMe=='home'){
         wx.setNavigationBarTitle({
-          title: '粉丝',
-          api:"/costomerProdutions/getCostomerFenSi",
-          type:2,
-          userId:options.userId
+          title: '粉丝'
         });
-        this.getData("/costomerProdutions/getCostomerFenSi",2,options.userId,1,20);
+        this.setData({
+          api:"/costomerProdutions/getCostomerFenSi",
+          userId:options.userId
+        })
+        this.getData("/costomerProdutions/getCostomerFenSi",options.userId,1,20);
       }
     },
 
     //获取数据
-    getData(api,type,userId,pageNo,pageSize){
+    getData(api,userId,pageNo,pageSize){
       let that = this;
       requestTest(api,{
         method:"POST",
         data:{
-          type,
           cosId : userId,
           pageNo,
           pageSize
@@ -93,7 +103,7 @@ Page({
         return;
       }
       try{
-        this.getData(this.data.api,this.data.type,this.data.userId,this.data.pageNo+1,20)
+        this.getData(this.data.api,this.data.userId,this.data.pageNo+1,20)
       }catch(e){
         return;
       }

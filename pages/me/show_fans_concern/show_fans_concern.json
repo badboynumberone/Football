@@ -6,6 +6,7 @@
         "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
         "dynaic-item":"/components/dynaic_item/dynaic_item",
         "concern-item":"/components/concern/concern",
-        "profile-header":"/components/profile_header/profile_header"
+        "profile-header":"/components/profile_header/profile_header",
+        "no-thing":"/components/nothing/nothing"
     }
 }

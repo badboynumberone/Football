@@ -1,6 +1,7 @@
 import {requestTest} from '../../../utils/request';
-import {getNowTime} from '../../../utils/util';
-import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog'
+import {mapTime,getNowTime} from '../../../utils/util';
+import {checkLogin} from '../../../utils/util';
+import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
 Page({
 
     /**
@@ -65,7 +66,7 @@ Page({
         }
       }).then(function(res){
         that.setData({
-          rating:that.data.rating.concat(res.dataList),
+          rating:that.data.rating.concat(mapTime(res.dataList,'creatTime')),
           totalPage:parseInt(res.totalPage),
           totalSize:parseInt(res.totalSize),
         })
@@ -113,6 +114,9 @@ Page({
     },
     //发送评论
     sendRating(pid,commentId){
+      if(!checkLogin(true,false)){
+        return;
+      }
       let that =this;
       let nowTime = getNowTime();
       let firstContent={
@@ -141,14 +145,21 @@ Page({
       }).then(function(res){
         if(res==1){
           if(!pid){
+            console.log(that.data.rating)
+            let addInfo = that.data.rating;
+            addInfo.unshift(firstContent)
             that.setData({
               showTitle:"添加成功",
-              rating:that.data.rating.concat([firstContent]),
+              rating:addInfo,
+              ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ratingContent:''
             })
+            console.log(that.data.rating)
           }else{
+            console.log(that.worksInfo)
             that.setData({
               showTitle:"回复成功",
+              ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ['rating['+that.data.nowCommentIndex+'].commentChild']:that.data.rating[that.data.nowCommentIndex].commentChild.concat([SecondContent]),
               ratingContent:''
             })
@@ -184,7 +195,7 @@ Page({
           console.log(res)
           if(res){
             that.setData({
-              worksInfo:res
+              worksInfo:mapTime(res,'produtionCreatTime')
             })
           }
         }).catch(function(err){
@@ -202,12 +213,18 @@ Page({
     },
     //去个人首页
     toHomePage(e){
+      if(!checkLogin(true,false)){
+        return;
+      }
       wx.navigateTo({
         url: '/pages/index/home_page/home_page?userId='+e.currentTarget.dataset.customer
       });
     },
     //处理关注
     handleConcern(e){
+      if(!checkLogin(true,false)){
+        return;
+      }
       let api = '';
       let that = this;
       if(this.data.worksInfo.isFollow){
@@ -250,6 +267,9 @@ Page({
     },
     //处理赞和收藏
     handleClick(e){
+      if(!checkLogin(true,false)){
+        return;
+      }
       let that = this;
       let api='';
       let type=1;

@@ -1,38 +1,32 @@
 <!--评论组件-->
-<view class="praise_item">
+<view class="praise_item" wx:for="{{contentList}}" wx:key="{{index}}">
 	<van-row>
 		<van-col span="4">
-			<view class="user_img">
-				<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+			<view class="user_img" data-id="{{item.coustmoerId}}" bindtap="navigateToHome">
+				<image class="fill" src="{{item.headImg}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 			</view>
 		</van-col>
 		<van-col span="16" >
 			<view class="praise_item_info">
 				<view>
-					<text class="praise_to" >梦蝶 <text class="green_text">赞了我</text></text>
+					<text class="praise_to" >{{item.nickName}} <text class="green_text">赞了我</text></text>
 				</view>
 				<view>
-					<text class="praise_time" >2019-01-28 19:29</text>
+					<text class="praise_time" >{{item.creat_time}}</text>
 				</view>
-				<view style="margin-top:15rpx">
+				<view style="margin-top:15rpx" data-productionid="{{item.productionId}}" bindtap="navigateToWork">
 					<view class="praise_content" >
-					<van-row>
-						<van-col span="4">
 							<view class="dynaic_img_wrapper" >
 								<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" /> 
 							</view>
-						</van-col>
-						<van-col span="16" offset="4">
 							<view class="dynaic_info">
 								<view style="margin-bottom:10rpx">
-									<text class="dynaic_name">梅西真棒</text>
+									<text class="dynaic_name">{{item.title}}</text>
 								</view>
 								<view>
-									<text class="dynaic_content two-hidden" >展现足球的撒广大大哥大护法恢复巅峰对话梵蒂冈发发火辅导费哈哈好的伐对方的观点。</text>
+									<text class="dynaic_content two-hidden" >{{item.content}}</text>
 								</view>
 							</view>
-						</van-col>
-					</van-row>
 					</view>
 				</view>
 			</view>

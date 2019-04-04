@@ -1,4 +1,5 @@
 import {requestTest} from '../../../utils/request';
+import {checkLogin,sleep} from '../../../utils/util';
 //index.js
 
 
@@ -34,44 +35,47 @@ Page({
     this.setData({
       navIndex:e.detail.index
     })
-    this.getDynaicList(this.data.navIndex,1);
+    this.getDynaicList(this.data.navIndex+1,1);
   },
-  getDynaicList(index,pageNo,pageSize=6){
+  getDynaicList(type,pageNo,pageSize=6){
     let that = this;
-    requestTest("/appIndex/pageList",{method:"POST",data:{
-      type:index+1,
-      pageNo:pageNo,
-      pageSize
-    }}).then(function(res){
-      that.setData({
-        ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
-        ["pageInfo["+index+"].totalPage"]:res.totalPage,
-        ["pageInfo["+index+"].totalSize"]:res.totalSize
-      })
-      if(!that.data.pageInfo[that.data.navIndex].dynaicInfo.length){
+    sleep(300).then(function(){
+      requestTest("/appIndex/pageList",{method:"POST",data:{
+        type,
+        pageNo:pageNo,
+        pageSize
+      }}).then(function(res){
         that.setData({
-          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
+          ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
+          ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,
+          ["pageInfo["+that.data.navIndex+"].totalSize"]:res.totalSize
         })
-      }
-      console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
-      if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
-        that.setData({
-          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
-        })
-      }
-    }).catch(function(err){
-      wx.showToast({
-        title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,
-      });
-      return;
-    }) 
+        if(!that.data.pageInfo[that.data.navIndex].dynaicInfo.length){
+          that.setData({
+            ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
+          })
+        }
+        console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
+        if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+          that.setData({
+            ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+          })
+        }
+      }).catch(function(err){
+        wx.showToast({
+          title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,
+        });
+        return;
+      }) 
+    })
+    
   },
   //初始化数据
   initData(){
     //获取首页轮播图
     this.getBanner();
     //获取列表
-    this.getDynaicList(0,1);
+    this.getDynaicList(1,1,6);
   },
   getBanner(){
     //获取首页轮播图
@@ -98,6 +102,9 @@ Page({
   },
   //发布作品
   navigateToPublic(){
+    if(!checkLogin(true,false)){
+      return;
+    }
     wx.navigateTo({
       url: '/pages/index/public_works/public_works'
     });

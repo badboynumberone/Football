@@ -102,7 +102,52 @@ arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => 
   acc[val] = (acc[val] || 0) + 1;
   return acc;
 }, {});
+export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+//格式化时间
+const formatTime = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+const formatNumber = n => {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+const formatTimeStamp = timestamp => {
+  if (timestamp) {
+    return formatTime(new Date(parseInt(timestamp)))
+  } else {
+    return ''
+  }
+}
+const mapTime = (value,name)=>{
+  if(value instanceof  Array){
+    return value.map(function(item){
+      for(let key in item){
+        if(item[key] instanceof Array){
+          mapTime(item[key],name)
+        }
+      }
+      item[name]= formatTimeStamp(item[name])
+      return item
+    })
+  }else if(value.constructor == Object){
+    value[name] = formatTimeStamp(value[name])
+    return value
+  }
+}
+const formatStringToArray = (val,name)=>{
+  return JSON.parse(val.produtionFileUrl)
+}
 module.exports = {
+  sleep,
   getNowTime,
   resetUserInfo,
   checkLogin,
@@ -110,5 +155,10 @@ module.exports = {
   getUserInfo,
   showErrorToast,
   chunk,
-  pipeFunctions
+  pipeFunctions,
+  formatTime,
+  formatNumber,
+  formatTimeStamp,
+  mapTime,
+  formatStringToArray
 }

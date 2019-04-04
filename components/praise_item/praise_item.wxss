@@ -43,8 +43,6 @@
     padding: 20rpx;
     display: flex;
     flex-flow: row nowrap;
-    align-content: center;
-    justify-content: space-between;
 }
 .green_text{
     font-weight: normal;
@@ -56,6 +54,7 @@
     width: 150rpx;
     height: 150rpx;
     background: #666;
+    margin-right: 20rpx;
 }
 .dynaic_name{
     font-weight: bold;

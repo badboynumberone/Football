@@ -48,6 +48,7 @@ Component({
             console.log(res)
             wx.hideLoading();
             if(res.errcode==0){
+              console.log()
               let userData = {
                 userName:res.data.nickname,
                 userHeader:res.data.headImgUrl,

@@ -10,7 +10,9 @@ Page({
       totalPage:'',//总页数
       totalSize:'',//作品总数
       nowPageIndex:1,//当前页数
-      bottomFont:''//底部提示信息
+      bottomFont:'Loading...',//底部提示信息
+      type:1,//请求接口
+      nothingImg:''
     },
   
     /**
@@ -22,15 +24,26 @@ Page({
         wx.setNavigationBarTitle({
           title: "我的作品"
         });
-        this.getDynaic('',2,1,20);
+        this.setData({
+          type:1,
+          nothingImg:'../../images/zp.png',
+          text:'您还没有发布作品哦，赶紧去首页看看吧！',
+        })
+        this.getDynaic(wx.getStorageSync('userId'),1,1,6);
       }
       if(options.title=="myCollections"){
         wx.setNavigationBarTitle({
           title: "我的收藏"
         });
+        this.setData({
+          type:2,
+          nothingImg:'../../images/sc.png',
+          text:'您还没有收藏过作品哦，赶紧去首页看看吧！',
+        })
+        this.getDynaic(wx.getStorageSync('userId'),2,1,6);
       }
     },
-    getDynaic(userId='',type=1,pageNo=1,pageSize=20){
+    getDynaic(userId='',type=1,pageNo=1,pageSize=6){
       let that = this;
       requestTest("/costomerHomePage/costomerPageList",{
         method:"POST",
@@ -67,12 +80,12 @@ Page({
       }
       console.log("haha")
       try{
-        this.getDynaic('',1,this.data.nowPageIndex+1,20)
+        this.getDynaic(wx.getStorageSync('userId'),this.data.type,this.data.nowPageIndex+1,6)
       }catch(e){
         return;
       }
       this.setData({
-        nowPageIndex:that.data.nowPageIndex+1
+        nowPageIndex:this.data.nowPageIndex+1
       })
     }
   })

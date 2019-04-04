@@ -4,7 +4,8 @@
 }
 .comment_item{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-flow: row nowrap;
     padding: 20rpx;
     border-bottom: 1rpx solid #f1f1f1;
 }
@@ -14,6 +15,7 @@
     border-radius: 50%;
     overflow: hidden;
     background: #666;
+    margin-right: 20rpx;
 }
 .comment_to{
     font-size: 28rpx;

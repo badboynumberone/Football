@@ -14,7 +14,10 @@
     </view>
 
     <!--懒加载-->
-    <view class="ending">
+    <view class="ending" wx:if="{{!(bottomFont=='~NOTHING~' && nothingImg !='')}}">
         {{ bottomFont}}
     </view>
+
+    <!--空缺页-->
+    <no-thing wx:else src="{{nothingImg}}" text="{{text}}" font="去首页" url="/pages/index/index/index" />
 </view>

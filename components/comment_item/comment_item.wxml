@@ -1,24 +1,18 @@
 <!--评论组件-->
-<view class="comment_item">
-	<van-row>
-		<van-col span="4">
-			<view class="user_img">
-				<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
-			</view>
-		</van-col>
-		<van-col span="17" offset="3">
-			<view class="comment_info">
-				<view>
-					<text class="comment_to" >我回复时尚大魔头</text>
-				</view>
-				<view>
-					<text class="comment_time" >2019-01-28 19:29</text>
-				</view>
-				<view style="margin-top:15rpx">
-					<text class="comment_content" >你好牛鞭我好佩服你啊</text>
-				</view>
-			</view>
-		</van-col>
-	</van-row>
+<view class="comment_item" wx:for="{{commentInfo}}" wx:key="{{index}}">
+	<view class="user_img"  data-url="{{item.cosId}}" bindtap="navigateTo">
+		<image class="fill" src="{{item.headImg || '../../images/mrtx.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+	</view>
+	<view class="comment_info">
+		<view>
+			<text class="comment_to" >{{navIndex==0 ? item.nickName:'我'}}回复{{navIndex==0 ? '我':item.nickName}}</text>
+		</view>
+		<view>
+			<text class="comment_time" >{{item.creatTime}}</text>
+		</view>
+		<view style="margin-top:5rpx">
+			<text class="comment_content" >{{item.content}}</text>
+		</view>
+	</view>
 </view>
 
