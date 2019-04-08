@@ -10,10 +10,17 @@ Page({
     bannerInfo:[],//导航栏信息
     navIndex:0,//导航地址
     isrefresh:false,//刷新控制
+<<<<<<< HEAD
     pageInfo:[{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
               {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
               {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
               {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
+=======
+    pageInfo:[{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
   },
   onLoad(){
     this.initData();
@@ -59,6 +66,7 @@ Page({
   },
   getDynaicList(type,pageNo,pageSize=20){
     let that = this;
+<<<<<<< HEAD
     let api = (wx.getStorageSync('userId') && wx.getStorageSync('userName'))? "/appIndex/pageList" : '/appIndex/noCouspageList';
       requestTest(api,{method:"POST",data:{
         type,
@@ -88,8 +96,44 @@ Page({
         return;
       }) 
     
+=======
+    requestTest("/appIndex/pageList",{method:"POST",data:{
+      type:index+1,
+      pageNo:pageNo,
+      pageSize:20
+    }}).then(function(res){
+      that.setData({
+        ["pageInfo["+index+"].dynaicInfo"]:res.dataList,
+        ["pageInfo["+index+"].nowPageIndex"]:that.data.pageInfo[index].nowPageIndex+1,
+        ["pageInfo["+index+"].totalPage"]:res.totalPage,
+        ["pageInfo["+index+"].totalSize"]:res.totalSize
+      })
+      if(!that.data.pageInfo[that.data.navIndex].dynaicInfo.length){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
+        })
+      }
+      console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
+      if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+        })
+      }
+    }).catch(function(err){
+      wx.showToast({
+        title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,
+      });
+      return;
+    }) 
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
   },
   
+  getBanner(){
+    //获取首页轮播图
+    this.getBanner();
+    //获取列表
+    this.getDynaicList(0,1);
+  },
   getBanner(){
     //获取首页轮播图
     let that =this;
@@ -107,6 +151,7 @@ Page({
       return;
     }
     this.getBanner();
+<<<<<<< HEAD
     console.log(this.data.navIndex)
     this.setData({
       ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}
@@ -114,6 +159,12 @@ Page({
     })
 
     this.getDynaicList(this.data.navIndex+1,1,20);
+=======
+    this.setData({
+      ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'}
+    })
+    this.getDynaicList(this.data.navIndex,1);
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     wx.stopPullDownRefresh();
   },
   //发布作品
@@ -127,16 +178,52 @@ Page({
   },
   //触底加载
   onReachBottom(){
+<<<<<<< HEAD
     if(this.data.pageInfo[this.data.navIndex].bottomFont=="~THE ENDING~" || this.data.pageInfo[this.data.navIndex].bottomFont=="~NOTHING~"){
       return;
     }
     try{
       this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,20)
     }catch(e){
+=======
+    let that =this;
+    if(this.data.isLoading || this.data.isrefresh || this.data.pageInfo[that.data.navIndex].nowPageIndex >=this.data.pageInfo[that.data.navIndex].totalPage){
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       return;
     }
     this.setData({
       ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:this.data.pageInfo[this.data.navIndex].nowPageIndex+1
     })
+<<<<<<< HEAD
+=======
+    requestTest("/appIndex/pageList",{method:"POST",data:{
+      type:that.data.navIndex+1,
+      pageNo:that.data.pageInfo[that.data.navIndex].nowPageIndex,
+      pageSize:20
+    }}).then(function(res){
+      that.setData({
+        isLoading:false,
+        ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
+        ["pageInfo["+that.data.navIndex+"].nowPageIndex"]:that.data.pageInfo[that.data.navIndex].nowPageIndex+1,
+        ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,
+        ["pageInfo["+that.data.navIndex+"].totalSize"]:res.totalSize
+      })
+      if(!that.data.pageInfo[that.data.navIndex].dynaicInfo){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
+        })
+      }
+      if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+        that.setData({
+          ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+        })
+      }
+    }).catch(function(err){
+      wx.showToast({
+        title: '加载失败请稍后重试！',icon: 'none',duration: 1500,mask: false,
+      });
+      return;
+    }) 
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
   }
 })

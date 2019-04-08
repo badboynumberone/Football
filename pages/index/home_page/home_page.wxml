@@ -1,5 +1,6 @@
 <view class="main">
     <!--个人信息-->
+<<<<<<< HEAD
     <view  type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo">
 		<view class="personal_info_top" style="padding:20rpx 14px;">
 			<view class="personal_header_wrapper" >
@@ -24,6 +25,9 @@
 			<text class="personal_item_name">{{item.typeName}}</text>
 		</view>
 	</view>
+=======
+    <profile-header headerType="home" personalInfo = "{{hotItem}}" ></profile-header>
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     <!--个人动态-->
     <view class="personal_works" style="width:100%">
         <view class="personal_select">

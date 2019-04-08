@@ -18,6 +18,7 @@
     <!--导航-->
     <view class="dynaic_container">
       <view class="personal_select" style="background:#fff">
+<<<<<<< HEAD
           <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
               <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="0"></dynaic-item></van-tab>
               <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="1"></dynaic-item></van-tab>
@@ -28,6 +29,18 @@
           <view class="ending_wrapper">
                 {{pageInfo[navIndex].bottomFont}}
           </view>
+=======
+              <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
+                  <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
+                  <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
+                  <van-tab title="图片" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
+                  <van-tab title="视频" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
+              </van-tabs>
+              <!--底部信息-->
+              <view class="ending_wrapper">
+                    {{pageInfo[navIndex].bottomFont || (pageInfo[navIndex].length ? (pageInfo[navIndex].length ? 'Loading' : '~NOTHING~'):'Loading')}}
+              </view>
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       </view>
     </view>
     <!--发布作品按钮-->

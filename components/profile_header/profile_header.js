@@ -46,6 +46,7 @@ Component({
           wx.showLoading({
             title: '正在登录中...',
           })
+<<<<<<< HEAD
           request.post('/customer/bindWxUserInfo',{
               headImg:e.detail.userInfo.avatarUrl,
               nickName:e.detail.userInfo.nickName,
@@ -63,6 +64,22 @@ Component({
               updateUserInfo(userData);
               that.initData();
               
+=======
+          request.post('/customer/getCustomerInfo').then(function (res) {
+            console.log(res)
+            wx.hideLoading();
+            if(res.errcode==0){
+              let userData = {
+                userName:res.data.nickname,
+                userHeader:res.data.headImgUrl,
+                sexIndex:res.data.sex,
+                birthDay:res.data.birthday,
+                signature:res.data.sign
+              }
+              updateUserInfo(userData);
+              that.initData();
+            }
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
           }).catch(function(err){
             wx.hideLoading();
           })

@@ -26,6 +26,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+<<<<<<< HEAD
       if(options){
         this.setData({
           userId:options.userId
@@ -161,5 +162,12 @@ Page({
       this.setData({
         ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:this.data.pageInfo[this.data.navIndex].nowPageIndex+1,
       })
+=======
+      console.log(options)
+    },
+    //获取用户信息
+    getUserInfo(){
+
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     }
   })

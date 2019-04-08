@@ -31,9 +31,13 @@ Page({
       nowCommentIndex:0,//当前评论的下标
       nowReplyUser:'',//当前回复用户
       isLoading:false,//是否正在加载
+<<<<<<< HEAD
       bottomFont:'Loading',//底部信息
       currentE:null,//当前指针
       currentContent:''//当前评论内容
+=======
+      bottomFont:'Loading',
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     },
   
     /**
@@ -45,6 +49,7 @@ Page({
         currentNavIndex:options.navIndex,//导航栏id
         currentProductionId:options.index//作品所在id
       })
+<<<<<<< HEAD
       this.getRating(options.worksId,1,5);
       console.log(options)
     },
@@ -62,6 +67,21 @@ Page({
       }catch(e){
         return;
       }
+=======
+      this.getData();
+      this.getRating(this.data.nowCommentPageIndex);
+    },
+    //触底加载更多评论
+    onReachBottom(){
+      if(this.data.nowCommentPageIndex>=this.data.totalPage || this.data.isLoading){
+        this.setData({
+          bottomFont:'~THE ENDING~'
+        })
+        return;
+      }
+      this.getRating(this.data.nowCommentPageIndex+1)
+     
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       this.setData({
         nowCommentPageIndex:this.data.nowCommentPageIndex+1
       })
@@ -69,12 +89,17 @@ Page({
     //获取评论
     getRating(produtionId,pageNo,pageSize=10){
       let that = this;
+<<<<<<< HEAD
+=======
+      console.log(pageNo)
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       this.setData({isLoading:true})
       requestTest('/publishProdution/getProdutionComment',{
         method:"POST",
         data:{
           produtionId,
           pageNo,
+<<<<<<< HEAD
           pageSize,
         }
       }).then(function(res){
@@ -95,6 +120,24 @@ Page({
         }
       }).catch(function(err){
         console.log("获取评论列表失败")
+=======
+          pageSize:10
+        }
+      }).then(function(res){
+        that.setData({
+          rating:that.data.rating.concat(res.dataList),
+          totalPage:parseInt(res.totalPage),
+          totalSize:parseInt(res.totalSize),
+          isLoading:false
+        })
+        console.log(res.totalPage)
+      }).catch(function(err){
+        console.log("获取评论列表失败")
+        that.setData({
+          isLoading:false
+        })
+        return;
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       })
     },
     //用户离开输入框

@@ -28,6 +28,7 @@
             </view>
         </view>
 
+<<<<<<< HEAD
         <view class="item" hover-class="bg" hover-stay-time="200">
             <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker" style="width:100%">
                 <view class="content">
@@ -40,6 +41,19 @@
                             </view>
                             <image class="arrow" src="../../../images/xjjt.png" />
                     </view>
+=======
+        <view class="item" hover-class="bg" bindtap="handleClick">
+            <view class="title">
+                性别
+            </view>
+            <view class="content">
+                <view class="content_wrapper">
+                    <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker">
+                        <view class="{{sexOffset?'picker':'picker unactive'}}">
+                            {{sexArray[sexIndex]}}
+                        </view>
+                    </picker>
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                 </view>
             </picker>  
         </view>

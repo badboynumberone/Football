@@ -242,10 +242,13 @@ Page({
         wx.showToast({title: '作品内容不能小于6位哦哦！',icon: 'none',duration:1500});
         return;
       }
+<<<<<<< HEAD
       if(this.data.keyWords.length<=0){
         wx.showToast({title: '请添加关键词！',icon: 'none',duration:1500});
         return;
       }
+=======
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       
       let obj = {
         fileUrlList:this.data.upLoadContent,
@@ -254,11 +257,15 @@ Page({
         address:this.data.address,
         keywordList:this.data.keyWords
       }
+<<<<<<< HEAD
       wx.showLoading({
         title: '发布中,请稍后。。。',
         mask: true
       });
         
+=======
+      console.log(obj)
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       requestTest("/publishProdution/insert",{
         method:"POST",
         data:obj

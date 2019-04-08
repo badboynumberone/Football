@@ -29,7 +29,11 @@
             <view class="works_banner">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
+<<<<<<< HEAD
                         <swiper-item wx:for="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" wx:key="{{index}}" style="background:url({{item}}) no-repeat center;background-size: 100% 100%;"/>
+=======
+                        <swiper-item wx:for="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" wx:key="{{index}}" style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                 </swiper>
                 <!--分页器-->
                 <view class="stepper_wrapper" >
@@ -66,6 +70,7 @@
             </view>
             <view class="rating_item_wrapper" wx:for="{{rating}}" wx:key="{{index}}">
                 <van-row custom-class="rating_item" >
+<<<<<<< HEAD
                     <view bindtap="handleItem" data-content="{{item.content}}" data-customer="{{item.costomerId}}" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">
                         <van-col span="2" style="" >
                             <view class="img_wrapper" catchtap="toHomePage" data-customer="{{item.costomerId}}">
@@ -79,10 +84,24 @@
                             <view class="rating_content"><text>{{item.content}}</text></view>
                         </van-col>
                     </view> 
+=======
+                    <van-col span="2" style="" >
+                        <view class="img_wrapper" bindtap="toHomePage" data-customer="{{item.costomerId}}">
+                            <image class="fill" src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
+                            {{item.commentNickName}}
+                        </view>
+                    </van-col>
+                    <van-col offset="1" span="21" >
+                        <view class="first"><text class="name">{{item.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">回复</text></view>
+                        <text class="time">{{item.creatTime}}</text>
+                        <view class="rating_content"><text>{{item.content}}</text></view>
+                    </van-col>
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                 </van-row>
                 <van-row wx:for="{{item.commentChild}}" wx:key="{{idx}}" wx:for-item="itemName" wx:for-index="idx">
                     <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
+<<<<<<< HEAD
                             <view catchtap="handleItem" data-content="{{itemName.content}}" data-customer="{{itemName.costomerId}}" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}" data-idx="{{idx}}">
                                 <van-col span="2">
                                     <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
@@ -97,6 +116,20 @@
                                     </view>
                                 </van-col>
                             </view>
+=======
+                            <van-col span="2">
+                                <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
+                                    <image class="fill" src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
+                                </view>
+                            </van-col>
+                            <van-col offset="1" span="21" >
+                                <view class="" style="margin-left:11rpx">
+                                    <view class="first"><text class="name">{{itemName.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}">回复</text></view>
+                                    <text class="time">{{itemName.creatTime}}</text>
+                                    <view class="rating_content"><text class="answer_who">回复用户{{itemName.childCommentNickName}}: </text><text>{{itemName.content}}</text></view>
+                                </view>
+                            </van-col>
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                         </van-row>
                     </van-col>
                 </van-row> 

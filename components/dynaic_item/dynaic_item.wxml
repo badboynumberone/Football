@@ -1,6 +1,10 @@
 <!--动态组件-->
 <wxs src="../../utils/number.wxs" module="number" />
+<<<<<<< HEAD
 <view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}" data-index="{{index}}">
+=======
+<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}">
+>>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
 	
 	<view class="works_img_wrapper">
 		<image class="works_image fill" src="{{number.formatStringToArray(item.fileUrl)[0] || '../../images/mrtx.png'}}" />
