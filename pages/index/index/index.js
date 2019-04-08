@@ -1,7 +1,7 @@
 import {requestTest} from '../../../utils/request';
 import {checkLogin,sleep} from '../../../utils/util';
 //index.js
-
+const app = getApp()
 
 Page({
   data: {
@@ -17,6 +17,23 @@ Page({
   },
   onLoad(){
     this.initData();
+  },
+  onShow(){
+    if(app.globalData.index && app.globalData.NavIndex){
+      this.setData({
+        ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].isPraise"]:app.globalData.isPraise
+      })
+    }
+  },
+  onunLoad(){
+    app.globalData.index="";app.globalData.NavIndex="";
+  },
+  //初始化数据
+  initData(){
+    //获取首页轮播图
+    this.getBanner();
+    //获取列表
+    this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex,6);
   },
   //搜索栏跳转
   toSearch(){
@@ -39,8 +56,8 @@ Page({
   },
   getDynaicList(type,pageNo,pageSize=6){
     let that = this;
-    sleep(300).then(function(){
-      requestTest("/appIndex/pageList",{method:"POST",data:{
+    let api = (wx.getStorageSync('userId') && wx.getStorageSync('userName'))? "/appIndex/pageList" : '/appIndex/noCouspageList';
+      requestTest(api,{method:"POST",data:{
         type,
         pageNo:pageNo,
         pageSize
@@ -56,7 +73,7 @@ Page({
           })
         }
         console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
-        if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+        if(that.data.pageInfo[that.data.navIndex].nowPageIndex >= parseInt(that.data.pageInfo[that.data.navIndex].totalPage)){
           that.setData({
             ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
           })
@@ -67,16 +84,9 @@ Page({
         });
         return;
       }) 
-    })
     
   },
-  //初始化数据
-  initData(){
-    //获取首页轮播图
-    this.getBanner();
-    //获取列表
-    this.getDynaicList(1,1,6);
-  },
+  
   getBanner(){
     //获取首页轮播图
     let that =this;
@@ -94,10 +104,13 @@ Page({
       return;
     }
     this.getBanner();
+    console.log(this.data.navIndex)
     this.setData({
-      ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:0,totalPage:1,totalSize:0,bottomFont:'Loading'}
+      ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}
+
     })
-    this.getDynaicList(this.data.navIndex,1);
+
+    this.getDynaicList(this.data.navIndex+1,1,6);
     wx.stopPullDownRefresh();
   },
   //发布作品

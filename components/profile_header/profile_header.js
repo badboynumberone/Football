@@ -34,9 +34,11 @@ Component({
         //登录流程
         var that = this
         if (e.detail.errMsg === 'getUserInfo:ok') {
+          console.log(e)
           let data = {
             'nickName': e.detail.userInfo.nickName,
             'avatarUrl': e.detail.userInfo.avatarUrl,
+            'sex':e.detail.userInfo.gender
           }
           updateUserInfo(data);
           let that =this;
@@ -44,21 +46,23 @@ Component({
           wx.showLoading({
             title: '正在登录中...',
           })
-          request.post('/customer/getCustomerInfo').then(function (res) {
+          request.post('/customer/bindWxUserInfo',{
+              headImg:e.detail.userInfo.avatarUrl,
+              nickName:e.detail.userInfo.nickName,
+              sex:e.detail.userInfo.gender
+          }).then(function (res) {
             console.log(res)
-            wx.hideLoading();
-            if(res.errcode==0){
-              console.log()
+              wx.hideLoading();
               let userData = {
-                userName:res.data.nickname,
-                userHeader:res.data.headImgUrl,
-                sexIndex:res.data.sex,
-                birthDay:res.data.birthday,
-                signature:res.data.sign
+                userName:res.nickname,
+                userHeader:res.headImgUrl,
+                sexIndex:res.sex,
+                birthDay:res.birthday,
+                signature:res.sign
               }
               updateUserInfo(userData);
               that.initData();
-            }
+              
           }).catch(function(err){
             wx.hideLoading();
           })
@@ -95,6 +99,7 @@ Component({
         ['userInfo.userHeader']:wx.getStorageSync('userHeader'),
         ['userInfo.signature']:wx.getStorageSync('signature')
       })
+      this.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
     }
   }
 })

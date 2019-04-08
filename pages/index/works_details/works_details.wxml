@@ -48,7 +48,7 @@
     <view class="works_container">
         <text class="works_title text-hidden">{{worksInfo.produtionTitle}}</text>
         <view class="works_content">
-            <text>{{worksInfo.produtionTitle}}</text>
+            <text>{{worksInfo.produtionContent}}</text>
         </view>
         <view class="works_tag">
             <view class="tag" wx:for="{{worksInfo.keyWord}}" wx:key="{{index}}">
@@ -66,33 +66,37 @@
             </view>
             <view class="rating_item_wrapper" wx:for="{{rating}}" wx:key="{{index}}">
                 <van-row custom-class="rating_item" >
-                    <van-col span="2" style="" >
-                        <view class="img_wrapper" bindtap="toHomePage" data-customer="{{item.costomerId}}">
-                            <image class="fill" style="border-radius:50%"  src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
-                            {{item.commentNickName}}
-                        </view>
-                    </van-col>
-                    <van-col offset="1" span="21" >
-                        <view class="first"><text class="name">{{item.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">回复</text></view>
-                        <text class="time">{{item.creatTime}}</text>
-                        <view class="rating_content"><text>{{item.content}}</text></view>
-                    </van-col>
+                    <view bindtap="handleItem" data-customer="{{item.costomerId}}" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">
+                        <van-col span="2" style="" >
+                            <view class="img_wrapper" catchtap="toHomePage" data-customer="{{item.costomerId}}">
+                                <image class="fill" style="border-radius:50%"  src="{{item.commentHeadImg || '../../../images/mrtx.png'}}"   />
+                                {{item.commentNickName}}
+                            </view>
+                        </van-col>
+                        <van-col offset="1" span="21" >
+                            <view class="first"><text class="name">{{item.commentNickName}}</text><text wx:if="{{!(item.costomerId==userId)}}" class="answer" catchtap="replyUser" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">回复</text></view>
+                            <text class="time">{{item.creatTime}}</text>
+                            <view class="rating_content"><text>{{item.content}}</text></view>
+                        </van-col>
+                    </view> 
                 </van-row>
                 <van-row wx:for="{{item.commentChild}}" wx:key="{{idx}}" wx:for-item="itemName" wx:for-index="idx">
                     <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
-                            <van-col span="2">
-                                <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
-                                    <image class="fill" style="border-radius:50%"  src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
-                                </view>
-                            </van-col>
-                            <van-col offset="1" span="21" >
-                                <view class="" style="margin-left:11rpx">
-                                    <view class="first"><text class="name">{{itemName.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}">回复</text></view>
-                                    <text class="time">{{itemName.creatTime}}</text>
-                                    <view class="rating_content"><text class="answer_who">回复用户{{itemName.childCommentNickName}}: </text><text>{{itemName.content}}</text></view>
-                                </view>
-                            </van-col>
+                            <view catchtap="handleItem" data-customer="{{itemName.costomerId}}" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}" data-idx="{{idx}}">
+                                <van-col span="2">
+                                    <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
+                                        <image class="fill" style="border-radius:50%"  src="{{itemName.commentHeadImg || '../../../images/mrtx.png'}}"   />
+                                    </view>
+                                </van-col>
+                                <van-col offset="1" span="21" >
+                                    <view class="" style="margin-left:11rpx">
+                                        <view class="first"><text class="name">{{itemName.commentNickName}}</text><text wx:if="{{!(item.costomerId==userId)}}" class="answer" catchtap="replyUser" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}">回复</text></view>
+                                        <text class="time">{{itemName.creatTime}}</text>
+                                        <view class="rating_content"><text class="answer_who">回复用户{{itemName.childCommentNickName}}: </text><text>{{itemName.content}}</text></view>
+                                    </view>
+                                </van-col>
+                            </view>
                         </van-row>
                     </van-col>
                 </van-row> 
@@ -129,3 +133,22 @@
     </view>
 </view>
 </van-transition>
+<!-- 底部选择框 -->
+<van-popup show="{{ isPop }}" bind:close="onClose" overlay="{{true}}" position="bottom" duration="300" custom-style="background:rgba(0,0,0,0.03)">
+    <view class="pop_wrapper">
+        <view class="pop_content_wrapper" hover-class="none" hover-stop-propagation="false" style="background:#fff;border-radius:20px">
+            <view class="pop_content" style="letter-spacing:1px;font-size:30rpx;color:#666;border:none;">
+                你的评论:哈哈
+            </view>
+            <view class="pop_answer" wx:if="{{currentReplyId!=userId}}" style="color:blue" bindtap="answerItem">
+                回复
+            </view>
+            <view class="pop_delete" style="color:red" bindtap="deleteItem">
+                删除
+            </view>
+        </view>
+        <view class="pop_cancel" style="color:blue;background:#fff;border-radius:15px;margin-bottom:10px;" bindtap="cancelItem">
+            取消
+        </view>
+    </view>
+</van-popup>

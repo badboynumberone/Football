@@ -11,10 +11,10 @@ Page({
       headerType:'me',//页面内型
       isLogin:false,//是否登录
       functionList:[
-        {iconSrc:"../../../images/wdzp@2x.png",text:"我的作品",linkAddress:"",isNew:true},
-        {iconSrc:"../../../images/plscxz@2x.png",text:"我的收藏",linkAddress:"",isNew:false},
+        {iconSrc:"../../../images/wdzp@2x.png",text:"我的作品",linkAddress:""},
+        {iconSrc:"../../../images/plscxz@2x.png",text:"我的收藏",linkAddress:""},
         {iconSrc:"../../../images/wdpl@2x.png",text:"我的评论",linkAddress:"",isNew:false},
-        {iconSrc:"../../../images/wddd@2x.png",text:"我的订单",linkAddress:"",isAll:true,isNew:false},
+        {iconSrc:"../../../images/wddd@2x.png",text:"我的订单",linkAddress:"",isAll:true},
       ],//用户功能列表
       pay_list:[
         {iconSrc:"../../../images/dfk.png",text:"待付款",messageNum:0},
@@ -46,29 +46,30 @@ Page({
     onShow(){
       this.selectComponent("#profile-header").initData();
       this.getOrderCount();
-      // this.getMenuCount();
+      this.getMenuCount();
     },
-    //获取导航数量
-    // getMenuCount(){
-    //   let that = this;
-    //   requestTest("/costomerHomePage/headInfo",{
-    //     method:"POST",
-    //     data:{
-    //       type:1
-    //     }
-    //   }).then(function(res){
-    //     console.log(res)
-    //     that.setData({
-    //       ['personalInfo[0].typeNum']:res.gaunZhu,
-    //       ['personalInfo[1].typeNum']:res.fenSiNum,
-    //       ['personalInfo[2].typeNum']:res.huoZan,
-    //       ['personalInfo[3].typeNum']:res.zanGuo
-    //     })
-    //   }).catch(function(){
-    //     console.log("获取菜单数量失败")
-    //   })
-    // },
-    //购买流程
+    getMenuCount(){
+      let that = this;
+      if(wx.getStorageSync("userId") && wx.getStorageSync('userName')){
+        requestTest("/costomerHomePage/headInfo",{
+          method:"POST",
+          data:{
+            cosId:wx.getStorageSync("userId")
+          }
+        }).then(function(res){
+          console.log(res)
+          that.setData({
+            ["personalInfo[0].typeNum"]:res.gaunZhu,
+            ["personalInfo[1].typeNum"]:res.fenSiNum,
+            ["personalInfo[2].typeNum"]:res.huoZan,
+            ["personalInfo[3].typeNum"]:res.zanGuo,
+            ["functionList[2].isNew"]:res.isLook
+          })
+        }).catch(function(err){
+
+        })
+      }
+    },
     buyProcess(e){
       if(!checkLogin(false,true)){
         return;

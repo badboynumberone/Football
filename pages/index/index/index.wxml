@@ -19,10 +19,10 @@
     <view class="dynaic_container">
       <view class="personal_select" style="background:#fff">
           <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-              <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-              <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-              <van-tab title="图片" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-              <van-tab title="视频" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
+              <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="0"></dynaic-item></van-tab>
+              <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="1"></dynaic-item></van-tab>
+              <van-tab title="图片" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="2"></dynaic-item></van-tab>
+              <van-tab title="视频" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="3"></dynaic-item></van-tab>
           </van-tabs>
           <!--底部信息-->
           <view class="ending_wrapper">

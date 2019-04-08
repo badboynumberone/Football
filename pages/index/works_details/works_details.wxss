@@ -141,6 +141,7 @@
 .rating_content{
     font-size: 28rpx;
     color: #2f2f2f;
+    margin-top: 10rpx
 }
 .adding{
     border-top:1rpx solid #f1f1f1;
@@ -181,7 +182,7 @@
     height: 60rpx;
 }
 .write{
-    width: 30rpx;
+    width: 40rpx;
     height: 30rpx;
     margin-left: 10rpx;
     margin-right: 10rpx;
@@ -298,6 +299,39 @@
     color: #fff;
     font-family: SourceHanSansCN-Regular;
 }
-.answer_who{
-    font-weight: bold;
+
+.bg{
+    background: #f1f1f1;
+}
+.pop_wrapper{
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    justify-content: center;
+    width: 100%;
+}
+.pop_content{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.pop_content_wrapper{
+    margin-bottom: 20rpx;
+    width: 90%;
+    overflow: hidden;
+
+}
+.pop_content_wrapper view{
+    width: 100%;
+    border-top: 1px solid #DBDBDB; 
+    text-align: center;
+    letter-spacing: 3px;
+    padding: 30rpx 0;
+}
+.pop_wrapper > .pop_cancel{
+    padding: 30rpx 0;
+    background: rgb(51, 43, 43);
+    width: 90%;
+    text-align: center;
+    letter-spacing: 3px;
 }

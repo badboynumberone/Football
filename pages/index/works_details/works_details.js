@@ -2,12 +2,19 @@ import {requestTest} from '../../../utils/request';
 import {mapTime,getNowTime} from '../../../utils/util';
 import {checkLogin} from '../../../utils/util';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
+const app = getApp();
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+      isAnswer:true,
+      currentReplyId:'',//当前评论id
+      isPop:false,//是否弹出选择框
+      userId:wx.getStorageSync("userId"),//当前userId
+      currentProductionId:'',
+      currentNavIndex:'',//当前索引
       worksId:'',//作品Id
       worksInfo:[],//作品信息
       isMyWorks:true,//true代表是自己
@@ -24,7 +31,8 @@ Page({
       nowCommentIndex:0,//当前评论的下标
       nowReplyUser:'',//当前回复用户
       isLoading:false,//是否正在加载
-      bottomFont:'Loading',
+      bottomFont:'Loading',//底部信息
+      currentE:null,
     },
   
     /**
@@ -32,13 +40,17 @@ Page({
      */
     onLoad: function (options) {
       this.setData({
-        worksId:options.worksId
+        worksId:options.worksId,//作品ID
+        currentNavIndex:options.navIndex,//导航栏id
+        currentProductionId:options.index//作品所在id
       })
       this.getRating(options.worksId,1,5);
+      console.log(options)
     },
     onShow(){
       this.getData();
     },
+    
     //触底加载更多评论
     onReachBottom(){
       if(this.data.bottomFont=="~THE ENDING~" || this.data.bottomFont=="~NOTHING~"){
@@ -94,8 +106,87 @@ Page({
         })
       }
     },
+    onClose(){
+      this.setData({
+        isPop:false
+      })
+    },
+    //处理用户本人点击
+    handleItem(e){
+      console.log(e)
+      this.setData({
+        isPop:true,
+        currentE:e,
+        currentReplyId:e.currentTarget.dataset.customer
+      })
+    },
+    //回复
+    answerItem(){
+      this.setData({
+        isPop:false
+      })
+      this.setReplyInfo(this.data.currentE)
+    },
+    //删除
+    deleteItem(){
+      let that = this;
+      this.setData({
+        isPop:false
+      })
+      //当前本地位置
+      let firstIndex =  this.data.currentE.currentTarget.dataset.index;
+      let secondIndex =  this.data.currentE.currentTarget.dataset.idx;
+      //线上位置
+      console.log(secondIndex)
+      console.log(firstIndex)
+      let commentId = this.data.currentE.currentTarget.dataset.secondid;
+      
+      //先发请求请求成功后再删啊
+      Dialog.confirm({
+        title: '确认删除评论？',
+        message:'',
+        cancelButtonText: '取消',
+        confirmButtonText: '确定'
+      }).then(() => {
+        requestTest("/produtionComment/comment/delete",{
+          method:"POST",
+          data:{
+            produtionId:that.data.worksId,
+            commentId:commentId
+          }
+        }).then(function(res){
+          let rating = that.data.rating;
+          if(secondIndex == undefined){
+            rating.splice(parseInt(firstIndex),1);
+            that.setData({
+              rating:rating
+            })
+            return;
+          }
+          
+          rating[firstIndex].commentChild.splice(secondIndex,1);
+          that.setData({
+            rating
+          })
+        }).catch(function(err){
+          console.log("上传有误")
+        })
+      }).catch(()=>{
+        return;
+      });
+      
+    },
+    cancelItem(){
+      this.setData({
+        isPop:false
+      })
+    },
     //回复用户
     replyUser(e){
+      this.setReplyInfo(e)
+    },
+    //设置回复信息
+    setReplyInfo(e){
       this.setData({
         isFocus:true,
         placeHoderValue:'回复用户'+e.currentTarget.dataset.name,
@@ -114,6 +205,7 @@ Page({
     },
     //发送评论
     sendRating(pid,commentId){
+      
       if(!checkLogin(true,false)){
         return;
       }
@@ -124,7 +216,9 @@ Page({
         commentNickName:wx.getStorageSync("userName"),
         costomerId:wx.getStorageSync('costomerId'),
         content:that.data.ratingContent,
-        creatTime:nowTime
+        creatTime:nowTime,
+        costomerId:wx.getStorageSync("userId"),
+        newComment:true
       }
       let SecondContent={
         costomerId:wx.getStorageSync('costomerId'),
@@ -132,7 +226,9 @@ Page({
         commentNickName:wx.getStorageSync("userName"),
         content:that.data.ratingContent,
         creatTime:nowTime,
-        childCommentNickName:that.data.nowReplyUser
+        childCommentNickName:that.data.nowReplyUser,
+        costomerId:wx.getStorageSync("userId"),
+        newComment:true
       }
       requestTest('/produtionComment/comment/insert',{
         method:"POST",
@@ -145,7 +241,6 @@ Page({
       }).then(function(res){
         if(res==1){
           if(!pid){
-            console.log(that.data.rating)
             let addInfo = that.data.rating;
             addInfo.unshift(firstContent)
             that.setData({
@@ -154,7 +249,6 @@ Page({
               ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ratingContent:''
             })
-            console.log(that.data.rating)
           }else{
             console.log(that.worksInfo)
             that.setData({
@@ -257,6 +351,7 @@ Page({
           that.setData({
             ['worksInfo.isFollow']:true
           })
+          
         }else{
           that.setData({
             ['worksInfo.isFollow']:false
@@ -298,8 +393,8 @@ Page({
         }
       }).then(function(res){
         switch(type){
-          case 1: that.setData({['worksInfo.isPraise']:false,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)-1});break;
-          case 2: that.setData({['worksInfo.isPraise']:true,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)+1});break;
+          case 1: that.setData({['worksInfo.isPraise']:false,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)-1});app.globalData.isPraise = false;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
+          case 2: that.setData({['worksInfo.isPraise']:true,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)+1});app.globalData.isPraise = true;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
           case 3: that.setData({['worksInfo.isCollection']:false,['worksInfo.productionCollection']:parseInt(that.data.worksInfo.productionCollection)-1});break;
           case 4: that.setData({['worksInfo.isCollection']:true,['worksInfo.productionCollection']:parseInt(that.data.worksInfo.productionCollection)+1});break;
         }

@@ -1,14 +1,14 @@
 <!--动态组件-->
 <wxs src="../../utils/number.wxs" module="number" />
-<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}">
+<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}" data-index="{{index}}">
 	
 	<view class="works_img_wrapper">
-		<image class="works_image fill" src="/images/demo.jpg" />
+		<image class="works_image fill" src="{{number.formatStringToArray(item.fileUrl)[0] || '../../images/mrtx.png'}}" />
 		<view class="video" wx:if="{{item.fileType==2}}">
-			<image class="fill" src="/images/bf@2x.png" />
+			<image class="fill" src="{{'/images/bf@2x.png'}}" />
 		</view>
 		<view class="img" wx:else>
-			<image class="img_wrapper" src="{{'/images/image@2x.png' || item.fileUrl[0]}}" />
+			<image class="img_wrapper" src="{{'/images/image@2x.png'}}" />
 			<view class="img_number">
 				<!-- {{item.fileUrl}} -->
 				{{number.formatStringToArray(item.fileUrl).length}}
@@ -24,7 +24,7 @@
 	<view class="publisher_info">
 		<view class="publisher">
 			<view class="publisher_header_wrapper" style="margin-right:10rpx">
-				<image class="fill" style="border-radius: 50%"  src="{{item.headImg}}" />
+				<image class="fill" style="border-radius: 50%"  src="{{item.headImg || '../../images/mrtx.png'}}" />
 			</view>
 			<view class="publisher_name text-hidden">
 				<text>{{item.nickname}}</text>

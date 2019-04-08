@@ -1,4 +1,5 @@
 import {requestTest} from '../../../utils/request';
+import {mapTime} from '../../../utils/util';
 Page({
 
     /**
@@ -33,7 +34,7 @@ Page({
         pageSize
       }}).then(function(res){
         that.setData({
-          ["pageInfo["+that.data.navIndex+"].commentInfo"]:that.data.pageInfo[that.data.navIndex].commentInfo.concat(res.dataList),
+          ["pageInfo["+that.data.navIndex+"].commentInfo"]:that.data.pageInfo[that.data.navIndex].commentInfo.concat(mapTime(res.dataList,'creatTime')),
           ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,
           ["pageInfo["+that.data.navIndex+"].totalSize"]:res.totalSize
         })

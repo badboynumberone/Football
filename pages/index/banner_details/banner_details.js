@@ -1,4 +1,5 @@
 import {requestTest} from '../../../utils/request';
+import {checkLogin} from '../../../utils/util';
 Page({
 
     /**
@@ -57,6 +58,9 @@ Page({
     },
     //去参加
     goJion(){
+      if(!checkLogin(true,false)){
+        return;
+      }
       wx.navigateTo({
         url: '/pages/index/public_works/public_works'
       });

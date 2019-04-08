@@ -1,6 +1,7 @@
 import {upLoadFile} from '../../../utils/request';
 import {request,post,requestTest} from '../../../utils/request';
 import {showErrorToast,checkLogin} from '../../../utils/util';
+const app = getApp();
 Page({
 
     /**
@@ -25,6 +26,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+    },
+    onunload: function(){
+      app.globalData.imageSrc=[]
     },
     onShow(){
       this.setData({
@@ -63,7 +67,7 @@ Page({
           if(res.errMsg=="chooseImage:ok"){
             var tempFilePaths = res.tempFilePaths[0];
             wx.navigateTo({
-              url: `/pages/imageCut/imageCut?imageSrc=${tempFilePaths}`,
+              url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
             })
           }
         }
@@ -130,20 +134,6 @@ Page({
       if(this.data.address){
         return;
       }
-      let that = this;
-      wx.getSetting({
-        success(res) {
-          if (!res.authSetting['scope.userLocation']) {
-            wx.authorize({
-              scope: 'scope.userLocation',
-              success() {
-                that.setLocation();
-                return;
-              }
-            })
-          }
-        }
-      })
       this.setLocation();
     },
     setLocation(){
@@ -240,9 +230,8 @@ Page({
     },
     //提交作品
     publicWorks(){
-      
       if(this.data.upLoadContent==false){
-        wx.showToast({title: '请添加视频或图片！',icon: 'none',duration:1500});
+        wx.showToast({title: '请添加图片或视频！',icon: 'none',duration:1500});
         return;
       }
       if(this.data.title.length<4){
@@ -265,18 +254,24 @@ Page({
         address:this.data.address,
         keywordList:this.data.keyWords
       }
-      console.log(obj)
+      wx.showLoading({
+        title: '发布中,请稍后。。。',
+        mask: true
+      });
+        
       requestTest("/publishProdution/insert",{
         method:"POST",
         data:obj
       }).then(function(res){
         //返回作品id
+        wx.hideLoading();
         if(res.produtionId){
           wx.redirectTo({
             url: '/pages/index/public_works/public_works_success?worksId='+res.produtionId
           });
         }
       }).catch(function(err){
+        wx.hideLoading();
         showErrorToast("发布失败,请稍后重试")
       })
     }
