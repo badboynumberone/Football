@@ -2,10 +2,8 @@
   "pages": [
     "pages/index/index/index",
     "pages/index/works_details/works_details",
-    
     "pages/me/edit_profile/edit_profile",
     "pages/imageCut/imageCut",
-    
     "pages/me/index/index",
     "pages/purchase/cart/index",
     "pages/purchase/product/index",

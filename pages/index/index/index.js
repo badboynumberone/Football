@@ -49,9 +49,13 @@ Page({
   },
   //点击导航栏
   onChange(e){
+   
     this.setData({
       navIndex:e.detail.index
     })
+    if(this.data.pageInfo[this.data.navIndex].dynaicInfo!=false){
+      return;
+    }
     this.getDynaicList(this.data.navIndex+1,1);
   },
   getDynaicList(type,pageNo,pageSize=6){
