@@ -27,7 +27,7 @@ Page({
      */
     onLoad: function (options) {
     },
-    onunload: function(){
+    onUnload: function(){
       app.globalData.imageSrc=[]
     },
     onShow(){

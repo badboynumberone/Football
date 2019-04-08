@@ -33,7 +33,7 @@ Page({
     //获取首页轮播图
     this.getBanner();
     //获取列表
-    this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex,6);
+    this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex,20);
   },
   //搜索栏跳转
   toSearch(){
@@ -49,7 +49,6 @@ Page({
   },
   //点击导航栏
   onChange(e){
-   
     this.setData({
       navIndex:e.detail.index
     })
@@ -58,7 +57,7 @@ Page({
     }
     this.getDynaicList(this.data.navIndex+1,1);
   },
-  getDynaicList(type,pageNo,pageSize=6){
+  getDynaicList(type,pageNo,pageSize=20){
     let that = this;
     let api = (wx.getStorageSync('userId') && wx.getStorageSync('userName'))? "/appIndex/pageList" : '/appIndex/noCouspageList';
       requestTest(api,{method:"POST",data:{
@@ -114,7 +113,7 @@ Page({
 
     })
 
-    this.getDynaicList(this.data.navIndex+1,1,6);
+    this.getDynaicList(this.data.navIndex+1,1,20);
     wx.stopPullDownRefresh();
   },
   //发布作品
@@ -132,7 +131,7 @@ Page({
       return;
     }
     try{
-      this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,6)
+      this.getDynaicList(this.data.navIndex+1,this.data.pageInfo[this.data.navIndex].nowPageIndex+1,20)
     }catch(e){
       return;
     }

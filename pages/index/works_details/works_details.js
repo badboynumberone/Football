@@ -32,7 +32,8 @@ Page({
       nowReplyUser:'',//当前回复用户
       isLoading:false,//是否正在加载
       bottomFont:'Loading',//底部信息
-      currentE:null,
+      currentE:null,//当前指针
+      currentContent:''//当前评论内容
     },
   
     /**
@@ -114,10 +115,14 @@ Page({
     //处理用户本人点击
     handleItem(e){
       console.log(e)
+      if(this.data.userId !=this.data.worksInfo.coustmoerId){
+        return;
+      }
       this.setData({
         isPop:true,
         currentE:e,
-        currentReplyId:e.currentTarget.dataset.customer
+        currentReplyId:e.currentTarget.dataset.customer,
+        currentContent:e.currentTarget.dataset.content
       })
     },
     //回复

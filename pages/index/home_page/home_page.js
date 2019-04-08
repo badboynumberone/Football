@@ -100,9 +100,13 @@ Page({
     },
     onChange(e){
       console.log(e)
+      
       this.setData({
         navIndex:e.detail.index
       })
+      if(this.data.pageInfo[this.data.navIndex].dynaicInfo != false){
+        return;
+      }
       this.getDynaic(this.data.userId,e.detail.index+1,1,20)
     },
     //获取用户动态信息
