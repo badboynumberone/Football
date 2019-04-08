@@ -91,6 +91,5 @@
     "scope.userLocation": {
       "desc": "请求获取用户所在位置"
     }
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
