@@ -42,7 +42,7 @@ Page({
       if(this.data.singleInfo.isFollow){
         api='/produtionComment/cancleFllow';
         Dialog.confirm({
-          title: '确定不在关注？',
+          title: '确定不再关注？',
           message: ' ',
           cancelButtonText: '取消',
           confirmButtonText: '确定'

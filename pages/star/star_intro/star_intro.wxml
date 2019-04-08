@@ -17,4 +17,5 @@
             <image class="good_img fill" src="./../../../images/demo.jpg"  lazy-load="true" binderror="" bindload="" />
         </view>
     </view>
+    {{describesd}}
 </view>

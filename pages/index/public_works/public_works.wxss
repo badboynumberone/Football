@@ -35,7 +35,7 @@ view,text{
     background-clip: content-box;
 }
 .works_select view image{
-    width: 100rpx;
+    width: 80rpx;
     height: 50rpx;
     margin-bottom: 20rpx;
 }

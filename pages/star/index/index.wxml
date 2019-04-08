@@ -1,7 +1,7 @@
 <view class="main">
     <!--海报-->
-    <view class="start_poster" bindtap="navigateTo" data-url="/pages/star/star_intro/star_intro">
-        <image class="poster_image fill" src="../../../images/demo.jpg" />
+    <view class="start_poster" data-id="{{bannerInfo.id}}" bindtap="navigateTo" data-url="/pages/star/star_intro/star_intro">
+        <image class="poster_image fill" src="{{bannerInfo.imgUrl}}" />
     </view>
     <!--报名和成绩查询入口-->
     <view class="enter">
@@ -33,16 +33,16 @@
              <text>报名站点</text>
         </view>
         <view class="registration_site_container" >
-            <view class="registration_site_item" wx:for="{{6}}" wx:key="{{index}}" bindtap="navigateTo" data-url="/pages/star/station_details/station_details">
-                <image class="fill" src="../../../images/demo.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+            <view class="registration_site_item" wx:for="{{siteInfo}}" wx:key="{{index}}" bindtap="navigateTo" data-url="/pages/star/station_details/station_details" data-id="{{item.id}}">
+                <image class="fill" src="{{item.stationImg}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
                 <view class="site_info cl">
-                    <text class="site_city">南京</text>
-                    <text class="site_address">鼓楼区站点</text>
+                    <text class="site_city">{{item.cityName}}</text>
+                    <text class="site_address">{{item.stationName}}</text>
                 </view>
             </view>
         </view>
     </view>
     <view class="ending">
-        {{siteInfo.length ? (siteInfo.length ? 'Loading' : '~NOTHING~'):'Loading'}}
+        {{bottomFont}}
     </view>
 </view>

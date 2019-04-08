@@ -1,4 +1,5 @@
 import {requestTest} from '../../../utils/request';
+import {mapTime} from '../../../utils/util';
 Page({
 
     /**
@@ -12,7 +13,8 @@ Page({
       api:'',//当前请求接口
       bottomFont:'Loading',//到底了
       nothingImg:'',//空缺图片
-      text:''//空缺文字
+      text:'',//空缺文字
+      offset:0
     },
   
     /**
@@ -29,7 +31,8 @@ Page({
           nothingImg:'../../images/z.png',
           api:"/costomerProdutions/getCostomerBeiZan",
           text:'您还没有被别人赞过哦，赶紧去首页看看吧！',
-          userId:wx.getStorageSync("userId")
+          userId:wx.getStorageSync("userId"),
+          offset:1
         })
         this.getData("/costomerProdutions/getCostomerBeiZan",wx.getStorageSync("userId"),1,20);
           //发送请求获取数据
@@ -41,7 +44,8 @@ Page({
           nothingImg:'../../images/z.png',
           api:"/costomerProdutions/getCostomerZan",
           text:'您还没有赞过别人哦~赶紧去首页看看吧！',
-          userId:wx.getStorageSync("userId")
+          userId:wx.getStorageSync("userId"),
+          offset:2
         })
         this.getData("/costomerProdutions/getCostomerZan",wx.getStorageSync("userId"),1,20);
       }
@@ -51,7 +55,8 @@ Page({
         });
         this.setData({
           api:"/costomerProdutions/getCostomerBeiZan",
-          userId:options.userId
+          userId:options.userId,
+          offset:3
         })
         this.getData("/costomerProdutions/getCostomerBeiZan",options.userId,1,20);
           //发送请求获取数据
@@ -61,7 +66,8 @@ Page({
         });
         this.setData({
           api:"/costomerProdutions/getCostomerZan",
-          userId:options.userId
+          userId:options.userId,
+          offset:4
         })
         this.getData("/costomerProdutions/getCostomerZan",options.userId,1,20);
       }
@@ -83,7 +89,7 @@ Page({
       }).then(function(res){
         console.log()
         that.setData({
-          contentList:that.data.contentList.concat(res.dataList),
+          contentList:that.data.contentList.concat(mapTime(res.dataList,"creat_time")),
           totalPage:res.totalPage,
           totalSize:res.totalSize,
         })

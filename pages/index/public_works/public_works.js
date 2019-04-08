@@ -26,6 +26,13 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      console.log(options)
+      if(options.activityTitle){
+        this.setData({
+          content:options.activityTitle,
+          currentFontNum:options.activityTitle.length
+        })
+      }
     },
     onUnload: function(){
       app.globalData.imageSrc=[]
@@ -216,6 +223,12 @@ Page({
     },
     addIntroKey(e){
       let keyWords = this.data.keyWords;
+      if(this.data.keyWords.length>=8){
+        wx.showToast({
+          title: '添加关键词已至8个,无法继续添加！',icon: 'none',duration: 1500,mask: false
+        });
+        return;
+      }
       if(keyWords.includes(e.currentTarget.dataset.name)){
         wx.showToast({
           title: '已添加！',icon: 'none',duration: 1500,mask: false

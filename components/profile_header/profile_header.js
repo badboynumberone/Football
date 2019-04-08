@@ -38,7 +38,8 @@ Component({
           let data = {
             'nickName': e.detail.userInfo.nickName,
             'avatarUrl': e.detail.userInfo.avatarUrl,
-            'sex':e.detail.userInfo.gender
+            'sex':e.detail.userInfo.gender,
+            
           }
           updateUserInfo(data);
           let that =this;
@@ -51,14 +52,18 @@ Component({
               nickName:e.detail.userInfo.nickName,
               sex:e.detail.userInfo.gender
           }).then(function (res) {
-            console.log(res)
+            console.log(res.sign)
               wx.hideLoading();
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success'
+              });
               let userData = {
                 userName:res.nickname,
                 userHeader:res.headImgUrl,
                 sexIndex:res.sex,
                 birthDay:res.birthday,
-                signature:res.sign
+                signature:res.constoSign
               }
               updateUserInfo(userData);
               that.initData();

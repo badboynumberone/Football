@@ -6,6 +6,5 @@ module.exports = {
 
   starHost:"https://api.itchou.net/xingji-api-user",
   // apiHost: 'https://wwzq.hopeforever.cn/mall-api-wxapp',
-  shopId: '1065500133849825280',
-  testshopId:'1066522884475715598'
+  shopId: '1065500133849825280'
 }

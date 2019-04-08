@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "我要报名",
     "usingComponents":{
-        "van-field": "/miniprogram_npm/vant-weapp/field/index"
+        "van-field": "/miniprogram_npm/vant-weapp/field/index",
+        "bottom-btn":"/components/bottom_btn/bottom_btn"
     }
 }

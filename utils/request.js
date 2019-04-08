@@ -65,13 +65,13 @@ const request = (url, options) => {
 const requestTest = (url, options) => {
   return new Promise((resolve, reject) => {
     wx.request({
-      url: base.testHost + url,
+      url: base.apiHost + url,
       method: options.method,
       data: options.method === 'GET' ? options.data : JSON.stringify(options.data),
       header: {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': wx.getStorageSync('accessToken'),
-        'Shop-Id': base.testshopId
+        'Shop-Id': base.shopId
       },
       success(res) {
         // console.log('success')

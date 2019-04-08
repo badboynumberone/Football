@@ -40,11 +40,18 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      if(options.worksId){
+        app.globalData.currentWorksId=options.worksId
+      }
+      
       this.setData({
-        worksId:options.worksId,//作品ID
+        worksId:options.worksId || app.globalData.currentWorksId,//作品ID
         currentNavIndex:options.navIndex,//导航栏id
         currentProductionId:options.index//作品所在id
       })
+        
+      
+      
       this.getRating(options.worksId,1,5);
       console.log(options)
     },
@@ -287,7 +294,7 @@ Page({
         requestTest("/publishProdution/info",{
           method:"POST",
           data:{
-            id:that.data.worksId
+            id:app.globalData.currentWorksId
           }
         }).then(function(res){
           console.log("作品信息")
@@ -329,7 +336,7 @@ Page({
       if(this.data.worksInfo.isFollow){
         api='/produtionComment/cancleFllow';
         Dialog.confirm({
-          title: '确定不在关注？',
+          title: '确定不再关注？',
           message: ' ',
           cancelButtonText: '取消',
           confirmButtonText: '确定'

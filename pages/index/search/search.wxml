@@ -30,7 +30,7 @@
             <!--底部信息-->
               <view class="ending_wrapper">
                   <view>
-                    {{pageInfo[worksIndex].nowPageIndex < pageInfo[worksIndex].totalPage ? 'Loading...':'~THE ENDING~'}}
+                    {{pageInfo[worksIndex].bottomFont}}
                   </view>
               </view>
             

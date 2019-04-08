@@ -4,33 +4,33 @@
 		<view class="line_wrapper">
 			<text class="input_name">站点名称:</text>
 			<view class="input_content">
-				<text class="get_content">南京鼓楼站</text>
+				<text class="get_content">{{stationInfo.stationName}}</text>
 			</view>
 		</view>
         <view class="line_wrapper">
 			<text class="input_name">站点地址:</text>
 			<view class="input_content">
-				<text class="get_content">江苏南京中天商务4楼</text>
+				<text class="get_content">{{stationInfo.address}}</text>
 			</view>
 		</view>
         <view class="line_wrapper">
 			<text class="input_name" selectable="false" space="false" decode="false">联系人:</text>
 			<view class="input_content">
-				<text class="get_content"> 朱老师</text>
+				<text class="get_content"> {{stationInfo.linkMan}}</text>
 			</view>
 		</view>
 		<view class="line_wrapper" style="border-bottom:1rpx solid #f1f1f1;padding-bottom:30rpx">
 			<text class="input_name" selectable="false" space="false" decode="false">联系方式:</text>
 			<view class="input_content">
-				<text class="get_content">18273627281</text>
+				<text class="get_content">{{stationInfo.phone}}</text>
 			</view>
 		</view>
-		<view class="station_info" style="padding:10rpx" wx:for="{{6}}">
+		<view class="station_info" style="padding:10rpx">
 			<view class="station_content">
-				<text>南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...南京鼓楼站点...</text>
+				<text>{{stationInfo.stationInfo}}</text>
 			</view>
 			<view class="station_img_wrapper">
-				<image class="station_img fill" src="../../../images/demo.jpg" style="width:100%" lazy-load="false" binderror="" bindload="" />
+				<image class="station_img fill" src="{{stationInfo.stationImg}}" style="width:100%" lazy-load="false" binderror="" bindload="" />
 			</view>
 		</view>
 	</view>

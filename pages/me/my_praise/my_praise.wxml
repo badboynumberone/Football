@@ -1,6 +1,6 @@
 <view class="main">
     <!--我获得的赞-->
-    <praise-item contentList="{{contentList}}"></praise-item>
+    <praise-item contentList="{{contentList}}" offset="{{offset}}"></praise-item>
 
     <!--懒加载-->
     <view class="ending" wx:if="{{!(bottomFont=='~NOTHING~' && nothingImg !='')}}">

@@ -1,10 +1,8 @@
 @import '/common.wxss';
-.main{
-    
-}
+
 .register_container{
     background: #f1f1f1;
-    margin-bottom: 10rpx;
+    margin-bottom: 40rpx;
 }
 .register_bg{
     width: 100%;
@@ -40,7 +38,6 @@
     margin-top: 25rpx;
     font-size: 30rpx;
     background: #EFF3F6;
-    padding: 0 10rpx;
     border-radius: 5rpx;
     overflow: hidden;
     position: relative;
@@ -113,5 +110,19 @@
 .form-control .van-cell{
     padding: 0rpx !important;
 }
-
-
+.star_item{
+    padding: 30rpx 0;
+    font-size: 30rpx;
+    display: flex;
+    justify-content:space-between;
+    border-bottom:1rpx solid #f1f1f1;
+}
+.grey{
+    color:#666;
+}
+.green{
+    color: #63922F
+}
+.red{
+    color: #f94d0a;
+}

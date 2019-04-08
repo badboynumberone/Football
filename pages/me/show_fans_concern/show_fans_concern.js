@@ -63,7 +63,12 @@ Page({
         this.getData("/costomerProdutions/getCostomerFenSi",options.userId,1,20);
       }
     },
-
+    toHome(e){
+      wx.navigateTo({
+        url: '/pages/index/home_page/home_page?userId='+e.currentTarget.dataset.customer
+      });
+        
+    },
     //获取数据
     getData(api,userId,pageNo,pageSize){
       let that = this;

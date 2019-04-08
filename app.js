@@ -8,7 +8,6 @@ App({
   },
   onShow: function () {
     this.checkLogin()
-    
   },
   checkLogin: function () {
     wx.checkSession({

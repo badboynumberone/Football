@@ -62,7 +62,7 @@ Page({
         return;
       }
       wx.navigateTo({
-        url: '/pages/index/public_works/public_works'
+        url: '/pages/index/public_works/public_works?activityTitle=#'+this.data.bannerDetail.bannTitle
       });
     }
   })
