@@ -47,7 +47,8 @@
     "pages/purchase/order/logistics",
     "components/comment_item/comment_item",
     "components/nothing/nothing",
-    "pages/web/index"
+    "pages/web/index",
+    "pages/star/achievement_query/fail"
   ],
   "window": {
     "backgroundTextStyle": "light",

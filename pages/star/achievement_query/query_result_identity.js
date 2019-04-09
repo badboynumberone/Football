@@ -1,5 +1,5 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-
+import {requestTest} from '../../../utils/request';
 
 Page({
 
@@ -14,7 +14,8 @@ Page({
       nowDate:'',//当前时间
       birthDay:'',//生日
       city:[],
-
+      identity:'',//身份证号
+      name:''//姓名
     },
     // onChange(event) {
     //   const { picker, value, index } = event.detail;
@@ -24,7 +25,26 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      console.log(options)
+      this.setData({
+        identity:options.identity
+      })
+      this.getStarInfo(options.identity)
+      
       this.getNowDate();
+    },
+    getStarInfo(id){
+      requestTest('/userSign/getUserSign',{
+        method:"POST",
+        data:{
+          type:2,
+          cardNum:id
+        }
+      }).then(function(res){
+        console.log(res)
+      }).catch(function(err){
+        console.log("获取用户评级信息失败")
+      })
     },
     getNowDate(){
       let now = new Date();

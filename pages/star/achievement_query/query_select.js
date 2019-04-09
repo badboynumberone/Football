@@ -1,5 +1,5 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-import {post,get,starRequest} from '../../../utils/request';
+import {requestTest} from '../../../utils/request';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
 const app=getApp();
 
@@ -41,27 +41,59 @@ Page({
       })
     },
     queryResult(){
+      let type = null;
+      let that = this;
       if(!this.data.active){//证书查询
-        if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(this.data.certificateNum)){
+        type=1;
+        if(!this.data.certificateNum.length){
           wx.showToast({title: '证书号码格式不正确，请重新输入',icon: 'none',duration: 1500});
+          return;
         }
-        starRequest('/shopPage/getShopHomePage').then(function(res){console.log(res)}).catch(function(err){console.log(err)})
         console.log(this.data.certificateNum)
       }else{//身份证查询
+        type=2;
         if(!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(this.data.indentityNum)){
           wx.showToast({title: '身份证号码格式不正确，请重新输入',icon: 'none',duration: 1500});
+          return;
         }
-        starRequest('/user/getSignUpDetail',{
-          method:"POST",
-          
-        }).then(function(res){
-          console.log(res)
-          //需要处理返回来的错误消息
-          // 得到用户信息之后走本地存储
-          //最后跳转页面
-        }).catch(function(err){
-          console.log(err)
-        })
       }
+      requestTest('/userSign/getUserSign',{
+        method:"POST",
+        data:{
+          type,
+          cardNum:type=="1" ? that.data.certificateNum : that.data.indentityNum
+        }
+      }).then(function(res){
+        console.log(res)
+        if(!res.flg){
+          wx.showToast({title: res.flgmsg,icon: 'none',duration: 1500});
+          return;
+        }
+        if(res.status==1){
+          wx.navigateTo({
+            url: '/pages/star/achievement_query/fail?information=您的成绩不合格,请继续努力'
+          }); 
+        }else if(res.status==2){
+          wx.navigateTo({
+            url: '/pages/star/achievement_query/fail?information=您的成绩暂无结果,请耐心等待'
+          }); 
+        }else{
+          if(type==1){
+            wx.navigateTo({
+              url: '/pages/star/achievement_query/query_result_identity?card='+that.data.certificateNum
+            });
+          }else{
+            wx.navigateTo({
+              url: '/pages/star/achievement_query/query_result_identity?identity='+that.data.indentityNum
+            }); 
+          }
+          
+        }
+        //需要处理返回来的错误消息
+        // 得到用户信息之后走本地存储
+        //最后跳转页面
+      }).catch(function(err){
+        console.log(err)
+      })
     }
   })

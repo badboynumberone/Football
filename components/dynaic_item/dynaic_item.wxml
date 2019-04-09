@@ -7,7 +7,7 @@
 		<view class="video" wx:if="{{item.fileType==1}}">
 			<image class="fill" src="{{'/images/bf@2x.png'}}" />
 		</view>
-		<view class="img" wx:else>
+		<view class="img" wx:if="{{item.fileType==2}}">
 			<image class="img_wrapper" src="{{'/images/image@2x.png'}}" />
 			<view class="img_number">
 				<!-- {{item.fileUrl}} -->

@@ -17,15 +17,8 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      this.getStarInfo(options.card)
     },
-  
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-  
-    },
-  
     /**
      * 生命周期函数--监听页面显示
      */
@@ -33,38 +26,17 @@ Page({
   
     },
   
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-  
+    getStarInfo(id){
+      requestTest('/userSign/getUserSign',{
+        method:"POST",
+        data:{
+          type:1,
+          cardNum:id
+        }
+      }).then(function(res){
+        console.log(res)
+      }).catch(function(err){
+        console.log("获取用户评级信息失败")
+      })
     },
-  
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-  
-    },
-  
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-  
-    },
-  
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-  
-    },
-  
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-  
-    }
   })

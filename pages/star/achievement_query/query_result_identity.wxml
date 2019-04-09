@@ -13,14 +13,14 @@
 				<view class="form-group">
 					<view class="form-view">身份证号</view>
 					<view class="form-control">
-						<text class="indentity_num">4658791324568974312</text>
+						<text class="indentity_num">{{identity}}</text>
 					</view>
 				</view>
 
 				<view class="form-group">
 					<view class="form-view">姓名</view>
 					<view class="form-control">
-						<text class="name">张三</text>
+						<text class="name">{{name}}</text>
 					</view>
 				</view>
 

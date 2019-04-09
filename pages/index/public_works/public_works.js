@@ -11,12 +11,12 @@ Page({
       localContent:[],
       videoOrImg:true,//true代表上传的是图片，false代表上传的是视频
       upLoadContent:[],//已上传内容
-      plusControl:true,
+      plusControl:false,
       title:'',//标题
       content:'',//内容
       currentFontNum:0,//当前字数
       address:"",//当前地址
-      keyWords:['足球宝贝','足球小伙'],//关键词
+      keyWords:[],//关键词
       nowWords:'',//当前关键字
       show:false,//是否显示添加关键词的输入框
       introKey:['老大','老二']//推荐关键词
@@ -38,17 +38,11 @@ Page({
       app.globalData.imageSrc=[]
     },
     onShow(){
-      wx.showLoading({
-        title: '加载中。。。',
-        mask: true
-      });
-        
       this.setData({
         upLoadContent:getApp().globalData.imageSrc,
         videoOrImg:getApp().globalData.videoOrImg
       })
       this.getKey()
-      wx.hideLoading();
     },
     //初始化数据
     getKey(){
@@ -80,7 +74,8 @@ Page({
         success: (res)=>{
           if(res.errMsg=="chooseImage:ok"){
             var tempFilePaths = res.tempFilePaths[0];
-            app.globalData.videoOrImg=true
+            app.globalData.videoOrImg=true;
+            _this.setData({plusControl:false})
             wx.navigateTo({
               url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
             })
@@ -109,7 +104,7 @@ Page({
               }
               upLoadFile([result.tempFilePath]).then(function(res){
                 console.log(res)
-                _this.setData({upLoadContent:[res],plusControl:false,})
+                _this.setData({upLoadContent:[res],plusControl:true})
                 app.globalData.videoOrImg=false;
                 console.log("上传视频成功")
               }).catch(function(err){
@@ -189,7 +184,7 @@ Page({
               })
               console.log(that.data.longitude)
               console.log(that.data.latitude)
-              var qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
+              var qqMapApi = 'https://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
                 that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
               wx.request({
                 url: qqMapApi,
