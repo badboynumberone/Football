@@ -64,3 +64,6 @@
     color:#666;
     font-size: 30rpx;
 }
+.dynaic_info{
+    width: 330rpx;
+}

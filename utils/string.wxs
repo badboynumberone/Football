@@ -7,5 +7,9 @@ module.exports = {
   },
   trim: function(str){
     return str.trim();
-  }
+  },
+  //去除所有空格
+  // trimAll:function(str){
+  //   return str.replace(/\s+/g,"")
+  // }
 }

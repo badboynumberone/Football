@@ -44,9 +44,9 @@ Page({
     onLoad: function (options) {
     },
     onShow(){
+      this.getMenuCount();
       this.selectComponent("#profile-header").initData();
       this.getOrderCount();
-      this.getMenuCount();
     },
     getMenuCount(){
       let that = this;

@@ -66,7 +66,9 @@ Component({
                 signature:res.constoSign
               }
               updateUserInfo(userData);
+              
               that.initData();
+              that.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
               
           }).catch(function(err){
             wx.hideLoading();
@@ -104,7 +106,7 @@ Component({
         ['userInfo.userHeader']:wx.getStorageSync('userHeader'),
         ['userInfo.signature']:wx.getStorageSync('signature')
       })
-      this.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
+      
     }
   }
 })
