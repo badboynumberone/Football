@@ -11,12 +11,15 @@
             </view>
         </view>
         <view class="works_list" wx:if="{{upLoadContent.length}}">
-            <view class="list_item" wx:for="{{upLoadContent}}" wx:key="{{index}}" bindtap="clearItem">
-                <image wx:if="videoOrImg" class="list_item_img fill" src="{{item}}"  lazy-load="false" binderror="" bindload="" />
-                <image wx:if="videoOrImg" class="delete_item"  data-num="{{index}}" src="../../../images/sltsc@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
-                <text  wx:if="!videoOrImg" class="video_time" wx:if="">02:56:16</text>    
-                <view  wx:if="!videoOrImg" class="mark">
-                </view>
+            <view class="list_item" wx:for="{{upLoadContent}}" wx:key="{{index}}" >
+                
+                <video wx:if="{{!videoOrImg}}" class="fill" src="{{item}}"></video>
+                <image wx:if="{{videoOrImg}}" class="list_item_img fill" src="{{item}}"  lazy-load="false" binderror="" bindload="" />
+                <image class="delete_item"  data-num="{{index}}" src="../../../images/sltsc@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""  bindtap="clearItem"/>
+                <!-- <text   class="video_time" wx:if="">02:56:16</text>    
+                <view  wx:if="!videoOrImg" class="mark"> -->
+                
+                <!-- </view> -->
             </view>
             <view class="add_item" wx:if="{{!plusControl || !(upLoadContent.length==8)}}" bindtap="addItem"><text>+</text></view>
         </view>

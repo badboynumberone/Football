@@ -7,8 +7,8 @@
                 头像
             </view>
             <view class="content">
-                <view class="content_wrapper"style="margin-right:40rpx">         
-                    <image class="header_img_wraper" style="border-radius:50%"  src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                <view class="header_img_wraper"  style="margin-right:40rpx;background:url('/images/mrtx.png') no-repeat center/cover">         
+                    <image class="fill" style="border-radius:50%"  src="{{userHeader}}" mode="widthFix" lazy-load="false" binderror="" bindload=""/>
                 </view>
                 <image class="arrow" src="../../../images/xjjt.png" />
             </view>

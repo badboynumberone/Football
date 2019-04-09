@@ -48,7 +48,7 @@ Page({
       });
     },
     //获取辅导站信息
-    getSiteInfo(pageNo=1,pageSize=6){
+    getSiteInfo(pageNo=1,pageSize=20){
       let that = this;
       requestTest("/startLevelIntrod/pageList",{
         method:"POST",

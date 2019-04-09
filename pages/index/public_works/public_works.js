@@ -38,10 +38,17 @@ Page({
       app.globalData.imageSrc=[]
     },
     onShow(){
+      wx.showLoading({
+        title: '加载中。。。',
+        mask: true
+      });
+        
       this.setData({
-        upLoadContent:getApp().globalData.imageSrc
+        upLoadContent:getApp().globalData.imageSrc,
+        videoOrImg:getApp().globalData.videoOrImg
       })
       this.getKey()
+      wx.hideLoading();
     },
     //初始化数据
     getKey(){
@@ -73,6 +80,7 @@ Page({
         success: (res)=>{
           if(res.errMsg=="chooseImage:ok"){
             var tempFilePaths = res.tempFilePaths[0];
+            app.globalData.videoOrImg=true
             wx.navigateTo({
               url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
             })
@@ -90,9 +98,19 @@ Page({
         success: (result)=>{
           console.log(result) 
           if(result.errMsg=="chooseVideo:ok"){
+              if(result.duration>=30){
+                wx.showToast({
+                  title: '视频不能超过30s',
+                  icon: 'none',
+                  duration: 1500,
+                  mask: false
+                });
+                return;
+              }
               upLoadFile([result.tempFilePath]).then(function(res){
                 console.log(res)
-                _this.setData({upLoadContent:res,plusControl:false,videoOrImg:false})
+                _this.setData({upLoadContent:[res],plusControl:false,})
+                app.globalData.videoOrImg=false;
                 console.log("上传视频成功")
               }).catch(function(err){
                 console.log("上传视频失败")
@@ -148,41 +166,58 @@ Page({
         title:"正在定位中。。。",mask: true
       });
       let that = this;
-      wx.getLocation({
-        success: function (res) {
-          console.log(res)
-          //保存到data里面的location里面
-          that.setData({
-            location: {
-              longitude: res.longitude,  
-              latitude: res.latitude
-            }
-          })
-          var qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
-            that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
-          wx.request({
-            url: qqMapApi,
-            data: {},
-            method: 'GET',
-            success: (res) => {
-              console.log(res.data)
-            //取位置名
+      // wx.getSetting({
+      //   success: (result) => {
+      //     if(!result.authSetting["scope.userLocation"]){
+      //       wx.authorize({
+      //         scope: 'scope.userLocation',
+      //         success() {
+      //           // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+                
+      //         }
+      //       })
+      //     }
+          wx.getLocation({
+            success: function (res) {
+              console.log(res)
+              //保存到data里面的location里面
               that.setData({
-                address: res.data.result.address
+                location: {
+                  longitude: res.longitude,  
+                  latitude: res.latitude
+                }
               })
-              wx.hideLoading();  
+              console.log(that.data.longitude)
+              console.log(that.data.latitude)
+              var qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
+                that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
+              wx.request({
+                url: qqMapApi,
+                data: {},
+                method: 'GET',
+                success: (res) => {
+                  console.log(res.data)
+                //取位置名
+                  that.setData({
+                    address: res.data.result.address
+                  })
+                  wx.hideLoading();  
+                },
+                fail:function(){
+                  wx.hideLoading();
+                  wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
+                }
+              });
             },
             fail:function(){
               wx.hideLoading();
               wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
             }
-          });
-        },
-        fail:function(){
-          wx.hideLoading();
-          wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
-        }
-      })
+          })
+      //   }
+      // });
+        
+      
     },
     onKeyChange(e){
       this.setData({
@@ -261,6 +296,7 @@ Page({
       }
       
       let obj = {
+        fileType:this.data.videoOrImg ? '2' : '1', 
         fileUrlList:this.data.upLoadContent,
         title:this.data.title,
         content:this.data.content,

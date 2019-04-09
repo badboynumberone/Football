@@ -61,8 +61,8 @@ view,text{
     position: absolute;
     top:-20rpx;
     right:-20rpx;
-    width: 30rpx;
-    height: 30rpx;
+    width: 40rpx;
+    height: 40rpx;
 }
 .video_time{
     position: absolute;

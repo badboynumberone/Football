@@ -1,6 +1,6 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 <van-dialog id="van-dialog" />
-<van-transition show="true" name="fade" >
+
 <view class="main">
     <!--作者信息-->
     <view class="works_author">
@@ -25,7 +25,7 @@
     </view>
     <!--视频或图片-->
     <view class="is_video_img">
-        <block wx:if="{{true}}">
+        <block wx:if="{{worksInfo.fileType == '2'}}">
             <view class="works_banner">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
@@ -39,8 +39,7 @@
             </view>
         </block>
         <block wx:else>
-            <video class="fill" src="{{worksInfo.produtionFileUrl.trim('[').trime(']')}}" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
-                bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror="">
+            <video class="fill" src="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
             </video>
         </block>
     </view>
@@ -132,7 +131,7 @@
         </view>
     </view>
 </view>
-</van-transition>
+
 <!-- 底部选择框 -->
 <van-popup show="{{ isPop }}" bind:close="onClose" overlay="{{true}}" position="bottom" duration="300" custom-style="background:rgba(0,0,0,0.03)">
     <view class="pop_wrapper">

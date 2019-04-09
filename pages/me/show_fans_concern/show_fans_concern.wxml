@@ -1,7 +1,7 @@
 <view class="main" style="border-top:1rpx solid #f1f1f1">
     <!--关注或粉丝-->
     <view class="item" wx:for="{{contentList}}" wx:key="{{index}}" data-customer="{{item.id}}" bindtap="toHome" >
-        <view class="item_wrapper">
+        <view class="item_wrapper" style="background:url('../../../images/mrtx.png') no-repeat center/cover">
             <image class="fill" src="{{item.headImg || '../../../images/mrtx.png'}}" />
         </view>
         <view class="item_info">

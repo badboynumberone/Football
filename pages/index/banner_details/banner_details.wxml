@@ -7,7 +7,8 @@
             <view class="img_video_wrapper">
                 <image wx:if="{{bannerDetail.bannImg}}" class="activity_img" src="{{bannerDetail.bannImg}}"  lazy-load="false" style="width:100%;height:450rpx" >
                 </image>
-                <video wx:if="{{bannerDetail.bannVoid}}" class="activity_video" src="{{bannerDetail.bannImg}}" style="width:100%">
+                <video wx:if="{{bannerDetail.bannVoid}}" class="activity_video" src="https://vd3.bdstatic.com/mda-ihhf38w8vwr3xi5x/sc/mda-ihhf38w8vwr3xi5x.mp4?auth_key=1554797292-0-0-fbcb9580195d8fbbf5e5a9011200b57a&bcevod_channel=searchbox_feed&pd=bjh&abtest=all" style="width:100%" controls="{{false}}"
+  event-model="bubble">
                 </video>
             </view>
             <!--内容-->

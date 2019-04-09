@@ -55,13 +55,12 @@
 }
 .registration_site_container{
     display: flex;
-    justify-content: space-around;
     flex-flow: row wrap;
 }
 .registration_site_item{
     padding: 10rpx;
-    width: 370rpx;
-    height: 370rpx;
+    width: 373rpx;
+    height: 375rpx;
     position: relative;
 }
 .registration_site_item image{

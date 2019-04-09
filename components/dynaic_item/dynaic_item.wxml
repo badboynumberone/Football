@@ -4,7 +4,7 @@
 	
 	<view class="works_img_wrapper">
 		<image class="works_image fill" src="{{number.formatStringToArray(item.fileUrl)[0] || '../../images/mrtx.png'}}" />
-		<view class="video" wx:if="{{item.fileType==2}}">
+		<view class="video" wx:if="{{item.fileType==1}}">
 			<image class="fill" src="{{'/images/bf@2x.png'}}" />
 		</view>
 		<view class="img" wx:else>

@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index/index",
     "pages/wx-cropper/index",
-    
     "pages/index/works_details/works_details",
     "pages/me/edit_profile/edit_profile",
     "pages/imageCut/imageCut",
@@ -46,7 +45,6 @@
     "pages/purchase/order/submit",
     "pages/purchase/address/detail",
     "pages/purchase/order/logistics",
-    
     "components/comment_item/comment_item",
     "components/nothing/nothing",
     "pages/web/index"
@@ -93,5 +91,6 @@
     "scope.userLocation": {
       "desc": "请求获取用户所在位置"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

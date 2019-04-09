@@ -155,10 +155,10 @@ Page({
       
       //先发请求请求成功后再删啊
       Dialog.confirm({
-        title: '确认删除评论？',
-        message:'',
-        cancelButtonText: '取消',
-        confirmButtonText: '确定'
+        title: '确定删除评论？',
+          message: ' ',
+          cancelButtonText: '取消',
+          confirmButtonText: '确定'
       }).then(() => {
         requestTest("/produtionComment/comment/delete",{
           method:"POST",

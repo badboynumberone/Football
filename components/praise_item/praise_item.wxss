@@ -25,7 +25,7 @@
     height: 90rpx;
     border-radius: 50%;
     overflow: hidden;
-    background: #666;
+    
 }
 .praise_to{
     font-size: 35rpx;
@@ -53,7 +53,6 @@
 .dynaic_img_wrapper{
     width: 150rpx;
     height: 150rpx;
-    background: #666;
     margin-right: 20rpx;
 }
 .dynaic_name{

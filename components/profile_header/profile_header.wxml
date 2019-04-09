@@ -3,7 +3,7 @@
 <view class="personal_info">
 	<button wx:if="{{headerType=='me'}}" type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo" bindgetuserinfo="login">
 		<view class="personal_info_top">
-			<view class="personal_header_wrapper"  >
+			<view class="personal_header_wrapper"  style="background:url('/images/mrtx.png') no-repeat center/cover">
 				<image class="personal_img fill" style="border-radius: 50%"  src="{{ userInfo.userHeader || '/images/mrtx.png'}}" />
 			</view>
 			<view class="personal_info_wrapper">

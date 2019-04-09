@@ -21,8 +21,17 @@ Page({
   onShow(){
     if(app.globalData.index && app.globalData.NavIndex){
       this.setData({
-        ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].isPraise"]:app.globalData.isPraise
+        ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].isPraise"]:app.globalData.isPraise,
       })
+      if(this.data.pageInfo[app.globalData.NavIndex].dynaicInfo[app.globalData.index].isPraise){
+        this.setData({
+          ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].assist"]:parseInt(this.data.pageInfo[app.globalData.NavIndex].dynaicInfo[app.globalData.index].assist)+1,
+        })
+      }else{
+        this.setData({
+          ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].assist"]:parseInt(this.data.pageInfo[app.globalData.NavIndex].dynaicInfo[app.globalData.index].assist)-1,
+        })
+      }
     }
   },
   onunLoad(){

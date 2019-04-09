@@ -55,7 +55,7 @@
 }
 .is_video_img{
     width: 100%;
-    
+    height: 750rpx;
 }
 .works_container{
     
