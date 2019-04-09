@@ -1,2 +1,9 @@
 <!--components/nothing/nothing.wxml-->
-<text>components/nothing/nothing.wxml</text>
+<view class="nothing">
+    <image class="nothing_image" src="{{src}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+    <text class="">{{text}}</text>
+    <view class="toHome" bindtap="navigateTo" data-url="{{url}}">
+        {{font}}
+    </view>
+</view>
+  

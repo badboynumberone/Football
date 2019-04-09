@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index/index",
+    "pages/wx-cropper/index",
+    
     "pages/index/works_details/works_details",
     "pages/me/edit_profile/edit_profile",
     "pages/imageCut/imageCut",
@@ -44,7 +46,7 @@
     "pages/purchase/order/submit",
     "pages/purchase/address/detail",
     "pages/purchase/order/logistics",
-    "pages/wx-cropper/index",
+    
     "components/comment_item/comment_item",
     "components/nothing/nothing",
     "pages/web/index"

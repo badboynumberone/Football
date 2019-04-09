@@ -22,8 +22,10 @@ Page({
       this.setData({
         navIndex:e.detail.index
       })
+			
       if(this.data.pageInfo[this.data.navIndex].commentInfo!=false){return;}
       this.getData(this.data.navIndex+1,1,20)
+			
     },
     //获取数据
     getData(type,pageNo,pageSize){

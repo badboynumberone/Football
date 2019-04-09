@@ -1,1 +1,26 @@
 /* components/nothing/nothing.wxss */
+.nothing{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+.nothing image{
+    width: 400rpx;
+    height: 400rpx;
+    margin-top: 200rpx;
+}
+.nothing > text{
+    font-size: 32rpx;
+    color: #222
+}
+.toHome{
+    margin-top: 60rpx;
+    width: 600rpx;
+    line-height: 100rpx;
+    color: #62912f;
+    text-align: center;
+    border:1px solid #62912f;
+    font-size: 17px;
+}

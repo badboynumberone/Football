@@ -1,4 +1,4 @@
-import {upLoadFile,requestTest} from '../../../utils/request';
+import {requestTest} from '../../../utils/request';
 import {updateUserInfo,getUserInfo,sleep} from '../../../utils/util';
 const app = getApp();
 Page({
