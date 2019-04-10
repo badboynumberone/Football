@@ -1,6 +1,6 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
 import {requestTest} from '../../../utils/request';
-
+import {mapTime} from '../../../utils/util';
 Page({
 
     /**
@@ -13,9 +13,12 @@ Page({
       sexIndex:0,//男女性别
       nowDate:'',//当前时间
       birthDay:'',//生日
-      city:[],
+      city:'',//当前城市
       identity:'',//身份证号
-      name:''//姓名
+      name:'',//姓名
+      stationName:'',//站点名称
+      onePhoto:'',//一寸照片
+      starInfo:[]//星级评定信息
     },
     // onChange(event) {
     //   const { picker, value, index } = event.detail;
@@ -30,10 +33,10 @@ Page({
         identity:options.identity
       })
       this.getStarInfo(options.identity)
-      
-      this.getNowDate();
     },
+    //获取星级信息
     getStarInfo(id){
+      let that = this;
       requestTest('/userSign/getUserSign',{
         method:"POST",
         data:{
@@ -42,47 +45,27 @@ Page({
         }
       }).then(function(res){
         console.log(res)
+        that.setData({
+          identity:res.cerdCard,
+          name:res.userName,
+          city:res.cityAddress,
+          stationName:res.stationName,
+          onePhoto:res.inchimg,
+          starInfo:mapTime(res.dataList,'creatTime')
+        })
       }).catch(function(err){
         console.log("获取用户评级信息失败")
       })
     },
-    getNowDate(){
-      let now = new Date();
-      let month=now.getMonth()<10 ? '0'+now.getMonth(): now.getMonth();
-      let date =now.getDate()<10 ? '0'+now.getDate() : now.getDate();
-      this.setData({
-        nowDate :now.getFullYear() + '-' + month + '-' + date
-      })
-      console.log(this.data.nowDate)
+    queryStar(e){
+      wx.navigateTo({
+        url: '/pages/star/achievement_query/query_result_certificate?id='+e.currentTarget.dataset.id
+      });
     },
-    bindSexChange(e){
-      console.log(e.detail.value)
-      this.setData({
-        sexIndex: e.detail.value,
-        sexOffset:true
-      })
-    },
-    bindDateChange:function(e){
-      this.setData({
-        birthDay: e.detail.value,
-      })
-    },
-    bindRegionChange:function(e){
-      this.setData({
-        city: e.detail.value
-      })
-    },
-    // 上传图片
-    uploadImg:function(){
-      wx.chooseImage({
-        count: 3,
-        sizeType: ['original','compressed'],
-        sourceType: ['album','camera'],
-        success: (result)=>{
-          console.log(result)
-        },
-        fail: ()=>{},
-        complete: ()=>{}
+    //查看电子证书
+    toElectrical(){
+      wx.navigateTo({
+        url: '/pages/star/achievement_query/query_result_electrical'
       });
     }
   })

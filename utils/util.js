@@ -141,11 +141,11 @@ const mapTime = (value,name)=>{
   }else if(value.constructor == Object){
     value[name] = formatTimeStamp(value[name])
     return value
+  }else if(value.constructor == String){
+    return  formatTimeStamp(value)
   }
 }
-const formatStringToArray = (val,name)=>{
-  return JSON.parse(val.produtionFileUrl)
-}
+
 module.exports = {
   sleep,
   getNowTime,
@@ -159,6 +159,5 @@ module.exports = {
   formatTime,
   formatNumber,
   formatTimeStamp,
-  mapTime,
-  formatStringToArray
+  mapTime
 }

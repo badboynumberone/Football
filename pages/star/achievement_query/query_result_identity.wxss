@@ -27,7 +27,7 @@
     color: #666;
 }
 .form-view{
-    font-size: 34rpx;
+    font-size: 16px;
 }
 .form-group{
     padding: 20rpx 0;

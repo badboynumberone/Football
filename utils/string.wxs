@@ -8,8 +8,18 @@ module.exports = {
   trim: function(str){
     return str.trim();
   },
-  //去除所有空格
-  // trimAll:function(str){
-  //   return str.replace(/\s+/g,"")
-  // }
+  //星级评定
+  mapLevel:function(str){
+    switch(str){
+      case "1" : {return '一星级';}
+      case "2" : {return '二星级';}
+      case "3" : {return '三星级';}
+      case "4" : {return '四星级';}
+      case "5" : {return '五星级';}
+      case "6" : {return '六星级';}
+      case "7" : {return '七星级';}
+      case "8" : {return '八星级';}
+      case "9" : {return '九星级';}
+    }
+  }
 }

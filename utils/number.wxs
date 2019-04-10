@@ -34,7 +34,5 @@ module.exports = {
     // return day.getFullYear() + "-" + addZero(day.getMonth() + 1) + "-" + addZero(day.getDate())+" "+
     //   + addZero(day.getHours()) + ":" + addZero(day.getMinutes()) + ":" + addZero(day.getSeconds());
   },
-  formatStringToArray:function(str){
-    return JSON.parse(str)
-  }
+  
 }

@@ -41,6 +41,7 @@ Page({
       })
     },
     queryResult(){
+      console.log(this.data.certificateNum)
       let type = null;
       let that = this;
       if(!this.data.active){//证书查询
@@ -80,7 +81,7 @@ Page({
         }else{
           if(type==1){
             wx.navigateTo({
-              url: '/pages/star/achievement_query/query_result_identity?card='+that.data.certificateNum
+              url: '/pages/star/achievement_query/query_result_certificate?card='+that.data.certificateNum
             });
           }else{
             wx.navigateTo({

@@ -29,17 +29,19 @@
             <view class="works_banner">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
-                        <swiper-item wx:for="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" wx:key="{{index}}" style="background:url({{item}}) no-repeat center;background-size: 100% 100%;"/>
+                        <swiper-item wx:for="{{worksInfo.fileUrl}}" wx:key="{{index}}">
+                            <image class="fill" src="{{item}}" lazy-load="false" binderror="" bindload="" />
+                        </swiper-item>
                 </swiper>
                 <!--分页器-->
                 <view class="stepper_wrapper" >
                     <text class="stepper_title">娃娃足球工程项目</text>
-                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{number.formatStringToArray(worksInfo.produtionFileUrl).length}}</view>
+                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{worksInfo.fileUrl.length}}</view>
                 </view>
             </view>
         </block>
         <block wx:else>
-            <video class="fill" src="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
+            <video class="fill" src="{{worksInfo.fileUrl}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
             </video>
         </block>
     </view>
