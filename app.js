@@ -1,7 +1,6 @@
 //app.js
 import auth from '/utils/auth'
 import {resetUserInfo} from '/utils/util'
-import '/utils/refresh.js'
 App({
   onLaunch: function () {
     this.checkLogin()

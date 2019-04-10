@@ -26,12 +26,12 @@ Page({
   
     },
   
-    getStarInfo(id){
+    getStarInfo(card){
       requestTest('/userSign/getUserSign',{
         method:"POST",
         data:{
           type:1,
-          cardNum:id
+          cardNum:card
         }
       }).then(function(res){
         console.log(res)
