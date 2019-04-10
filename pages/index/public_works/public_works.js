@@ -154,66 +154,112 @@ Page({
       if(this.data.address){
         return;
       }
-      this.setLocation();
-    },
-    setLocation(){
-      wx.showLoading({
-        title:"正在定位中。。。",mask: true
-      });
       let that = this;
-      // wx.getSetting({
-      //   success: (result) => {
-      //     if(!result.authSetting["scope.userLocation"]){
-      //       wx.authorize({
-      //         scope: 'scope.userLocation',
-      //         success() {
-      //           // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-                
-      //         }
-      //       })
-      //     }
-          wx.getLocation({
-            success: function (res) {
-              console.log(res)
-              //保存到data里面的location里面
-              that.setData({
-                location: {
-                  longitude: res.longitude,  
-                  latitude: res.latitude
-                }
-              })
-              console.log(that.data.longitude)
-              console.log(that.data.latitude)
-              var qqMapApi = 'https://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
-                that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
-              wx.request({
-                url: qqMapApi,
-                data: {},
-                method: 'GET',
-                success: (res) => {
-                  console.log(res.data)
-                //取位置名
-                  that.setData({
-                    address: res.data.result.address
-                  })
-                  wx.hideLoading();  
-                },
-                fail:function(){
+      wx.getSetting({
+        success: (result) => {
+          console.log(result.authSetting["scope.userLocation"])
+          
+          if(!result.authSetting["scope.userLocation"]){
+            wx.showModal({
+              content: '作品发布需要获取您的位置信息',
+              showCancel: true,
+              cancelText: '取消',
+              cancelColor: '#000000',
+              confirmText: '去开启',
+              confirmColor: '#3CC51F',
+              success: (result) => {
+                if (result.confirm) {
+                  wx.openSetting({
+                    success: (result) => {
+                      if(result.authSetting['scope.userLocation']){
+                        that.setLocation()
+                        wx.hideLoading()
+                      }
+                      console.log()
+                    }
+                  });
+                }else{
                   wx.hideLoading();
-                  wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
                 }
-              });
-            },
-            fail:function(){
-              wx.hideLoading();
-              wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
-            }
-          })
-      //   }
-      // });
-        
+              }
+            });
+            return;
+          }else{
+            that.setLocation();
+            wx.hideLoading();
+          }   
+        }
+       });
+    },
+    //设置地理位置
+    setLocation(){
+      let that =this;
+      try{
+        wx.showLoading({
+          title:"正在定位中。。。",mask: true
+        });
+        wx.getLocation({
+          success: function (res) {
+            console.log(res)
+            //保存到data里面的location里面
+            that.setData({
+              location: {
+                longitude: res.longitude,  
+                latitude: res.latitude
+              }
+            })
+            console.log(that.data.longitude)
+            console.log(that.data.latitude)
+            var qqMapApi = 'https://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
+              that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
+            wx.request({
+              url: qqMapApi,
+              data: {},
+              method: 'GET',
+              success: (res) => {
+                console.log(res.data)
+              //取位置名
+                that.setData({
+                  address: res.data.result.address
+                })
+                wx.hideLoading();  
+              },
+              fail:function(){
+                wx.hideLoading();
+                wx.showToast({
+                  title: '定位失败，请稍后重试',
+                  icon: 'none',
+                  duration: 1500,
+                  mask: false,
+                });
+                  
+              }
+            });
+          },
+          fail:function(){
+            wx.hideLoading();
+                wx.showToast({
+                  title: '定位失败，请稍后重试',
+                  icon: 'none',
+                  duration: 1500,
+                  mask: false,
+                });
+          }
+        }) 
+      }catch(err){
+        wx.showToast({
+          title: '获取位置信息失败，请稍后重试',
+          icon: 'none',
+          image: '',
+          duration: 1500,
+          mask: false,
+        }); 
+      }
+      
+      
       
     },
+    
     onKeyChange(e){
       this.setData({
         nowWords:e.detail
