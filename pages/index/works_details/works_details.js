@@ -16,7 +16,7 @@ Page({
       currentProductionId:'',
       currentNavIndex:'',//当前索引
       worksId:'',//作品Id
-      worksInfo:[],//作品信息
+      worksInfo:{},//作品信息
       isMyWorks:true,//true代表是自己
       ratingContent:'',//评论内容
       rating:[],//评论信息

@@ -54,6 +54,7 @@
     width: 150rpx;
     height: 150rpx;
     margin-right: 20rpx;
+    overflow: hidden;
 }
 .dynaic_name{
     font-weight: bold;

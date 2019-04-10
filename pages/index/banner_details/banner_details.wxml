@@ -12,13 +12,13 @@
                 </video>
             </view>
             <!--内容-->
-            <text class="banner_info">{{bannerDetail.content}}</text>
+            <text class="banner_info">{{bannerDetail.bannContent}}</text>
             <!--活动链接-->
             <view class="activity_link_wrapper" bindtap="activityLink">
                 <text class="activity_link" selectable="false" space="false" decode="false">活动链接 <text>{{bannerDetail.bannH5Url}}</text></text> 
             </view>
             <!--去参加-->
-            <view class="go_jion" bindtap="goJion">
+            <view class="go_jion" bindtap="goJion" wx:if="{{bannerDetail.bannUserJoin==1}}">
                 去参加
             </view>
         </view>

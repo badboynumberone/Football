@@ -538,13 +538,13 @@ Page({
 
   goHome() {
     wx.switchTab({
-      url: '/pages/index/index',
+      url: '/pages/purchase/index/index',
     })
   },
 
   goProductList() {
     wx.navigateTo({
-      url: '/pages/product/index',
+      url: '/pages/purchase/index',
     })
   },
 

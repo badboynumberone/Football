@@ -99,7 +99,7 @@
   <view class="invalid">
   <image src="../../../images/product_invalid.png" style="width: 200px;height: 200px;"></image>
   <view style="font-size: 16px;">亲，该商品已失效，去看看其他商品吧！</view>
-  <view class="go-home" bindtap='goHome'>去首页</view>
+  <view class="go-home" bindtap='goHome'>去在线商城</view>
   </view>
 </block>
 </block>

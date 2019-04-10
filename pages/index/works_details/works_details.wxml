@@ -1,12 +1,12 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 <van-dialog id="van-dialog" />
-
-<view class="main">
+<van-transition name="fade">
+<view class="main" wx:if="{{worksInfo}}" >
     <!--作者信息-->
     <view class="works_author">
         <view class="author_header">
             <view class="author_img_wrapper" bindtap="toHomePage" data-customer="{{worksInfo.coustmoerId}}">
-                <image class="author_img fill" style="border-radius:50%"  src="{{worksInfo.headImgUrl || '../../../images/demo.jpg'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+                <image class="author_img fill" style="border-radius:50%"  src="{{worksInfo.headImgUrl || '../../../images/mrtx.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                 </image>
             </view>
             <view class="author_info">
@@ -40,7 +40,7 @@
                 </view>
             </view>
         </block>
-        <block wx:else>
+        <block wx:if="{{worksInfo.fileType == '1'}}">
             <video class="fill" src="{{worksInfo.fileUrl}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
             </video>
         </block>
@@ -133,7 +133,7 @@
         </view>
     </view>
 </view>
-
+</van-transition>
 <!-- 底部选择框 -->
 <van-popup show="{{ isPop }}" bind:close="onClose" overlay="{{true}}" position="bottom" duration="300" custom-style="background:rgba(0,0,0,0.03)">
     <view class="pop_wrapper">

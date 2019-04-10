@@ -52,7 +52,7 @@
   <view style='height:10px;'></view>
   <van-cell-group>
     <van-cell title="商品金额" value="¥{{number.formatPrice(preOrderData.productFee)}}" />
-    <van-cell title="运费" value="+ ¥{{number.formatPrice(preOrderData.postFee)}}" />
+    <van-cell title="运费" value="¥{{number.formatPrice(preOrderData.postFee)}}" />
   </van-cell-group>
   <view style='height:50px;'></view>
 

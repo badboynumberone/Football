@@ -7,6 +7,7 @@
         "dynaic-item":"/components/dynaic_item/dynaic_item",
         "concern-item":"/components/concern/concern",
         "profile-header":"/components/profile_header/profile_header",
-        "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+        "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+        "van-transition": "/miniprogram_npm/vant-weapp/transition/index"
     }
 }

@@ -7,10 +7,10 @@
           <view class="wx-cropper-view-box">
             <view class="wx-cropper-dashed-h"></view>
             <view class="wx-cropper-dashed-v"></view>
-            <view class="wx-cropper-line-t" data-drag="top" catchtouchstart="dragStart" catchtouchmove="dragMove"></view>
-            <view class="wx-cropper-line-r" data-drag="right" catchtouchstart="dragStart" catchtouchmove="dragMove"></view>
-            <view class="wx-cropper-line-b" data-drag="bottom" catchtouchstart="dragStart" catchtouchmove="dragMove"></view>
-            <view class="wx-cropper-line-l" data-drag="left" catchtouchstart="dragStart" catchtouchmove="dragMove"></view>
+            <view class="wx-cropper-line-t" data-drag="top"></view>
+            <view class="wx-cropper-line-r" data-drag="right"></view>
+            <view class="wx-cropper-line-b" data-drag="bottom"></view>
+            <view class="wx-cropper-line-l" data-drag="left"></view>
             <view class="wx-cropper-point point-t" data-drag="top" catchtouchstart="dragStart" catchtouchmove="dragMove"></view>
             <view class="wx-cropper-point point-tr" data-drag="topTight"></view>
             <view class="wx-cropper-point point-r" data-drag="right" catchtouchstart="dragStart" catchtouchmove="dragMove"></view>

@@ -230,96 +230,19 @@ Page({
         canvasId: 'myCanvas',
         success: function (res) {
           console.log(res)
-          
           if(res){
-            upLoadFile([res.tempFilePath]).then(function(result){
-              app.globalData.imageSrc = app.globalData.imageSrc.concat([result])
-              wx.hideLoading()
-              wx.navigateBack({
-                delta: 1
-              });
-                
-            }).catch(function(err){
-              wx.showToast({
-                title: '上传失败请稍后重试',
-                icon: 'none',
-                duration: 1500,
-              });
-                
-              console.log("上传失败")
-            })
+            app.globalData.uploadImage = app.globalData.uploadImage.concat([res.tempFilePath])
+            wx.hideLoading();
+            wx.navigateBack({
+              delta: 1
+            }); 
           }
-          
         }
       })
     })
   },
 
-  /**
-   * 设置大小的时候触发的touchStart事件
-   * 存数据
-   */
-  dragStart(e) {
-    T_PAGE_X = e.touches[0].pageX
-    T_PAGE_Y = e.touches[0].pageY
-    CUT_L = this.data.cutL
-    CUT_R = this.data.cutR
-    CUT_B = this.data.cutB
-    CUT_T = this.data.cutT
-  },
+  
 
-  /**
-   * 设置大小的时候触发的touchMove事件
-   * 根据dragType判断类型
-   * 4个方向的边线拖拽效果
-   * 右下角按钮的拖拽效果
-   */
-  dragMove(e) {
-    var _this = this
-    var dragType = e.target.dataset.drag
-    switch (dragType) {
-      case 'right':
-        var dragLength = (T_PAGE_X - e.touches[0].pageX) * DRAFG_MOVE_RATIO
-        if (CUT_R + dragLength < 0) dragLength = -CUT_R
-        this.setData({
-          cutR: CUT_R + dragLength
-        })
-        break;
-      case 'left':
-        var dragLength = (T_PAGE_X - e.touches[0].pageX) * DRAFG_MOVE_RATIO
-        if (CUT_L - dragLength < 0) dragLength = CUT_L
-        if ((CUT_L - dragLength) > (this.data.cropperW - this.data.cutR)) dragLength = CUT_L - (this.data.cropperW - this.data.cutR)
-        this.setData({
-          cutL: CUT_L - dragLength
-        })
-        break;
-      case 'top':
-        var dragLength = (T_PAGE_Y - e.touches[0].pageY) * DRAFG_MOVE_RATIO
-        if (CUT_T - dragLength < 0) dragLength = CUT_T
-        if ((CUT_T - dragLength) > (this.data.cropperH - this.data.cutB)) dragLength = CUT_T - (this.data.cropperH - this.data.cutB)
-        this.setData({
-          cutT: CUT_T - dragLength
-        })
-        break;
-      case 'bottom':
-        var dragLength = (T_PAGE_Y - e.touches[0].pageY) * DRAFG_MOVE_RATIO
-        if (CUT_B + dragLength < 0) dragLength = -CUT_B
-        this.setData({
-          cutB: CUT_B + dragLength
-        })
-        break;
-      case 'rightBottom':
-        var dragLengthX = (T_PAGE_X - e.touches[0].pageX) * DRAFG_MOVE_RATIO
-        var dragLengthY = (T_PAGE_Y - e.touches[0].pageY) * DRAFG_MOVE_RATIO
-        if (CUT_B + dragLengthY < 0) dragLengthY = -CUT_B
-        if (CUT_R + dragLengthX < 0) dragLengthX = -CUT_R
-        this.setData({
-          cutB: CUT_B + dragLengthY,
-          cutR: CUT_R + dragLengthX
-        })
-        break;
-      default:
-        break;
-    }
-  },
+  
 })

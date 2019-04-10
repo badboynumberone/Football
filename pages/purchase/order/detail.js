@@ -144,7 +144,7 @@ Page({
       } else if (paymentMethod === '2') {
         // 线下支付
         wx.navigateTo({
-          url: '/pages/order/payment?orderId=' + orderId + '&orderFee=' + orderFee + '&alipayAccount=' + alipayAccount
+          url: '/pages/purchase/order/payment?orderId=' + orderId + '&orderFee=' + orderFee + '&alipayAccount=' + alipayAccount
         })
       } 
     }).catch(() => {
@@ -159,15 +159,15 @@ Page({
     var refundStatus = this.data.refundOrder.refundStatus
     if (refundId && orderStatus === '1' && refundStatus !== '6') {
       wx.navigateTo({
-        url: '/pages/refund/detail?id=' + refundId
+        url: '/pages/purchase/refund/detail?id=' + refundId
       })
     } else if (refundId && orderStatus === '3' && refundStatus !== '6') {
       wx.navigateTo({
-        url: '/pages/refund/detail?id=' + refundId
+        url: '/pages/purchase/refund/detail?id=' + refundId
       })
     } else {
       wx.navigateTo({
-        url: '/pages/refund/apply?orderId=' + orderId
+        url: '/pages/purchase/refund/apply?orderId=' + orderId
       })
     }
   },
@@ -175,14 +175,14 @@ Page({
   goRefundDetail() {
     var refundOrderId = that.data.refundOrder.id
     wx.navigateTo({
-      url: '/pages/refund/detail?id=' + refundOrderId
+      url: '/pages/purchase/refund/detail?id=' + refundOrderId
     })
   },
 
   goLogistics(e) {
     var orderId = e.currentTarget.dataset.orderId
     wx.navigateTo({
-      url: '/pages/order/logistics?id=' + orderId,
+      url: '/pages/purchase/order/logistics?id=' + orderId,
     })
   },
 

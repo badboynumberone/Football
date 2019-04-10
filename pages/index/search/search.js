@@ -41,6 +41,12 @@ Page({
       if(!e.detail){
         return;
       }
+      this.setData({
+        pageInfo:[{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'},
+              {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}]
+      })
       let _this = this;
       //发送请求成功后将记录存入缓存中去
       this.getDynaicList(e.detail,0,1);

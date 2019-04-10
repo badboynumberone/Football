@@ -49,6 +49,8 @@ App({
   globalData: {
     imageBaseUrl: 'https://wxlittleprogram.oss-cn-shanghai.aliyuncs.com/',
     searchHistory:[],
-    imageSrc:[],
+    uploadImage:[],//上传图片
+    uploadVideo:[],//上传的视频
+    videoOrImg:false
   }
 })
