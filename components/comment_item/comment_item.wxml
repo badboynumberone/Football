@@ -5,7 +5,7 @@
 	</view>
 	<view class="comment_info">
 		<view>
-			<text class="comment_to" >{{navIndex==0 ? item.nickName:'我'}}回复{{navIndex==0 ? '我':item.nickName}}</text>
+			<text class="comment_to" >{{navIndex==0 ? '用户'+item.nickName:'我'}}回复{{navIndex==0 ? '我':'用户'+item.nickName}}:</text>
 		</view>
 		<view>
 			<text class="comment_time" >{{item.creatTime}}</text>

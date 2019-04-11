@@ -52,7 +52,7 @@ Page({
         
       
       
-      this.getRating(options.worksId,1,5);
+      this.getRating(options.worksId,1,20);
       console.log(options)
     },
     onShow(){
@@ -65,7 +65,7 @@ Page({
         return;
       }
       try{
-        this.getRating(this.data.worksId,this.data.nowCommentPageIndex+1,5)
+        this.getRating(this.data.worksId,this.data.nowCommentPageIndex+1,20)
       }catch(e){
         return;
       }
@@ -74,7 +74,7 @@ Page({
       })
     },
     //获取评论
-    getRating(produtionId,pageNo,pageSize=10){
+    getRating(produtionId,pageNo,pageSize=20){
       let that = this;
       this.setData({isLoading:true})
       requestTest('/publishProdution/getProdutionComment',{
@@ -90,16 +90,20 @@ Page({
           totalPage:parseInt(res.totalPage),
           totalSize:parseInt(res.totalSize),
         })
+        if(!that.data.rating.length){
+          that.setData({
+            bottomFont:'~NOTHING~'
+          })
+          return;
+        }
         if(that.data.nowCommentPageIndex>=that.data.totalPage){
           that.setData({
             bottomFont:'~THE ENDING~'
           })
+          return;
         }
-        if(!that.rating.length){
-          that.setData({
-            bottomFont:'~NOTHING~'
-          })
-        }
+        
+        
       }).catch(function(err){
         console.log("获取评论列表失败")
       })
