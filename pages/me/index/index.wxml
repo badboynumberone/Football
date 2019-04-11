@@ -1,7 +1,7 @@
 <view class="main">
     
     <!--个人信息-->
-    <profile-header id="profile-header" bindrefresh="initData" isLogin="{{isLogin}}"  personalInfo="{{personalInfo}}" headerType="me" bindrefreshMenu="getMenuCount"></profile-header>
+    <profile-header id="profile-header" bindrefresh="initData" isLogin="{{isLogin}}"  personalInfo="{{personalInfo}}" headerType="me" bindrefreshMenu="getMenuCount" bindrefreshOrder="getOrderCount"></profile-header>
     <!--用户功能列表-->
     <view class="personal_functions" wx:for="{{functionList}}" wx:key="{{index}}"  bindtap='navigateTo' data-type="{{index}}">
         <view class='personal_item' >

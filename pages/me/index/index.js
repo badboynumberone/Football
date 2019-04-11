@@ -102,12 +102,14 @@ Page({
     },
     getOrderCount(){
       let that = this;
-      request.post('/order/getOrderCount').then(function (data) {
-        that.setData({
-          ["pay_list[0].messageNum"]: data.waitingPaymentCount,
-          ["pay_list[1].messageNum"]: data.waitingShipmentCount,
-          ["pay_list[2].messageNum"]: data.waitingReceiveCount
+      if(wx.getStorageSync("userId") && wx.getStorageSync('userName')){
+        request.post('/order/getOrderCount').then(function (data) {
+          that.setData({
+            ["pay_list[0].messageNum"]: data.waitingPaymentCount,
+            ["pay_list[1].messageNum"]: data.waitingShipmentCount,
+            ["pay_list[2].messageNum"]: data.waitingReceiveCount
+          })
         })
-      })
+      }
     }
   })

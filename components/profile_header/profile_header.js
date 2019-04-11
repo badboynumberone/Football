@@ -69,7 +69,7 @@ Component({
               
               that.initData();
               that.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
-              
+              that.triggerEvent('refreshOrder', {}, {bubbles: false, composed: true})
           }).catch(function(err){
             wx.hideLoading();
           })
