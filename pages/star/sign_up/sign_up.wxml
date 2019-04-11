@@ -27,8 +27,8 @@
 					<view class="form-view">性别</view>
 					<view class="form-control ">
 						<picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
-							<view class="{{sexOffset?'picker':'picker unactive'}}">
-								{{sexOffset?sexArray[sexIndex]:'请选择性别'}}
+							<view class="{{sexArray[sexIndex]?'picker':'picker unactive'}}">
+								{{sexArray[sexIndex] || '请选择性别'}}
 							</view>
 						</picker>	
 						<image class="down_arrow ct" src="../../../images/down_arrow.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />

@@ -1,5 +1,7 @@
 {
     "navigationBarTitleText": "星级评定",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
     "usingComponents":{
         "praise-item":"/components/praise_item/praise_item"
     }

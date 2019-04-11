@@ -21,7 +21,6 @@ App({
       fail: function () {
         // session_key 已经失效，需要重新执行登录流程
         // 重新登录
-        
         auth.login()
       }
     })

@@ -119,7 +119,7 @@
         <view class="icon_wrapper">
             <view class="icon"  bindtap="handleClick" data-type="1">
                 <text class="like_num" wx:if="{{number.parseInt(worksInfo.produtionAssist)}}">{{number.formatNum(worksInfo.produtionAssist)}}</text>
-                <image class="fill" src="{{worksInfo.isPraise ? '../../../images/zxzicon@2x.png':'../../../images/zicon@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
+                <image class="fill" src="{{worksInfo.isPraise ? '../../../images/pldxz@2x.png':'../../../images/pldz@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
             <view class="icon"  bindtap="handleClick">
                 <text class="collection_num" wx:if="{{number.parseInt(worksInfo.productionCollection)}}"  data-type="2">{{number.formatNum(worksInfo.productionCollection)}}</text>
@@ -132,8 +132,12 @@
             </view>
         </view>
     </view>
+    <view class="public_btn">
+      <image class="fill" src="../../../images/home.png" bindtap="navigateToIndex" />
+    </view>
 </view>
 </van-transition>
+
 <!-- 底部选择框 -->
 <van-popup show="{{ isPop }}" bind:close="onClose" overlay="{{true}}" position="bottom" duration="300" custom-style="background:rgba(0,0,0,0.03)">
     <view class="pop_wrapper">

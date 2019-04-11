@@ -18,7 +18,6 @@ Page({
       photoUrl:'',
       pageIndex:1,//当前页面
       sexArray:['男','女'],
-      sexOffset:false,
       sexIndex:-1,//男女性别
       nowDate:'',//当前时间
       birthDay:'',//生日
@@ -43,7 +42,6 @@ Page({
       console.log(e.detail.value)
       this.setData({
         sexIndex: e.detail.value,
-        sexOffset:true
       })
     },
     onChange(e){
@@ -116,14 +114,21 @@ Page({
       if(!this.data.address){wx.showToast({title: '通讯地址不能为空',icon: 'none',duration: 1500}); return;}
       if(!this.data.emailNum.length==6){wx.showToast({title: '邮编格式不正确，请修改',icon: 'none',duration: 1500}); return;}
       if(!/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g.test(this.data.email)){wx.showToast({title: '邮箱格式不正确，请修改',icon: 'none',duration: 1500}); return;}
-      wx.showLoading({title:"报名中..."});
+      if(!this.data.isSign){
+        wx.showToast({
+          title: '还有星级成绩无结果，暂无法报名哦~',
+          icon: 'none',
+          duration: 3000
+        });
+        return;
+      }
       try{
         this.sendParticipantInfo();
       }catch(err){
         console.log("请求失败")
         wx.hideLoading();
       }
-      wx.hideLoading();
+      
     },
     //获取参加者信息
     getParticipantInfo(){
@@ -136,7 +141,7 @@ Page({
         that.setData({
           starInfo:res.dataList,
           Name:res.userSignInfo.userName,
-          sexIndex:res.userSignInfo.userSex,
+          sexIndex:parseInt(res.userSignInfo.userSex),
           identityNum:res.userSignInfo.cerdCard,
           motherName:res.userSignInfo.motherName,
           motherPhone:res.userSignInfo.motherPhone,
@@ -150,9 +155,9 @@ Page({
           city:res.userSignInfo.cityAdress.split(","),
           isSign:res.flg
         })
-        if(!isSign){
+        if(!that.data.isSign){
           that.setData({
-            ["starInfo["+that.data.starInfo.length-1+"].notice"]:"未报名"
+            ["starInfo["+that.data.starInfo.length-1+"].notice"]:"未报名",
           })
         }
       }).catch(function(err){
@@ -161,15 +166,9 @@ Page({
     },
     //用户报名
     sendParticipantInfo(){
-      if(!this.data.isSign){
-        wx.showToast({
-          title: '还有星级成绩无结果，暂无法报名哦~',
-          icon: 'none',
-          duration: 1500
-        });
-        return;
-      }
+      
       let that = this;
+      wx.showLoading({title:"报名中..."});
       requestTest("/userSign/creatSign",{
         method:"POST",
         data:{
@@ -189,6 +188,7 @@ Page({
         }
       }).then(function(res){
         if(res.flg==true && res.message=="报名成功"){
+          wx.hideLoading();
           wx.navigateTo({
             url: '/pages/star/sign_up/sign_up_success'
           });

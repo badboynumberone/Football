@@ -23,19 +23,15 @@ Page({
       this.setData({
         ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].isPraise"]:app.globalData.isPraise,
       })
-      if(this.data.pageInfo[app.globalData.NavIndex].dynaicInfo[app.globalData.index].isPraise){
-        this.setData({
-          ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].assist"]:parseInt(this.data.pageInfo[app.globalData.NavIndex].dynaicInfo[app.globalData.index].assist)+1,
-        })
-      }else{
-        this.setData({
-          ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].assist"]:parseInt(this.data.pageInfo[app.globalData.NavIndex].dynaicInfo[app.globalData.index].assist)-1,
-        })
-      }
+      this.setData({
+        ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].assist"]:app.globalData.num,
+      })
+      
     }
   },
-  onunLoad(){
-    app.globalData.index="";app.globalData.NavIndex="";
+  onHide(){
+    app.globalData.index="";
+    app.globalData.NavIndex="";
   },
   //初始化数据
   initData(){
@@ -83,12 +79,14 @@ Page({
           that.setData({
             ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
           })
+          return;
         }
         console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
         if(that.data.pageInfo[that.data.navIndex].nowPageIndex >= parseInt(that.data.pageInfo[that.data.navIndex].totalPage)){
           that.setData({
             ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
           })
+          return;
         }
       }).catch(function(err){
         wx.showToast({

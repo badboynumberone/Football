@@ -10,9 +10,9 @@ Page({
       navIndex:0,//内容选择
       personalInfo:[
         {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'关注',typeNum:0},
-        {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'粉丝',typeNum:20},
-        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'获赞',typeNum:25},
-        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'赞过',typeNum:99},
+        {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'粉丝',typeNum:0},
+        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'获赞',typeNum:0},
+        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'赞过',typeNum:0},
       ],
       singleInfo:{},//个人信息
       pageInfo:[
@@ -130,16 +130,19 @@ Page({
           console.log(that.data.pageInfo[that.data.navIndex].dynaicInfo.length)
           
           console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
-          if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
-            that.setData({
-              ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
-            })
-          }
           if(!that.data.pageInfo[that.data.navIndex].dynaicInfo.length){
             that.setData({
               ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
             })
+            return;
           }
+          if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+            that.setData({
+              ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+            })
+            return;
+          }
+          
       }).catch(function(){
         console.log("获取菜单数量失败")
       })

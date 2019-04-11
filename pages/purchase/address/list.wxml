@@ -24,7 +24,7 @@
 </block>
 <block wx:else>
   <view class="empty">
-  <image src="../../images/no_address.png" style="width: 200px;height: 200px;"></image>
+  <image src="../../../images/no_address.png" style="width: 200px;height: 200px;"></image>
   <view style="font-size: 16px;">您还没有收货地址哦！</view>
   </view>
 </block>

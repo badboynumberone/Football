@@ -335,3 +335,12 @@
     text-align: center;
     letter-spacing: 3px;
 }
+.public_btn{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    position: fixed;
+    right: 0px;
+    bottom:100rpx;
+    z-index: 999;
+}

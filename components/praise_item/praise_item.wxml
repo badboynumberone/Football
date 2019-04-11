@@ -19,8 +19,8 @@
 				</view>
 				<view style="margin-top:15rpx" data-productionid="{{item.productionId}}" bindtap="navigateToWork">
 					<view class="praise_content" >
-							<view class="dynaic_img_wrapper" style="background:url('../../images/mrtx.png') no-repeat center/cover">
-								<image class="fill" src="{{item.fileUrl }}" mode="widthFix" lazy-load="false" binderror="" bindload="" /> 
+							<view class="dynaic_img_wrapper">
+								<image class="fill" src="{{item.fileUrl || '../../images/mrtx.png' }}" mode="widthFix" lazy-load="false" binderror="" bindload="" /> 
 							</view>
 							<view class="dynaic_info">
 								<view style="margin-bottom:10rpx">

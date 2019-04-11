@@ -3,7 +3,16 @@
 <view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}" data-index="{{index}}">
 	
 	<view class="works_img_wrapper">
-		<image class="works_image fill" src="{{item.fileUrl[0] || '../../images/mrtx.png'}}" />
+		
+		 <block wx:if="{{item.fileType==1}}">
+			 <image class="works_image fill" src="{{item.fileUrl[0] || '../../images/mrtx.png'}}" />
+		 </block>
+		 <block wx:if="{{item.fileType==2}}">
+			 <image class="works_image fill" src="{{item.fileUrl[0] || '../../images/mrtx.png'}}" />
+		 </block>  
+		
+		
+		
 		<view class="video" wx:if="{{item.fileType==1}}">
 			<image class="fill" src="{{'/images/bf@2x.png'}}" />
 		</view>

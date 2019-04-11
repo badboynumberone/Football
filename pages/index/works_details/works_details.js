@@ -321,6 +321,11 @@ Page({
         bannerIndex:e.detail.current+1
       })
     },
+    navigateToIndex(){
+      wx.switchTab({
+        url: '/pages/index/index/index'
+      });
+    },
     //去个人首页
     toHomePage(e){
       if(!checkLogin(true,false)){
@@ -409,12 +414,18 @@ Page({
         }
       }).then(function(res){
         switch(type){
-          case 1: that.setData({['worksInfo.isPraise']:false,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)-1});app.globalData.isPraise = false;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
-          case 2: that.setData({['worksInfo.isPraise']:true,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)+1});app.globalData.isPraise = true;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
+          case 1: that.setData({['worksInfo.isPraise']:false,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)-1});app.globalData.num=parseInt(that.data.worksInfo.produtionAssist);app.globalData.isPraise = false;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
+          case 2: that.setData({['worksInfo.isPraise']:true,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)+1});app.globalData.num=parseInt(that.data.worksInfo.produtionAssist);app.globalData.isPraise = true;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
           case 3: that.setData({['worksInfo.isCollection']:false,['worksInfo.productionCollection']:parseInt(that.data.worksInfo.productionCollection)-1});break;
           case 4: that.setData({['worksInfo.isCollection']:true,['worksInfo.productionCollection']:parseInt(that.data.worksInfo.productionCollection)+1});break;
         }
       }).catch(function(err){
       })
+    },
+    //用户分享
+    onShareAppMessage(res){
+      return {
+        title:"娃娃足球工程"
+      }
     }
   })

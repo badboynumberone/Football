@@ -6,6 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+      isreFreshing:false,
       bannerInfo:{},//轮播信息
       siteInfo:[],//站点信息
       totalPage:'',//总页数
@@ -19,13 +20,22 @@ Page({
      */
     onLoad: function (options) {
       this.getBanner();
-      this.getSiteInfo();
+      this.getSiteInfo(); 
     },
-    onShow(){
-      // starRequest("/area/getCityTree",{method:"POST"}).then(function(res){
-      //   console.log(res)
-      // }).catch(function(err){console.log(err)})
-    },
+    onPullDownRefresh(){
+      if(this.data.isreFreshing){
+        return;
+      }
+      // wx.startPullDownRefresh();
+      this.setData({
+        siteInfo:[],
+        isreFreshing:true
+      })
+      this.getSiteInfo(); 
+      wx.stopPullDownRefresh();
+    }  
+      
+    ,
     //获取banner
     getBanner(){
       let that = this;
@@ -61,18 +71,22 @@ Page({
           that.setData({
             siteInfo:that.data.siteInfo.concat(res.dataList),
             totalPage:res.totalPage,
-            totalSize:res.totalSize
+            totalSize:res.totalSize,
+            isreFreshing:false
           })
-          if(that.data.nowPageIndex >=that.data.totalPage){
-            that.setData({
-              bottomFont:'~THE ENDING~'
-            })
-          }
           if(!that.data.siteInfo.length){
             that.setData({
               bottomFont:'~NOTHING~'
             })
+            return;
           }
+          if(that.data.nowPageIndex >=that.data.totalPage){
+            that.setData({
+              bottomFont:'~THE ENDING~'
+            })
+            
+          }
+          
       }).catch(function(){
         console.log("获取辅导站信息失败")
       })

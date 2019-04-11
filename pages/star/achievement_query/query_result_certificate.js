@@ -106,8 +106,6 @@ Page({
     },
     lookingVideo(e){
       var audioContext = wx.createAudioContext("myVideo", this);
-      console.log(audioContext)
-      audioContext.requestFullScreen({direction:0});
       audioContext.play();
       
       

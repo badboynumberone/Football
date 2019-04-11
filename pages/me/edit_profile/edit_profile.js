@@ -137,21 +137,29 @@ Page({
      query.select("#sexpicker")._selectorQuery._defaultComponent.bindSexChange();
     },
     preserve(){
+      console.log(this.data.userHeader)
+      
       wx.showLoading({
         title: '保存中。。。',
         mask: true
       });
         
       let that = this;
-      let header = []
-      upLoadFile([this.data.userHeader]).then(function(res){
-        header = header.concat([res])
-        if(header.length){
-          up();
-        }
-      }).catch(function(err){
-        console.log("上传失败")
-      })
+      let header = [] 
+      if(app.globalData.uploadImage.length){
+        upLoadFile([this.data.userHeader]).then(function(res){
+          header = header.concat([res])
+          if(header.length){
+            up();
+          }
+        }).catch(function(err){
+          console.log("上传失败")
+        })
+      }else{
+        header = [this.data.userHeader];
+        up();
+      }
+      
       function up(){
         let obj = {
           userName : that.data.userName,

@@ -7,8 +7,8 @@ Page({
      */
     data: {
       navIndex:0,//评论选择
-      pageInfo:[{commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../../images/pl.png',text:'您还没有评论哦~去首页看看吧'},
-              {commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../../images/pl.png',text:'您还没有评论哦~去首页看看吧'}]
+      pageInfo:[{commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../images/pl.png',text:'您还没有评论哦~去首页看看吧'},
+              {commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../images/pl.png',text:'您还没有评论哦~去首页看看吧'}]
     },
   
     /**
@@ -45,6 +45,7 @@ Page({
           that.setData({
             ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
           })
+          return;
         }
         console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
         if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){

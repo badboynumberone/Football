@@ -2,7 +2,7 @@
 <view class="nothing">
     <image class="nothing_image" src="{{src}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
     <text class="">{{text}}</text>
-    <view class="toHome" bindtap="navigateTo" data-url="{{url}}">
+    <view class="toHome" bindtap="navigateTo" data-url="{{url}}" wx:if="{{font.length}}">
         {{font}}
     </view>
 </view>

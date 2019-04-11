@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "我要报名",
+    "navigationBarTitleText": "成绩查询结果",
     "usingComponents":{
         "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
         "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",

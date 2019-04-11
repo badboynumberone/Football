@@ -2,8 +2,8 @@
     <!--查看评论-->
     <view class="comment_title_wrapper">
         <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-            <van-tab title="评论我的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
             <van-tab title="我评论的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
+            <van-tab title="评论我的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
         </van-tabs>
     </view>
     <!--底部信息-->

@@ -5,6 +5,7 @@
         "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
         "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
         "dynaic-item":"/components/dynaic_item/dynaic_item",
-        "van-search": "/miniprogram_npm/vant-weapp/search/index"
+        "van-search": "/miniprogram_npm/vant-weapp/search/index",
+        "no-thing":"/components/nothing/nothing"
     }
 }

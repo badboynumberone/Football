@@ -30,9 +30,10 @@
           </view>
       </view>
     </view>
-    <!--发布作品按钮-->
+    
+  </scroll-view>
+  <!--发布作品按钮-->
     <view class="public_btn">
       <image class="fill" src="../../../images/fb@2x.png" bindtap="navigateToPublic" />
     </view>
-  </scroll-view>
 </view>
