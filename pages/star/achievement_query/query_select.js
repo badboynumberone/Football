@@ -1,5 +1,5 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
 const app=getApp();
 
@@ -58,7 +58,7 @@ Page({
           return;
         }
       }
-      requestTest('/userSign/getUserSign',{
+      request('/userSign/getUserSign',{
         method:"POST",
         data:{
           type,

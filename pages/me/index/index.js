@@ -1,6 +1,5 @@
-import request from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {checkLogin} from '../../../utils/util';
-import {requestTest} from '../../../utils/request';
 const app = getApp();
 Page({
 
@@ -51,7 +50,7 @@ Page({
     getMenuCount(){
       let that = this;
       if(wx.getStorageSync("userId") && wx.getStorageSync('userName')){
-        requestTest("/costomerHomePage/headInfo",{
+        request("/costomerHomePage/headInfo",{
           method:"POST",
           data:{
             cosId:wx.getStorageSync("userId")
@@ -103,7 +102,7 @@ Page({
     getOrderCount(){
       let that = this;
       if(wx.getStorageSync("userId") && wx.getStorageSync('userName')){
-        request.post('/order/getOrderCount').then(function (data) {
+        request('/order/getOrderCount',{method:"POST"}).then(function (data) {
           that.setData({
             ["pay_list[0].messageNum"]: data.waitingPaymentCount,
             ["pay_list[1].messageNum"]: data.waitingShipmentCount,

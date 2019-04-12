@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {mapTime} from '../../../utils/util';
 Page({
 
@@ -30,7 +30,7 @@ Page({
     //获取数据
     getData(type,pageNo,pageSize){
       let that = this;
-      requestTest("/costomerProdutions/getCostomerCommentPage",{method:"POST",data:{
+      request("/costomerProdutions/getCostomerCommentPage",{method:"POST",data:{
         type:type,
         pageNo:pageNo,
         pageSize

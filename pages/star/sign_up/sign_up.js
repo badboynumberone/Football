@@ -1,5 +1,6 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-import {requestTest,upLoadFile} from '../../../utils/request';
+import {upLoadFile} from '../../../utils/request';
+import {request} from '../../../utils/request';
 Page({
 
     /**
@@ -133,7 +134,7 @@ Page({
     //获取参加者信息
     getParticipantInfo(){
       let that = this;
-      requestTest("/userSign/getUserSignInfo",{
+      request("/userSign/getUserSignInfo",{
         method:"POST",
         data:{}
       }).then(function(res){
@@ -169,7 +170,7 @@ Page({
       
       let that = this;
       wx.showLoading({title:"报名中..."});
-      requestTest("/userSign/creatSign",{
+      request("/userSign/creatSign",{
         method:"POST",
         data:{
           userName:that.data.Name,

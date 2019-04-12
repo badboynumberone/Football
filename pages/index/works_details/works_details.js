@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {mapTime,getNowTime} from '../../../utils/util';
 import {checkLogin} from '../../../utils/util';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
@@ -77,7 +77,7 @@ Page({
     getRating(produtionId,pageNo,pageSize=20){
       let that = this;
       this.setData({isLoading:true})
-      requestTest('/publishProdution/getProdutionComment',{
+      request('/publishProdution/getProdutionComment',{
         method:"POST",
         data:{
           produtionId,
@@ -164,7 +164,7 @@ Page({
           cancelButtonText: '取消',
           confirmButtonText: '确定'
       }).then(() => {
-        requestTest("/produtionComment/comment/delete",{
+        request("/produtionComment/comment/delete",{
           method:"POST",
           data:{
             produtionId:that.data.worksId,
@@ -246,7 +246,7 @@ Page({
         costomerId:wx.getStorageSync("userId"),
         newComment:true
       }
-      requestTest('/produtionComment/comment/insert',{
+      request('/produtionComment/comment/insert',{
         method:"POST",
         data:{
           produtionId:that.data.worksId,
@@ -295,7 +295,7 @@ Page({
     getData(){
       let that = this;
       if(this.data.worksId){
-        requestTest("/publishProdution/info",{
+        request("/publishProdution/info",{
           method:"POST",
           data:{
             id:app.globalData.currentWorksId
@@ -362,7 +362,7 @@ Page({
     //设置关注
     setConcern(api){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           id:that.data.worksInfo.coustmoerId
@@ -407,7 +407,7 @@ Page({
     //发送请求
     setLike(api,type){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           id:that.data.worksId

@@ -1,5 +1,5 @@
 const app = getApp();
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 Page({
 
     /**
@@ -71,7 +71,7 @@ Page({
     },
     getDynaicList(content,index,pageNo){
       let that = this;
-      requestTest("/appIndex/pageList",{method:"POST",data:{
+      request("/appIndex/pageList",{method:"POST",data:{
         searchContent:content,
         type:index+1,
         pageNo:pageNo,

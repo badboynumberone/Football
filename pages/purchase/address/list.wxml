@@ -15,7 +15,7 @@
       <view class='address text-hidden' wx:if="{{item.provinceCode == 110000 || item.provinceCode == 120000 || item.provinceCode == 310000 || item.provinceCode == 500000}}">{{item.provinceName}}{{item.areaName}}{{item.detail}}</view>
       <view class='address text-hidden' wx:else>{{item.provinceName}}{{item.cityName}}{{item.areaName}}{{item.detail}}</view>
     </view>
-    <view class='edit-wrap'  data-item-id="{{item.id}}" bindtap='goDetail'>
+    <view class='edit-wrap ct'  data-item-id="{{item.id}}" bindtap='goDetail'>
       <van-icon name="edit"/>
     </view>
   </view>

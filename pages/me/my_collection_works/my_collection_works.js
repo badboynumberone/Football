@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 Page({
 
     /**
@@ -45,7 +45,7 @@ Page({
     },
     getDynaic(userId='',type=1,pageNo=1,pageSize=6){
       let that = this;
-      requestTest("/costomerHomePage/costomerPageList",{
+      request("/costomerHomePage/costomerPageList",{
         method:"POST",
         data:{
           type,

@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {updateUserInfo,getUserInfo,sleep} from '../../../utils/util';
 import {upLoadFile} from '../../../utils/request';
 const app = getApp();
@@ -169,7 +169,7 @@ Page({
           signature : that.data.signature
         }
         
-        requestTest("/customer/updateCostomer",{
+        request("/customer/updateCostomer",{
           method:"POST",
           data:{
             nickname : that.data.userName,

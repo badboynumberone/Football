@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
 Page({
 
@@ -58,7 +58,7 @@ Page({
     },
     setConcern(api){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           id:that.data.userId
@@ -79,7 +79,7 @@ Page({
     //获取用户信息
     getUserInfo(id){
       let that = this;
-      requestTest("/costomerHomePage/headInfo",{
+      request("/costomerHomePage/headInfo",{
         method:"POST",
         data:{
           cosId:id
@@ -112,7 +112,7 @@ Page({
     //获取用户动态信息
     getDynaic(userId='',type=1,pageNo=1,pageSize=6){
       let that = this;
-      requestTest("/costomerHomePage/costomerPageList",{
+      request("/costomerHomePage/costomerPageList",{
         method:"POST",
         data:{
           type,

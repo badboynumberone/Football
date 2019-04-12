@@ -1,5 +1,5 @@
 import {checkLogin} from '../../../utils/util';
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 Page({
 
     /**
@@ -39,7 +39,7 @@ Page({
     //获取banner
     getBanner(){
       let that = this;
-      requestTest("/startLevelIntrod/info",{
+      request("/startLevelIntrod/info",{
         method:"POST",
         data:{
         }
@@ -60,7 +60,7 @@ Page({
     //获取辅导站信息
     getSiteInfo(pageNo=1,pageSize=20){
       let that = this;
-      requestTest("/startLevelIntrod/pageList",{
+      request("/startLevelIntrod/pageList",{
         method:"POST",
         data:{
           pageNo,

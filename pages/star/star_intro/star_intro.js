@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 Page({
 
     /**
@@ -24,7 +24,7 @@ Page({
     //获取星级评定规则
     getStarRules(id){
       let that = this;
-      requestTest("/startLevelIntrod/getById",{
+      request("/startLevelIntrod/getById",{
         method:"POST",
         data:{
           id

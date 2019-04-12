@@ -24,15 +24,7 @@ module.exports = {
     num = num ? num : 0;
     return num > 99 ? '99+' : num+'';
   },
-  formatTime: function(time){
-    console.log()
-    // return new Date();
-    // function addZero(val){
-    //   return val<10 ? '0'+val:val;
-    // }
-    // let day = new Date(parseInt(time));
-    // return day.getFullYear() + "-" + addZero(day.getMonth() + 1) + "-" + addZero(day.getDate())+" "+
-    //   + addZero(day.getHours()) + ":" + addZero(day.getMinutes()) + ":" + addZero(day.getSeconds());
-  },
-  
+  formatStringToArray:function(str){
+    return JSON.parse(str)
+  }
 }

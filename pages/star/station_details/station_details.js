@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request'
+import {request} from '../../../utils/request'
 
 Page({
 
@@ -28,7 +28,7 @@ Page({
     //获取站点信息
     getStationInfo(id){
       let that = this;
-      requestTest("/startLevelIntrod/stationInfo",{
+      request("/startLevelIntrod/stationInfo",{
         method:"POST",
         data:{
           id

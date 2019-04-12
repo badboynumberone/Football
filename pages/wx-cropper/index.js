@@ -1,4 +1,3 @@
-import {upLoadFile} from '../../utils/request';
 const app=getApp(); 
 /**
  * wx-cropper 1.1

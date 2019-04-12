@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {checkLogin} from '../../../utils/util';
 Page({
 
@@ -31,7 +31,7 @@ Page({
     
     getData(){
       let that = this;
-      requestTest("/banner/getInfo",{method:"POST",data:{
+      request("/banner/getInfo",{method:"POST",data:{
         id:this.data.bannerId
       }}).then(function(res){
         if(res){

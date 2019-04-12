@@ -1,6 +1,6 @@
 import {upLoadFile} from '../../../utils/request';
-import {request,post,requestTest} from '../../../utils/request';
-import {showErrorToast,pipeFunctions} from '../../../utils/util';
+import {request} from '../../../utils/request';
+import {showErrorToast} from '../../../utils/util';
 const app = getApp();
 Page({
 
@@ -57,7 +57,7 @@ Page({
     getKey(){
       //获取推荐关键词
       let that =this;
-      requestTest("/contomerKeyword/getKeyWord",{method:"POST"}).then(function(res){
+      request("/contomerKeyword/getKeyWord",{method:"POST"}).then(function(res){
         try{
           res = JSON.parse(res);
         }catch(e){
@@ -348,7 +348,7 @@ Page({
           address:that.data.address,
           keywordList:that.data.keyWords
         }
-        requestTest("/publishProdution/insert",{
+        request("/publishProdution/insert",{
           method:"POST",
           data:obj
         }).then(function(res){

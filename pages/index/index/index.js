@@ -1,5 +1,5 @@
-import {requestTest} from '../../../utils/request';
-import {checkLogin,sleep} from '../../../utils/util';
+import {request} from '../../../utils/request';
+import {checkLogin} from '../../../utils/util';
 //index.js
 const app = getApp()
 
@@ -65,7 +65,7 @@ Page({
   getDynaicList(type,pageNo,pageSize=20){
     let that = this;
     let api = (wx.getStorageSync('userId') && wx.getStorageSync('userName'))? "/appIndex/pageList" : '/appIndex/noCouspageList';
-      requestTest(api,{method:"POST",data:{
+      request(api,{method:"POST",data:{
         type,
         pageNo:pageNo,
         pageSize
@@ -100,7 +100,7 @@ Page({
   getBanner(){
     //获取首页轮播图
     let that =this;
-    requestTest("/banner/getList",{method:"POST"}).then(function(res){
+    request("/banner/getList",{method:"POST"}).then(function(res){
       if(res){
          let result = res;
          that.setData({bannerInfo:result});

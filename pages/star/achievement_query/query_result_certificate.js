@@ -1,5 +1,5 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {mapTime} from '../../../utils/util';
 Page({
 
@@ -38,7 +38,7 @@ Page({
     //获取星级信息
     getStarInfo(card){
       let that=this;
-      requestTest('/userSign/getUserSign',{
+      request('/userSign/getUserSign',{
         method:"POST",
         data:{
           type:1,
@@ -73,7 +73,7 @@ Page({
     //获取星级信息
     getStar(id){
       let that = this;
-      requestTest('/userSign/getUserSignInfoById/',{
+      request('/userSign/getUserSignInfoById/',{
         method:"POST",
         data:{
           id

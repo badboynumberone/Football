@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 Page({
 
     /**
@@ -72,7 +72,7 @@ Page({
     //获取数据
     getData(api,userId,pageNo,pageSize){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           cosId : userId,
