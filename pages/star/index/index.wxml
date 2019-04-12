@@ -1,5 +1,5 @@
-<view class="main" >
-    <scroll-view scroll-y="{{true}}" wx:if="{{bannerInfo.imgUrl}}">
+<view class="main" wx:if="{{bannerInfo.imgUrl}}">
+    <scroll-view scroll-y="{{true}}">
     <!--海报-->
     <view class="start_poster" data-id="{{bannerInfo.id}}" bindtap="navigateTo" data-url="/pages/star/star_intro/star_intro">
         <image class="poster_image fill" src="{{bannerInfo.imgUrl}}" />

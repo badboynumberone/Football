@@ -1,7 +1,7 @@
 <!--index.wxml-->
 
 <view class="main" style="background:#f1f1f1" wx:if="{{bannerInfo.length}}">
-<scroll-view scroll-y="{{true}}" scaleToFill>
+<scroll-view scroll-y="{{true}}">
     <!-- 搜索 -->
     <view class="search_enter" bindtap="toSearch">
       <view class="search_enter_wrapper" >

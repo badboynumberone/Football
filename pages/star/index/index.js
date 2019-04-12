@@ -29,9 +29,17 @@ Page({
       // wx.startPullDownRefresh();
       this.setData({
         siteInfo:[],
+        bannerInfo:[],
         isreFreshing:true
       })
       this.getSiteInfo(); 
+      this.getBanner();
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'none',
+        duration: 1500
+      });
+        
       wx.stopPullDownRefresh();
     }  
       

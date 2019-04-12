@@ -259,9 +259,11 @@ Page({
           commentId
         }
       }).then(function(res){
-        if(res==1){
+        console.log(res)
+        if(res){
           if(!pid){
             let addInfo = that.data.rating;
+            firstContent.id = res;
             addInfo.unshift(firstContent)
             that.setData({
               showTitle:"添加成功",
@@ -271,6 +273,7 @@ Page({
             })
           }else{
             console.log(that.worksInfo)
+            SecondContent.id = res;
             that.setData({
               showTitle:"回复成功",
               ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,

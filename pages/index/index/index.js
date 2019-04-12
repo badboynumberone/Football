@@ -113,17 +113,25 @@ Page({
     if(this.data.isrefresh || this.data.isLoading){
       return;
     }
-    this.setData({
-      bannerInfo:[]
-    })
-    this.getBanner();
-    console.log(this.data.navIndex)
-    this.setData({
-      ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}
+    try{
+      this.setData({
+        bannerInfo:[]
+      })
+      this.getBanner();
+      this.setData({
+        ['pageInfo['+this.data.navIndex+"]"]:{dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}
+  
+      })
+      this.getDynaicList(this.data.navIndex+1,1,20);
+    }catch(err){
 
-    })
-
-    this.getDynaicList(this.data.navIndex+1,1,20);
+    }
+    
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'none',
+      duration: 1500
+    });
     wx.stopPullDownRefresh();
   },
   //发布作品
