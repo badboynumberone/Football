@@ -1,6 +1,6 @@
 <wxs src="../../../utils/string.wxs" module="string" />
 <view class="main">
-	<view class="result_container" style="margin-bottom:50rpx">
+	<view class="result_container" style="margin-bottom:60rpx">
 		<view class="result_bg">
 			<image class="result_bg_img fill" src="../../../images/rate-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 		</view>

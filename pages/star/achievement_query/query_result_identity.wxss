@@ -1,6 +1,8 @@
 @import '/common.wxss';
 .main{
-    margin-bottom: 120rpx;
+    margin-bottom: 120rpx;    
+}
+.result_container{
     background: #F1F1F1;
 }
 .result_bg{

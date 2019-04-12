@@ -1,11 +1,11 @@
-<view class="main">
-    <scroll-view scroll-y="{{true}}">
+<view class="main" >
+    <scroll-view scroll-y="{{true}}" wx:if="{{bannerInfo.imgUrl}}">
     <!--海报-->
     <view class="start_poster" data-id="{{bannerInfo.id}}" bindtap="navigateTo" data-url="/pages/star/star_intro/star_intro">
         <image class="poster_image fill" src="{{bannerInfo.imgUrl}}" />
     </view>
     <!--报名和成绩查询入口-->
-    <view class="enter">
+    <view class="enter" wx:if="{{bannerInfo.imgUrl}}">
         <view class="enter_item" bindtap="navigateTo" data-url="/pages/star/sign_up/sign_up">
             <image class="enter_img" src="../../../images/wybm@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
             <view class="enter_info">

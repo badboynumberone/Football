@@ -52,7 +52,7 @@ Page({
       this.setData(result)
       console.log(this.data.userHeader)
       this.setData({
-        sexIndex:wx.getStorageSync('sexIndex') || 0
+        sexIndex:parseInt(wx.getStorageSync('sexIndex'))
       })
       if(app.globalData.uploadImage !=false){
         this.setData({
@@ -164,7 +164,7 @@ Page({
         let obj = {
           userName : that.data.userName,
           userHeader : header.join(''),
-          sexIndex : that.data.sexIndex,
+          sexIndex : parseInt(that.data.sexIndex),
           birthDay : that.data.birthDay,
           signature : that.data.signature
         }
@@ -174,7 +174,7 @@ Page({
           data:{
             nickname : that.data.userName,
             headImgUrl : header.join(''),
-            sex : that.data.sexIndex,
+            sex : parseInt(that.data.sexIndex)+1,
             birthday : that.data.birthDay,
             constoSign : that.data.signature
           }

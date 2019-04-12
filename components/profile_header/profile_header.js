@@ -61,7 +61,7 @@ Component({
               let userData = {
                 userName:res.nickname,
                 userHeader:res.headImgUrl,
-                sexIndex:res.sex,
+                sexIndex:parseInt(res.sex)-1,
                 birthDay:res.birthday,
                 signature:res.constoSign
               }

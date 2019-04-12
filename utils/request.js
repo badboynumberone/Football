@@ -23,7 +23,15 @@ const request = (url, options) => {
               duration: 1000
             })
             reject(res.data)
-          } else {
+          } else if(res.data.errcode == '234'){
+            
+            wx.showToast({
+              title: "您的账号已被锁定，请稍后重试",
+              icon: 'none',
+              duration: 1000
+            })
+            return;
+          }else{
             reject(res.data)
           }
         } else if (res.statusCode === 401) {
@@ -56,8 +64,6 @@ const request = (url, options) => {
         reject(error)
       },
       complete(res) {
-        // console.log('complete')
-        // console.log(res)
       }
     })
   })

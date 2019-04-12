@@ -21,7 +21,7 @@ Component({
     navigateTo(e){
       console.log(e)
       wx.navigateTo({
-        url: `/pages/index/home_page/home_page?userId=${e.currentTarget.dataset.url}`
+        url: `/pages/index/works_details/works_details?worksId=${e.currentTarget.dataset.url}`
       });
     }
   }

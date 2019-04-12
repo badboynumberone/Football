@@ -2,9 +2,10 @@
     <!--查看评论-->
     <view class="comment_title_wrapper">
         <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-            <van-tab title="我评论的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
-            <van-tab title="评论我的"><comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item></van-tab>
+            <van-tab title="我评论的"></van-tab>
+            <van-tab title="评论我的"></van-tab>
         </van-tabs>
+        <comment_item commentInfo="{{pageInfo[navIndex].commentInfo}}" navIndex="{{navIndex}}"></comment_item>
     </view>
     <!--底部信息-->
     <view class="ending_wrapper" wx:if="{{!(pageInfo[navIndex].bottomFont=='~NOTHING~' && pageInfo[navIndex].nothingImg !='')}}">

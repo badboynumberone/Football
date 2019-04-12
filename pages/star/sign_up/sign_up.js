@@ -30,6 +30,7 @@ Page({
       this.getNowDate();
       this.getParticipantInfo();
     },
+    
     getNowDate(){
       let now = new Date();
       let month=now.getMonth()<10 ? '0'+(now.getMonth()+1): now.getMonth();
@@ -138,11 +139,11 @@ Page({
         method:"POST",
         data:{}
       }).then(function(res){
-        console.log(res)
+        console.log(res.userSignInfo.userSex)
         that.setData({
           starInfo:res.dataList,
           Name:res.userSignInfo.userName,
-          sexIndex:parseInt(res.userSignInfo.userSex),
+          sexIndex:parseInt(res.userSignInfo.userSex-1),
           identityNum:res.userSignInfo.cerdCard,
           motherName:res.userSignInfo.motherName,
           motherPhone:res.userSignInfo.motherPhone,
@@ -174,7 +175,7 @@ Page({
         method:"POST",
         data:{
           userName:that.data.Name,
-          userSex:that.data.sexIndex,
+          userSex:parseInt(that.data.sexIndex)+1,
           birthday:that.data.birthDay,
           cerdCard:that.data.identityNum,
           cityAdress:that.data.city.join(','),

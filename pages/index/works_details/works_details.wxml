@@ -1,7 +1,7 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 <van-dialog id="van-dialog" />
 <van-transition name="fade">
-<view class="main" wx:if="{{worksInfo}}" >
+<view class="main" wx:if="{{worksInfo.coustmoerId}}" >
     <!--作者信息-->
     <view class="works_author">
         <view class="author_header">

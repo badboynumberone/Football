@@ -113,6 +113,9 @@ Page({
     if(this.data.isrefresh || this.data.isLoading){
       return;
     }
+    this.setData({
+      bannerInfo:[]
+    })
     this.getBanner();
     console.log(this.data.navIndex)
     this.setData({

@@ -32,7 +32,6 @@
                 {{pageInfo[worksIndex].bottomFont}}
                 </view>
             </view>
-            <no-thing wx:else src="../../images/search_empty.png" text="没找到该商品，请更换搜索条件再试试！" />
+            <no-thing wx:else src="../../images/search_empty.png" text="没找到相关动态，请更换搜索条件再试试！" />
     </view>
-    
 </view>

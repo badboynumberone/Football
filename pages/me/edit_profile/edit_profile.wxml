@@ -65,9 +65,9 @@
             <view class="title">
                 个性签名
             </view>
-            <view class="content" style="margin-top:127rpx">
+            <view class="content" style="margin-top:110rpx">
                 <view class="content_wrapper" style="margin-right:20rpx">
-                    <textarea class="textarea" value="{{ string.trim(signature) }}" bindinput="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了" maxlength="30"/>
+                    <textarea class="textarea" value="{{ string.trim(signature) }}" bindinput="getText" placeholder="未填写（30个字）" maxlength="30"/>
                 </view>
             </view>
         </view>

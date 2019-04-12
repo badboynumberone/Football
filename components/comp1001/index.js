@@ -57,6 +57,7 @@ Component({
     itemAction: function (e) {
       // 1:页面 2:商品 3:分类 4:品牌 5:我的订单 6:购物车 7:个人中心
       var item = e.currentTarget.dataset.item
+      console.log(item)
       if (item.targetType === '1') {
         if (item.targetContent) {
           wx.navigateTo({

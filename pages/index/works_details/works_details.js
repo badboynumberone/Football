@@ -46,10 +46,14 @@ Page({
       
       this.setData({
         worksId:options.worksId || app.globalData.currentWorksId,//作品ID
-        currentNavIndex:options.navIndex,//导航栏id
-        currentProductionId:options.index//作品所在id
+       
       })
-        
+      if(options.navIndex || options.index){
+        this.setData({
+          currentNavIndex:options.navIndex,//导航栏id
+          currentProductionId:options.index//作品所在id
+        })
+      }
       
       
       this.getRating(options.worksId,1,20);

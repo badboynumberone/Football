@@ -126,11 +126,8 @@
 </van-dialog>
 </block>
 <block wx:else>
-  <view class="empty">
-  <image src="../../../images/empty.png" style="width: 200px;height: 200px;"></image>
-  <view style="font-size: 16px;">亲，您的购物车是空哒~去首页看看吧！</view>
-  <view class="go-home" bindtap='goHome'>前往在线商城</view>
-  </view>
+  <!--空缺页-->
+  <no-thing  src="{{'../../images/empty.png'}}" text="{{'亲，您的购物车是空哒~去首页看看吧！'}}" font="前往在线商城" url="/pages/purchase/index/index" />
 </block>
 </block>
 <block wx:else>

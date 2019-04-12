@@ -1,6 +1,7 @@
 <!--index.wxml-->
-<view class="main" style="background:#f1f1f1">
-  <scroll-view  scroll-y="{{true}}" >
+
+<view class="main" style="background:#f1f1f1" wx:if="{{bannerInfo.length}}">
+<scroll-view scroll-y="{{true}}" scaleToFill>
     <!-- 搜索 -->
     <view class="search_enter" bindtap="toSearch">
       <view class="search_enter_wrapper" >
@@ -19,11 +20,12 @@
     <view class="dynaic_container">
       <view class="personal_select" style="background:#fff">
           <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-              <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="0"></dynaic-item></van-tab>
-              <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="1"></dynaic-item></van-tab>
-              <van-tab title="视频" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="2"></dynaic-item></van-tab>
-              <van-tab title="图片" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="3"></dynaic-item></van-tab>
+              <van-tab title="最热" custom-class="bg"></van-tab>
+              <van-tab title="最新" custom-class="bg"></van-tab>
+              <van-tab title="视频" custom-class="bg"></van-tab>
+              <van-tab title="图片" custom-class="bg"></van-tab>
           </van-tabs>
+          <dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="{{navIndex}}"></dynaic-item>
           <!--底部信息-->
           <view class="ending_wrapper">
                 {{pageInfo[navIndex].bottomFont}}
@@ -31,7 +33,7 @@
       </view>
     </view>
     
-  </scroll-view>
+</scroll-view>
   <!--发布作品按钮-->
     <view class="public_btn">
       <image class="fill" src="../../../images/fb@2x.png" bindtap="navigateToPublic" />

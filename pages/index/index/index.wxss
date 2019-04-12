@@ -60,3 +60,125 @@
     background: #f1f1f1;
     
 }
+
+view,text{
+    padding: 0rpx;
+    margin: 0rpx;
+    box-sizing: border-box;
+}
+.clearfix:after { display: table; content: " "; clear: both;}
+
+.clearfix{ zoom: 1;}
+.fill{
+    width: 100%;
+    height: 100%;
+}
+.text-hidden{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.works_item{
+    width: 50%;
+    padding: 0 15rpx 15rpx;
+    background: #fff;
+    background-clip: content-box;
+}
+.works_item:nth-child(odd){
+    padding-right:10rpx ;
+}
+.works_item:nth-child(even){
+    padding-left:10rpx ;
+}
+.works_img_wrapper{
+    height: 350rpx;
+    width: 100%;
+    position: relative;
+}
+.works_name{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 45rpx;
+    text-align: left;
+    padding: 5rpx 10rpx;
+    color: #222;
+}
+.works_container{
+    font-size: 15px;
+    color: #666666;
+    text-align: left;
+    padding: 0 10rpx 10rpx;
+}
+.publisher_info{
+    display: flex;
+    justify-content: space-between;
+    font-size: 30rpx;
+    flex-flow: row nowrap;
+    color: #9A9A9A;
+    padding: 0 10rpx 10rpx;
+}
+.publisher{
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    
+}
+.publisher_name{
+    width: 140rpx;
+    font-size: 24rpx;
+}
+.publisher_header_wrapper{
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ccc;
+    flex-flow: row nowrap;
+    margin-right: 5rpx;
+}
+.publisher_header_wrapper text{
+    font-size: 24rpx;
+}
+.collection_wrapper{
+    display: flex;
+    align-items: center;
+    font-size: 26rpx;
+}
+.collection_icon_wrapper{
+    position: relative;
+    width: 35rpx;
+    height: 35rpx; 
+    overflow: hidden;
+    
+}
+
+.video,.img{
+    position: absolute;
+    width: 50rpx;
+    height: 50rpx;
+    right:20rpx;
+    bottom:20rpx;
+}
+.img{
+    width: 85rpx;
+    height: 40rpx;
+    padding: 0 10rpx;
+    border-radius: 25rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    font-size: 30rpx;
+    color:#fff;
+}
+
+.img_wrapper{
+    width: 32rpx;
+    height: 25rpx;
+    
+}
+.img_number{
+    font-size: 28rpx;
+    color: #fff;
+}

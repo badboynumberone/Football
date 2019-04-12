@@ -15,7 +15,7 @@ App({
         //session_key 未过期，并且在本生命周期一直有效
         if (!wx.getStorageSync('accessToken')) {
           // 重新登录
-          
+          resetUserInfo();
           auth.login()
         }
       },
