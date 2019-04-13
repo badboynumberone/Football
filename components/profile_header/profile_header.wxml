@@ -7,11 +7,11 @@
 				<image class="personal_img fill" style="border-radius: 50%"  src="{{ userInfo.userHeader || '/images/mrtx.png'}}" />
 			</view>
 			<view class="personal_info_wrapper">
-				<view class="personal_name text-hidden" style="padding-bottom:20rpx">
+				<view class="personal_name text-hidden" style="padding-bottom:20rpx;width:206px;text-align:left;">
 					<text>{{userInfo.userName || '未登录'}}</text>
 				</view>
-				<view class="personal_autograph text-hidden">
-					<text wx:if="{{userInfo.userName}}">{{userInfo.signature || '世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了'}}</text>
+				<view class="personal_autograph text-hidden" style="text-align:left;">
+					<text wx:if="{{userInfo.userName}}">{{userInfo.signature || '未填写'}}</text>
 					<text wx:else>点击登录</text>
 				</view>
 			</view>

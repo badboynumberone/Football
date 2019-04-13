@@ -20,10 +20,10 @@
 				<view style="margin-top:15rpx" data-productionid="{{item.productionId}}" bindtap="navigateToWork">
 					<view class="praise_content" >
 							<view class="dynaic_img_wrapper">
-								<image class="fill" src="{{item.fileUrl || '../../images/mrtx.png' }}" mode="widthFix" lazy-load="false" binderror="" bindload="" /> 
+								<image class="fill" src="{{item.fileUrl || '../../images/mrtx.png' }}" mode="aspectFit" lazy-load="false" binderror="" bindload="" /> 
 							</view>
 							<view class="dynaic_info">
-								<view style="margin-bottom:10rpx">
+								<view class="overhidden" style="margin-bottom:10rpx">
 									<text class="dynaic_name">{{item.title}}</text>
 								</view>
 								<view>

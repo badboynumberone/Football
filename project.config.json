@@ -10,11 +10,11 @@
 		"minified": true,
 		"newFeature": true,
 		"nodeModules": true,
-		"autoAudits": false,
+		"autoAudits": true,
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.5",
+	"libVersion": "2.6.5",
 	"appid": "wxcd04b3a77bf8971d",
 	"projectname": "11",
 	"debugOptions": {

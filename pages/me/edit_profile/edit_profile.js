@@ -138,9 +138,9 @@ Page({
     },
     preserve(){
       console.log(this.data.userHeader)
-      if(this.data.userName.length<2){
+      if(!this.data.userName.length){
         wx.showToast({
-          title: '昵称长度不能小于2位哦！',
+          title: '昵称不能为空哦！',
           icon: 'none',
           duration: 1500,
         });

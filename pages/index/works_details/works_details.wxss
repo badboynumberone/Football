@@ -33,6 +33,10 @@
     font-size: 32rpx;
     font-weight: bold;
     font-size: #222;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .author_public_time{
@@ -127,6 +131,10 @@
     font-size: 30rpx;
     font-weight: bold;
     color: #222222;
+    width: 400rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .answer{
     font-size: 28rpx;
