@@ -1,5 +1,6 @@
 import {request} from '../../../utils/request';
 import {checkLogin} from '../../../utils/util';
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
     /**
@@ -34,6 +35,9 @@ Page({
       request("/banner/getInfo",{method:"POST",data:{
         id:this.data.bannerId
       }}).then(function(res){
+        console.log(res.bannContent)
+        let article =res.bannContent;
+        WxParse.wxParse('article', 'html', article, that,5);
         if(res){
           that.setData({
             bannerDetail:res

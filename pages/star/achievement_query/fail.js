@@ -7,11 +7,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-      
+      text:""
     },
     
     onLoad: function (options) {
-      console.log(options)
+      this.setData({
+        text:options.information
+      })
     },
     
   })

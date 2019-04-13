@@ -1,4 +1,5 @@
 import {request} from '../../../utils/request';
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
     /**
@@ -7,6 +8,7 @@ Page({
     data: {
       bannerId:'',
       describesd:'',
+      bannerImg:''
     },
   
     /**
@@ -30,8 +32,12 @@ Page({
           id
         }
       }).then(function(res){
+        console.log(res)
+        let article =res.describesd;
+        WxParse.wxParse('article', 'html', article, that,5);
         that.setData({
-          describesd:res.describesd
+          describesd:res.describesd,
+          bannerImg:res.imgUrl
         })
       }).catch(function(err){
         console.log("获取星级介绍失败")

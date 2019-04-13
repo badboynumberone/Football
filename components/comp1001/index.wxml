@@ -1,7 +1,7 @@
 <!--components/cmp1001/index.wxml-->
 <wxs src="../../utils/string.wxs" module="string" />
 <wxs src="../../utils/number.wxs" module="number" />
-<view class="main">
+<view class="main" wx:if="{{pageData.carouselList.data.length}}">
   <!-- 搜索 -->
   <van-search value="{{ searchValue }}" placeholder="搜索商品" bind:search="onSearch" />
   <!-- 轮播图 -->

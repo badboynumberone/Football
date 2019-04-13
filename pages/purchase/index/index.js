@@ -26,24 +26,35 @@ Page({
       return
     }
     this.setData({
-      isRefreshing: true
+      isRefreshing: true,
+      templateData:null
     })
     var that = this;
     that.data.pageNo = 1;
-    request.post('/shopPage/getShopHomePage').then(function (data) {
-      wx.stopPullDownRefresh();
-      that.setData({
-        isRefreshing: false,
-        templateCode: data.templateCode,
-        templateData: data
+    try{
+      request.post('/shopPage/getShopHomePage').then(function (data) {
+        wx.stopPullDownRefresh();
+        that.setData({
+          isRefreshing: false,
+          templateCode: data.templateCode,
+          templateData: data
+        })
+        that.selectComponent("#comp" + data.templateCode).refresh()
+      }, function (err) {
+        console.log(err);
+        wx.stopPullDownRefresh();
+        that.setData({
+          isRefreshing: false
+        })
       })
-      that.selectComponent("#comp" + data.templateCode).refresh()
-    }, function (err) {
-      console.log(err);
-      wx.stopPullDownRefresh();
-      that.setData({
-        isRefreshing: false
-      })
-    })
+    }catch(err){
+      return;
+    }
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'none',
+      duration: 1500
+    });
+    wx.stopPullDownRefresh();
   }
 })

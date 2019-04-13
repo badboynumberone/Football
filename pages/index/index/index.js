@@ -124,7 +124,7 @@ Page({
       })
       this.getDynaicList(this.data.navIndex+1,1,20);
     }catch(err){
-
+      return;
     }
     
     wx.showToast({

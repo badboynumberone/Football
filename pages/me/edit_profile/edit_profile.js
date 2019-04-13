@@ -138,14 +138,22 @@ Page({
     },
     preserve(){
       console.log(this.data.userHeader)
-      
+      if(this.data.userName.length<2){
+        wx.showToast({
+          title: '昵称长度不能小于2位哦！',
+          icon: 'none',
+          duration: 1500,
+        });
+          
+        return;
+      }
       wx.showLoading({
         title: '保存中。。。',
         mask: true
       });
         
       let that = this;
-      let header = [] 
+      let header = [] ;
       if(app.globalData.uploadImage.length){
         upLoadFile([this.data.userHeader]).then(function(res){
           header = header.concat([res])
@@ -162,11 +170,11 @@ Page({
       
       function up(){
         let obj = {
-          userName : that.data.userName,
+          userName : that.data.userName.trim(),
           userHeader : header.join(''),
           sexIndex : parseInt(that.data.sexIndex),
           birthDay : that.data.birthDay,
-          signature : that.data.signature
+          signature : that.data.signature.trim()
         }
         
         request("/customer/updateCostomer",{

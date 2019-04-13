@@ -1,3 +1,4 @@
+<import src="/pages/wxParse/wxParse.wxml"/>
 <view class="main">
 	<view class="result_wrapper">
 
@@ -27,11 +28,11 @@
 		</view>
 		<view class="station_info" style="padding:10rpx">
 			<view class="station_content">
-				<text>{{stationInfo.stationInfo}}</text>
+				<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 			</view>
-			<view class="station_img_wrapper">
-				<image class="station_img fill" src="{{stationInfo.stationImg}}" style="width:100%" lazy-load="false" binderror="" bindload="" />
-			</view>
+			
+				<image class="station_img_wrapper " src="{{stationInfo.stationImg}}" style="width:100%;height:430rpx" lazy-load="false" binderror="" bindload="" />
+			
 		</view>
 	</view>
 </view>
