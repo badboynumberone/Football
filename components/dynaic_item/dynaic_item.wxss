@@ -113,7 +113,7 @@ view,text{
 .img_wrapper{
     width: 32rpx;
     height: 25rpx;
-    
+    margin-right: 1rpx;
 }
 .img_number{
     font-size: 28rpx;

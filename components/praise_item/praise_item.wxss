@@ -36,6 +36,9 @@
 .praise_to{
     font-size: 35rpx;
     font-weight: bold;
+    width: 400rpx;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .praise_time{
     font-size: 30rpx;
