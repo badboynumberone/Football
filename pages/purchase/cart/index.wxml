@@ -127,7 +127,7 @@
 </block>
 <block wx:else>
   <!--空缺页-->
-  <no-thing  src="{{'../../images/empty.png'}}" text="{{'亲，您的购物车是空哒~去首页看看吧！'}}" font="前往在线商城" url="/pages/purchase/index/index" />
+  <no-thing  src="/images/empty.png" text="亲，您的购物车是空哒~去首页看看吧！" font="前往在线商城" url="/pages/purchase/index/index" />
 </block>
 </block>
 <block wx:else>

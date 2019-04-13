@@ -61,12 +61,9 @@
 </block>
 <block wx:else>
   <view class="empty" wx:if="{{isSearch}}">
-    <image src="../../images/search_empty.png" style="width: 200px;height: 200px;"></image>
-    <view style="font-size: 16px;">没有找到商品，请更换搜索条件再试试哦！</view>
+    <no-thing  src="/images/search_empty.png" text="没有找到商品，请更换搜索条件再试试哦！" />
   </view>
   <view class="empty" wx:else>
-    <image src="../../images/empty.png" style="width: 200px;height: 200px;"></image>
-    <view style="font-size: 16px;">亲，暂时无商品哦，去首页看看吧！</view>
-    <view class="go-home" bindtap='goHome'>去首页</view>
+    <no-thing  src="/images/search_empty.png" text="亲，暂时无商品哦，去首页看看吧！" font="前往在线商城" url="/pages/purchase/index/index"/>
   </view>
 </block>

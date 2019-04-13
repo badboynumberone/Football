@@ -1,5 +1,5 @@
 
-<view class="main">
+<view class="main" wx:if="{{singleInfo.nickName}}">
     <!--个人信息-->
     <view  type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo">
 		<view class="personal_info_top" style="padding:20rpx 14px;">

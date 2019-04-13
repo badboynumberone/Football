@@ -26,7 +26,7 @@
     <!--视频或图片-->
     <view class="is_video_img">
         <block wx:if="{{worksInfo.fileType == '2'}}">
-            <view class="works_banner">
+            <view class="works_banner" style="background:url('../../../images/mrtx.png') no-repeat center/cover">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
                         <swiper-item wx:for="{{worksInfo.fileUrl}}" wx:key="{{index}}">

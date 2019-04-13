@@ -177,16 +177,21 @@ Page({
         }).then(function(res){
           let rating = that.data.rating;
           if(secondIndex == undefined){
+            let minunes = rating[parseInt(firstIndex)].commentChild.length+1;
             rating.splice(parseInt(firstIndex),1);
+            
+            // console.log(minunes)
             that.setData({
-              rating:rating
+              rating:rating,
+              ['worksInfo.produtionNum']:that.data.worksInfo.produtionNum-minunes
             })
             return;
           }
           
           rating[firstIndex].commentChild.splice(secondIndex,1);
           that.setData({
-            rating
+            rating,
+            ['worksInfo.produtionNum']:that.data.worksInfo.produtionNum-1
           })
         }).catch(function(err){
           console.log("上传有误")
@@ -225,7 +230,6 @@ Page({
     },
     //发送评论
     sendRating(pid,commentId){
-      
       if(!checkLogin(true,false)){
         return;
       }
@@ -278,7 +282,12 @@ Page({
               showTitle:"回复成功",
               ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ['rating['+that.data.nowCommentIndex+'].commentChild']:that.data.rating[that.data.nowCommentIndex].commentChild.concat([SecondContent]),
-              ratingContent:''
+              ratingContent:'',
+              placeHoderValue:'添加评论',
+              nowReplyUser:'',
+              firstUserId:0,
+              secondUserId:0,
+              nowCommentIndex:0
             })
           }
           wx.showToast({

@@ -68,7 +68,7 @@
     <!--输入框-->
     <view class="input_field" wx:if="{{show}}">
         <view class="input_field_wrapper" hover-class="none" hover-stop-propagation="false" >
-            <van-field style="height:50rpx" input-class="add_class" value="{{ keywords }}" focus="{{true}}" placeholder="请输入1~10字之间的关键词" border="{{ false }}" bind:change="onKeyChange" bind:blur="onKeyBlur" bind:confirm="onKeyConfirm" maxlength="8"/>
+            <van-field style="height:50rpx" input-class="add_class" value="{{ keywords }}" focus="{{true}}" placeholder="请输入1~8字之间的关键词" border="{{ false }}" bind:change="onKeyChange" bind:blur="onKeyBlur" bind:confirm="onKeyConfirm" maxlength="8"/>
         </view>
     </view>
 </view>

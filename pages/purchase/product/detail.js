@@ -34,8 +34,8 @@ Page({
     phone: '',
     cartItemSize: '',
     quantityTip: '',
-    hasNetwork: true,
-    isValid: true
+    hasNetwork: false,
+    isValid: false
   },
 
   /**
