@@ -72,11 +72,11 @@ Page({
         }
         if(res.status==1){
           wx.navigateTo({
-            url: '/pages/star/achievement_query/fail?information=您的成绩不合格,请继续努力'
+            url: '/pages/star/achievement_query/fail?information='+res.statusmsg
           }); 
         }else if(res.status==2){
           wx.navigateTo({
-            url: '/pages/star/achievement_query/fail?information=您的成绩暂无结果,请耐心等待'
+            url: '/pages/star/achievement_query/fail?information='+res.statusmsg
           }); 
         }else{
           if(type==1){

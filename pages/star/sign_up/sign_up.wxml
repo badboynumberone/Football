@@ -128,39 +128,35 @@
 			<view class="star_container">
 				<view class="star_item" wx:if="{{starInfo.length>=1}}">
 					<text class="">一星级</text>
-					<text class="{{starInfo[0].notice ? 'grey' : starInfo[0].status ? 'green' : 'red'}}">{{starInfo[0].notice ||starInfo[0].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[0].status ? 'green' : 'red'}}">{{starInfo[0].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=2}}">
 					<text class="">二星级</text>
-					<text class="{{starInfo[1].notice ? 'grey' : starInfo[1].status ? 'green' : 'red'}}">{{starInfo[1].notice ||starInfo[1].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[1].status ? 'green' : 'red'}}">{{starInfo[1].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=3}}">
 					<text class="">三星级</text>
-					<text class="{{starInfo[2].notice ? 'grey' : starInfo[2].status ? 'green' : 'red'}}">{{starInfo[2].notice ||starInfo[2].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[2].status ? 'green' : 'red'}}">{{starInfo[2].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=4}}">
 					<text class="">四星级</text>
-					<text class="{{starInfo[3].notice ? 'grey' : starInfo[3].status ? 'green' : 'red'}}">{{starInfo[3].notice ||starInfo[3].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[3].status ? 'green' : 'red'}}">{{starInfo[3].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=5}}">
 					<text class="">五星级</text>
-					<text class="{{starInfo[4].notice ? 'grey' : starInfo[4].status ? 'green' : 'red'}}">{{starInfo[4].notice ||starInfo[4].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[4].status ? 'green' : 'red'}}">{{starInfo[4].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=6}}">
 					<text class="">六星级</text>
-					<text class="{{starInfo[5].notice ? 'grey' : starInfo[5].status ? 'green' : 'red'}}">{{starInfo[5].notice ||starInfo[5].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[5].status ? 'green' : 'red'}}">{{starInfo[5].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=7}}">
 					<text class="">七星级</text>
-					<text class="{{starInfo[6].notice ? 'grey' : starInfo[6].status ? 'green' : 'red'}}">{{starInfo[6].notice ||starInfo[6].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[6].status ? 'green' : 'red'}}">{{starInfo[6].status?'已获得':'待评级'}}</text>
 				</view>
 				<view class="star_item" wx:if="{{starInfo.length>=8}}">
 					<text class="">八星级</text>
-					<text class="{{starInfo[7].notice ? 'grey' : starInfo[7].status ? 'green' : 'red'}}">{{starInfo[7].notice ||starInfo[7].status?'已获得':'待评级'}}</text>
-				</view>
-				<view class="star_item" wx:if="{{starInfo.length>=9}}">
-					<text class="">九星级</text>
-					<text class="{{starInfo[8].notice ? 'grey' : starInfo[8].status ? 'green' : 'red'}}">{{starInfo[8].notice ||starInfo[8].status?'已获得':'待评级'}}</text>
+					<text class="{{starInfo[7].status ? 'green' : 'red'}}">{{starInfo[7].status?'已获得':'待评级'}}</text>
 				</view>
 			</view>
 		</view>

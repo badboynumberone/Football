@@ -141,7 +141,7 @@ Page({
       }).then(function(res){
         console.log(res.userSignInfo.userSex)
         that.setData({
-          starInfo:res.dataList,
+          starInfo:res.dataList.reverse(),
           Name:res.userSignInfo.userName,
           sexIndex:parseInt(res.userSignInfo.userSex-1),
           identityNum:res.userSignInfo.cerdCard,
