@@ -1,7 +1,9 @@
 <view class="main">
     <!--我获得的赞-->
-    <praise-item contentList="{{contentList}}" offset="{{offset}}"></praise-item>
-
+	
+    <praise-item wx:if="{{offset == 1 || offset == 3}}" contentList="{{contentList}}" offset="{{offset}}"></praise-item>
+	<!--我赞过的-->
+	<dynaic-item wx:else dynaicInfo="{{contentList}}"></dynaic-item>
     <!--懒加载-->
     <view class="ending" wx:if="{{!(bottomFont=='~NOTHING~' && nothingImg !='')}}">
         {{ bottomFont}}

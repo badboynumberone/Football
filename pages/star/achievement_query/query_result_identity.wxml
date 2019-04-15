@@ -55,8 +55,13 @@
 			</view>
 			<view class="honr_list">
 				<van-cell wx:for="{{starInfo}}" wx:key="{{index}}" title="{{string.mapLevel(item.ratingLevel)}}" data-id="{{item.id}}" bind:click="queryStar" size="large"  is-link>
-					<view class="honr_time">
-						{{item.creatTime}}
+					<view class="honr_container">
+						<view class="honr_time">
+							{{string.sub(item.creatTime)}}
+						</view>
+						<view class="honr_time">
+							{{item.msg}}
+						</view>
 					</view>
 				</van-cell>
 			</view>

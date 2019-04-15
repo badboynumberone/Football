@@ -87,12 +87,17 @@ Page({
           pageSize
         }
       }).then(function(res){
-        console.log()
+        
         that.setData({
-          contentList:that.data.contentList.concat(mapTime(res.dataList,"creat_time")),
+          contentList:that.data.contentList.concat(res.dataList),
           totalPage:res.totalPage,
           totalSize:res.totalSize,
         })
+				if(that.data.offset == 1 || that.data.offset == 3 ){
+					that.setData({
+						contentList:that.data.contentList.concat(mapTime(res.dataList,"creat_time"))
+					})
+				}
         if(!that.data.contentList.length){
           that.setData({
             bottomFont:"~NOTHING~"

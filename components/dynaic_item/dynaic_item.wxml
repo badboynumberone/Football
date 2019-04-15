@@ -10,9 +10,6 @@
 		 <block wx:if="{{item.fileType==2}}">
 			 <image class="works_image fill" src="{{item.fileUrl[0] || '../../images/mrtx.png'}}" />
 		 </block>  
-		
-		
-		
 		<view class="video" wx:if="{{item.fileType==1}}">
 			<image class="fill" src="{{'/images/bf@2x.png'}}" />
 		</view>

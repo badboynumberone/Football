@@ -47,11 +47,11 @@ Page({
         console.log(res)
         that.setData({
           identity:res.cerdCard,
-          name:res.userName,
-          city:res.cityAddress,
+          name:res.dataList.userSignInfo.userName,
+          city:res.dataList.userSignInfo.cityAdress,
           stationName:res.stationName,
-          onePhoto:res.inchimg,
-          starInfo:mapTime(res.dataList,'creatTime')
+          onePhoto:res.dataList.userSignInfo.imgUrl,
+          starInfo:mapTime(res.dataList.dataList,'creatTime').reverse()
         })
       }).catch(function(err){
         console.log("获取用户评级信息失败")

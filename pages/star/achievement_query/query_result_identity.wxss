@@ -52,7 +52,7 @@
 }
 .honr_time{
     color: #666;
-    margin-right: 110rpx;
+    margin-right: 30rpx;
     white-space: nowrap
 }
 .bottom_btn{
@@ -69,5 +69,7 @@
     overflow: hidden;
     z-index: 9;
 }
-
+.honr_container{
+	display: flex;
+}
 

@@ -12,13 +12,13 @@
 				</view>
 				<text>{{string.sub(levelTime)}}</text>
 			</view>
-			<view class="form-group" style="margin-top:20rpx">
+			<view class="form-group" style="margin-top:20rpx" wx:if="{{number.length}}">
 				<text class="form-text">证书号</text>
 				<view class="form-control" style="margin-bottom:25rpx">
 					<text class="certificate_num" selectable="false" space="false" decode="false">{{number}}</text>
 				</view>
 			</view>
-			<view class="form-group">
+			<view class="form-group" wx:if="{{number.length}}">
 				<text class="form-text">证书  </text><text class="looking-text">(点击查看)</text>
 					
 				

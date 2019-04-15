@@ -2,6 +2,7 @@
     "navigationBarTitleText": "我的粉丝",
     "usingComponents":{
         "praise-item":"/components/praise_item/praise_item",
+		"dynaic-item":"/components/dynaic_item/dynaic_item",
         "no-thing":"/components/nothing/nothing"
     }
 }
