@@ -45,6 +45,11 @@
     font-size: 32rpx;
 }
 .input_content{
+	width: 400rpx;
     font-size: 30rpx;
     color: #222;
+}
+.loadingclass{
+	width: 100% !important;
+	height: 400rpx;
 }

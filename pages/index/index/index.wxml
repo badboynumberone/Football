@@ -1,5 +1,5 @@
 <!--index.wxml-->
-
+<wxs src="../../../utils/string.wxs" module="string" />
 <view class="main" style="background:#f1f1f1" wx:if="{{bannerInfo.length}}">
 <scroll-view scroll-y="{{true}}">
     <!-- 搜索 -->

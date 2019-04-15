@@ -6,14 +6,14 @@
                 <van-tab title="证书号">
                     <view class="input_info"> 
                         <van-cell-group>
-                            <van-field custom-class="input_content" data-type="1" bind:input="numChange" value="{{ certificateNum }}" type="number" placeholder="请输入证书号" border="{{ false }}" />
+                            <van-field custom-class="input_content" data-type="1" bind:input="numChange" value="{{ certificateNum }}"  placeholder="请输入证书号" border="{{ false }}" />
                         </van-cell-group>
                     </view>
                 </van-tab>
                 <van-tab title="身份证号">
                     <view class="input_info"> 
                         <van-cell-group>
-                            <van-field custom-class="input_content" data-type="2" bind:input="numChange" value="{{ indentityNum }}" type="number" placeholder="请输入身份证号" border="{{ false }}" maxlength="18" />
+                            <van-field custom-class="input_content" data-type="2" bind:input="numChange" value="{{ indentityNum }}"  placeholder="请输入身份证号" border="{{ false }}" maxlength="18" />
                         </van-cell-group>
                     </view>
                 </van-tab>

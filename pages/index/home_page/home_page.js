@@ -21,7 +21,7 @@ Page({
       ],
       isLoading:false
     },
-  
+		
     /**
      * 生命周期函数--监听页面加载
      */
@@ -35,6 +35,15 @@ Page({
       }
       console.log(options)
     },
+		//下拉刷新
+		onPullDownRefresh(){
+			this.setData({
+				[`pageInfo[${this.data.navIndex}]`]:{dynaicInfo:[],nowPageIndex:1,totalPage:2,totalSize:0,bottomFont:'Loading'}
+			})
+			this.getUserInfo(this.data.userId);
+			this.getDynaic(this.data.userId,this.data.navIndex+1,1,20)
+			wx.stopPullDownRefresh();
+		},
     //关心
     handleConcern(){
       let api = '';

@@ -28,7 +28,7 @@
 	 	<text>{{item.title}}</text>	
 	</view>
 	<view class="works_container text-hidden">
-		<text>{{item.content}}</text>
+		<text class="text-hidden">{{item.content}}</text>
 	</view>
 	<view class="publisher_info">
 		<view class="publisher">

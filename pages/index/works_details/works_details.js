@@ -12,7 +12,7 @@ Page({
       isAnswer:true,
       currentReplyId:'',//当前评论id
       isPop:false,//是否弹出选择框
-      userId:wx.getStorageSync("userId"),//当前userId
+      userId:'',//当前userId
       currentProductionId:'',
       currentNavIndex:'',//当前索引
       worksId:'',//作品Id
@@ -46,7 +46,7 @@ Page({
       
       this.setData({
         worksId:options.worksId || app.globalData.currentWorksId,//作品ID
-       
+				userId:wx.getStorageSync("userId")
       })
       if(options.navIndex || options.index){
         this.setData({
@@ -180,7 +180,7 @@ Page({
             let minunes = rating[parseInt(firstIndex)].commentChild.length+1;
             rating.splice(parseInt(firstIndex),1);
             
-            // console.log(minunes)
+             console.log(rating)
             that.setData({
               rating:rating,
               ['worksInfo.produtionNum']:that.data.worksInfo.produtionNum-minunes
@@ -242,6 +242,7 @@ Page({
         content:that.data.ratingContent,
         creatTime:nowTime,
         costomerId:wx.getStorageSync("userId"),
+				commentChild:[],
         newComment:true
       }
       let SecondContent={
@@ -270,7 +271,7 @@ Page({
             firstContent.id = res;
             addInfo.unshift(firstContent)
             that.setData({
-              showTitle:"添加成功",
+              showTitle:"评论成功",
               rating:addInfo,
               ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ratingContent:''

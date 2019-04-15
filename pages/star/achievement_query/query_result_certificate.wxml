@@ -10,7 +10,7 @@
 					<image src="../../../images/detail-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
 					<text style="margin-left:40rpx;color:#63922F">{{string.mapLevel(level)}}</text>
 				</view>
-				<text>{{levelTime}}</text>
+				<text>{{string.sub(levelTime)}}</text>
 			</view>
 			<view class="form-group" style="margin-top:20rpx">
 				<text class="form-text">证书号</text>

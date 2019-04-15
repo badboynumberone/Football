@@ -16,6 +16,7 @@ Page({
               {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
   },
   onLoad(){
+		
     this.initData();
   },
   onShow(){
@@ -70,6 +71,10 @@ Page({
         pageNo:pageNo,
         pageSize
       }}).then(function(res){
+				res.dataList.forEach(function(item){
+					item.content = item.content.replace(/<\/?.+?>/g,""); 
+					item.content = item.content.replace(/[\r\n]/g, ""); 
+				})
         that.setData({
           ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
           ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,

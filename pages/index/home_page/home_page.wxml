@@ -11,7 +11,7 @@
 					<text>{{singleInfo.nickName || '匿名'}}</text>
 				</view>
 				<view class="personal_autograph text-hidden">
-					<text>{{singleInfo.sign || '未填写'}}</text>
+					<text>{{singleInfo.sign || '暂无个性签名哦~'}}</text>
 				</view>
 				<view class="" bindtap="handleConcern" data-userid="{{userId}}">
 					<concern-item  offsetOne="{{true}}" offsetTwo="{{singleInfo.isFollow}}"></concern-item>

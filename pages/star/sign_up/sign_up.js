@@ -140,6 +140,13 @@ Page({
         data:{}
       }).then(function(res){
         console.log(res.userSignInfo.userSex)
+				if(!that.data.isSign){
+					wx.hideLoading();
+				  wx.showToast({
+				    title: res.message,
+				    icon: 'none',
+				    duration: 3000
+				 });
         that.setData({
           starInfo:res.dataList.reverse(),
           Name:res.userSignInfo.userName,
@@ -157,10 +164,6 @@ Page({
           city:res.userSignInfo.cityAdress.split(","),
           isSign:res.flg
         })
-        if(!that.data.isSign){
-          that.setData({
-            ["starInfo["+that.data.starInfo.length-1+"].notice"]:"未报名",
-          })
         }
       }).catch(function(err){
         console.log("获取参加者信息失败")

@@ -67,7 +67,7 @@
             </view>
             <view class="content" style="margin-top:110rpx">
                 <view class="content_wrapper" style="margin-right:20rpx">
-                    <textarea class="textarea" value="{{ string.trim(signature) }}" bindinput="getText" placeholder="未填写（30个字）" maxlength="30"/>
+                    <textarea class="textarea" value="{{ string.trim(signature) }}" bindinput="getText" placeholder="暂无个性签名哦~（30个字）" maxlength="30"/>
                 </view>
             </view>
         </view>
