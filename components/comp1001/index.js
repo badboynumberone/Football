@@ -87,12 +87,12 @@ Component({
           url: '/pages/purchase/order/list'
         })
       } else if (item.targetType === '6') {
-        wx.switchTab({
+        wx.navigateTo({
           url: '/pages/purchase/cart/index'
         })
       } else if (item.targetType === '7') {
         wx.switchTab({
-          url: '/pages/purchase/mine/index'
+          url: '/pages/me/index/index'
         })
       } else {
         if (item.id) {

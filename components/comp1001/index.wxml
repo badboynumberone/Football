@@ -8,6 +8,7 @@
   <swiper indicator-dots="{{indicatorDots}}" circular="{{true}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{pageData.carouselList.data}}" wx:key="index">
       <swiper-item>
+				
         <image src="{{imageBaseUrl}}{{item.imageUrl}}" data-item="{{item}}" class="slide-image" mode="widthFix" style="width:100%;" bindtap="itemAction"/>
       </swiper-item>
     </block>
