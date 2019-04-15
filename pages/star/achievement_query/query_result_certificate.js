@@ -13,7 +13,8 @@ Page({
       ratingCertImg:'',//证书
       nowVideo:[],//现场视频
       nowImg:[],//现场照片
-      ratingCertImg:''//证书图片
+      ratingCertImg:'',//证书图片
+			fullControl:false,//全屏控制
     },
     
     /**
@@ -105,10 +106,10 @@ Page({
       });
     },
     lookingVideo(e){
-      var audioContext = wx.createAudioContext("myVideo", this);
-      audioContext.play();
-      
-      
-      console.log("haha")
+      let audioContext = wx.createAudioContext("myVideo", this);
+			audioContext.play();
+			this.setData({
+				fullControl:true
+			})
     }
   })

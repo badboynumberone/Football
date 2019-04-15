@@ -20,7 +20,7 @@
             </view>
             <view class="content">
                 <view class="content_wrapper" style="position:absolute;right:35px">
-                    <input type="text" value="{{string.trim(userName)}}" placeholder="请输入用户名" placeholder-style='text-align:right' style="width:480rpx;text-align:right" data-name="userName" bindfocus="onFocus" bindinput="onChange" maxlength="16" bindblur="onBlur"/>
+                    <input type="text" value="{{string.trim(userName)}}" placeholder="请输入用户名" placeholder-style='text-align:right' style="width:500rpx;text-align:right" data-name="userName" bindfocus="onFocus" bindinput="onChange" maxlength="16" bindblur="onBlur"/>
                 </view>
                 <view bindtap="clear" hover-class="none" hover-stop-propagation="false" style="position:relative;right:-6rpx;top:4rpx">
                     <image wx:if="{{isClearShow}}" class="arrow" src="../../../images/ssqc@2x.png" style="width:30rpx;height:30rpx" />

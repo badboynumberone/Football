@@ -86,7 +86,7 @@
                         <van-row>
                             <view catchtap="handleItem" data-content="{{itemName.content}}" data-customer="{{itemName.costomerId}}" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}" data-idx="{{idx}}">
                                 <van-col span="2">
-                                    <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
+                                    <view class="img_wrapper" catchtap="toHomePage" data-customer="{{itemName.costomerId}}">
                                         <image class="fill" style="border-radius:50%"  src="{{itemName.commentHeadImg || '../../../images/mrtx.png'}}"   />
                                     </view>
                                 </van-col>

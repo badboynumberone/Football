@@ -31,7 +31,7 @@
 					
 				
 				<view class="form-control">  
-				<video class=""id="myVideo" src="{{nowVideo}}" bindtap="lookingVideo" style="width:150rpx; height:150rpx;margin-right:10rpx;margin-bottom: 10rpx; "  autoplay="{{false}}" controls="{{false}}" />
+				<video class=""id="myVideo" src="{{nowVideo}}" bindtap="lookingVideo" style="width:150rpx; height:150rpx;margin-right:10rpx;margin-bottom: 10rpx; "  autoplay="{{false}}" controls="{{fullControl}}" />
 				</view>
 			</view>
 			<view class="form-group" wx:if="{{nowImg.length}}">
