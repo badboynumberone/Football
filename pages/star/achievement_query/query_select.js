@@ -72,11 +72,11 @@ Page({
         }
         if(res.status==1){
           wx.navigateTo({
-            url: '/pages/star/achievement_query/fail?information='+res.statusmsg
+            url: '/pages/star/achievement_query/fail?information='+res.statusmsg+"&identity="+that.data.indentityNum
           }); 
         }else if(res.status==2){
           wx.navigateTo({
-            url: '/pages/star/achievement_query/fail?information='+res.statusmsg
+            url: '/pages/star/achievement_query/fail?information='+res.statusmsg+"&identity="+that.data.indentityNum
           }); 
         }else{
           if(type==1){

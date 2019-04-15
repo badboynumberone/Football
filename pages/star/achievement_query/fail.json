@@ -1,6 +1,6 @@
 {
     "navigationBarTitleText": "成绩查询",
     "usingComponents":{
-        
+        "bottom-btn":"/components/bottom_btn/bottom_btn"
     }
 }

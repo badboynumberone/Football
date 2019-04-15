@@ -1,6 +1,7 @@
 <view class="main" style="background:url('../../../images/fail-bg.png') no-repeat center/cover">
    <image class="fail_img" src="../../../images/bhg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
    <text class="fail_text" selectable="false" space="false" decode="false">{{text}}</text>
+  
 </view>
-
+ <bottom-btn text="查看历史成绩" bindtap="lookingHistory"/>
   
