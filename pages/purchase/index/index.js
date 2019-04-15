@@ -10,13 +10,18 @@ Page({
     isRefreshing: false
   },
   onLoad: function () {
-    var that = this
+    var that = this;
+		wx.showLoading({
+			title: '加载中',
+			mask:true
+		})
     request.post('/shopPage/getShopHomePage').then(function (data) {
       // console.log(data)
       that.setData({
         templateCode: data.templateCode,
         templateData: data
       })
+			wx.hideLoading();
     }, function (err) {
     });
   },

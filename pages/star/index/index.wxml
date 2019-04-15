@@ -37,13 +37,13 @@
             <view class="registration_site_item" wx:for="{{siteInfo}}" wx:key="{{index}}" bindtap="navigateTo" data-url="/pages/star/station_details/station_details" data-id="{{item.id}}">
                 <image class="fill" src="{{item.stationImg}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
                 <view class="site_info cl">
-                    <text class="site_city">{{item.cityName}}</text>
+                    <text class="site_city text-hidden">{{item.cityName}}</text>
                     <text class="site_address text-hidden">{{item.stationName}}</text>
                 </view>
             </view>
         </view>
     </view>
-    <view class="ending">
+    <view class="ending" wx:if="{{siteInfo.length}}">
         {{bottomFont}}
     </view>
     </scroll-view>

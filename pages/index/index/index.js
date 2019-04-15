@@ -16,8 +16,7 @@ Page({
               {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
   },
   onLoad(){
-		
-    this.initData();
+			this.initData();
   },
   onShow(){
     if(app.globalData.index && app.globalData.NavIndex){
@@ -105,7 +104,12 @@ Page({
   getBanner(){
     //获取首页轮播图
     let that =this;
+		wx.showLoading({
+			title: '加载中',
+			mask:true
+		})
     request("/banner/getList",{method:"POST"}).then(function(res){
+			wx.hideLoading()
       if(res){
          let result = res;
          that.setData({bannerInfo:result});

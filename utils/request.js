@@ -102,73 +102,71 @@ const remove = (url, options) => {
   return request(url, { method: 'DELETE', data: options })
 }
 //上传文件
-function upLoadFile(filePath){
-  return new Promise(function(resolve,reject){
-    wx.uploadFile({
-      url: 'https://api.itchou.net/mall-api-wxapp/oss/upload', // 仅为示例，非真实的接口地址
-      filePath: filePath[0],
-      name: 'file',
-      header:{
-        'content-type': 'multipart/form-data',
-        'Authorization': wx.getStorageSync('accessToken'),
-        'Shop-Id': base.shopId
-      },
-      success(res) {
-        console.log(res)
-        if(res.statusCode==200){
-          try{
-            resolve(JSON.parse(res.data).data)
-          }catch(err){
-            resolve(res.data.data)
-          }
-        }
-       
-      },
-      fail(err){
-        console.log('上传失败')
-        reject(err)
-      }
-    })
-  })
-}
 // function upLoadFile(filePath){
 //   return new Promise(function(resolve,reject){
-// 		request('/oss/getPolicy',{
-// 			method:"POST"
-// 		}).then(function(result){
-// 			console.log(result)
-// 			 wx.uploadFile({
-// 			  url: result.host, // 仅为示例，非真实的接口地址
-// 			  filePath: filePath[0],
-// 			  name: 'file',
-// 				formData:{
-// 					'policy':result.policy,
-// 					'OSSAccessKeyId':result.accessKeyId,
-// 					'sucess_action_status':"200",
-// 					"signature":result.signature
-// 				},
-// 			  success(res) {
-// 			    console.log(res)
-// 			    if(res.statusCode==200){
-// 			      try{
-// 			        resolve(JSON.parse(res.data).data)
-// 			      }catch(err){
-// 			        resolve(res.data.data)
-// 			      }
-// 			    }
-// 			   
-// 			  },
-// 			  fail(err){
-// 			    console.log('上传失败')
-// 			    reject(err)
-// 			  }
-// 			})
-// 		}).catch(function(err){
-// 			console.log(err)
-// 		})
-//    
+//     wx.uploadFile({
+//       url: 'https://api.itchou.net/mall-api-wxapp/oss/upload', // 仅为示例，非真实的接口地址
+//       filePath: filePath[0],
+//       name: 'file',
+//       header:{
+//         'content-type': 'multipart/form-data',
+//         'Authorization': wx.getStorageSync('accessToken'),
+//         'Shop-Id': base.shopId
+//       },
+//       success(res) {
+//         console.log(res)
+//         if(res.statusCode==200){
+//           try{
+//             resolve(JSON.parse(res.data).data)
+//           }catch(err){
+//             resolve(res.data.data)
+//           }
+//         }
+//        
+//       },
+//       fail(err){
+//         console.log('上传失败')
+//         reject(err)
+//       }
+//     })
 //   })
 // }
+function upLoadFile(filePath){
+  return new Promise(function(resolve,reject){
+		request('/oss/getPolicy',{
+			method:"POST"
+		}).then(function(result){
+			console.log(result)
+			 wx.uploadFile({
+			  url: result.host, // 仅为示例，非真实的接口地址
+			  filePath: filePath[0],
+			  name: 'file',
+				formData:{
+					'policy':result.policy,
+					'OSSAccessKeyId':result.accessKeyId,
+					'sucess_action_status':"200",
+					"signature":result.signature
+				},
+			  success(res) {
+			    console.log(res)
+			    if(res.statusCode==200){
+			      try{
+			        resolve(JSON.parse(res.data).data)
+			      }catch(err){
+			        resolve(res.data.data)
+			      }
+			    }
+			  },
+			  fail(err){
+			    console.log('上传失败')
+			    reject(err)
+			  }
+			})
+		}).catch(function(err){
+			console.log(err)
+		})
+  })
+}
 module.exports = {
   request,
   upLoadFile,

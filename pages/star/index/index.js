@@ -19,8 +19,15 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      this.getBanner();
-      this.getSiteInfo(); 
+			
+			try{
+				this.getBanner();
+				this.getSiteInfo(); 
+			}catch(e){
+				//TODO handle the exception
+				return;
+			}
+      
     },
     onPullDownRefresh(){
       if(this.data.isreFreshing){
@@ -47,12 +54,17 @@ Page({
     //获取banner
     getBanner(){
       let that = this;
+			wx.showLoading({
+				title: '加载中',
+				mask:true
+			})
       request("/startLevelIntrod/info",{
         method:"POST",
         data:{
         }
       }).then(function(res){
         that.setData({bannerInfo:res})
+				wx.hideLoading()
       }).catch(function(err){
         console.log("获取轮播图失败")
       })
