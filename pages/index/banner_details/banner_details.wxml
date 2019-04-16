@@ -1,28 +1,26 @@
-<import src="/pages/wxParse/wxParse.wxml"/>
 <view class="main" wx:if="{{bannerDetail}}">
-
-
-    <view class="layout">
-        <!--标题-->
-        <text class="title">{{bannerDetail.bannTitle}}</text>
-        <view class="banner_content">
-            <!--图片-->
-            <view class="img_video_wrapper">
-                <image wx:if="{{bannerDetail.bannImg}}" class="activity_img" src="{{bannerDetail.bannImg}}"  lazy-load="false" style="width:100%;height:412rpx" >
-                </image>
-                <video wx:if="{{bannerDetail.bannVoid}}" class="activity_video" src="{{bannerDetail.bannVoid}}" style="width:100%;height:412rpx" controls="{{true}}"/>
-            </view>
-            <!--内容-->
-            <!-- <text class="banner_info">{{bannerDetail.bannContent}}</text> -->
-            <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-            <!--活动链接-->
-            <view class="activity_link_wrapper" bindtap="activityLink">
-                <text class="activity_link" selectable="false" space="false" decode="false">活动链接 <text>{{bannerDetail.bannH5Url}}</text></text> 
-            </view>
-            <!--去参加-->
-            <view class="go_jion" bindtap="goJion" wx:if="{{bannerDetail.bannUserJoin==1}}">
-                去参加
-            </view>
-        </view>
-    </view>
+	<view class="layout">
+		<!--标题-->
+		<text class="title">{{bannerDetail.bannTitle}}</text>
+		<view class="banner_content">
+			<!--图片-->
+			<view class="img_video_wrapper">
+				<image wx:if="{{bannerDetail.bannImg}}" class="activity_img" src="{{bannerDetail.bannImg}}" lazy-load="false" style="width:100%;height:412rpx">
+				</image>
+				<video wx:if="{{bannerDetail.bannVoid}}" class="activity_video" src="{{bannerDetail.bannVoid}}" style="width:100%;height:412rpx"
+				 controls="{{true}}" />
+			</view>
+			<!--内容-->
+			<!-- <text class="banner_info">{{bannerDetail.bannContent}}</text> -->
+			<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+			<!--活动链接-->
+			<view class="activity_link_wrapper" bindtap="activityLink">
+				<text class="activity_link" selectable="false" space="false" decode="false">活动链接 <text>{{bannerDetail.bannH5Url}}</text></text>
+			</view>
+			<!--去参加-->
+			<view class="go_jion" bindtap="goJion" wx:if="{{bannerDetail.bannUserJoin==1}}">
+				去参加
+			</view>
+		</view>
+	</view>
 </view>

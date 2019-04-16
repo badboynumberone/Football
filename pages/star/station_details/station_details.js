@@ -1,5 +1,4 @@
 import {request} from '../../../utils/request';
-var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
     /**
@@ -34,8 +33,7 @@ Page({
           id
         }
       }).then(function(res){
-        let article =res.stationInfo;
-        WxParse.wxParse('article', 'html', article, that,5);
+        
         that.setData({
           stationInfo:res
         })
