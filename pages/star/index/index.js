@@ -70,9 +70,11 @@ Page({
       })
     },
     navigateTo(e){
-      // if(!checkLogin(true)){
-      //   return;
-      // }
+      if(e.currentTarget.dataset.offset){
+        if(!checkLogin(true)){
+          return;
+        }
+      }
       wx.navigateTo({
         url: `${e.currentTarget.dataset.url}?id=${e.currentTarget.dataset.id}`
       });

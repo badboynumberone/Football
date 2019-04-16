@@ -6,7 +6,7 @@
     </view>
     <!--报名和成绩查询入口-->
     <view class="enter" wx:if="{{bannerInfo.imgUrl}}">
-        <view class="enter_item" bindtap="navigateTo" data-url="/pages/star/sign_up/sign_up">
+        <view class="enter_item" bindtap="navigateTo" data-offset="{{true}}" data-url="/pages/star/sign_up/sign_up">
             <image class="enter_img" src="../../../images/wybm@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
             <view class="enter_info">
                 <text>我要报名</text>
@@ -16,7 +16,7 @@
                 </view>
             </view> 
         </view>
-        <view class="enter_item" bindtap="navigateTo" data-url="/pages/star/achievement_query/query_select">
+        <view class="enter_item" bindtap="navigateTo" data-offset="{{true}}" data-url="/pages/star/achievement_query/query_select">
             <image class="enter_img" src="../../../images/cjcx@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
             <view class="enter_info">
                 <text>成绩查询</text>

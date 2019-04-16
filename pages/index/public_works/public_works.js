@@ -104,7 +104,7 @@ Page({
         success: (result)=>{
           console.log(result) 
           if(result.errMsg=="chooseVideo:ok"){
-              if(result.duration>=30){
+              if(result.duration>30){
                 wx.showToast({
                   title: '视频不能超过30s',
                   icon: 'none',
