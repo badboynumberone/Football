@@ -12,7 +12,8 @@
 			</view>
 			<!--内容-->
 			<!-- <text class="banner_info">{{bannerDetail.bannContent}}</text> -->
-			<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+			<!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" /> -->
+			<rich-text nodes="{{bannerDetail.bannContent}}"></rich-text>
 			<!--活动链接-->
 			<view class="activity_link_wrapper" bindtap="activityLink">
 				<text class="activity_link" selectable="false" space="false" decode="false">活动链接 <text>{{bannerDetail.bannH5Url}}</text></text>

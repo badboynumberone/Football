@@ -44,7 +44,7 @@
   <view style='height:10px;'></view>
   <van-cell-group>
     <van-cell title="商品金额" value="¥{{number.formatPrice(order.productFee)}}" />
-    <van-cell title="运费" value="+ ¥{{number.formatPrice(order.postFee)}}" />
+    <van-cell title="运费" value="¥{{number.formatPrice(order.postFee)}}" />
     <view class='total'>
       <label>合计：</label>
       <text>¥</text>{{number.formatPrice(order.orderFee)}}

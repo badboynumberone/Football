@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText":"商品详情",
+  "navigationBarTitleText":"订单详情",
   "usingComponents": {
     "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
     "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",

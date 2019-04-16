@@ -1,38 +1,35 @@
 <view class="main">
-	<view class="result_wrapper">
+	<scroll-view scroll-y="{{true}}">
+		<view class="result_wrapper">
 
-		<view class="line_wrapper">
-			<text class="input_name">站点名称:</text>
-			<view class="input_content">
-				<text class="get_content">{{stationInfo.stationName}}</text>
+			<view class="line_wrapper">
+				<text class="input_name">站点名称:</text>
+				<view class="input_content">
+					<text class="get_content">{{stationInfo.stationName}}</text>
+				</view>
 			</view>
-		</view>
-        <view class="line_wrapper">
-			<text class="input_name">站点地址:</text>
-			<view class="input_content">
-				<text class="get_content">{{stationInfo.address}}</text>
+			<view class="line_wrapper">
+				<text class="input_name">站点地址:</text>
+				<view class="input_content">
+					<text class="get_content">{{stationInfo.address}}</text>
+				</view>
 			</view>
-		</view>
-        <view class="line_wrapper">
-			<text class="input_name" selectable="false" space="false" decode="false">联系人:</text>
-			<view class="input_content">
-				<text class="get_content text-hidden"> {{stationInfo.linkMan}}</text>
+			<view class="line_wrapper">
+				<text class="input_name" selectable="false" space="false" decode="false">联系人:</text>
+				<view class="input_content">
+					<text class="get_content text-hidden"> {{stationInfo.linkMan}}</text>
+				</view>
 			</view>
-		</view>
-		<view class="line_wrapper" style="border-bottom:1rpx solid #f1f1f1;padding-bottom:30rpx">
-			<text class="input_name" selectable="false" space="false" decode="false">联系方式:</text>
-			<view class="input_content">
-				<text class="get_content text-hidden">{{stationInfo.phone}}</text>
+			<view class="line_wrapper" style="border-bottom:1rpx solid #f1f1f1;padding-bottom:30rpx">
+				<text class="input_name" selectable="false" space="false" decode="false">联系方式:</text>
+				<view class="input_content">
+					<text class="get_content text-hidden">{{stationInfo.phone}}</text>
+				</view>
 			</view>
-		</view>
-		<view class="station_info" style="padding:10rpx">
-			<view class="station_content">
+			<view class="station_info" style="padding:10rpx">
 				<rich-text nodes="{{stationInfo.stationInfo}}"></rich-text>
 			</view>
-			
-				<!-- <image class="station_img_wrapper " src="{{stationInfo.stationImg}}" style="width:100%;height:430rpx" lazy-load="false" binderror="" bindload="" /> -->
-			
 		</view>
-	</view>
+	</scroll-view>
 </view>
 
