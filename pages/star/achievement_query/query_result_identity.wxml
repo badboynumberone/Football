@@ -8,7 +8,7 @@
 		<view class="result">
 			<view class="title">
 				<image  class="title_img" src="../../../images/base-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
-				<text style="margin-left:40rpx;color:#63922F">基本信息</text>
+				<text style="margin-left:20rpx;color:#63922F">基本信息</text>
 			</view>
 			<view class="register-wrviewp" wx:if="{{pageIndex == 1}}">
 				<view class="form-group">
@@ -50,8 +50,8 @@
 		<!--星级评定信息-->
 		<view class="result" style="margin-top:15rpx;margin-bottom:50rpx">
 			<view class="title">
-				<image  class="title_img" src="../../../images/rate-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
-				<text style="margin-left:40rpx;color:#63922F">星级评定信息</text>
+				<image class="title_img" src="../../../images/rate-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
+				<text style="margin-left:20rpx;color:#63922F">星级评定信息</text>
 			</view>
 			<view class="honr_list">
 				<van-cell wx:for="{{starInfo}}" wx:key="{{index}}" title="{{string.mapLevel(item.ratingLevel)}}" data-id="{{item.id}}" data-msg="{{item.msg}}" bind:click="queryStar" size="large"  is-link>

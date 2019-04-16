@@ -1,6 +1,5 @@
 <view class="main">
     <!--我获得的赞-->
-	
     <praise-item wx:if="{{offset == 1 || offset == 3}}" contentList="{{contentList}}" offset="{{offset}}"></praise-item>
 	<!--我赞过的-->
     
