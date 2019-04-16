@@ -5,7 +5,7 @@
 	<view class="works_img_wrapper">
 		
 		 <block wx:if="{{item.fileType==1}}">
-			 <!-- <image class="works_image fill" src="{{item.fileUrl[0] || '../../images/mrtx.png'}}" /> -->
+			 <image class="works_image fill" src="{{item.fileUrl[0]+'?x-oss-process=video/snapshot,t_2000,f_jpg,w_300,h_300,m_fast' || '../../images/mrtx.png'}}" />
 		 </block>
 		 <block wx:if="{{item.fileType==2}}">
 			 <image class="works_image fill" src="{{item.fileUrl[0] || '../../images/mrtx.png'}}" />

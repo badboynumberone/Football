@@ -544,7 +544,7 @@ Page({
 
   goProductList() {
     wx.navigateTo({
-      url: '/pages/purchase/index',
+      url: '/pages/purchase/index/index',
     })
   },
 
