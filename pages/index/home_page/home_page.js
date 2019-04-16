@@ -1,5 +1,6 @@
 import {request} from '../../../utils/request';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
+import {clearLine} from '../../../utils/util';
 Page({
 
     /**
@@ -131,6 +132,7 @@ Page({
         }
       }).then(function(res){
           type-=1;
+          clearLine(res.dataList)
           that.setData({
             ["pageInfo["+type+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
             ["pageInfo["+type+"].totalPage"]:res.totalPage,

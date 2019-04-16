@@ -1,5 +1,6 @@
 import {request} from '../../../utils/request';
 import {mapTime} from '../../../utils/util';
+import {clearLine} from '../../../utils/util';
 Page({
 
     /**
@@ -94,6 +95,7 @@ Page({
           totalSize:res.totalSize,
         })
 				if(that.data.offset == 1 || that.data.offset == 3 ){
+          clearLine(res.dataList)
 					that.setData({
 						contentList:that.data.contentList.concat(mapTime(res.dataList,"creat_time"))
 					})

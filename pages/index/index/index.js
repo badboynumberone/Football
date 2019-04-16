@@ -1,5 +1,5 @@
 import {request} from '../../../utils/request';
-import {checkLogin} from '../../../utils/util';
+import {checkLogin,clearLine} from '../../../utils/util';
 //index.js
 const app = getApp()
 
@@ -70,10 +70,11 @@ Page({
         pageNo:pageNo,
         pageSize
       }}).then(function(res){
-				res.dataList.forEach(function(item){
-					item.content = item.content.replace(/<\/?.+?>/g,""); 
-					item.content = item.content.replace(/[\r\n]/g, ""); 
-				})
+        clearLine(res.dataList);
+				// res.dataList.forEach(function(item){
+				// 	item.content = item.content.replace(/<\/?.+?>/g,""); 
+				// 	item.content = item.content.replace(/[\r\n]/g, ""); 
+				// })
         that.setData({
           ["pageInfo["+that.data.navIndex+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
           ["pageInfo["+that.data.navIndex+"].totalPage"]:res.totalPage,

@@ -32,3 +32,6 @@
     font-size: 24rpx;
     border-top:1rpx solid #f1f1f1;
 }
+.dynaic_style{
+    width:100%;display:flex;flex-flow:row wrap;padding-top: 15rpx;
+}

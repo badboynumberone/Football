@@ -1,4 +1,5 @@
 import {request} from '../../../utils/request';
+import {clearLine} from '../../../utils/util';
 Page({
 
     /**
@@ -55,6 +56,7 @@ Page({
         }
       }).then(function(res){
           console.log(res)
+          clearLine(res.dataList)
           that.setData({
             contentList:that.data.contentList.concat(res.dataList),
             totalPage:res.totalPage,

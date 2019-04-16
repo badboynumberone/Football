@@ -265,7 +265,7 @@ Page({
         })
         return;
       }
-      keyWords.push(e.detail);
+      keyWords.push(e.detail.trim());
       this.setData({
         show:false,
         keyWords
@@ -343,8 +343,8 @@ Page({
         let obj = {
           fileType:that.data.videoOrImg ? '2' : '1', 
           fileUrlList:upContent,
-          title:that.data.title,
-          content:that.data.content,
+          title:that.data.title.trim(),
+          content:that.data.content.trim(),
           address:that.data.address,
           keywordList:that.data.keyWords
         }

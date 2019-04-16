@@ -115,8 +115,11 @@ const formatTime = date => {
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 //清除空行
-export const clearLine = str =>{
-	
+export const clearLine = arr =>{
+  arr.forEach(function(item){
+    item.content = item.content.replace(/<\/?.+?>/g,""); 
+    item.content = item.content.replace(/[\r\n]/g, ""); 
+  })
 }
 const formatNumber = n => {
   n = n.toString()
@@ -150,6 +153,7 @@ const mapTime = (value,name)=>{
 }
 
 module.exports = {
+  clearLine,
   sleep,
   getNowTime,
   resetUserInfo,
