@@ -20,7 +20,9 @@
 				<view style="margin-top:15rpx" data-productionid="{{item.productionId}}" bindtap="navigateToWork">
 					<view class="praise_content" >
 							<view class="dynaic_img_wrapper">
-								<image class="fill" src="{{item.fileUrl || '../../images/mrtx.png' }}" mode="aspectFit" lazy-load="false" binderror="" bindload="" /> 
+								
+								<image wx:if="{{item.fileType == '2'}}" class="fill" src="{{item.fileUrl || '../../images/mrtx.png' }}" mode="aspectFit" lazy-load="false" binderror="" bindload="" /> 
+								<image wx:if="{{item.fileType == '1'}}" class="fill" src="{{item.fileUrl+'?x-oss-process=video/snapshot,t_2000,f_jpg,w_300,h_300,m_fast' || '../../images/mrtx.png' }}" mode="aspectFit" lazy-load="false" binderror="" bindload="" /> 
 							</view>
 							<view class="dynaic_info">
 								<view class="overhidden" style="margin-bottom:10rpx">
