@@ -84,6 +84,7 @@
 .site_address{
     font-size: 24rpx;
     color:#333;
+    width: 170rpx;
 }
 .ending{
     width: 100%;
