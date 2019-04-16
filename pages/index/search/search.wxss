@@ -2,8 +2,12 @@
 .van-search{
     background-color: #fff !important;
 }
+.van-search__content{
+    padding-left: 0rpx !important;
+}
 .van-search__field{
     border:1px solid #EAEAEA !important;
+    padding-left: 10rpx;
 }
 
 .search_history{
