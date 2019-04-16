@@ -160,10 +160,10 @@
 				</view>
 			</view>
 		</view>
+		<view style="height:50rpx"></view>
 		<!--底部按钮-->
 		<bottom-btn wx:if="{{pageIndex == 1}}" bindtap="nextStep" text="{{'下一步'}}"/>
 		<bottom-btn wx:if="{{pageIndex == 2}}" bindtap="submit" text="{{'立即提交'}}"/>
 	</view>
-	
 </view>
 

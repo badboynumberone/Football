@@ -110,9 +110,9 @@ Page({
     //提交
     submit(){
       if(!/[\u4e00-\u9fa5]{2,4}$/.test(this.data.motherName)){wx.showToast({title: '妈妈姓名格式不正确，请修改',icon: 'none',duration: 1500}); return;}
-      if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.data.motherPhone)){wx.showToast({title: '妈妈手机号格式不正确，请修改',icon: 'none',duration: 1500}); return;}
+      if(!/^[1][2,3,4,5,6,7,8,9][0-9]{9}$/.test(this.data.motherPhone)){wx.showToast({title: '妈妈手机号格式不正确，请修改',icon: 'none',duration: 1500}); return;}
       if(!/[\u4e00-\u9fa5]{2,4}$/.test(this.data.dadName)){wx.showToast({title: '爸爸姓名格式不正确，请修改',icon: 'none',duration: 1500}); return;}
-      if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.data.dadPhone)){wx.showToast({title: '爸爸手机号格式不正确，请修改',icon: 'none',duration: 1500}); return;}
+      if(!/^[1][2,3,4,5,6,7,8,9][0-9]{9}$/.test(this.data.dadPhone)){wx.showToast({title: '爸爸手机号格式不正确，请修改',icon: 'none',duration: 1500}); return;}
       if(!this.data.address){wx.showToast({title: '通讯地址不能为空',icon: 'none',duration: 1500}); return;}
       if(!this.data.emailNum.length==6){wx.showToast({title: '邮编格式不正确，请修改',icon: 'none',duration: 1500}); return;}
       if(!/^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g.test(this.data.email)){wx.showToast({title: '邮箱格式不正确，请修改',icon: 'none',duration: 1500}); return;}
@@ -141,29 +141,24 @@ Page({
       }).then(function(res){
         console.log(res.userSignInfo.userSex)
 				if(!that.data.isSign){
-					wx.hideLoading();
-				  wx.showToast({
-				    title: res.message,
-				    icon: 'none',
-				    duration: 3000
-				 });
-        that.setData({
-          starInfo:res.dataList.reverse(),
-          Name:res.userSignInfo.userName,
-          sexIndex:parseInt(res.userSignInfo.userSex-1),
-          identityNum:res.userSignInfo.cerdCard,
-          motherName:res.userSignInfo.motherName,
-          motherPhone:res.userSignInfo.motherPhone,
-          dadName:res.userSignInfo.fatherName,
-          dadPhone:res.userSignInfo.fatherPhone,
-          address:res.userSignInfo.commuAddress,
-          emailNum:res.userSignInfo.postalCode,
-          email:res.userSignInfo.email,
-          photoUrl:res.userSignInfo.imgUrl,
-          birthDay:res.userSignInfo.birthday,//生日
-          city:res.userSignInfo.cityAdress.split(","),
-          isSign:res.flg
-        })
+          
+          that.setData({
+            starInfo:res.dataList.reverse(),
+            Name:res.userSignInfo.userName,
+            sexIndex:parseInt(res.userSignInfo.userSex-1),
+            identityNum:res.userSignInfo.cerdCard,
+            motherName:res.userSignInfo.motherName,
+            motherPhone:res.userSignInfo.motherPhone,
+            dadName:res.userSignInfo.fatherName,
+            dadPhone:res.userSignInfo.fatherPhone,
+            address:res.userSignInfo.commuAddress,
+            emailNum:res.userSignInfo.postalCode,
+            email:res.userSignInfo.email,
+            photoUrl:res.userSignInfo.imgUrl,
+            birthDay:res.userSignInfo.birthday,//生日
+            city:res.userSignInfo.cityAdress.split(","),
+            isSign:res.flg
+          })
         }
       }).catch(function(err){
         console.log("获取参加者信息失败")
