@@ -52,6 +52,7 @@
 }
 .honr_time{
     color: #666;
+    white-space: nowrap;
 }
 .bottom_btn{
     position: fixed;
