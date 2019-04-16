@@ -52,8 +52,6 @@
 }
 .honr_time{
     color: #666;
-    margin-right: 30rpx;
-    white-space: nowrap
 }
 .bottom_btn{
     position: fixed;
@@ -72,4 +70,12 @@
 .honr_container{
 	display: flex;
 }
-
+.grey{
+    color:#666;
+}
+.green{
+    color: #63922F
+}
+.red{
+    color: #f94d0a;
+}

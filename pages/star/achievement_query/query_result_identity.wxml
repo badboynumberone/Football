@@ -1,6 +1,6 @@
 <wxs src="../../../utils/string.wxs" module="string" />
 <view class="main">
-	<view class="result_container" style="margin-bottom:60rpx">
+	<view class="result_container" style="margin-bottom:100rpx">
 		<view class="result_bg">
 			<image class="result_bg_img fill" src="../../../images/rate-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 		</view>
@@ -48,24 +48,28 @@
 			</view>
 		</view>
 		<!--星级评定信息-->
-		<view class="result" style="margin-top:15rpx">
+		<view class="result" style="margin-top:15rpx;margin-bottom:50rpx">
 			<view class="title">
 				<image  class="title_img" src="../../../images/rate-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
 				<text style="margin-left:40rpx;color:#63922F">星级评定信息</text>
 			</view>
 			<view class="honr_list">
-				<van-cell wx:for="{{starInfo}}" wx:key="{{index}}" title="{{string.mapLevel(item.ratingLevel)}}" data-id="{{item.id}}" bind:click="queryStar" size="large"  is-link>
+				<van-cell wx:for="{{starInfo}}" wx:key="{{index}}" title="{{string.mapLevel(item.ratingLevel)}}" data-id="{{item.id}}" data-msg="{{item.msg}}" bind:click="queryStar" size="large"  is-link>
 					<view class="honr_container">
 						<view class="honr_time">
 							{{string.sub(item.creatTime)}}
 						</view>
-						<view class="honr_time">
+						<view class="honr_time {{string.mapStatus(item.ratingStatus)}}" style="margin-left:20rpx">
 							{{item.msg}}
 						</view>
 					</view>
 				</van-cell>
 			</view>
 		</view>
+		<view style="height:20rpx">
+			
+		</view>
+		  
 	</view>
 	<!--底部生成电子证书按钮-->
 	<bottom-btn text="生成电子版证书" bindtap="toElectrical" />

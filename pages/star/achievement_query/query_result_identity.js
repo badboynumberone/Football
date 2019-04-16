@@ -58,6 +58,9 @@ Page({
       })
     },
     queryStar(e){
+      if(e.currentTarget.dataset.msg == '待评级'){
+        return;
+      }
       wx.navigateTo({
         url: '/pages/star/achievement_query/query_result_certificate?id='+e.currentTarget.dataset.id
       });

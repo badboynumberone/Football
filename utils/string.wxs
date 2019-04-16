@@ -25,5 +25,15 @@ module.exports = {
 	//裁剪字符
 	sub:function(str){
 		return str.substring(0,10)
-	}
+  },
+  //星级评定样式映射
+  mapStatus:function(str){
+    switch(str){
+      case "0" : {return 'red';}
+      case "1" : {return 'red';}
+      case "2" : {return 'grey';}
+      case "3" : {return 'green';}
+      case "4" : {return 'red';}
+    }
+  },
 }
