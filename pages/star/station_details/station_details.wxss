@@ -1,5 +1,4 @@
 @import '/common.wxss';
-@import "/pages/wxParse/wxParse.wxss";
 .line_wrapper{
     display: flex;
     align-items: center;

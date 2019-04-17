@@ -1,5 +1,4 @@
 @import '/common.wxss';
-@import "/pages/wxParse/wxParse.wxss";
 
 .layout{
     width: 95%;

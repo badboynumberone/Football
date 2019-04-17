@@ -1,7 +1,6 @@
 
 
 @import '/common.wxss';
-@import "/pages/wxParse/wxParse.wxss";
 .loadingclass{
     width: 100% !important;
     height: 421rpx;
