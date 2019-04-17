@@ -158,6 +158,14 @@ Page({
     //处理用户本人点击
     handleItem(e){
       console.log(e)
+      if(this.data.userId == e.currentTarget.dataset.customer){
+        this.setData({
+          isPop:true,
+          currentE:e,
+          currentReplyId:e.currentTarget.dataset.customer,
+          currentContent:e.currentTarget.dataset.content
+        })
+      }
       if(this.data.userId !=this.data.worksInfo.coustmoerId){
         return;
       }
