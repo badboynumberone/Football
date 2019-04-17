@@ -1,7 +1,7 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 <van-dialog id="van-dialog" />
 <van-transition name="fade">
-<view class="main" wx:if="{{worksInfo.coustmoerId}}" >
+<view class="main" wx:if="{{isWorks}}" >
     <!--作者信息-->
     <view class="works_author">
         <view class="author_header">
@@ -19,9 +19,13 @@
                 </view>
             </view>
         </view>
-        <view class="" bindtap="handleConcern">
-            <concern-item  wx:if="{{worksInfo.isAuth}}" wx:if="{{isMyWorks}}" offsetOne="{{true}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
+        <view wx:if="{{worksInfo.coustmoerId != userId}}"  bindtap="handleConcern">
+            <concern-item   offsetOne="{{true}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
         </view>
+        <view wx:else bindtap="deleteWorks">
+            <concern-item   offsetOne="{{false}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
+        </view>
+          
     </view>
     <!--视频或图片-->
     <view class="is_video_img">
@@ -136,6 +140,10 @@
       <image class="fill" src="../../../images/home.png" bindtap="navigateToIndex" />
     </view>
 </view>
+<view wx:else>
+    <no-thing src="/images/zp.png" url="/pages/index/index/index" text="该作品可能已被作者删除了哦，去首页看看吧" font="去首页" />
+</view>
+  
 </van-transition>
 
 <!-- 底部选择框 -->

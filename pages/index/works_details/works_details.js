@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+      isWorks:true,//是否存在此作品
       isAnswer:true,
       currentReplyId:'',//当前评论id
       isPop:false,//是否弹出选择框
@@ -126,6 +127,33 @@ Page({
       this.setData({
         isPop:false
       })
+    },
+    //删除作品
+    deleteWorks(){
+      let that = this;
+      Dialog.confirm({
+        title: '确定删除该作品？',
+          message: ' ',
+          cancelButtonText: '取消',
+          confirmButtonText: '确定'
+      }).then(() => {
+        request("/publishProdution/delete",{
+          method:"POST",
+          data:{
+            id:that.data.worksId
+          }
+        }).then(function(res){
+          if(res.deleteNum){
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        }).catch(function(err){
+          console.log("上传有误")
+        })
+      }).catch(()=>{
+        return;
+      });
     },
     //处理用户本人点击
     handleItem(e){
@@ -318,11 +346,14 @@ Page({
             id:app.globalData.currentWorksId
           }
         }).then(function(res){
-          console.log("作品信息")
-          console.log(res)
-          if(res){
+          if(res.flg){
             that.setData({
+              isWorks:res.flg,
               worksInfo:mapTime(res,'produtionCreatTime')
+            })
+          }else{
+            that.setData({
+              isWorks:res.flg
             })
           }
         }).catch(function(err){
