@@ -1,7 +1,8 @@
-<import src="/pages/wxParse/wxParse.wxml"/>
 <view class="main">
     <view class="layout">
         <image class="banner" src="{{bannerImg}}" mode="widthFix" lazy-load="false" />
-        <rich-text nodes="{{describesd}}"></rich-text>
+        
     </view>
+    
 </view>
+<rich-text nodes="{{describesd}}"></rich-text>

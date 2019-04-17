@@ -33,7 +33,9 @@ Page({
           id
         }
       }).then(function(res){
-        
+        console.log(res)
+        var regex = new RegExp('<img', 'gi');
+        res.stationInfo = res.stationInfo.replace(regex, '<img style="max-width: 100%;"');
         that.setData({
           stationInfo:res
         })

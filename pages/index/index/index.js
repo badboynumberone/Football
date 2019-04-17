@@ -112,8 +112,8 @@ Page({
     request("/banner/getList",{method:"POST"}).then(function(res){
 			wx.hideLoading()
       if(res){
-         let result = res;
-         that.setData({bannerInfo:result});
+         
+         that.setData({bannerInfo:res});
       }
     }).catch(function(err){
     })

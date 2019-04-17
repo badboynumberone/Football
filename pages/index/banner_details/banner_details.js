@@ -36,6 +36,8 @@ Page({
       }}).then(function(res){
         
         if(res){
+          let regex = new RegExp('<img', 'gi');
+          res.bannContent = res.bannContent.replace(regex, '<img style="max-width: 100%;"');
           that.setData({
             bannerDetail:res
           })

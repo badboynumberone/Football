@@ -31,9 +31,10 @@ Page({
           id
         }
       }).then(function(res){
+        var regex = new RegExp('<img', 'gi');
         
         that.setData({
-          describesd:res.describesd,
+          describesd:res.describesd.replace(regex, '<img style="max-width: 100%;"'),
           bannerImg:res.imgUrl
         })
       }).catch(function(err){

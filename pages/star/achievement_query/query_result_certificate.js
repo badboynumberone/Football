@@ -105,9 +105,7 @@ Page({
         urls: e.currentTarget.dataset.urls,
       });
     },
-    lookingVideo(e){
-      let audioContext = wx.createAudioContext("myVideo", this);
-			audioContext.play();
+    lookingVideo(){
 			this.setData({
 				fullControl:true
 			})
