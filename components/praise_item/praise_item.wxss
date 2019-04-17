@@ -5,6 +5,12 @@
     width: 100%;
     height: 100%;
 }
+.overhidden{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 300rpx;
+}
 .two-hidden{
     display: -webkit-box;
     -webkit-line-clamp:2;
@@ -25,11 +31,14 @@
     height: 90rpx;
     border-radius: 50%;
     overflow: hidden;
-    background: #666;
+    
 }
 .praise_to{
     font-size: 35rpx;
     font-weight: bold;
+    width: 400rpx;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .praise_time{
     font-size: 30rpx;
@@ -53,8 +62,8 @@
 .dynaic_img_wrapper{
     width: 150rpx;
     height: 150rpx;
-    background: #666;
     margin-right: 20rpx;
+    overflow: hidden;
 }
 .dynaic_name{
     font-weight: bold;
@@ -63,4 +72,7 @@
 .dynaic_content{
     color:#666;
     font-size: 30rpx;
+}
+.dynaic_info{
+    width: 330rpx;
 }

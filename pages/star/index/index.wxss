@@ -55,19 +55,19 @@
 }
 .registration_site_container{
     display: flex;
-    justify-content: space-around;
     flex-flow: row wrap;
 }
 .registration_site_item{
     padding: 10rpx;
-    width: 370rpx;
-    height: 370rpx;
+    width: 373rpx;
+    height: 375rpx;
     position: relative;
 }
 .registration_site_item image{
     border: 1px solid #ccc;
 }
 .site_info{
+	overflow: hidden;
     bottom:10rpx;
     background: #fff;
     width: 200rpx;
@@ -84,6 +84,7 @@
 .site_address{
     font-size: 24rpx;
     color:#333;
+    width: 170rpx;
 }
 .ending{
     width: 100%;

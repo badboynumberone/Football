@@ -3,24 +3,29 @@
 	<van-row>
 		<van-col span="4">
 			<view class="user_img" data-id="{{item.coustmoerId}}" bindtap="navigateToHome">
-				<image class="fill" src="{{item.headImg}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+				<image class="fill" src="{{item.headImg || '../../images/mrtx.png'}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
 			</view>
 		</van-col>
 		<van-col span="16" >
 			<view class="praise_item_info">
 				<view>
-					<text class="praise_to" >{{item.nickName}} <text class="green_text">赞了我</text></text>
+					<text class="praise_to" wx:if="{{offset==1}}">{{item.nickName}} <text class="green_text">赞了我</text></text>
+					<text class="praise_to" wx:if="{{offset==2}}"> <text class="green_text">我赞了</text>{{item.nickName}}</text>
+					<text class="praise_to" wx:if="{{offset==3}}">{{item.nickName}} <text class="green_text">赞了TA</text></text>
+					<text class="praise_to" wx:if="{{offset==4}}"> <text class="green_text">TA赞了</text>{{item.nickName}}</text>
 				</view>
 				<view>
 					<text class="praise_time" >{{item.creat_time}}</text>
 				</view>
 				<view style="margin-top:15rpx" data-productionid="{{item.productionId}}" bindtap="navigateToWork">
 					<view class="praise_content" >
-							<view class="dynaic_img_wrapper" >
-								<image class="fill" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" /> 
+							<view class="dynaic_img_wrapper">
+								
+								<image wx:if="{{item.fileType == '2'}}" class="fill" src="{{item.fileUrl || '../../images/mrtx.png' }}" mode="aspectFit" lazy-load="false" binderror="" bindload="" /> 
+								<image wx:if="{{item.fileType == '1'}}" class="fill" src="{{item.fileUrl+'?x-oss-process=video/snapshot,t_2000,f_jpg,w_300,h_300,m_fast' || '../../images/mrtx.png' }}" mode="aspectFit" lazy-load="false" binderror="" bindload="" /> 
 							</view>
 							<view class="dynaic_info">
-								<view style="margin-bottom:10rpx">
+								<view class="overhidden" style="margin-bottom:10rpx">
 									<text class="dynaic_name">{{item.title}}</text>
 								</view>
 								<view>

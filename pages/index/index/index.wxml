@@ -1,14 +1,15 @@
 <!--index.wxml-->
-<view class="main" style="background:#f1f1f1">
-  <scroll-view  scroll-y="true" >
+<wxs src="../../../utils/string.wxs" module="string" />
+<view class="main" style="background:#f1f1f1" wx:if="{{bannerInfo.length}}">
+<scroll-view scroll-y="{{true}}">
     <!-- 搜索 -->
-    <view class="search_enter">
-      <view class="search_enter_wrapper" bindtap="toSearch">
+    <view class="search_enter" bindtap="toSearch">
+      <view class="search_enter_wrapper" >
         <van-icon name="search" size="16px" custom-style="margin-top:5rpx;margin-right:10rpx"/><text>请输入关键词</text>
       </view>
     </view>
     <!-- 轮播图 -->
-    <swiper indicator-dots="true" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#fff" autoplay="true" interval="3000" duration="800" circular="true">
+    <swiper wx:if="{{bannerInfo.length}}" indicator-dots="{{!(bannerInfo.length==1)}}" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#fff" autoplay="true" interval="3000" duration="800" circular="true">
       <block wx:for="{{bannerInfo}}" wx:key="index">
         <swiper-item>
           <image class="fill" src="{{item.bannImg}}"  data-item="/pages/index/banner_details/banner_details" data-type="{{item.id}}" class="slide-image" mode="scaleToFill" style="width:100%;" bindtap="navigateTo"/>
@@ -18,34 +19,22 @@
     <!--导航-->
     <view class="dynaic_container">
       <view class="personal_select" style="background:#fff">
-<<<<<<< HEAD
           <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-              <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="0"></dynaic-item></van-tab>
-              <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="1"></dynaic-item></van-tab>
-              <van-tab title="图片" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="2"></dynaic-item></van-tab>
-              <van-tab title="视频" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="3"></dynaic-item></van-tab>
+              <van-tab title="最热" custom-class="bg"></van-tab>
+              <van-tab title="最新" custom-class="bg"></van-tab>
+              <van-tab title="视频" custom-class="bg"></van-tab>
+              <van-tab title="图片" custom-class="bg"></van-tab>
           </van-tabs>
+          <dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}" navIndex="{{navIndex}}"></dynaic-item>
           <!--底部信息-->
           <view class="ending_wrapper">
                 {{pageInfo[navIndex].bottomFont}}
           </view>
-=======
-              <van-tabs active="{{ navIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-                  <van-tab title="最热" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-                  <van-tab title="最新" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-                  <van-tab title="图片" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-                  <van-tab title="视频" custom-class="bg"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[navIndex].dynaicInfo}}"></dynaic-item></van-tab>
-              </van-tabs>
-              <!--底部信息-->
-              <view class="ending_wrapper">
-                    {{pageInfo[navIndex].bottomFont || (pageInfo[navIndex].length ? (pageInfo[navIndex].length ? 'Loading' : '~NOTHING~'):'Loading')}}
-              </view>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       </view>
     </view>
-    <!--发布作品按钮-->
+</scroll-view>
+  <!--发布作品按钮-->
     <view class="public_btn">
       <image class="fill" src="../../../images/fb@2x.png" bindtap="navigateToPublic" />
     </view>
-  </scroll-view>
 </view>

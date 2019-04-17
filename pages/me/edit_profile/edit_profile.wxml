@@ -1,3 +1,4 @@
+<wxs src="../../../utils/string.wxs" module="string" />
 <view class="main">
     <!--编辑项目栏目-->
     <view class="edit_content" >
@@ -6,8 +7,8 @@
                 头像
             </view>
             <view class="content">
-                <view class="content_wrapper"style="margin-right:40rpx">         
-                    <image class="header_img_wraper" style="border-radius:50%"  src="{{userHeader}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                <view class="header_img_wraper"  style="margin-right:40rpx;background:url('/images/mrtx.png') no-repeat center/cover">         
+                    <image class="fill" style="border-radius:50%"  src="{{userHeader}}" mode="widthFix" lazy-load="false" binderror="" bindload=""/>
                 </view>
                 <image class="arrow" src="../../../images/xjjt.png" />
             </view>
@@ -19,7 +20,7 @@
             </view>
             <view class="content">
                 <view class="content_wrapper" style="position:absolute;right:35px">
-                    <input type="text" value="{{userName}}" placeholder="请输入用户名" placeholder-style='text-align:right' style="width:200rpx;text-align:right" data-name="userName" bindfocus="onFocus" bindinput="onChange" maxlength="10" bindblur="onBlur"/>
+                    <input type="text" value="{{string.trim(userName)}}" placeholder="请输入用户名" placeholder-style='text-align:right' style="width:500rpx;text-align:right" data-name="userName" bindfocus="onFocus" bindinput="onChange" maxlength="16" bindblur="onBlur"/>
                 </view>
                 <view bindtap="clear" hover-class="none" hover-stop-propagation="false" style="position:relative;right:-6rpx;top:4rpx">
                     <image wx:if="{{isClearShow}}" class="arrow" src="../../../images/ssqc@2x.png" style="width:30rpx;height:30rpx" />
@@ -28,7 +29,6 @@
             </view>
         </view>
 
-<<<<<<< HEAD
         <view class="item" hover-class="bg" hover-stay-time="200">
             <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker" style="width:100%">
                 <view class="content">
@@ -41,19 +41,6 @@
                             </view>
                             <image class="arrow" src="../../../images/xjjt.png" />
                     </view>
-=======
-        <view class="item" hover-class="bg" bindtap="handleClick">
-            <view class="title">
-                性别
-            </view>
-            <view class="content">
-                <view class="content_wrapper">
-                    <picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}" id="sexpicker">
-                        <view class="{{sexOffset?'picker':'picker unactive'}}">
-                            {{sexArray[sexIndex]}}
-                        </view>
-                    </picker>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                 </view>
             </picker>  
         </view>
@@ -78,9 +65,9 @@
             <view class="title">
                 个性签名
             </view>
-            <view class="content" style="margin-top:127rpx">
+            <view class="content" style="margin-top:110rpx">
                 <view class="content_wrapper" style="margin-right:20rpx">
-                    <textarea class="textarea" value="{{ signature }}" bindinput="getText" placeholder="世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了"/>
+                    <textarea class="textarea" value="{{ string.trim(signature) }}" bindinput="getText" placeholder="暂无个性签名哦~（30个字）" maxlength="30"/>
                 </view>
             </view>
         </view>

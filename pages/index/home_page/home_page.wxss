@@ -1,20 +1,4 @@
-view,text{
-    padding: 0rpx;
-    margin: 0rpx;
-    box-sizing: border-box;
-}
-.clearfix:after { display: table; content: " "; clear: both;}
-
-.clearfix{ zoom: 1;}
-.fill{
-    width: 100%;
-    height: 100%;
-}
-.text-hidden{
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
+@import '/common.wxss';
 .personal_info{
     border-bottom: 10rpx solid #F1F1F1;
 }
@@ -211,6 +195,7 @@ view,text{
     font-size: 35rpx;
     font-weight: bold;
     line-height: 40rpx;
+    width: 400rpx;
 }
 .personal_autograph{
     line-height: 55rpx;

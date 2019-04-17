@@ -1,7 +1,7 @@
 <view class="main" style="border-top:1rpx solid #f1f1f1">
     <!--关注或粉丝-->
-    <view class="item" wx:for="{{contentList}}" wx:key="{{index}}" data-customer="{{item.id}}">
-        <view class="item_wrapper">
+    <view class="item" wx:for="{{contentList}}" wx:key="{{index}}" data-customer="{{item.id}}" bindtap="toHome" >
+        <view class="item_wrapper" style="background:url('../../../images/mrtx.png') no-repeat center/cover">
             <image class="fill" src="{{item.headImg || '../../../images/mrtx.png'}}" />
         </view>
         <view class="item_info">
@@ -14,16 +14,10 @@
     </view>
 
     <!--懒加载-->
-<<<<<<< HEAD
     <view class="ending" wx:if="{{!(bottomFont=='~NOTHING~' && nothingImg !='')}}">
         {{ bottomFont}}
     </view>
 
     <!--空缺页-->
     <no-thing wx:else src="{{nothingImg}}" text="{{text}}" font="去首页" url="/pages/index/index/index" />
-=======
-    <view class="ending">
-        {{ bottomFont}}
-    </view>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
 </view>

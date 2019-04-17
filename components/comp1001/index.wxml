@@ -1,13 +1,14 @@
 <!--components/cmp1001/index.wxml-->
 <wxs src="../../utils/string.wxs" module="string" />
 <wxs src="../../utils/number.wxs" module="number" />
-<view class="main">
+<view class="main" wx:if="{{pageData.carouselList.data.length}}">
   <!-- 搜索 -->
   <van-search value="{{ searchValue }}" placeholder="搜索商品" bind:search="onSearch" />
   <!-- 轮播图 -->
   <swiper indicator-dots="{{indicatorDots}}" circular="{{true}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{pageData.carouselList.data}}" wx:key="index">
       <swiper-item>
+				
         <image src="{{imageBaseUrl}}{{item.imageUrl}}" data-item="{{item}}" class="slide-image" mode="widthFix" style="width:100%;" bindtap="itemAction"/>
       </swiper-item>
     </block>

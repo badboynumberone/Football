@@ -1,6 +1,5 @@
-import request from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {checkLogin} from '../../../utils/util';
-import {requestTest} from '../../../utils/request';
 const app = getApp();
 Page({
 
@@ -44,14 +43,14 @@ Page({
     onLoad: function (options) {
     },
     onShow(){
+      this.getMenuCount();
       this.selectComponent("#profile-header").initData();
       this.getOrderCount();
-      this.getMenuCount();
     },
     getMenuCount(){
       let that = this;
       if(wx.getStorageSync("userId") && wx.getStorageSync('userName')){
-        requestTest("/costomerHomePage/headInfo",{
+        request("/costomerHomePage/headInfo",{
           method:"POST",
           data:{
             cosId:wx.getStorageSync("userId")
@@ -102,12 +101,14 @@ Page({
     },
     getOrderCount(){
       let that = this;
-      request.post('/order/getOrderCount').then(function (data) {
-        that.setData({
-          ["pay_list[0].messageNum"]: data.waitingPaymentCount,
-          ["pay_list[1].messageNum"]: data.waitingShipmentCount,
-          ["pay_list[2].messageNum"]: data.waitingReceiveCount
+      if(wx.getStorageSync("userId") && wx.getStorageSync('userName')){
+        request('/order/getOrderCount',{method:"POST"}).then(function (data) {
+          that.setData({
+            ["pay_list[0].messageNum"]: data.waitingPaymentCount,
+            ["pay_list[1].messageNum"]: data.waitingShipmentCount,
+            ["pay_list[2].messageNum"]: data.waitingReceiveCount
+          })
         })
-      })
+      }
     }
   })

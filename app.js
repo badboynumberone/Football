@@ -1,14 +1,13 @@
 //app.js
 import auth from '/utils/auth'
 import {resetUserInfo} from '/utils/util'
-import '/utils/refresh.js'
 App({
   onLaunch: function () {
+    console.log("asd")
     this.checkLogin()
   },
   onShow: function () {
     this.checkLogin()
-    
   },
   checkLogin: function () {
     wx.checkSession({
@@ -23,7 +22,6 @@ App({
       fail: function () {
         // session_key 已经失效，需要重新执行登录流程
         // 重新登录
-        
         auth.login()
       }
     })
@@ -49,8 +47,10 @@ App({
     }
   },
   globalData: {
-    imageBaseUrl: 'https://wxlittleprogram.oss-cn-shanghai.aliyuncs.com/',
+    imageBaseUrl: 'https://mini-mall-image.oss-cn-hangzhou.aliyuncs.com/',
     searchHistory:[],
-    imageSrc:[],
+    uploadImage:[],//上传图片
+    uploadVideo:[],//上传的视频
+    videoOrImg:false
   }
 })

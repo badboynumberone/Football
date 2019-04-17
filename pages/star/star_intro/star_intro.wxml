@@ -1,20 +1,8 @@
 <view class="main">
-    <view class="star_details star_item">
-        <text class="item_title">星级评定规定</text>
-        <view class="star_content">
-            <text>一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...</text>
-        </view>
-        <view class="star_img">
-            <image class="detail_img fill" src="./../../../images/demo.jpg" lazy-load="true" binderror="" bindload="" />
-        </view>
+    <view class="layout">
+        <image class="banner" src="{{bannerImg}}" mode="widthFix" lazy-load="false" />
+        
     </view>
-    <view class="star_item">
-         <text class="item_title">星级好处</text>
-         <view class="star_content">
-            <text>一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...一星是最基础星级，宝宝训练后参加考试都是可以顺利通过的...</text>
-        </view>
-        <view class="star_img">
-            <image class="good_img fill" src="./../../../images/demo.jpg"  lazy-load="true" binderror="" bindload="" />
-        </view>
-    </view>
+    
 </view>
+<rich-text nodes="{{describesd}}"></rich-text>

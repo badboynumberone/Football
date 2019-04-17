@@ -1,5 +1,6 @@
-import {upLoadFile,requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {updateUserInfo,getUserInfo,sleep} from '../../../utils/util';
+import {upLoadFile} from '../../../utils/request';
 const app = getApp();
 Page({
 
@@ -51,17 +52,17 @@ Page({
       this.setData(result)
       console.log(this.data.userHeader)
       this.setData({
-        sexIndex:wx.getStorageSync('sexIndex') || 0
+        sexIndex:parseInt(wx.getStorageSync('sexIndex'))
       })
-      if(app.globalData.imageSrc !=false){
+      if(app.globalData.uploadImage !=false){
         this.setData({
-          userHeader:app.globalData.imageSrc.join('')
+          userHeader:app.globalData.uploadImage.join('')
         })
       }
     },
     onUnload(){
       console.log('离开了')
-      getApp().globalData.imageSrc=[]
+      getApp().globalData.uploadImage=[]
     },
     //清空
     clear(){
@@ -73,6 +74,7 @@ Page({
     //选择头像
     chooseImage(){
       let that = this;
+      app.globalData.uploadImage=[];
       wx.chooseImage({
         count: 1, // 默认9
         sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -135,36 +137,68 @@ Page({
      query.select("#sexpicker")._selectorQuery._defaultComponent.bindSexChange();
     },
     preserve(){
-      console.log(this.data.signature)
-      console.log(this.data.sexIndex)
-      let obj = {
-        userName : this.data.userName,
-        userHeader : this.data.userHeader,
-        sexIndex : this.data.sexIndex,
-        birthDay : this.data.birthDay,
-        signature : this.data.signature
+      console.log(this.data.userHeader)
+      if(!this.data.userName.length){
+        wx.showToast({
+          title: '昵称不能为空哦！',
+          icon: 'none',
+          duration: 1500,
+        });
+          
+        return;
       }
-      let that = this;
-      requestTest("/customer/updateCostomer",{
-        method:"POST",
-        data:{
-          nickname : that.data.userName,
-          headImgUrl : that.data.userHeader,
-          sex : that.data.sexIndex,
-          birthday : that.data.birthDay,
-          constoSign : that.data.signature
-        }
-      }).then(function(res){
-        console.log(res)
+      wx.showLoading({
+        title: '保存中。。。',
+        mask: true
+      });
         
-        updateUserInfo(obj)
-
-        wx.switchTab({
-          url: '/pages/me/index/index'
+      let that = this;
+      let header = [] ;
+      if(app.globalData.uploadImage.length){
+        upLoadFile([this.data.userHeader]).then(function(res){
+          header = header.concat([res])
+          if(header.length){
+            up();
+          }
+        }).catch(function(err){
+          console.log("上传失败")
         })
-      }).catch(function(err){
-        console.log("保存失败")
-      })
+      }else{
+        header = [this.data.userHeader];
+        up();
+      }
+      
+      function up(){
+        let obj = {
+          userName : that.data.userName.trim(),
+          userHeader : header.join(''),
+          sexIndex : parseInt(that.data.sexIndex),
+          birthDay : that.data.birthDay,
+          signature : that.data.signature.trim()
+        }
+        
+        request("/customer/updateCostomer",{
+          method:"POST",
+          data:{
+            nickname : that.data.userName,
+            headImgUrl : header.join(''),
+            sex : parseInt(that.data.sexIndex)+1,
+            birthday : that.data.birthDay,
+            constoSign : that.data.signature
+          }
+        }).then(function(res){
+          console.log(res)
+          wx.hideLoading();
+          updateUserInfo(obj)
+          wx.switchTab({
+            url: '/pages/me/index/index'
+          })
+        }).catch(function(err){
+          wx.hideLoading();
+          console.log("保存失败")
+        })
+      }
+      
       
       
       

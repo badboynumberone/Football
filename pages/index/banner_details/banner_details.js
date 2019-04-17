@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {checkLogin} from '../../../utils/util';
 Page({
 
@@ -31,10 +31,13 @@ Page({
     
     getData(){
       let that = this;
-      requestTest("/banner/getInfo",{method:"POST",data:{
+      request("/banner/getInfo",{method:"POST",data:{
         id:this.data.bannerId
       }}).then(function(res){
+        
         if(res){
+          let regex = new RegExp('<img', 'gi');
+          res.bannContent = res.bannContent.replace(regex, '<img style="max-width: 100%;"');
           that.setData({
             bannerDetail:res
           })
@@ -62,7 +65,7 @@ Page({
         return;
       }
       wx.navigateTo({
-        url: '/pages/index/public_works/public_works'
+        url: '/pages/index/public_works/public_works?activityTitle=#'+this.data.bannerDetail.bannTitle
       });
     }
   })

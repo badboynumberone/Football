@@ -1,16 +1,12 @@
 
 
-view{
-    padding: 0rpx;
-    margin: 0rpx;
-    box-sizing: border-box;
-}
-.fill{
-    width: 100%;
-    height: 100%;
-}
-.img_bg{
-    background: #ccc;
+@import '/common.wxss';
+@import "/pages/wxParse/wxParse.wxss";
+.loadingclass{
+    width: 100% !important;
+    height: 421rpx;
+    font-size: #222;
+    margin:20rpx 0;
 }
 .layout{
     width: 95%;
@@ -23,7 +19,8 @@ view{
    overflow: hidden;
    font-size: 40rpx;
    font-weight: bold;
-   margin-bottom: 30rpx;
+   margin-bottom: 20rpx;
+   font-size: #222;
 }
 .img_video_wrapper{
     width: 100%;
@@ -55,3 +52,27 @@ view{
     border-radius: 5rpx;
 }
 
+.controls {
+    position: relative;
+    top: 50%;
+    height: 50px;
+    margin-top: -25px;
+    display: flex;
+  }
+  .play,
+  .pause,
+  .time {
+    flex: 1;
+    height: 100%;
+  }
+  .time {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    line-height: 50px;
+  }
+  .img {
+    width: 40px;
+    height: 40px;
+    margin: 5px auto;
+  }

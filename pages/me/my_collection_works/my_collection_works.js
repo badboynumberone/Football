@@ -1,4 +1,5 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
+import {clearLine} from '../../../utils/util';
 Page({
 
     /**
@@ -45,7 +46,7 @@ Page({
     },
     getDynaic(userId='',type=1,pageNo=1,pageSize=6){
       let that = this;
-      requestTest("/costomerHomePage/costomerPageList",{
+      request("/costomerHomePage/costomerPageList",{
         method:"POST",
         data:{
           type,
@@ -55,6 +56,7 @@ Page({
         }
       }).then(function(res){
           console.log(res)
+          clearLine(res.dataList)
           that.setData({
             contentList:that.data.contentList.concat(res.dataList),
             totalPage:res.totalPage,

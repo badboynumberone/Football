@@ -1,6 +1,8 @@
 @import '/common.wxss';
 .main{
-    margin-bottom: 120rpx;
+    margin-bottom: 120rpx;    
+}
+.result_container{
     background: #F1F1F1;
 }
 .result_bg{
@@ -27,7 +29,7 @@
     color: #666;
 }
 .form-view{
-    font-size: 34rpx;
+    font-size: 16px;
 }
 .form-group{
     padding: 20rpx 0;
@@ -50,8 +52,7 @@
 }
 .honr_time{
     color: #666;
-    margin-right: 110rpx;
-    white-space: nowrap
+    white-space: nowrap;
 }
 .bottom_btn{
     position: fixed;
@@ -67,5 +68,15 @@
     overflow: hidden;
     z-index: 9;
 }
-
-
+.honr_container{
+	display: flex;
+}
+.grey{
+    color:#666;
+}
+.green{
+    color: #63922F
+}
+.red{
+    color: #f94d0a;
+}

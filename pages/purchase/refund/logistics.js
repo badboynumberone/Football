@@ -73,11 +73,11 @@ Page({
       console.log('保存物流信息')
       //发送退货物流信息接口
       //确认保存物流信息之后逻辑发送退货信息给后台,发送成功后显示保存成功，获取当前页面
-      // request.post('/refundOrder/saveLogistics', {
-      //   id: that.data.refundOrderId,
-      //   logisticsCompanyId: that.data.logisticsCompanyId,
-      //   trackingNumber: that.data.trackingNumber
-      // }).then(function (data) {
+      request.post('/refundOrder/saveLogistics', {
+        id: that.data.refundOrderId,
+        logisticsCompanyId: that.data.logisticsCompanyId,
+        trackingNumber: that.data.trackingNumber
+      }).then(function (data) {
         wx.showToast({
           title: '保存物流信息成功',
           icon: 'none',
@@ -97,13 +97,13 @@ Page({
             delta: 2
           })
         }
-      // }, function (err) {
-      //   wx.showToast({
-      //     title: err.errmsg,
-      //     icon: 'none',
-      //     duration: 1000
-      //   })
-      // })
+      }, function (err) {
+        wx.showToast({
+          title: err.errmsg,
+          icon: 'none',
+          duration: 1000
+        })
+      })
     }).catch(() => {
 
     })

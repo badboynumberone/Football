@@ -38,7 +38,8 @@ Component({
           let data = {
             'nickName': e.detail.userInfo.nickName,
             'avatarUrl': e.detail.userInfo.avatarUrl,
-            'sex':e.detail.userInfo.gender
+            'sex':e.detail.userInfo.gender,
+            
           }
           updateUserInfo(data);
           let that =this;
@@ -46,40 +47,29 @@ Component({
           wx.showLoading({
             title: '正在登录中...',
           })
-<<<<<<< HEAD
           request.post('/customer/bindWxUserInfo',{
               headImg:e.detail.userInfo.avatarUrl,
               nickName:e.detail.userInfo.nickName,
               sex:e.detail.userInfo.gender
           }).then(function (res) {
-            console.log(res)
+            console.log(res.sign)
               wx.hideLoading();
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success'
+              });
               let userData = {
                 userName:res.nickname,
                 userHeader:res.headImgUrl,
-                sexIndex:res.sex,
+                sexIndex:parseInt(res.sex)-1,
                 birthDay:res.birthday,
-                signature:res.sign
+                signature:res.constoSign
               }
               updateUserInfo(userData);
-              that.initData();
               
-=======
-          request.post('/customer/getCustomerInfo').then(function (res) {
-            console.log(res)
-            wx.hideLoading();
-            if(res.errcode==0){
-              let userData = {
-                userName:res.data.nickname,
-                userHeader:res.data.headImgUrl,
-                sexIndex:res.data.sex,
-                birthDay:res.data.birthday,
-                signature:res.data.sign
-              }
-              updateUserInfo(userData);
               that.initData();
-            }
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
+              that.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
+              that.triggerEvent('refreshOrder', {}, {bubbles: false, composed: true})
           }).catch(function(err){
             wx.hideLoading();
           })
@@ -116,7 +106,7 @@ Component({
         ['userInfo.userHeader']:wx.getStorageSync('userHeader'),
         ['userInfo.signature']:wx.getStorageSync('signature')
       })
-      this.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
+      
     }
   }
 })

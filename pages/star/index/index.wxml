@@ -1,11 +1,12 @@
-<view class="main">
+<view class="main" >
+    <scroll-view scroll-y="{{true}}">
     <!--海报-->
-    <view class="start_poster" bindtap="navigateTo" data-url="/pages/star/star_intro/star_intro">
-        <image class="poster_image fill" src="../../../images/demo.jpg" />
+    <view wx:if="{{bannerInfo.imgUrl}}" class="start_poster" data-id="{{bannerInfo.id}}" bindtap="navigateTo" data-url="/pages/star/star_intro/star_intro">
+        <image class="poster_image fill" src="{{bannerInfo.imgUrl}}" />
     </view>
     <!--报名和成绩查询入口-->
-    <view class="enter">
-        <view class="enter_item" bindtap="navigateTo" data-url="/pages/star/sign_up/sign_up">
+    <view class="enter" wx:if="{{bannerInfo.imgUrl}}">
+        <view class="enter_item" bindtap="navigateTo" data-offset="{{true}}" data-url="/pages/star/sign_up/sign_up">
             <image class="enter_img" src="../../../images/wybm@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
             <view class="enter_info">
                 <text>我要报名</text>
@@ -15,7 +16,7 @@
                 </view>
             </view> 
         </view>
-        <view class="enter_item" bindtap="navigateTo" data-url="/pages/star/achievement_query/query_select">
+        <view class="enter_item" bindtap="navigateTo" data-offset="{{true}}" data-url="/pages/star/achievement_query/query_select">
             <image class="enter_img" src="../../../images/cjcx@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
             <view class="enter_info">
                 <text>成绩查询</text>
@@ -27,22 +28,23 @@
         </view>
     </view>
     <!--报名站点-->
-    <view class="registration_site">
+    <view class="registration_site" wx:if="{{siteInfo.length}}">
         <view class="registration_title">
             <image class="registration_img" src="../../../images/bmzd@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
              <text>报名站点</text>
         </view>
         <view class="registration_site_container" >
-            <view class="registration_site_item" wx:for="{{6}}" wx:key="{{index}}" bindtap="navigateTo" data-url="/pages/star/station_details/station_details">
-                <image class="fill" src="../../../images/demo.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
+            <view class="registration_site_item" wx:for="{{siteInfo}}" wx:key="{{index}}" bindtap="navigateTo" data-url="/pages/star/station_details/station_details" data-id="{{item.id}}">
+                <image class="fill" src="{{item.stationImg}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
                 <view class="site_info cl">
-                    <text class="site_city">南京</text>
-                    <text class="site_address">鼓楼区站点</text>
+                    <text class="site_city text-hidden">{{item.cityName}}</text>
+                    <text class="site_address text-hidden">{{item.stationName}}</text>
                 </view>
             </view>
         </view>
     </view>
-    <view class="ending">
-        {{siteInfo.length ? (siteInfo.length ? 'Loading' : '~NOTHING~'):'Loading'}}
+    <view class="ending" wx:if="{{siteInfo.length}}">
+        {{bottomFont}}
     </view>
+    </scroll-view>
 </view>

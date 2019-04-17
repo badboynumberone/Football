@@ -1,11 +1,11 @@
 <!--评论组件-->
-<view class="comment_item" wx:for="{{commentInfo}}" wx:key="{{index}}">
-	<view class="user_img"  data-url="{{item.cosId}}" bindtap="navigateTo">
+<view class="comment_item" wx:for="{{commentInfo}}" wx:key="{{index}}" data-url="{{item.produtionId}}" bindtap="navigateTo">
+	<view class="user_img"  >
 		<image class="fill" src="{{item.headImg || '../../images/mrtx.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 	</view>
 	<view class="comment_info">
 		<view>
-			<text class="comment_to" >{{navIndex==0 ? item.nickName:'我'}}回复{{navIndex==0 ? '我':item.nickName}}</text>
+			<text class="comment_to" >{{navIndex==0 ? '我':item.nickName}}评论{{navIndex==0 ? item.nickName:'我'}}:</text>
 		</view>
 		<view>
 			<text class="comment_time" >{{item.creatTime}}</text>

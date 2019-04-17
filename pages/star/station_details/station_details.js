@@ -1,16 +1,11 @@
-// import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-
-
+import {request} from '../../../utils/request';
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-      queryOptions:[
-        {name: 'certificate', value: '证书号查询'},
-        {name: 'identity', value: '身份证号查询', checked: 'true'},
-      ]
+      stationInfo:{},//站点信息
     },
     // onChange(event) {
     //   const { picker, value, index } = event.detail;
@@ -20,54 +15,34 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      console.log(options)
+      this.getStationInfo(options.id)
     },
-  
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-  
-    },
-  
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
   
     },
-  
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-  
-    },
-  
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-  
-    },
-  
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-  
-    },
-  
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-  
-    },
-  
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-  
+    //获取站点信息
+    getStationInfo(id){
+      let that = this;
+      request("/startLevelIntrod/stationInfo",{
+        method:"POST",
+        data:{
+          id
+        }
+      }).then(function(res){
+        console.log(res)
+        var regex = new RegExp('<img', 'gi');
+        res.stationInfo = res.stationInfo.replace(regex, '<img style="max-width: 100%;"');
+        that.setData({
+          stationInfo:res
+        })
+        console.log(res)
+      }).catch(function(err){
+        console.log("获取站点信息失败")
+      })
     }
+    
   })

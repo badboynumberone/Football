@@ -1,6 +1,6 @@
 import {upLoadFile} from '../../../utils/request';
-import {request,post,requestTest} from '../../../utils/request';
-import {showErrorToast,checkLogin} from '../../../utils/util';
+import {request} from '../../../utils/request';
+import {showErrorToast} from '../../../utils/util';
 const app = getApp();
 Page({
 
@@ -11,12 +11,12 @@ Page({
       localContent:[],
       videoOrImg:true,//true代表上传的是图片，false代表上传的是视频
       upLoadContent:[],//已上传内容
-      plusControl:true,
+      plusControl:false,
       title:'',//标题
       content:'',//内容
       currentFontNum:0,//当前字数
       address:"",//当前地址
-      keyWords:['足球宝贝','足球小伙'],//关键词
+      keyWords:[],//关键词
       nowWords:'',//当前关键字
       show:false,//是否显示添加关键词的输入框
       introKey:['老大','老二']//推荐关键词
@@ -26,13 +26,30 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      console.log(options)
+      if(options.activityTitle){
+        this.setData({
+          content:options.activityTitle,
+          currentFontNum:options.activityTitle.length
+        })
+      }
     },
     onUnload: function(){
-      app.globalData.imageSrc=[]
+      app.globalData.uploadImage=[],
+      app.globalData.uploadVideo=[]
     },
     onShow(){
+      if(getApp().globalData.uploadImage.length){
+        this.setData({
+          upLoadContent:getApp().globalData.uploadImage
+        })
+      }else if(getApp().globalData.uploadVideo.length){
+        this.setData({
+          upLoadContent:getApp().globalData.uploadVideo
+        })
+      }
       this.setData({
-        upLoadContent:getApp().globalData.imageSrc
+        videoOrImg:getApp().globalData.videoOrImg
       })
       this.getKey()
     },
@@ -40,7 +57,7 @@ Page({
     getKey(){
       //获取推荐关键词
       let that =this;
-      requestTest("/contomerKeyword/getKeyWord",{method:"POST"}).then(function(res){
+      request("/contomerKeyword/getKeyWord",{method:"POST"}).then(function(res){
         try{
           res = JSON.parse(res);
         }catch(e){
@@ -59,6 +76,7 @@ Page({
     //添加图片
     addImg(){
       let _this =this;
+      app.globalData.uploadVideo = [];
       wx.chooseImage({
         count: 1,
         sizeType: ['original','compressed'],
@@ -66,6 +84,8 @@ Page({
         success: (res)=>{
           if(res.errMsg=="chooseImage:ok"){
             var tempFilePaths = res.tempFilePaths[0];
+            app.globalData.videoOrImg = true;
+            _this.setData({plusControl:true})
             wx.navigateTo({
               url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
             })
@@ -76,6 +96,7 @@ Page({
     //添加视频
     addVideo(){
       let _this =this;
+      app.globalData.uploadImage = [];
       wx.chooseVideo({
         sourceType:['album', 'camera'],
         compressed: true,
@@ -83,13 +104,18 @@ Page({
         success: (result)=>{
           console.log(result) 
           if(result.errMsg=="chooseVideo:ok"){
-              upLoadFile([result.tempFilePath]).then(function(res){
-                console.log(res)
-                _this.setData({upLoadContent:res,plusControl:false,videoOrImg:false})
-                console.log("上传视频成功")
-              }).catch(function(err){
-                console.log("上传视频失败")
-              })
+              if(result.duration>30){
+                wx.showToast({
+                  title: '视频不能超过30s',
+                  icon: 'none',
+                  duration: 1500,
+                  mask: false
+                });
+                return;
+              }
+              app.globalData.uploadVideo = [result.tempFilePath];
+              app.globalData.videoOrImg = false;
+              _this.setData({plusControl:false})
           }
         }
       });
@@ -104,6 +130,7 @@ Page({
     },
     //清除内容
     clearItem(e){
+      console.log(e)
       let upLoadContent = this.data.upLoadContent;
       upLoadContent.splice(e.currentTarget.dataset.num,1);
       let localContent = this.data.localContent;
@@ -131,16 +158,13 @@ Page({
     },
     //获取位置信息
     getLocation(){
+      let that = this;
       if(this.data.address){
         return;
       }
-      this.setLocation();
-    },
-    setLocation(){
       wx.showLoading({
         title:"正在定位中。。。",mask: true
       });
-      let that = this;
       wx.getLocation({
         success: function (res) {
           console.log(res)
@@ -151,7 +175,9 @@ Page({
               latitude: res.latitude
             }
           })
-          var qqMapApi = 'http://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
+          console.log(that.data.longitude)
+          console.log(that.data.latitude)
+          var qqMapApi = 'https://apis.map.qq.com/ws/geocoder/v1/' + "?location=" + that.data.location.latitude + ',' +
             that.data.location.longitude + "&key=77VBZ-CBHHR-JDYWK-WW64P-PCELK-RYBNT" + "&get_poi=1";
           wx.request({
             url: qqMapApi,
@@ -167,15 +193,54 @@ Page({
             },
             fail:function(){
               wx.hideLoading();
-              wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
+              wx.showToast({
+                title: '定位失败，请稍后重试',
+                icon: 'none',
+                duration: 1500,
+                mask: false,
+              });
+                
             }
           });
         },
         fail:function(){
           wx.hideLoading();
-          wx.showToast({title: '定位失败请稍后重试',icon: 'none',duration: 1500});
+          wx.getSetting({
+            success: (result) => {
+              console.log(result.authSetting["scope.userLocation"])
+              if(!result.authSetting["scope.userLocation"]){
+                wx.showModal({
+                  content: '作品发布需要获取您的位置信息',
+                  showCancel: true,
+                  cancelText: '取消',
+                  cancelColor: '#000000',
+                  confirmText: '去开启',
+                  confirmColor: '#3CC51F',
+                  success: (result) => {
+                    if (result.confirm) {
+                      wx.openSetting({
+                        success: (result) => {
+                          if(result.authSetting['scope.userLocation']){
+                            wx.hideLoading()
+                          }
+                        }
+                      });
+                    }else{
+                      wx.hideLoading();
+                    }
+                  }
+                });
+                return;
+              }else{
+                that.setLocation();
+                wx.hideLoading();
+              }   
+            }
+           });
         }
-      })
+      }) 
+      
+      
     },
     onKeyChange(e){
       this.setData({
@@ -200,7 +265,7 @@ Page({
         })
         return;
       }
-      keyWords.push(e.detail);
+      keyWords.push(e.detail.trim());
       this.setData({
         show:false,
         keyWords
@@ -216,6 +281,12 @@ Page({
     },
     addIntroKey(e){
       let keyWords = this.data.keyWords;
+      if(this.data.keyWords.length>=8){
+        wx.showToast({
+          title: '添加关键词已至8个,无法继续添加！',icon: 'none',duration: 1500,mask: false
+        });
+        return;
+      }
       if(keyWords.includes(e.currentTarget.dataset.name)){
         wx.showToast({
           title: '已添加！',icon: 'none',duration: 1500,mask: false
@@ -242,44 +313,61 @@ Page({
         wx.showToast({title: '作品内容不能小于6位哦哦！',icon: 'none',duration:1500});
         return;
       }
-<<<<<<< HEAD
       if(this.data.keyWords.length<=0){
         wx.showToast({title: '请添加关键词！',icon: 'none',duration:1500});
         return;
       }
-=======
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
-      
-      let obj = {
-        fileUrlList:this.data.upLoadContent,
-        title:this.data.title,
-        content:this.data.content,
-        address:this.data.address,
-        keywordList:this.data.keyWords
-      }
-<<<<<<< HEAD
       wx.showLoading({
         title: '发布中,请稍后。。。',
         mask: true
       });
-        
-=======
-      console.log(obj)
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
-      requestTest("/publishProdution/insert",{
-        method:"POST",
-        data:obj
-      }).then(function(res){
-        //返回作品id
-        wx.hideLoading();
-        if(res.produtionId){
-          wx.redirectTo({
-            url: '/pages/index/public_works/public_works_success?worksId='+res.produtionId
-          });
+      let upContent = [];
+      let that = this;
+      let count = 0;
+        that.data.upLoadContent.forEach(function(item){
+          upLoadFile([item]).then(function(res){
+            count+=1;
+            upContent = upContent.concat([res])
+            if(count ==that.data.upLoadContent.length){
+              console.log(upContent)
+              wx.hideLoading();
+              up();
+            }
+          }).catch(function(err){
+            console.log("上传失败")
+          })
+        })
+      
+      
+      function up(){
+        let obj = {
+          fileType:that.data.videoOrImg ? '2' : '1', 
+          fileUrlList:upContent,
+          title:that.data.title.trim(),
+          content:that.data.content.trim(),
+          address:that.data.address,
+          keywordList:that.data.keyWords
         }
-      }).catch(function(err){
-        wx.hideLoading();
-        showErrorToast("发布失败,请稍后重试")
-      })
+        request("/publishProdution/insert",{
+          method:"POST",
+          data:obj
+        }).then(function(res){
+          //返回作品id
+          wx.hideLoading();
+          if(res.produtionId){
+            wx.redirectTo({
+              url: '/pages/index/public_works/public_works_success?worksId='+res.produtionId
+            });
+          }
+        }).catch(function(err){
+          wx.hideLoading();
+          showErrorToast("发布失败,请稍后重试")
+        })
+      }
+      
+      
+      
+      
+      
     }
   })

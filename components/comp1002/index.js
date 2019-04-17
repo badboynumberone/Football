@@ -79,7 +79,7 @@ Component({
       var searchValue = e.detail
       if (searchValue) {
         wx.navigateTo({
-          url: '/pages/product/index?isSearch=true&searchValue=' + searchValue
+          url: '/pages/purchase/product/index?isSearch=true&searchValue=' + searchValue
         })
       }      
     },
@@ -96,37 +96,37 @@ Component({
       } else if (item.targetType === '2') {
         if (item.targetContent) {
           wx.navigateTo({
-            url: '/pages/product/detail?id=' + item.targetContent
+            url: '/pages/purchase/product/detail?id=' + item.targetContent
           })
         }
       } else if (item.targetType === '3') {
         if (item.targetContent) {
           wx.navigateTo({
-            url: '/pages/product/index?categoryId=' + item.targetContent
+            url: '/pages/purchase/product/index?categoryId=' + item.targetContent
           })
         }
       } else if (item.targetType === '4') {
         if (item.targetContent) {
           wx.navigateTo({
-            url: '/pages/product/index?brandId=' + item.targetContent
+            url: '/pages/purchase/product/index?brandId=' + item.targetContent
           })
         }
       } else if (item.targetType === '5') {
         wx.navigateTo({
-          url: '/pages/order/list'
+          url: '/pages/purchase/order/list'
         })
       } else if (item.targetType === '6') {
         wx.switchTab({
-          url: '/pages/cart/index'
+          url: '/pages/purchase/cart/index'
         })
       } else if (item.targetType === '7') {
         wx.switchTab({
-          url: '/pages/mine/index'
+          url: '/pages/purchase/mine/index'
         })
       } else {
         if (item.id) {
           wx.navigateTo({
-            url: '/pages/product/detail?id=' + item.id
+            url: '/pages/purchase/product/detail?id=' + item.id
           })
         }
       }

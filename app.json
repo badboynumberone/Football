@@ -1,6 +1,10 @@
 {
   "pages": [
     "pages/index/index/index",
+    "pages/star/achievement_query/query_result_electrical",
+    "pages/purchase/page/index",
+    "pages/star/achievement_query/fail",
+    "pages/wx-cropper/index",
     "pages/index/works_details/works_details",
     "pages/me/edit_profile/edit_profile",
     "pages/imageCut/imageCut",
@@ -37,17 +41,17 @@
     "components/concern/concern",
     "components/dynaic_item/dynaic_item",
     "components/bottom_btn/bottom_btn",
-    "pages/star/achievement_query/query_result_electrical",
+    
     "pages/purchase/product/detail",
     "pages/purchase/order/list",
     "pages/purchase/order/detail",
     "pages/purchase/order/submit",
     "pages/purchase/address/detail",
     "pages/purchase/order/logistics",
-    "pages/wx-cropper/index",
     "components/comment_item/comment_item",
     "components/nothing/nothing",
     "pages/web/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {mapTime,getNowTime} from '../../../utils/util';
 import {checkLogin} from '../../../utils/util';
 import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
@@ -9,14 +9,15 @@ Page({
      * 页面的初始数据
      */
     data: {
+      isWorks:true,//是否存在此作品
       isAnswer:true,
       currentReplyId:'',//当前评论id
       isPop:false,//是否弹出选择框
-      userId:wx.getStorageSync("userId"),//当前userId
+      userId:'',//当前userId
       currentProductionId:'',
       currentNavIndex:'',//当前索引
       worksId:'',//作品Id
-      worksInfo:[],//作品信息
+      worksInfo:{},//作品信息
       isMyWorks:true,//true代表是自己
       ratingContent:'',//评论内容
       rating:[],//评论信息
@@ -31,26 +32,32 @@ Page({
       nowCommentIndex:0,//当前评论的下标
       nowReplyUser:'',//当前回复用户
       isLoading:false,//是否正在加载
-<<<<<<< HEAD
       bottomFont:'Loading',//底部信息
       currentE:null,//当前指针
       currentContent:''//当前评论内容
-=======
-      bottomFont:'Loading',
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     },
   
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+      if(options.worksId){
+        app.globalData.currentWorksId=options.worksId
+      }
+      
       this.setData({
-        worksId:options.worksId,//作品ID
-        currentNavIndex:options.navIndex,//导航栏id
-        currentProductionId:options.index//作品所在id
+        worksId:options.worksId || app.globalData.currentWorksId,//作品ID
+				userId:wx.getStorageSync("userId")
       })
-<<<<<<< HEAD
-      this.getRating(options.worksId,1,5);
+      if(options.navIndex || options.index){
+        this.setData({
+          currentNavIndex:options.navIndex,//导航栏id
+          currentProductionId:options.index//作品所在id
+        })
+      }
+      
+      
+      this.getRating(options.worksId,1,20);
       console.log(options)
     },
     onShow(){
@@ -63,43 +70,23 @@ Page({
         return;
       }
       try{
-        this.getRating(this.data.worksId,this.data.nowCommentPageIndex+1,5)
+        this.getRating(this.data.worksId,this.data.nowCommentPageIndex+1,20)
       }catch(e){
         return;
       }
-=======
-      this.getData();
-      this.getRating(this.data.nowCommentPageIndex);
-    },
-    //触底加载更多评论
-    onReachBottom(){
-      if(this.data.nowCommentPageIndex>=this.data.totalPage || this.data.isLoading){
-        this.setData({
-          bottomFont:'~THE ENDING~'
-        })
-        return;
-      }
-      this.getRating(this.data.nowCommentPageIndex+1)
-     
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       this.setData({
         nowCommentPageIndex:this.data.nowCommentPageIndex+1
       })
     },
     //获取评论
-    getRating(produtionId,pageNo,pageSize=10){
+    getRating(produtionId,pageNo,pageSize=20){
       let that = this;
-<<<<<<< HEAD
-=======
-      console.log(pageNo)
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       this.setData({isLoading:true})
-      requestTest('/publishProdution/getProdutionComment',{
+      request('/publishProdution/getProdutionComment',{
         method:"POST",
         data:{
           produtionId,
           pageNo,
-<<<<<<< HEAD
           pageSize,
         }
       }).then(function(res){
@@ -108,36 +95,22 @@ Page({
           totalPage:parseInt(res.totalPage),
           totalSize:parseInt(res.totalSize),
         })
+        if(!that.data.rating.length){
+          that.setData({
+            bottomFont:'~NOTHING~'
+          })
+          return;
+        }
         if(that.data.nowCommentPageIndex>=that.data.totalPage){
           that.setData({
             bottomFont:'~THE ENDING~'
           })
+          return;
         }
-        if(!that.rating.length){
-          that.setData({
-            bottomFont:'~NOTHING~'
-          })
-        }
+        
+        
       }).catch(function(err){
         console.log("获取评论列表失败")
-=======
-          pageSize:10
-        }
-      }).then(function(res){
-        that.setData({
-          rating:that.data.rating.concat(res.dataList),
-          totalPage:parseInt(res.totalPage),
-          totalSize:parseInt(res.totalSize),
-          isLoading:false
-        })
-        console.log(res.totalPage)
-      }).catch(function(err){
-        console.log("获取评论列表失败")
-        that.setData({
-          isLoading:false
-        })
-        return;
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
       })
     },
     //用户离开输入框
@@ -155,9 +128,44 @@ Page({
         isPop:false
       })
     },
+    //删除作品
+    deleteWorks(){
+      let that = this;
+      Dialog.confirm({
+        title: '确定删除该作品？',
+          message: ' ',
+          cancelButtonText: '取消',
+          confirmButtonText: '确定'
+      }).then(() => {
+        request("/publishProdution/delete",{
+          method:"POST",
+          data:{
+            id:that.data.worksId
+          }
+        }).then(function(res){
+          if(res.deleteNum){
+            wx.navigateBack({
+              delta: 1
+            });
+          }
+        }).catch(function(err){
+          console.log("上传有误")
+        })
+      }).catch(()=>{
+        return;
+      });
+    },
     //处理用户本人点击
     handleItem(e){
       console.log(e)
+      if(this.data.userId == e.currentTarget.dataset.customer){
+        this.setData({
+          isPop:true,
+          currentE:e,
+          currentReplyId:e.currentTarget.dataset.customer,
+          currentContent:e.currentTarget.dataset.content
+        })
+      }
       if(this.data.userId !=this.data.worksInfo.coustmoerId){
         return;
       }
@@ -191,12 +199,12 @@ Page({
       
       //先发请求请求成功后再删啊
       Dialog.confirm({
-        title: '确认删除评论？',
-        message:'',
-        cancelButtonText: '取消',
-        confirmButtonText: '确定'
+        title: '确定删除评论？',
+          message: ' ',
+          cancelButtonText: '取消',
+          confirmButtonText: '确定'
       }).then(() => {
-        requestTest("/produtionComment/comment/delete",{
+        request("/produtionComment/comment/delete",{
           method:"POST",
           data:{
             produtionId:that.data.worksId,
@@ -205,16 +213,21 @@ Page({
         }).then(function(res){
           let rating = that.data.rating;
           if(secondIndex == undefined){
+            let minunes = rating[parseInt(firstIndex)].commentChild.length+1;
             rating.splice(parseInt(firstIndex),1);
+            
+             console.log(rating)
             that.setData({
-              rating:rating
+              rating:rating,
+              ['worksInfo.produtionNum']:that.data.worksInfo.produtionNum-minunes
             })
             return;
           }
           
           rating[firstIndex].commentChild.splice(secondIndex,1);
           that.setData({
-            rating
+            rating,
+            ['worksInfo.produtionNum']:that.data.worksInfo.produtionNum-1
           })
         }).catch(function(err){
           console.log("上传有误")
@@ -253,7 +266,6 @@ Page({
     },
     //发送评论
     sendRating(pid,commentId){
-      
       if(!checkLogin(true,false)){
         return;
       }
@@ -266,6 +278,7 @@ Page({
         content:that.data.ratingContent,
         creatTime:nowTime,
         costomerId:wx.getStorageSync("userId"),
+				commentChild:[],
         newComment:true
       }
       let SecondContent={
@@ -278,7 +291,7 @@ Page({
         costomerId:wx.getStorageSync("userId"),
         newComment:true
       }
-      requestTest('/produtionComment/comment/insert',{
+      request('/produtionComment/comment/insert',{
         method:"POST",
         data:{
           produtionId:that.data.worksId,
@@ -287,23 +300,31 @@ Page({
           commentId
         }
       }).then(function(res){
-        if(res==1){
+        console.log(res)
+        if(res){
           if(!pid){
             let addInfo = that.data.rating;
+            firstContent.id = res;
             addInfo.unshift(firstContent)
             that.setData({
-              showTitle:"添加成功",
+              showTitle:"评论成功",
               rating:addInfo,
               ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ratingContent:''
             })
           }else{
             console.log(that.worksInfo)
+            SecondContent.id = res;
             that.setData({
               showTitle:"回复成功",
               ['worksInfo.produtionNum']:parseInt(that.data.worksInfo.produtionNum)+1,
               ['rating['+that.data.nowCommentIndex+'].commentChild']:that.data.rating[that.data.nowCommentIndex].commentChild.concat([SecondContent]),
-              ratingContent:''
+              ratingContent:'',
+              placeHoderValue:'添加评论',
+              nowReplyUser:'',
+              firstUserId:0,
+              secondUserId:0,
+              nowCommentIndex:0
             })
           }
           wx.showToast({
@@ -327,17 +348,20 @@ Page({
     getData(){
       let that = this;
       if(this.data.worksId){
-        requestTest("/publishProdution/info",{
+        request("/publishProdution/info",{
           method:"POST",
           data:{
-            id:that.data.worksId
+            id:app.globalData.currentWorksId
           }
         }).then(function(res){
-          console.log("作品信息")
-          console.log(res)
-          if(res){
+          if(res.flg){
             that.setData({
+              isWorks:res.flg,
               worksInfo:mapTime(res,'produtionCreatTime')
+            })
+          }else{
+            that.setData({
+              isWorks:res.flg
             })
           }
         }).catch(function(err){
@@ -352,6 +376,11 @@ Page({
       this.setData({
         bannerIndex:e.detail.current+1
       })
+    },
+    navigateToIndex(){
+      wx.switchTab({
+        url: '/pages/index/index/index'
+      });
     },
     //去个人首页
     toHomePage(e){
@@ -372,7 +401,7 @@ Page({
       if(this.data.worksInfo.isFollow){
         api='/produtionComment/cancleFllow';
         Dialog.confirm({
-          title: '确定不在关注？',
+          title: '确定不再关注？',
           message: ' ',
           cancelButtonText: '取消',
           confirmButtonText: '确定'
@@ -389,7 +418,7 @@ Page({
     //设置关注
     setConcern(api){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           id:that.data.worksInfo.coustmoerId
@@ -434,19 +463,25 @@ Page({
     //发送请求
     setLike(api,type){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           id:that.data.worksId
         }
       }).then(function(res){
         switch(type){
-          case 1: that.setData({['worksInfo.isPraise']:false,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)-1});app.globalData.isPraise = false;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
-          case 2: that.setData({['worksInfo.isPraise']:true,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)+1});app.globalData.isPraise = true;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
+          case 1: that.setData({['worksInfo.isPraise']:false,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)-1});app.globalData.num=parseInt(that.data.worksInfo.produtionAssist);app.globalData.isPraise = false;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
+          case 2: that.setData({['worksInfo.isPraise']:true,['worksInfo.produtionAssist']:parseInt(that.data.worksInfo.produtionAssist)+1});app.globalData.num=parseInt(that.data.worksInfo.produtionAssist);app.globalData.isPraise = true;app.globalData.index = that.data.currentProductionId;app.globalData.NavIndex=that.data.currentNavIndex;break;
           case 3: that.setData({['worksInfo.isCollection']:false,['worksInfo.productionCollection']:parseInt(that.data.worksInfo.productionCollection)-1});break;
           case 4: that.setData({['worksInfo.isCollection']:true,['worksInfo.productionCollection']:parseInt(that.data.worksInfo.productionCollection)+1});break;
         }
       }).catch(function(err){
       })
+    },
+    //用户分享
+    onShareAppMessage(res){
+      return {
+        title:"娃娃足球工程"
+      }
     }
   })

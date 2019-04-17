@@ -1,6 +1,6 @@
 <!--关注或编辑组件-->
-<view class="concern">
-	<block wx:if="{{offsetOne}}">
+<block wx:if="{{offsetOne}}">
+	<view class="concern">
 		<block wx:if="{{offsetTwo}}">
 			<text class="concerned">已关注</text>
 		</block>
@@ -8,10 +8,8 @@
 			<image class="concern_add" src="/images/gz@2x.png" />
 			<text>关注</text>
 		</block>
-	</block>
-	<block wx:else>
-		<image class="concern_add" src="/images/bj@2x.png" />
-		<text>编辑</text>
-	</block>
-</view>
-
+	</view>
+</block>
+<block wx:else>
+	<image class="" src="/images/sssc@2x.png" style="width:30rpx;height:30rpx" />
+</block>

@@ -5,7 +5,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    contentList:Array
+    contentList:Array,
+    offset:Number
   },
   /**
    * 组件的初始数据

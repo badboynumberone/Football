@@ -219,7 +219,7 @@ Page({
         var prevPage = pages[pages.length - 2]
         prevPage.updateRefundStatus(orderId, data.id, '0')
         wx.navigateTo({
-          url: '/pages/refund/detail?id=' + data.id,
+          url: '/pages/purchase/refund/detail?id=' + data.id,
         })
       }, function (err) {
         wx.showToast({

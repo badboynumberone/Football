@@ -21,19 +21,18 @@
     <!--搜索后的内容-->
     <view class="searched_wrapper" wx:else>
             <van-tabs wx:if="{{pageInfo[0].dynaicInfo.length}}" active="{{ worksIndex }}" bind:change="onChange" line-width="12" swipeable="true">
-                <van-tab title="最热"><dynaic-item  class="dynaic_style" dynaicInfo="{{pageInfo[worksIndex].dynaicInfo}}"></dynaic-item></van-tab>
-                <van-tab title="最新"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[worksIndex].dynaicInfo}}"></dynaic-item></van-tab>
-                <van-tab title="图片"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[worksIndex].dynaicInfo}}"></dynaic-item></van-tab>
-                <van-tab title="视频"><dynaic-item class="dynaic_style" dynaicInfo="{{pageInfo[worksIndex].dynaicInfo}}"></dynaic-item></van-tab>
+                <van-tab title="最热"></van-tab>
+                <van-tab title="最新"></van-tab>
+                <van-tab title="视频"></van-tab>
+                <van-tab title="图片"></van-tab>
             </van-tabs>
-            
+			<dynaic-item  class="dynaic_style" dynaicInfo="{{pageInfo[worksIndex].dynaicInfo}}"></dynaic-item>
             <!--底部信息-->
-              <view class="ending_wrapper">
-                  <view>
-                    {{pageInfo[worksIndex].nowPageIndex < pageInfo[worksIndex].totalPage ? 'Loading...':'~THE ENDING~'}}
-                  </view>
-              </view>
-            
+            <view class="ending_wrapper" wx:if="{{!(pageInfo[worksIndex].bottomFont=='~NOTHING~' && pageInfo[worksIndex].bottomFont !='')}}">
+                <view>
+                {{pageInfo[worksIndex].bottomFont}}
+                </view>
+            </view>
+            <no-thing wx:else src="../../images/search_empty.png" text="没找到相关动态，请更换搜索条件再试试！" />
     </view>
-    
 </view>

@@ -12,13 +12,13 @@
 			<view class="register-wrviewp" wx:if="{{pageIndex == 1}}">
 				<view class="form-group">
 					<view class="form-view">姓名</view>
-					<view class="form-control select-input" style="padding-left:10rpx">
+					<view class="form-control select-input">
 						<van-field input-class="form-input" placeholder-style="background:#EFF3F6" value="{{ Name }}" placeholder="请输入姓名" data-name="Name" border="{{ false }}" bind:change="onChange" />
 					</view>
 				</view>
 				<view class="form-group">
 					<view class="form-view">身份证号</view>
-					<view class="form-control select-input" style="padding-left:10rpx">
+					<view class="form-control select-input" >
 						<van-field type="number" input-class="form-input" value="{{ identityNum }}"  placeholder-style="background:#EFF3F6" placeholder="请输入身份证号" data-name="identityNum" border="{{ false }}" bind:change="onChange" maxlength: />
 					</view>
 				</view>
@@ -27,8 +27,8 @@
 					<view class="form-view">性别</view>
 					<view class="form-control ">
 						<picker bindchange="bindSexChange" value="{{sexArray[sexIndex]}}" range="{{sexArray}}">
-							<view class="{{sexOffset?'picker':'picker unactive'}}">
-								{{sexOffset?sexArray[sexIndex]:'请选择性别'}}
+							<view class="{{sexArray[sexIndex]?'picker':'picker unactive'}}">
+								{{sexArray[sexIndex] || '请选择性别'}}
 							</view>
 						</picker>	
 						<image class="down_arrow ct" src="../../../images/down_arrow.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
@@ -116,17 +116,54 @@
 					</view>
 				</view>
 			</view>
-			<!--底部按钮-->
-			<view class="submit-wrviewp">
-				<view wx:if="{{pageIndex == 1}}" class="submit-btn" bindtap="nextStep">下一步</view>
-				<view wx:if="{{pageIndex == 2}}" class="btn_wrapper" hover-class="none" hover-stop-propagation="false">
-					<view  class="submit-btn" bindtap="goBack">上一步</view>
-					<view  class="submit-btn" bindtap="submit">立即提交</view>
+		</view>
+		<!--星级等级-->
+		<view class="register" style="margin-top:30rpx" wx:if="{{pageIndex == 2}}">
+			<view class="register-wrviewp">
+				<view class="title">
+					<image  class="title_img" src="{{pageIndex == 1 ? '../../../images/sign01.png':'../../../images/sign02.png'}}" style="height:40rpx;width:40rpx;display:inline-block" />
+					<text style="margin-left:20rpx;color:#63922F">{{pageIndex == 1 ? '参加者信息' : '星级评定信息'}}</text>
+				</view>
+			</view>
+			<view class="star_container">
+				<view class="star_item" wx:if="{{starInfo.length>=1}}">
+					<text class="">一星级</text>
+					<text class="{{starInfo[0].status ? 'green' : 'red'}}">{{starInfo[0].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=2}}">
+					<text class="">二星级</text>
+					<text class="{{starInfo[1].status ? 'green' : 'red'}}">{{starInfo[1].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=3}}">
+					<text class="">三星级</text>
+					<text class="{{starInfo[2].status ? 'green' : 'red'}}">{{starInfo[2].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=4}}">
+					<text class="">四星级</text>
+					<text class="{{starInfo[3].status ? 'green' : 'red'}}">{{starInfo[3].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=5}}">
+					<text class="">五星级</text>
+					<text class="{{starInfo[4].status ? 'green' : 'red'}}">{{starInfo[4].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=6}}">
+					<text class="">六星级</text>
+					<text class="{{starInfo[5].status ? 'green' : 'red'}}">{{starInfo[5].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=7}}">
+					<text class="">七星级</text>
+					<text class="{{starInfo[6].status ? 'green' : 'red'}}">{{starInfo[6].status?'已获得':'待评级'}}</text>
+				</view>
+				<view class="star_item" wx:if="{{starInfo.length>=8}}">
+					<text class="">八星级</text>
+					<text class="{{starInfo[7].status ? 'green' : 'red'}}">{{starInfo[7].status?'已获得':'待评级'}}</text>
 				</view>
 			</view>
 		</view>
-
+		<view style="height:50rpx"></view>
+		<!--底部按钮-->
+		<bottom-btn wx:if="{{pageIndex == 1}}" bindtap="nextStep" text="{{'下一步'}}"/>
+		<bottom-btn wx:if="{{pageIndex == 2}}" bindtap="submit" text="{{'立即提交'}}"/>
 	</view>
-	
 </view>
 

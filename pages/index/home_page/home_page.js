@@ -1,5 +1,6 @@
-import {requestTest} from '../../../utils/request';
-import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog'
+import {request} from '../../../utils/request';
+import Dialog from '../../../miniprogram_npm/vant-weapp/dialog/dialog';
+import {clearLine} from '../../../utils/util';
 Page({
 
     /**
@@ -10,9 +11,9 @@ Page({
       navIndex:0,//内容选择
       personalInfo:[
         {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'关注',typeNum:0},
-        {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'粉丝',typeNum:20},
-        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'获赞',typeNum:25},
-        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'赞过',typeNum:99},
+        {typeUrl:"/pages/me/show_fans_concern/show_fans_concern",typeName:'粉丝',typeNum:0},
+        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'获赞',typeNum:0},
+        {typeUrl:"/pages/me/my_praise/my_praise",typeName:'赞过',typeNum:0},
       ],
       singleInfo:{},//个人信息
       pageInfo:[
@@ -21,12 +22,11 @@ Page({
       ],
       isLoading:false
     },
-  
+		
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-<<<<<<< HEAD
       if(options){
         this.setData({
           userId:options.userId
@@ -36,6 +36,15 @@ Page({
       }
       console.log(options)
     },
+		//下拉刷新
+		onPullDownRefresh(){
+			this.setData({
+				[`pageInfo[${this.data.navIndex}]`]:{dynaicInfo:[],nowPageIndex:1,totalPage:2,totalSize:0,bottomFont:'Loading'}
+			})
+			this.getUserInfo(this.data.userId);
+			this.getDynaic(this.data.userId,this.data.navIndex+1,1,20)
+			wx.stopPullDownRefresh();
+		},
     //关心
     handleConcern(){
       let api = '';
@@ -43,7 +52,7 @@ Page({
       if(this.data.singleInfo.isFollow){
         api='/produtionComment/cancleFllow';
         Dialog.confirm({
-          title: '确定不在关注？',
+          title: '确定不再关注？',
           message: ' ',
           cancelButtonText: '取消',
           confirmButtonText: '确定'
@@ -59,7 +68,7 @@ Page({
     },
     setConcern(api){
       let that = this;
-      requestTest(api,{
+      request(api,{
         method:"POST",
         data:{
           id:that.data.userId
@@ -80,7 +89,7 @@ Page({
     //获取用户信息
     getUserInfo(id){
       let that = this;
-      requestTest("/costomerHomePage/headInfo",{
+      request("/costomerHomePage/headInfo",{
         method:"POST",
         data:{
           cosId:id
@@ -113,7 +122,7 @@ Page({
     //获取用户动态信息
     getDynaic(userId='',type=1,pageNo=1,pageSize=6){
       let that = this;
-      requestTest("/costomerHomePage/costomerPageList",{
+      request("/costomerHomePage/costomerPageList",{
         method:"POST",
         data:{
           type,
@@ -123,6 +132,7 @@ Page({
         }
       }).then(function(res){
           type-=1;
+          clearLine(res.dataList)
           that.setData({
             ["pageInfo["+type+"].dynaicInfo"]:that.data.pageInfo[that.data.navIndex].dynaicInfo.concat(res.dataList),
             ["pageInfo["+type+"].totalPage"]:res.totalPage,
@@ -131,16 +141,19 @@ Page({
           console.log(that.data.pageInfo[that.data.navIndex].dynaicInfo.length)
           
           console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
-          if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
-            that.setData({
-              ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
-            })
-          }
           if(!that.data.pageInfo[that.data.navIndex].dynaicInfo.length){
             that.setData({
               ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
             })
+            return;
           }
+          if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){
+            that.setData({
+              ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~THE ENDING~'
+            })
+            return;
+          }
+          
       }).catch(function(){
         console.log("获取菜单数量失败")
       })
@@ -162,12 +175,5 @@ Page({
       this.setData({
         ["pageInfo["+this.data.navIndex+"].nowPageIndex"]:this.data.pageInfo[this.data.navIndex].nowPageIndex+1,
       })
-=======
-      console.log(options)
-    },
-    //获取用户信息
-    getUserInfo(){
-
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     }
   })

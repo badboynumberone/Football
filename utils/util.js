@@ -114,7 +114,13 @@ const formatTime = date => {
 
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-
+//清除空行
+export const clearLine = arr =>{
+  arr.forEach(function(item){
+    item.content = item.content.replace(/<\/?.+?>/g,""); 
+    item.content = item.content.replace(/[\r\n]/g, ""); 
+  })
+}
 const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -141,12 +147,13 @@ const mapTime = (value,name)=>{
   }else if(value.constructor == Object){
     value[name] = formatTimeStamp(value[name])
     return value
+  }else if(value.constructor == String){
+    return  formatTimeStamp(value)
   }
 }
-const formatStringToArray = (val,name)=>{
-  return JSON.parse(val.produtionFileUrl)
-}
+
 module.exports = {
+  clearLine,
   sleep,
   getNowTime,
   resetUserInfo,
@@ -159,6 +166,5 @@ module.exports = {
   formatTime,
   formatNumber,
   formatTimeStamp,
-  mapTime,
-  formatStringToArray
+  mapTime
 }

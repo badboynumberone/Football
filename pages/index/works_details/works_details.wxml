@@ -1,12 +1,12 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 <van-dialog id="van-dialog" />
-<van-transition show="true" name="fade" >
-<view class="main">
+<van-transition name="fade">
+<view class="main" wx:if="{{isWorks}}" >
     <!--作者信息-->
     <view class="works_author">
         <view class="author_header">
             <view class="author_img_wrapper" bindtap="toHomePage" data-customer="{{worksInfo.coustmoerId}}">
-                <image class="author_img fill" style="border-radius:50%"  src="{{worksInfo.headImgUrl || '../../../images/demo.jpg'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+                <image class="author_img fill" style="border-radius:50%"  src="{{worksInfo.headImgUrl || '../../../images/mrtx.png'}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
                 </image>
             </view>
             <view class="author_info">
@@ -19,32 +19,33 @@
                 </view>
             </view>
         </view>
-        <view class="" bindtap="handleConcern">
-            <concern-item  wx:if="{{worksInfo.isAuth}}" wx:if="{{isMyWorks}}" offsetOne="{{true}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
+        <view wx:if="{{worksInfo.coustmoerId != userId}}"  bindtap="handleConcern">
+            <concern-item   offsetOne="{{true}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
         </view>
+        <view wx:else bindtap="deleteWorks">
+            <concern-item   offsetOne="{{false}}" offsetTwo="{{worksInfo.isFollow}}" data-offset="{{worksInfo.isFollow}}"></concern-item>
+        </view>
+          
     </view>
     <!--视频或图片-->
     <view class="is_video_img">
-        <block wx:if="{{true}}">
-            <view class="works_banner">
+        <block wx:if="{{worksInfo.fileType == '2'}}">
+            <view class="works_banner" style="background:url('../../../images/mrtx.png') no-repeat center/cover">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
-<<<<<<< HEAD
-                        <swiper-item wx:for="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" wx:key="{{index}}" style="background:url({{item}}) no-repeat center;background-size: 100% 100%;"/>
-=======
-                        <swiper-item wx:for="{{number.formatStringToArray(worksInfo.produtionFileUrl)}}" wx:key="{{index}}" style="background:url(http://hbimg.b0.upaiyun.com/a2fc3c935dc80022c2da9f9e617ee8b3ea30c1ec311b0-l74YrI_fw658) no-repeat center;background-size: 100% 100%;"/>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
+                        <swiper-item wx:for="{{worksInfo.fileUrl}}" wx:key="{{index}}">
+                            <image class="fill" src="{{item}}" lazy-load="false" binderror="" bindload="" />
+                        </swiper-item>
                 </swiper>
                 <!--分页器-->
                 <view class="stepper_wrapper" >
-                    <text class="stepper_title">娃娃足球工程项目</text>
-                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{number.formatStringToArray(worksInfo.produtionFileUrl).length}}</view>
+                    <text class="stepper_title">阳光体育娃娃足球工程</text>
+                    <view class="works_stepper ct">{{bannerIndex || 1}}/{{worksInfo.fileUrl.length}}</view>
                 </view>
             </view>
         </block>
-        <block wx:else>
-            <video class="fill" src="{{worksInfo.produtionFileUrl.trim('[').trime(']')}}" initial-time="0" autoplay="false" loop="false" muted="false" direction="0" 
-                bindplay="" bindpause="" bindended="" bindtimeupdate="" bindwaiting="" binderror="">
+        <block wx:if="{{worksInfo.fileType == '1'}}">
+            <video class="fill" src="{{worksInfo.fileUrl}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
             </video>
         </block>
     </view>
@@ -70,7 +71,6 @@
             </view>
             <view class="rating_item_wrapper" wx:for="{{rating}}" wx:key="{{index}}">
                 <van-row custom-class="rating_item" >
-<<<<<<< HEAD
                     <view bindtap="handleItem" data-content="{{item.content}}" data-customer="{{item.costomerId}}" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">
                         <van-col span="2" style="" >
                             <view class="img_wrapper" catchtap="toHomePage" data-customer="{{item.costomerId}}">
@@ -84,24 +84,10 @@
                             <view class="rating_content"><text>{{item.content}}</text></view>
                         </van-col>
                     </view> 
-=======
-                    <van-col span="2" style="" >
-                        <view class="img_wrapper" bindtap="toHomePage" data-customer="{{item.costomerId}}">
-                            <image class="fill" src="{{item.commentHeadImg || '../../../images/demo.jpg'}}"   />
-                            {{item.commentNickName}}
-                        </view>
-                    </van-col>
-                    <van-col offset="1" span="21" >
-                        <view class="first"><text class="name">{{item.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{item.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{item.id}}" data-index="{{index}}">回复</text></view>
-                        <text class="time">{{item.creatTime}}</text>
-                        <view class="rating_content"><text>{{item.content}}</text></view>
-                    </van-col>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                 </van-row>
                 <van-row wx:for="{{item.commentChild}}" wx:key="{{idx}}" wx:for-item="itemName" wx:for-index="idx">
                     <van-col offset="3" span="21" custom-class="adding" >
                         <van-row>
-<<<<<<< HEAD
                             <view catchtap="handleItem" data-content="{{itemName.content}}" data-customer="{{itemName.costomerId}}" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}" data-idx="{{idx}}">
                                 <van-col span="2">
                                     <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
@@ -116,20 +102,6 @@
                                     </view>
                                 </van-col>
                             </view>
-=======
-                            <van-col span="2">
-                                <view class="img_wrapper" bindtap="toHomePage" data-customer="{{itemName.costomerId}}">
-                                    <image class="fill" src="{{itemName.commentHeadImg || '../../../images/demo.jpg'}}"   />
-                                </view>
-                            </van-col>
-                            <van-col offset="1" span="21" >
-                                <view class="" style="margin-left:11rpx">
-                                    <view class="first"><text class="name">{{itemName.commentNickName}}</text><text class="answer" bindtap="replyUser" data-name="{{itemName.commentNickName}}" data-firstid="{{item.id}}" data-secondid="{{itemName.id}}" data-index="{{index}}">回复</text></view>
-                                    <text class="time">{{itemName.creatTime}}</text>
-                                    <view class="rating_content"><text class="answer_who">回复用户{{itemName.childCommentNickName}}: </text><text>{{itemName.content}}</text></view>
-                                </view>
-                            </van-col>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
                         </van-row>
                     </van-col>
                 </van-row> 
@@ -151,7 +123,7 @@
         <view class="icon_wrapper">
             <view class="icon"  bindtap="handleClick" data-type="1">
                 <text class="like_num" wx:if="{{number.parseInt(worksInfo.produtionAssist)}}">{{number.formatNum(worksInfo.produtionAssist)}}</text>
-                <image class="fill" src="{{worksInfo.isPraise ? '../../../images/zxzicon@2x.png':'../../../images/zicon@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
+                <image class="fill" src="{{worksInfo.isPraise ? '../../../images/pldxz@2x.png':'../../../images/pldz@2x.png'}}" mode="" lazy-load="false" binderror="" bindload="" />
             </view>
             <view class="icon"  bindtap="handleClick">
                 <text class="collection_num" wx:if="{{number.parseInt(worksInfo.productionCollection)}}"  data-type="2">{{number.formatNum(worksInfo.productionCollection)}}</text>
@@ -164,8 +136,16 @@
             </view>
         </view>
     </view>
+    <view class="public_btn">
+      <image class="fill" src="../../../images/home.png" bindtap="navigateToIndex" />
+    </view>
 </view>
+<view wx:else>
+    <no-thing src="/images/zp.png" url="/pages/index/index/index" text="该作品可能已被作者删除了哦，去首页看看吧" font="去首页" />
+</view>
+  
 </van-transition>
+
 <!-- 底部选择框 -->
 <van-popup show="{{ isPop }}" bind:close="onClose" overlay="{{true}}" position="bottom" duration="300" custom-style="background:rgba(0,0,0,0.03)">
     <view class="pop_wrapper">

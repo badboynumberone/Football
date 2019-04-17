@@ -2,6 +2,6 @@
 <block wx:if="{{templateCode == 1001}}">
     <comp1001 id="comp1001" name="comp" template-data="{{templateData}}" />
 </block>
-<block wx:elif="{{templateCode == 1002}}">
+<!-- <block wx:elif="{{templateCode == 1002}}">
     <comp1002 id="comp1002" name="comp" template-data="{{templateData}}" />
-</block>
+</block> -->

@@ -1,6 +1,6 @@
-<view class="main">
+
+<view class="main" wx:if="{{singleInfo.nickName}}">
     <!--个人信息-->
-<<<<<<< HEAD
     <view  type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo">
 		<view class="personal_info_top" style="padding:20rpx 14px;">
 			<view class="personal_header_wrapper" >
@@ -11,7 +11,7 @@
 					<text>{{singleInfo.nickName || '匿名'}}</text>
 				</view>
 				<view class="personal_autograph text-hidden">
-					<text>{{singleInfo.sign || '世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了'}}</text>
+					<text>{{singleInfo.sign || '暂无个性签名哦~'}}</text>
 				</view>
 				<view class="" bindtap="handleConcern" data-userid="{{userId}}">
 					<concern-item  offsetOne="{{true}}" offsetTwo="{{singleInfo.isFollow}}"></concern-item>
@@ -25,9 +25,6 @@
 			<text class="personal_item_name">{{item.typeName}}</text>
 		</view>
 	</view>
-=======
-    <profile-header headerType="home" personalInfo = "{{hotItem}}" ></profile-header>
->>>>>>> 8aabee5136ce4408a2c3a70abbac19730bd6946c
     <!--个人动态-->
     <view class="personal_works" style="width:100%">
         <view class="personal_select">

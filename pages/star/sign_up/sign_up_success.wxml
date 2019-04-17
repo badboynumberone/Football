@@ -1,7 +1,5 @@
 <view class="main" scroll-y="true">
     <image class="success_bg fill" mode="widthFix" src="../../../images/success-bg.png" />
     <text class="success_text cl" selectable="false" space="false" decode="false">报名成功!</text>
-    <view class="confirm" bindtap="navigateTo">
-        确定
-    </view>
+    <bottom-btn text="{{'确定'}}" bindtap="navigateTo"/>
 </view>

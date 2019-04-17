@@ -63,7 +63,7 @@ Page({
   goLogistics() {
     var refundOrderId = this.data.refundOrder.id
     wx.navigateTo({
-      url: '/pages/refund/logistics?refundOrderId=' + refundOrderId,
+      url: '/pages/purchase/refund/logistics?refundOrderId=' + refundOrderId,
     })
   },
   //取消退款申请

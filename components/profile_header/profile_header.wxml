@@ -3,15 +3,15 @@
 <view class="personal_info">
 	<button wx:if="{{headerType=='me'}}" type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo" bindgetuserinfo="login">
 		<view class="personal_info_top">
-			<view class="personal_header_wrapper"  >
+			<view class="personal_header_wrapper"  style="background:url('/images/mrtx.png') no-repeat center/cover">
 				<image class="personal_img fill" style="border-radius: 50%"  src="{{ userInfo.userHeader || '/images/mrtx.png'}}" />
 			</view>
 			<view class="personal_info_wrapper">
-				<view class="personal_name text-hidden" style="padding-bottom:20rpx">
+				<view class="personal_name text-hidden" style="padding-bottom:20rpx;width:206px;text-align:left;">
 					<text>{{userInfo.userName || '未登录'}}</text>
 				</view>
-				<view class="personal_autograph text-hidden">
-					<text wx:if="{{userInfo.userName}}">{{userInfo.signature || '世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了'}}</text>
+				<view class="personal_autograph text-hidden" style="text-align:left;">
+					<text wx:if="{{userInfo.userName}}">{{userInfo.signature || '暂无个性签名哦~'}}</text>
 					<text wx:else>点击登录</text>
 				</view>
 			</view>
@@ -20,22 +20,6 @@
 			</view>
 		</view>
 	</button>
-	<view wx:if="{{headerType=='home'}}" type="default" class="userinfo" hover-class="other-button-hover" open-type="getUserInfo" bindgetuserinfo="login">
-		<view class="personal_info_top" style="padding:20rpx 14px;">
-			<view class="personal_header_wrapper" >
-				<image class="personal_img fill" src="{{ userInfo.userHeader || '/images/mrtx.png'}}" />
-			</view>
-			<view class="personal_info_wrapper">
-				<view class="personal_name text-hidden">
-					<text>{{userInfo.userName || '匿名'}}</text>
-				</view>
-				<view class="personal_autograph text-hidden">
-					<text>{{userInfo.signature || '世界很单纯，人生也一样。不是世界复杂，而是你把世界复杂了'}}</text>
-				</view>
-				<concern-item  offsetOne="{{offsetOne}}" offsetTwo="{{offsetTwo}}"></concern-item>
-			</view>
-		</view>
-	</view>
 	<view class="personal_info_bottom">
 		<view class="personal_item" wx:for="{{personalInfo}}" wx:key="{{index}}" bindtap="navigateTo" data-url="{{item.typeUrl}}" data-type="{{index}}">
 			<text class="personal_num">{{item.typeNum}} </text>

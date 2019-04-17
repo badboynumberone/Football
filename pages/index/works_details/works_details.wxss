@@ -33,6 +33,10 @@
     font-size: 32rpx;
     font-weight: bold;
     font-size: #222;
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .author_public_time{
@@ -55,7 +59,7 @@
 }
 .is_video_img{
     width: 100%;
-    
+    height: 750rpx;
 }
 .works_container{
     
@@ -127,6 +131,10 @@
     font-size: 30rpx;
     font-weight: bold;
     color: #222222;
+    width: 400rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .answer{
     font-size: 28rpx;
@@ -334,4 +342,13 @@
     width: 90%;
     text-align: center;
     letter-spacing: 3px;
+}
+.public_btn{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+    position: fixed;
+    right: 0px;
+    bottom:100rpx;
+    z-index: 999;
 }

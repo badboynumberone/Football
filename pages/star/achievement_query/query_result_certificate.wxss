@@ -1,11 +1,11 @@
 @import '/common.wxss';
 .main{
     background:#f1f1f1;
-    margin-bottom:150rpx;
 }
 .rate_bg{
     width: 100%;
     height: 250rpx;
+    transform: translateY(50rpx)
 }
 .rate-wrap{
     width: 90%;
@@ -27,21 +27,29 @@
     align-items: center;
 }
 .panel-title >text{
-    font-size: 34rpx;
+    font-size: 16px;
     color: #666;
 }
-.form-group{
-    padding: 20rpx 0;
+.form-text{
+    font-size: 16px;
+}
+.looking-text{
+    font-size: 24rpx;
+    color: #666;
+    margin-left: 10rpx;
 }
 .form-image{
     width: 150rpx;
     height: 150rpx;
+    margin-right:10rpx;
+    margin-bottom: 10rpx; 
 }
 .certificate_num{
-    color: #333;
+    font-size: 30rpx;
+    color: #666;
 }
 .form-label{
-    font-size: 34rpx;
+    font-size: 16px;
 }
 .form-control{
     margin-top: 25rpx

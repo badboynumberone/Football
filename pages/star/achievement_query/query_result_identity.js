@@ -1,6 +1,6 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
-
-
+import {request} from '../../../utils/request';
+import {mapTime} from '../../../utils/util';
 Page({
 
     /**
@@ -13,8 +13,12 @@ Page({
       sexIndex:0,//男女性别
       nowDate:'',//当前时间
       birthDay:'',//生日
-      city:[],
-
+      city:'',//当前城市
+      identity:'',//身份证号
+      name:'',//姓名
+      stationName:'',//站点名称
+      onePhoto:'',//一寸照片
+      starInfo:[]//星级评定信息
     },
     // onChange(event) {
     //   const { picker, value, index } = event.detail;
@@ -24,45 +28,47 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      this.getNowDate();
-    },
-    getNowDate(){
-      let now = new Date();
-      let month=now.getMonth()<10 ? '0'+now.getMonth(): now.getMonth();
-      let date =now.getDate()<10 ? '0'+now.getDate() : now.getDate();
+      console.log(options)
       this.setData({
-        nowDate :now.getFullYear() + '-' + month + '-' + date
+        identity:options.identity
       })
-      console.log(this.data.nowDate)
+      this.getStarInfo(options.identity)
     },
-    bindSexChange(e){
-      console.log(e.detail.value)
-      this.setData({
-        sexIndex: e.detail.value,
-        sexOffset:true
+    //获取星级信息
+    getStarInfo(id){
+      let that = this;
+      request('/userSign/getUserSign',{
+        method:"POST",
+        data:{
+          type:2,
+          cardNum:id
+        }
+      }).then(function(res){
+        console.log(res)
+        that.setData({
+          identity:res.cerdCard,
+          name:res.dataList.userSignInfo.userName,
+          city:res.dataList.userSignInfo.cityAdress,
+          stationName:res.stationName,
+          onePhoto:res.dataList.userSignInfo.imgUrl,
+          starInfo:mapTime(res.dataList.dataList,'creatTime').reverse()
+        })
+      }).catch(function(err){
+        console.log("获取用户评级信息失败")
       })
     },
-    bindDateChange:function(e){
-      this.setData({
-        birthDay: e.detail.value,
-      })
+    queryStar(e){
+      if(e.currentTarget.dataset.msg == '待评级'){
+        return;
+      }
+      wx.navigateTo({
+        url: '/pages/star/achievement_query/query_result_certificate?id='+e.currentTarget.dataset.id
+      });
     },
-    bindRegionChange:function(e){
-      this.setData({
-        city: e.detail.value
-      })
-    },
-    // 上传图片
-    uploadImg:function(){
-      wx.chooseImage({
-        count: 3,
-        sizeType: ['original','compressed'],
-        sourceType: ['album','camera'],
-        success: (result)=>{
-          console.log(result)
-        },
-        fail: ()=>{},
-        complete: ()=>{}
+    //查看电子证书
+    toElectrical(){
+      wx.navigateTo({
+        url: '/pages/star/achievement_query/query_result_electrical'
       });
     }
   })

@@ -1,3 +1,4 @@
+<wxs src="../../../utils/string.wxs" module="string" />
 <view class="main">
 	<view class="rate">
 		<view class="rate_bg">
@@ -7,38 +8,36 @@
 			<view class="panel-title">
 				<view class="star_level">
 					<image src="../../../images/detail-icon.png" style="height:40rpx;width:40rpx;display:inline-block" />
-					<text style="margin-left:40rpx;color:#63922F">八星级</text>
+					<text style="margin-left:40rpx;color:#63922F">{{string.mapLevel(level)}}</text>
 				</view>
-				<text>2018-10-20</text>
+				<text>{{string.sub(levelTime)}}</text>
 			</view>
-			<view class="form-group">
-				<label class="form-label">证书号</label>
-				<view class="form-control">
-					<text class="certificate_num" selectable="false" space="false" decode="false">16091230418</text>
-				</view>
-			</view>
-			<view class="form-group">
-				<label class="form-label">证书
-					<text>(点击查看)</text>
-				</label>
-				<view class="form-control">
-					<image class="form-image" src="" bindtap="" />
+			<view class="form-group" style="margin-top:20rpx" wx:if="{{number.length}}">
+				<text class="form-text">证书号</text>
+				<view class="form-control" style="margin-bottom:25rpx">
+					<text class="certificate_num" selectable="false" space="false" decode="false">{{number}}</text>
 				</view>
 			</view>
-			<view class="form-group">
-				<label class="form-label">现场视频
-					<text>(点击查看)</text>
-				</label>
+			<view class="form-group" wx:if="{{number.length}}">
+				<text class="form-text">证书  </text><text class="looking-text">(点击查看)</text>
+					
+				
 				<view class="form-control">
-					<video src="" style="width:150rpx; height:150rpx" />
+					<image class="form-image" wx:for="{{ratingCertImg}}" wx:key="{{index}}" src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{ratingCertImg}}"  />
 				</view>
 			</view>
-			<view class="form-group">
-				<label class="form-label">现场照片
-					<text>(点击查看)</text>
-				</label>
+			<view class="form-group" wx:if="{{nowVideo.length}}">
+				<text class="form-text">现场视频  </text><text class="looking-text">(点击查看)</text>
+					
+				
+				<view class="form-control">  
+					<video  src="{{nowVideo}}" bindtap="lookingVideo" style="width:150rpx; height:150rpx;margin-right:10rpx;margin-bottom: 10rpx; "  autoplay="{{false}}" controls="{{fullControl}}" />
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">现场照片  </text><text class="looking-text">(点击查看)</text>
 				<view class="form-control">
-					<image class="form-image" src="" />
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
 				</view>
 			</view>
 		</view>

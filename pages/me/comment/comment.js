@@ -1,4 +1,4 @@
-import {requestTest} from '../../../utils/request';
+import {request} from '../../../utils/request';
 import {mapTime} from '../../../utils/util';
 Page({
 
@@ -7,8 +7,8 @@ Page({
      */
     data: {
       navIndex:0,//评论选择
-      pageInfo:[{commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../../images/pl.png',text:'您还没有评论哦~去首页看看吧'},
-              {commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../../images/pl.png',text:'您还没有评论哦~去首页看看吧'}]
+      pageInfo:[{commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../images/pl.png',text:'您还没有评论哦~去首页看看吧'},
+              {commentInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading',nothingImg:'../../images/pl.png',text:'您还没有评论哦~去首页看看吧'}]
     },
   
     /**
@@ -22,13 +22,15 @@ Page({
       this.setData({
         navIndex:e.detail.index
       })
+			
       if(this.data.pageInfo[this.data.navIndex].commentInfo!=false){return;}
       this.getData(this.data.navIndex+1,1,20)
+			
     },
     //获取数据
     getData(type,pageNo,pageSize){
       let that = this;
-      requestTest("/costomerProdutions/getCostomerCommentPage",{method:"POST",data:{
+      request("/costomerProdutions/getCostomerCommentPage",{method:"POST",data:{
         type:type,
         pageNo:pageNo,
         pageSize
@@ -43,6 +45,7 @@ Page({
           that.setData({
             ['pageInfo['+that.data.navIndex+"].bottomFont"]:'~NOTHING~'
           })
+          return;
         }
         console.log(that.data.pageInfo[that.data.navIndex].nowPageIndex)
         if(that.data.pageInfo[that.data.navIndex].nowPageIndex >=that.data.pageInfo[that.data.navIndex].totalPage){

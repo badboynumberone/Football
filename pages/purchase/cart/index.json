@@ -11,6 +11,7 @@
     "van-stepper": "/miniprogram_npm/vant-weapp/stepper/index",
     "van-row": "/miniprogram_npm/vant-weapp/row/index",
     "van-col": "/miniprogram_npm/vant-weapp/col/index",
-    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+    "no-thing":"/components/nothing/nothing"
   }
 }

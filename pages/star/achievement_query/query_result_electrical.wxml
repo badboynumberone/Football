@@ -1,6 +1,14 @@
 <view class="main">
 	<view class="result_wrapper">
-	<image src="" />
+		<image class="fill" src="" />
+	</view>
+	<view class="bottom-options">
+		<view class="preserve">
+			保存
+		</view>
+		<view class="send">
+			转发
+		</view>
 	</view>
 </view>
 
