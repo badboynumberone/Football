@@ -1,6 +1,6 @@
 <!--动态组件-->
 <wxs src="../../utils/number.wxs" module="number" />
-<view class="works_item" wx:for="{{dynaicInfo}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}" data-index="{{index}}">
+<view class="works_item" wx:for="{{info}}" wx:key="{{index}}"  bindtap="navigateTo" data-produtionid="{{item.produtionId}}" data-coustmoerid="{{item.coustmoerId}}" data-index="{{index}}">
 	
 	<view class="works_img_wrapper">
 		

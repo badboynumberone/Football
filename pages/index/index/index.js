@@ -32,6 +32,8 @@ Page({
   onHide(){
     app.globalData.index="";
     app.globalData.NavIndex="";
+    app.globalData.isDelete = false;
+    app.globalData.produtionId="";
   },
   //初始化数据
   initData(){

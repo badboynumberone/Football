@@ -54,3 +54,6 @@
 .form-control{
     margin-top: 25rpx
 }
+.video{
+    width:150rpx; height:150rpx;margin-right:10rpx;margin-bottom: 10rpx;
+}

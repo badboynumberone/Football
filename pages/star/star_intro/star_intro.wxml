@@ -3,6 +3,5 @@
         <image class="banner" src="{{bannerImg}}" mode="widthFix" lazy-load="false" />
         
     </view>
-    
+    <rich-text nodes="{{describesd}}"></rich-text>
 </view>
-<rich-text nodes="{{describesd}}"></rich-text>

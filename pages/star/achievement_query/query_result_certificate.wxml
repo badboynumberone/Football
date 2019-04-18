@@ -28,10 +28,9 @@
 			</view>
 			<view class="form-group" wx:if="{{nowVideo.length}}">
 				<text class="form-text">现场视频  </text><text class="looking-text">(点击查看)</text>
-					
-				
-				<view class="form-control">  
-					<video  src="{{nowVideo}}" bindtap="lookingVideo" style="width:150rpx; height:150rpx;margin-right:10rpx;margin-bottom: 10rpx; "  autoplay="{{false}}" controls="{{fullControl}}" />
+				<view class="form-control"> 
+					<video class="video" src="{{nowVideo}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
+            		</video>
 				</view>
 			</view>
 			<view class="form-group" wx:if="{{nowImg.length}}">

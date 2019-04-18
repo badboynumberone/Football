@@ -40,7 +40,7 @@
       height: 50rpx;
   }
   .process_text{
-      font-size: 30rpx;
+      font-size: 28rpx;
       padding-top:15rpx 
   }
 .message_num{

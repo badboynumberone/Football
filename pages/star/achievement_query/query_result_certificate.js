@@ -14,7 +14,8 @@ Page({
       nowVideo:[],//现场视频
       nowImg:[],//现场照片
       ratingCertImg:'',//证书图片
-			fullControl:false,//全屏控制
+      fullControl:false,//全屏控制
+      videoOffset:false
     },
     
     /**
@@ -33,6 +34,9 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
+    onReady:function(){
+      this.videoContext = wx.createVideoContext('myVideo')
+    },
     onShow: function () {
   
     },
@@ -106,6 +110,8 @@ Page({
       });
     },
     lookingVideo(){
+      
+      
 			this.setData({
 				fullControl:true
 			})

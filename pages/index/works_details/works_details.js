@@ -143,6 +143,9 @@ Page({
             id:that.data.worksId
           }
         }).then(function(res){
+          app.globalData.isDelete = true;
+          app.globalData.produtionId = that.data.worksId;
+          console.log(app.globalData.produtionId)
           if(res.deleteNum){
             wx.navigateBack({
               delta: 1
@@ -211,6 +214,7 @@ Page({
             commentId:commentId
           }
         }).then(function(res){
+          
           let rating = that.data.rating;
           if(secondIndex == undefined){
             let minunes = rating[parseInt(firstIndex)].commentChild.length+1;
