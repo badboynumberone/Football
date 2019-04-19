@@ -33,9 +33,11 @@
 }
 .activity_link_wrapper{
     margin: 30rpx 0;
+    color: #77A4FA;
 }
 .activity_link{
     font-size: 32rpx;
+    color: #222;
 }
 .activity_link text{
     color: #77A4FA;

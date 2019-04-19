@@ -65,10 +65,10 @@ Page({
   saveLogistics() {
     var that = this
     Dialog.confirm({
-      title: '确定要保存物流信息？',
+      title: '确定要提交物流信息？',
       message: ' ',
       cancelButtonText: '取消',
-      confirmButtonText: '保存'
+      confirmButtonText: '确定'
     }).then(() => {
       console.log('保存物流信息')
       //发送退货物流信息接口
@@ -76,10 +76,11 @@ Page({
       request.post('/refundOrder/saveLogistics', {
         id: that.data.refundOrderId,
         logisticsCompanyId: that.data.logisticsCompanyId,
-        trackingNumber: that.data.trackingNumber
+        trackingNumber: that.data.trackingNumber,
+        returnTel:that.data.phoneNumber
       }).then(function (data) {
         wx.showToast({
-          title: '保存物流信息成功',
+          title: '提交成功',
           icon: 'none',
           duration: 1000
         })

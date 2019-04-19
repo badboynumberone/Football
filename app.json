@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index/index",
+    "pages/purchase/order/logistics",
     "pages/star/achievement_query/query_result_electrical",
     "pages/purchase/page/index",
     "pages/star/achievement_query/fail",
@@ -47,7 +48,7 @@
     "pages/purchase/order/detail",
     "pages/purchase/order/submit",
     "pages/purchase/address/detail",
-    "pages/purchase/order/logistics",
+    
     "components/comment_item/comment_item",
     "components/nothing/nothing",
     "pages/web/index"

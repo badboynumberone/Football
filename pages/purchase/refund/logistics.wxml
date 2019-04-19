@@ -11,6 +11,15 @@
   placeholder="请输入快递单号"
   bind:blur="onInput"
 />
+<van-field
+  value="{{ phoneNumber }}"
+  clearable
+  input-align="right"
+  label="手机号"
+  data-field-name="phoneNumber"
+  placeholder="请输入手机号"
+  bind:blur="onInput"
+/>
 
 <van-popup
   show="{{ show }}"

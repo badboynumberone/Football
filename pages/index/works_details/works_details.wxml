@@ -1,6 +1,7 @@
 <wxs src="../../../utils/number.wxs" module="number" />
-<van-dialog id="van-dialog" />
+
 <van-transition name="fade">
+<van-dialog id="van-dialog" zIndex="999" />
 <view class="main" wx:if="{{isWorks}}" >
     <!--作者信息-->
     <view class="works_author">
@@ -45,7 +46,7 @@
             </view>
         </block>
         <block wx:if="{{worksInfo.fileType == '1'}}">
-            <video class="fill" src="{{worksInfo.fileUrl}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
+            <video class="fill " src="{{worksInfo.fileUrl}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}" style="position:relative;z-index:-1">
             </video>
         </block>
     </view>
