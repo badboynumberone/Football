@@ -36,8 +36,8 @@
       padding: 25rpx 0;
   }
   .buy_process_item image{
-      width: 70rpx;
-      height: 50rpx;
+      width: 80rpx;
+      height: 60rpx;
   }
   .process_text{
       font-size: 28rpx;

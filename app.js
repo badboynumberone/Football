@@ -1,17 +1,15 @@
 //app.js
 import auth from '/utils/auth'
 import {resetUserInfo} from '/utils/util'
+import {sleep} from '/utils/util';
 App({
-  onLaunch: function () {
-    console.log("asd")
-    this.checkLogin()
-  },
   onShow: function () {
     this.checkLogin()
   },
   checkLogin: function () {
     wx.checkSession({
       success: function () {
+        console.log("asds")
         //session_key 未过期，并且在本生命周期一直有效
         if (!wx.getStorageSync('accessToken')) {
           // 重新登录
@@ -22,7 +20,11 @@ App({
       fail: function () {
         // session_key 已经失效，需要重新执行登录流程
         // 重新登录
-        auth.login()
+        console.log("asds")
+        sleep('800').then(function(res){
+          auth.login()
+        })
+        
       }
     })
   },

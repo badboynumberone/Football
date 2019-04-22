@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <wxs src="../../../utils/string.wxs" module="string" />
-<view class="main" style="background:#f1f1f1" wx:if="{{bannerInfo.length}}">
+<view class="main" style="background:#f1f1f1">
 <scroll-view scroll-y="{{true}}">
     <!-- 搜索 -->
     <view class="search_enter" bindtap="toSearch">
