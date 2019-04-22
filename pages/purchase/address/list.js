@@ -40,9 +40,10 @@ Page({
   },
   //新增地址
   goDetail(e) {
-    var itemId = e.target.dataset.itemId
+    var itemId = e.currentTarget.dataset.itemid;
     // 如果没有地址就把这个地址的id设置成o
     if (!itemId) {
+      
       itemId = '0'
     }
     //跳转到地址详情页

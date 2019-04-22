@@ -34,7 +34,8 @@ Page({
       isLoading:false,//是否正在加载
       bottomFont:'Loading',//底部信息
       currentE:null,//当前指针
-      currentContent:''//当前评论内容
+      currentContent:'',//当前评论内容
+      offset:false,
     },
   
     /**
@@ -60,10 +61,26 @@ Page({
       this.getRating(options.worksId,1,20);
       console.log(options)
     },
+    see(){
+      console.log("ssd")
+    },
     onShow(){
+      this.videoContext = wx.createVideoContext('myVideo');
       this.getData();
     },
-    
+    onReady: function () {  //创建视频上下文对象
+      this.videoContext = wx.createVideoContext('myVideo')
+    },
+    videoPlay(e) {
+      if(!this.data.offset){
+        this.videoContext.play()
+      }
+      this.setData({
+        offset:true
+      })
+      
+      
+    },
     //触底加载更多评论
     onReachBottom(){
       if(this.data.bottomFont=="~THE ENDING~" || this.data.bottomFont=="~NOTHING~"){
@@ -131,6 +148,9 @@ Page({
     //删除作品
     deleteWorks(){
       let that = this;
+      this.setData({
+        offset:false
+      })
       Dialog.confirm({
         title: '确定删除该作品？',
           message: ' ',
@@ -163,6 +183,7 @@ Page({
       console.log(e)
       if(this.data.userId == e.currentTarget.dataset.customer){
         this.setData({
+          offset:false,
           isPop:true,
           currentE:e,
           currentReplyId:e.currentTarget.dataset.customer,
@@ -190,7 +211,8 @@ Page({
     deleteItem(){
       let that = this;
       this.setData({
-        isPop:false
+        isPop:false,
+        
       })
       //当前本地位置
       let firstIndex =  this.data.currentE.currentTarget.dataset.index;
@@ -199,7 +221,6 @@ Page({
       console.log(secondIndex)
       console.log(firstIndex)
       let commentId = this.data.currentE.currentTarget.dataset.secondid;
-      
       //先发请求请求成功后再删啊
       Dialog.confirm({
         title: '确定删除评论？',
@@ -400,10 +421,14 @@ Page({
       if(!checkLogin(true,false)){
         return;
       }
+      
       let api = '';
       let that = this;
       if(this.data.worksInfo.isFollow){
         api='/produtionComment/cancleFllow';
+        this.setData({
+          offset:false
+        })
         Dialog.confirm({
           title: '确定不再关注？',
           message: ' ',

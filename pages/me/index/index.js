@@ -16,11 +16,11 @@ Page({
         {iconSrc:"../../../images/wddd@2x.png",text:"我的订单",linkAddress:"",isAll:true},
       ],//用户功能列表
       pay_list:[
-        {iconSrc:"../../../images/dfk.png",text:"待付款",messageNum:0},
-        {iconSrc:"../../../images/dfh.png",text:"待发货",messageNum:0},
-        {iconSrc:"../../../images/dsh.png",text:"待收货",messageNum:0},
-        {iconSrc:"../../../images/ywc.png",text:"已完成"},
-        {iconSrc:"../../../images/thtk.png",text:"退货退款"},
+        {iconSrc:"../../../images/m01.png",text:"待付款",messageNum:0},
+        {iconSrc:"../../../images/m02.png",text:"待发货",messageNum:0},
+        {iconSrc:"../../../images/m03.png",text:"待收货",messageNum:0},
+        {iconSrc:"../../../images/m04.png",text:"已完成"},
+        {iconSrc:"../../../images/m05.png",text:"退货退款"},
       ],//付款流程列表
       userInfo:{},//用户信息
       personalInfo:[
