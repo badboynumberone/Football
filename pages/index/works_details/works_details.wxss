@@ -352,5 +352,4 @@
     position: fixed;
     right: 0px;
     bottom:100rpx;
-    z-index: 999;
 }

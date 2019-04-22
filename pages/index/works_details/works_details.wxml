@@ -1,7 +1,6 @@
 <wxs src="../../../utils/number.wxs" module="number" />
 
-<van-transition name="fade">
-<van-dialog id="van-dialog" zIndex="999" />
+<van-dialog id="van-dialog" zIndex="{{999}}" />
 <view class="main" wx:if="{{isWorks}}" >
     <!--作者信息-->
     <view class="works_author">
@@ -29,7 +28,7 @@
           
     </view>
     <!--视频或图片-->
-    <view class="is_video_img">
+    <view class="is_video_img" style="position:absolute;z-index:-1">
         <block wx:if="{{worksInfo.fileType == '2'}}">
             <view class="works_banner" style="background:url('../../../images/mrtx.png') no-repeat center/cover">
                 <!-- 轮播图 -->
@@ -46,10 +45,18 @@
             </view>
         </block>
         <block wx:if="{{worksInfo.fileType == '1'}}">
-            <video class="fill " src="{{worksInfo.fileUrl}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}" style="position:relative;z-index:-1">
-            </video>
+            <swiper style="height:750rpx">
+                    <swiper-item>
+                        <video class="fill " src="{{worksInfo.fileUrl}}" style="height:750rpx" />
+
+                    </swiper-item>
+            </swiper>
         </block>
     </view>
+    <view style="height:750rpx">
+        
+    </view>
+      
     <!--动态文字信息-->
     <view class="works_container">
         <text class="works_title text-hidden">{{worksInfo.produtionTitle}}</text>
@@ -145,7 +152,6 @@
     <no-thing src="/images/zp.png" url="/pages/index/index/index" text="该作品可能已被作者删除了哦，去首页看看吧" font="去首页" />
 </view>
   
-</van-transition>
 
 <!-- 底部选择框 -->
 <van-popup show="{{ isPop }}" bind:close="onClose" overlay="{{true}}" position="bottom" duration="300" custom-style="background:rgba(0,0,0,0.03)">

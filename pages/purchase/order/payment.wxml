@@ -14,7 +14,7 @@
 </van-cell>
 <van-cell title="支付宝账户" title-width="100px;">
   <view slot="">
-    <span>{{alipayAccount}}</span>
+    <view>{{alipayAccount}}</view>
   </view>
   <view slot="right-icon">
     <view class="copy" bindtap='copy'>复制</view>
