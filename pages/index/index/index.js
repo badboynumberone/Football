@@ -19,21 +19,11 @@ Page({
 			this.initData();
   },
   onShow(){
-    if(app.globalData.index && app.globalData.NavIndex){
-      this.setData({
-        ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].isPraise"]:app.globalData.isPraise,
-      })
-      this.setData({
-        ["pageInfo["+app.globalData.NavIndex+"].dynaicInfo["+app.globalData.index+"].assist"]:app.globalData.num,
-      })
-      
-    }
   },
   onHide(){
-    app.globalData.index="";
-    app.globalData.NavIndex="";
     app.globalData.isDelete = false;
     app.globalData.produtionId="";
+    app.globalData.praiseNum = undefined;
   },
   //初始化数据
   initData(){

@@ -22,6 +22,7 @@ Component({
     detached() {
       // 在组件实例被从页面节点树移除时执行
       console.log(this.properties.dynaicInfo)
+      
     },
   },
   observers:{
@@ -56,7 +57,22 @@ Component({
           info:this.properties.dynaicInfo
         })
       }
-      
+      if(app.globalData.praiseNum>=0 && app.globalData.praiseNum!=undefined){
+        let idx = '';
+        let dynaicInfo = this.properties.dynaicInfo;
+        this.properties.dynaicInfo.forEach((item,index) => {
+          if(item.produtionId == app.globalData.produtionId){
+            idx = index;
+            console.log(idx)
+          }
+        });
+        dynaicInfo[idx].isPraise = app.globalData.isPraise;
+        dynaicInfo[idx].assist = app.globalData.praiseNum;
+        console.log(dynaicInfo)
+        this.setData({
+          info:dynaicInfo
+        })
+      }
     }
   },
   methods: {

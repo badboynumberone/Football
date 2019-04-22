@@ -1,5 +1,8 @@
 import {request} from '../../../utils/request';
 import {clearLine} from '../../../utils/util';
+const  app =  getApp();
+
+  
 Page({
 
     /**
@@ -89,5 +92,10 @@ Page({
       this.setData({
         nowPageIndex:this.data.nowPageIndex+1
       })
+    },
+    onUnload(){
+      app.globalData.isDelete = false;
+      app.globalData.produtionId="";
+      app.globalData.praiseNum = undefined;
     }
   })
