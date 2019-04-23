@@ -163,7 +163,7 @@
             <view class="pop_content" style="letter-spacing:1px;font-size:30rpx;color:#666;border:none;">
                 你的评论:{{currentContent}}
             </view>
-            <view class="pop_answer" wx:if="{{currentReplyId!=userId}}" style="color:blue" bindtap="answerItem">
+            <view class="pop_answer" wx:if="{{currentReplyId!=userId}}" style="color:#222" bindtap="answerItem">
                 回复
             </view>
             <view class="pop_delete" style="color:red" bindtap="deleteItem">

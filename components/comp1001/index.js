@@ -39,11 +39,21 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    refresh() {
-      var pageData = JSON.parse(this.properties.templateData.content)
+    lifetimes:{
+      attached(){
+        var pageData = JSON.parse(this.properties.templateData.content)
       
+        this.setData({
+          pageData: pageData
+        })
+      }
+    },
+    refresh() {
       this.setData({
-        pageData: pageData
+        pageData:""
+      })
+      this.setData({
+        pageData:JSON.parse(this.properties.templateData.content)
       })
     },
     onSearch: function (e) {

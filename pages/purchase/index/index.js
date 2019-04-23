@@ -32,7 +32,7 @@ Page({
     }
     this.setData({
       isRefreshing: true,
-      templateData:null
+      templateData:{}
     })
     var that = this;
     that.data.pageNo = 1;

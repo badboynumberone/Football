@@ -15,7 +15,7 @@
 			<!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" /> -->
 			<rich-text nodes="{{bannerDetail.bannContent}}"></rich-text>
 			<!--活动链接-->
-			<view class="activity_link_wrapper text-hidden" bindtap="activityLink" style="width:700rpx">
+			<view class="activity_link_wrapper text-hidden" wx:if="{{bannerDetail.bannH5Url.length}}" bindtap="activityLink" style="width:700rpx">
 				<text class="activity_link " selectable="false" space="false" decode="false" >活动链接:<text class="text-hidden" >{{bannerDetail.bannH5Url}}</text></text>
 			</view>
 			<!--去参加-->
