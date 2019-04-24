@@ -47,7 +47,7 @@
         </view>
         <view wx:if="{{worksInfo.fileType == '1'}}" style="height:750rpx;height:750rpx">
             <view bindtap="videoPlay">
-                <video wx:if="{{offset}}" id="myVideo" style="position:relative;width: 750rpx;height: 750rpx;"  src="{{worksInfo.fileUrl}}" objectFit="cover" poster="{{worksInfo.fileUrl+'?x-oss-process=video/snapshot,t_2000,f_jpg,w_300,h_300,m_fast'}}" controls>  
+                <video wx:if="{{offset}}" id="myVideo" style="position:relative;width: 750rpx;height: 750rpx;"  src="{{worksInfo.fileUrl}}"  poster="{{worksInfo.fileUrl+'?x-oss-process=video/snapshot,t_2000,f_jpg,w_300,h_300,m_fast'}}" controls>  
                 </video>
                 <view wx:else style="position:relative" >
                     <image class="model-img" style="width: 750rpx;height: 750rpx;" mode="aspectFill" src="{{worksInfo.fileUrl+'?x-oss-process=video/snapshot,t_2000,f_jpg,w_300,h_300,m_fast'}}"></image>
