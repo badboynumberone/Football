@@ -1,6 +1,6 @@
 <wxs src="../../../utils/string.wxs" module="string" />
 <view class="main">
-	<view class="rate">
+	<view class="rate" style="margin-bottom:100rpx">
 		<view class="rate_bg">
 			<image class="rate_bg_img fill" src="../../../images/rate-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 		</view>
@@ -13,33 +13,115 @@
 				<text>{{string.sub(levelTime)}}</text>
 			</view>
 			<view class="form-group" style="margin-top:20rpx" wx:if="{{number.length}}">
-				<text class="form-text">证书号</text>
+				<text class="form-text">注册号</text>
 				<view class="form-control" style="margin-bottom:25rpx">
 					<text class="certificate_num" selectable="false" space="false" decode="false">{{number}}</text>
 				</view>
 			</view>
 			<view class="form-group" wx:if="{{number.length}}">
-				<text class="form-text">证书  </text><text class="looking-text">(点击查看)</text>
-					
-				
-				<view class="form-control">
-					<image class="form-image" wx:for="{{ratingCertImg}}" wx:key="{{index}}" src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{ratingCertImg}}"  />
+				<text class="form-text">考试分数</text>
+				<view class="form-control" style="margin:20rpx 0">
+					<text style="font-size:30rpx;color:#666">90分</text>
 				</view>
 			</view>
 			<view class="form-group" wx:if="{{nowVideo.length}}">
-				<text class="form-text">现场视频  </text><text class="looking-text">(点击查看)</text>
-				<view class="form-control"> 
-					<video class="video" src="{{nowVideo}}" controls="{{true}}" autoplay="{{false}}" loop="{{false}}">
-            		</video>
+				<text class="form-text">单一技能评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
 				</view>
 			</view>
 			<view class="form-group" wx:if="{{nowImg.length}}">
-				<text class="form-text">现场照片  </text><text class="looking-text">(点击查看)</text>
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">技能组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">技能组合评级照片1</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">技能组合评级照片2</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">体技组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">体技组合评级照片1</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">体技组合评级照片2</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">球星技能评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
+				<view class="form-control">
+					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
+				</view>
+			</view>
+			<view class="form-group" wx:if="{{nowImg.length}}">
+				<text class="form-text">亲子组合评级照片</text><text class="looking-text">(点击查看)</text>
 				<view class="form-control">
 					<image wx:for="{{nowImg}}" class="form-image" wx:key="{{index}}"  src="{{item}}" bindtap="lookingPhoto" data-src="{{item}}" data-urls="{{nowImg}}"/>
 				</view>
 			</view>
 		</view>
 	</view>
+	<view style="height:6rpx">
+		
+	</view>
+	  
+	<!--底部生成电子证书按钮-->
+	<bottom-btn text="生成电子版证书" bindtap="toElectrical" />
 </view>
 

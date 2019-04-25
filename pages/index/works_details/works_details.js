@@ -512,5 +512,14 @@ Page({
       return {
         title:"娃娃足球工程"
       }
+    },
+    //预览图片
+    preview(e){
+      let that = this;
+      wx.previewImage({
+        current: that.data.worksInfo.fileUrl[that.data.bannerIndex-1],
+        urls: that.data.worksInfo.fileUrl,
+      });
+        
     }
   })

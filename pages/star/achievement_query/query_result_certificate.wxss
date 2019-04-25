@@ -5,7 +5,6 @@
 .rate_bg{
     width: 100%;
     height: 250rpx;
-    transform: translateY(50rpx)
 }
 .rate-wrap{
     width: 90%;

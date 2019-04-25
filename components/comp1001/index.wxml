@@ -20,10 +20,10 @@
       <block wx:for="{{pageData.recommendList.data}}" wx:key="index">
       <van-col span="12" data-item="{{item}}" bindtap="itemAction">
         <view class="goods-item goods-list-item">
-          <image src="{{imageBaseUrl}}{{string.getSplitFirst(item.imageUrl)}}" style="width:100%;height:{{productHeight}}px;" mode="scaleToFill" />
+          <image src="{{imageBaseUrl}}{{item.imageUrl}}" style="width:100%;height:{{productHeight}}px;" mode="scaleToFill" />
           <view class='goods-name '>{{item.name}}</view>
           <view class='goods-price'>
-            <text>¥</text>{{number.formatPrice2(item.skuMinPrice,item.skuMaxPrice)}}</view>
+            <text>¥</text>{{number.onezerozero(item.price)}}</view>
         </view>
       </van-col>
       </block>

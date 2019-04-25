@@ -12,9 +12,10 @@
         </view>
         <view class="works_list" wx:if="{{upLoadContent.length}}">
             <view class="list_item" wx:for="{{upLoadContent}}" wx:key="{{index}}" >
+                
                 <image wx:if="{{videoOrImg}}" class="list_item_img fill" src="{{item}}"  lazy-load="false" binderror="" bindload="" />
                 <video wx:if="{{!videoOrImg}}" class="fill" src="{{item}}" autoplay="{{false}}" controls="{{false}}"/>
-                <image class="delete_item"  data-num="{{index}}" src="../../../images/sltsc@2x.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""  bindtap="clearItem"/>
+                <image class="delete_item"  data-num="{{index}}" src="../../../images/sltsc@2x.png" mode="aspectFill" lazy-load="false" binderror="" bindload=""  bindtap="clearItem"/>
             </view>
             <view class="add_item" wx:if="{{plusControl && (!((upLoadContent.length>=8) || (upLoadContent.length==0)))}}" bindtap="addItem"><text>+</text></view>
         </view>

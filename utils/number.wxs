@@ -26,5 +26,8 @@ module.exports = {
   },
   formatStringToArray:function(str){
     return JSON.parse(str)
+  },
+  onezerozero:function(str){
+    return str/100;
   }
 }

@@ -34,8 +34,8 @@
             <view class="works_banner" style="background:url('../../../images/mrtx.png') no-repeat center/cover">
                 <!-- 轮播图 -->
                 <swiper circular="true" style="height:750rpx" duration="300" bindchange="bannerChange">
-                        <swiper-item wx:for="{{worksInfo.fileUrl}}" wx:key="{{index}}">
-                            <image class="fill" src="{{item}}" lazy-load="false" binderror="" bindload="" />
+                        <swiper-item wx:for="{{worksInfo.fileUrl}}" wx:key="{{index}}" bindtap="preview">
+                            <image class="fill" src="{{item}}" mode="aspectFill" lazy-load="false" binderror="" bindload="" />
                         </swiper-item>
                 </swiper>
                 <!--分页器-->

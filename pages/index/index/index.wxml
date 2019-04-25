@@ -12,7 +12,7 @@
     <swiper wx:if="{{bannerInfo.length}}" indicator-dots="{{!(bannerInfo.length==1)}}" indicator-color="rgba(0, 0, 0, .3)" indicator-active-color="#fff" autoplay="true" interval="3000" duration="800" circular="true">
       <block wx:for="{{bannerInfo}}" wx:key="index">
         <swiper-item>
-          <image class="fill" src="{{item.bannImg}}"  data-item="/pages/index/banner_details/banner_details" data-type="{{item.id}}" class="slide-image" mode="scaleToFill" style="width:100%;" bindtap="navigateTo"/>
+          <image class="fill" src="{{item.bannImg}}"  data-item="/pages/index/banner_details/banner_details" data-type="{{item.id}}" class="slide-image" mode="scaleToFill" style="width:100%;height:100%" bindtap="navigateTo"/>
         </swiper-item>
       </block>
     </swiper>

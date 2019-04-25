@@ -39,15 +39,13 @@ Page({
       app.globalData.uploadVideo=[]
     },
     onShow(){
-      if(getApp().globalData.uploadImage.length){
-        this.setData({
-          upLoadContent:getApp().globalData.uploadImage
-        })
-      }else if(getApp().globalData.uploadVideo.length){
+      // console.log(getApp().globalData.uploadImage)
+      if(getApp().globalData.uploadVideo.length){
         this.setData({
           upLoadContent:getApp().globalData.uploadVideo
         })
       }
+      // console.log(getApp().globalData.videoOrImg)
       this.setData({
         videoOrImg:getApp().globalData.videoOrImg
       })
@@ -78,19 +76,22 @@ Page({
       let _this =this;
       app.globalData.uploadVideo = [];
       wx.chooseImage({
-        count: 1,
-        sizeType: ['original','compressed'],
-        sourceType: ['album','camera'],
-        success: (res)=>{
-          if(res.errMsg=="chooseImage:ok"){
-            var tempFilePaths = res.tempFilePaths[0];
+        count: 8-_this.data.upLoadContent.length,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success: (result) => {
+          console.log(result)
+          if(result.errMsg == "chooseImage:ok"){
             app.globalData.videoOrImg = true;
             _this.setData({plusControl:true})
-            wx.navigateTo({
-              url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
+            _this.setData({
+              upLoadContent:_this.data.upLoadContent.concat(result.tempFilePaths),
+              videoOrImg:true 
             })
           }
-        }
+        },
+        fail: () => {},
+        complete: () => {}
       });
     },
     //添加视频

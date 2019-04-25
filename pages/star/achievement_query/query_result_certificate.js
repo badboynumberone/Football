@@ -109,11 +109,10 @@ Page({
         urls: e.currentTarget.dataset.urls,
       });
     },
-    lookingVideo(){
-      
-      
-			this.setData({
-				fullControl:true
-			})
+    //查看电子证书
+    toElectrical(){
+      wx.navigateTo({
+        url: '/pages/star/achievement_query/query_result_electrical'
+      });
     }
   })

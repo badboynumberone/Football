@@ -42,7 +42,8 @@ Component({
     lifetimes:{
       attached(){
         var pageData = JSON.parse(this.properties.templateData.content)
-      
+        pageData.recommendList.data = this.properties.templateData.list;
+        console.log(pageData)
         this.setData({
           pageData: pageData
         })
@@ -52,9 +53,12 @@ Component({
       this.setData({
         pageData:""
       })
-      this.setData({
-        pageData:JSON.parse(this.properties.templateData.content)
-      })
+      var pageData = JSON.parse(this.properties.templateData.content)
+        pageData.recommendList.data = this.properties.templateData.list;
+        console.log(pageData)
+        this.setData({
+          pageData: pageData
+        })
     },
     onSearch: function (e) {
       var searchValue = e.detail

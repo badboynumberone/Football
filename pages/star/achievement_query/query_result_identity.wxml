@@ -1,6 +1,6 @@
 <wxs src="../../../utils/string.wxs" module="string" />
 <view class="main">
-	<view class="result_container" style="margin-bottom:100rpx">
+	<view class="result_container">
 		<view class="result_bg">
 			<image class="result_bg_img fill" src="../../../images/rate-bg.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="" />
 		</view>
@@ -65,13 +65,8 @@
 					</view>
 				</van-cell>
 			</view>
-		</view>
-		<view style="height:20rpx">
-			
-		</view>
-		  
+		</view>		  
 	</view>
-	<!--底部生成电子证书按钮-->
-	<bottom-btn text="生成电子版证书" bindtap="toElectrical" />
+	
 </view>
 

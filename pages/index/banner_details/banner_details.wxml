@@ -5,8 +5,8 @@
 		<view class="banner_content">
 			<!--图片-->
 			<view class="img_video_wrapper">
-				<image wx:if="{{bannerDetail.bannImg}}" class="activity_img" src="{{bannerDetail.bannImg}}" lazy-load="false" style="width:100%;height:412rpx">
-				</image>
+				<!-- <image wx:if="{{bannerDetail.bannImg}}" class="activity_img" src="{{bannerDetail.bannImg}}" lazy-load="false" style="width:100%;height:412rpx">
+				</image> -->
 				<video wx:if="{{bannerDetail.bannVoid}}" class="activity_video" src="{{bannerDetail.bannVoid}}" style="width:100%;height:412rpx"
 				 controls="{{true}}" />
 			</view>

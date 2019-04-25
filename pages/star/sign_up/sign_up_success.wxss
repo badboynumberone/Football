@@ -26,3 +26,8 @@
     z-index: 9;
 
 }
+.success_notice{
+    font-size: 30rpx;
+    white-space: nowrap;
+    top: 450rpx;
+}
