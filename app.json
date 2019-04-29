@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/star/achievement_query/query_result_electrical",
     "pages/index/index/index",
     "pages/purchase/order/logistics",
-    "pages/star/achievement_query/query_result_electrical",
+    
     "pages/purchase/page/index",
     "pages/star/achievement_query/fail",
     "pages/wx-cropper/index",

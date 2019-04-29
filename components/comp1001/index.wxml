@@ -8,7 +8,6 @@
   <swiper indicator-dots="{{indicatorDots}}" circular="{{true}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for="{{pageData.carouselList.data}}" wx:key="index">
       <swiper-item>
-				
         <image src="{{imageBaseUrl}}{{item.imageUrl}}" data-item="{{item}}" class="slide-image" mode="widthFix" style="width:100%;" bindtap="itemAction"/>
       </swiper-item>
     </block>
@@ -20,7 +19,7 @@
       <block wx:for="{{pageData.recommendList.data}}" wx:key="index">
       <van-col span="12" data-item="{{item}}" bindtap="itemAction">
         <view class="goods-item goods-list-item">
-          <image src="{{imageBaseUrl}}{{item.imageUrl}}" style="width:100%;height:{{productHeight}}px;" mode="scaleToFill" />
+          <image src="{{imageBaseUrl}}{{item.imageUrl}}" style="wi dth:100%;height:{{productHeight}}px;" mode="scaleToFill" />
           <view class='goods-name '>{{item.name}}</view>
           <view class='goods-price'>
             <text>¥</text>{{number.onezerozero(item.price)}}</view>
