@@ -15,7 +15,10 @@ Page({
       nowImg:[],//现场照片
       ratingCertImg:'',//证书图片
       fullControl:false,//全屏控制
-      videoOffset:false
+      videoOffset:false,
+      imgArr:[],//图片集合
+      username:"",
+      inchimg:""
     },
     
     /**
@@ -57,7 +60,9 @@ Page({
           levelTime:mapTime(res.creatime),
           nowImg:res.imgUrl,
           nowVideo:res.voidUrl,
-          ratingCertImg:[res.ratingCert]
+          ratingCertImg:[res.ratingCert],
+          username:res.userName,
+          inchimg:res.inchimg
         })
         if(res.imgUrl.constructor== String){
           that.setData({
@@ -78,6 +83,7 @@ Page({
     //获取星级信息
     getStar(id){
       let that = this;
+      let arr= [];
       request('/userSign/getUserSignInfoById/',{
         method:"POST",
         data:{
@@ -89,15 +95,16 @@ Page({
           number:res.certNum,
           levelTime:mapTime(res.creatime),
           nowImg:res.imgUrl,
-          nowVideo:res.voidUrl,
-          ratingCertImg:[res.ratingCert]
+          username:res.userName,
+          inchimg:res.inchimg
         })
-        if(res.imgUrl.constructor== String){
-          that.setData({
-            nowImg:[res.imgUrl]
-          })
-        }
-        
+        that.data.nowImg.forEach(function(item){
+          arr.push(item.value)
+        })
+        that.setData({
+          imgArr:arr
+        })
+        console.log(that.data.nowImg)
       }).catch(function(err){
         console.log("获取用户评级信息失败")
       })
@@ -112,7 +119,7 @@ Page({
     //查看电子证书
     toElectrical(){
       wx.navigateTo({
-        url: '/pages/star/achievement_query/query_result_electrical'
+        url: '/pages/star/achievement_query/query_result_electrical?name='+this.data.username+'&photo='+this.data.inchimg+'&num='+this.data.number+'&level='+this.data.level
       });
     }
   })

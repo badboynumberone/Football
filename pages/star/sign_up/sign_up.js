@@ -166,7 +166,6 @@ Page({
     },
     //用户报名
     sendParticipantInfo(){
-      
       let that = this;
       wx.showLoading({title:"报名中..."});
       request("/userSign/creatSign",{
@@ -191,6 +190,13 @@ Page({
           wx.hideLoading();
           wx.navigateTo({
             url: '/pages/star/sign_up/sign_up_success'
+          });
+        }else{
+          wx.hideLoading();
+          wx.showToast({
+            title: res.message,
+            icon: 'none',
+            duration:1500
           });
         }
       }).catch(function(err){

@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/star/achievement_query/query_result_electrical",
     "pages/index/index/index",
+    "pages/star/achievement_query/query_result_electrical",
+    
     "pages/purchase/order/logistics",
     
     "pages/purchase/page/index",

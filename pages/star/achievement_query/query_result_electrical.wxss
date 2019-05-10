@@ -13,6 +13,7 @@
     height: 140rpx;
     align-items: center;
     justify-content: space-around;
+    z-index: 999;
 }
 .bottom-options view{
     width: 350rpx;
@@ -25,4 +26,8 @@
 }
 .send{
     background: #222 !important;
+}
+.clicked{
+    color: #666;
+    background:#4E7426 !important;
 }

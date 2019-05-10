@@ -1,14 +1,21 @@
 <view class="main">
-	<view class="result_wrapper">
+	<!-- <view class="result_wrapper">
 		<image class="fill" src="" />
-	</view>
+	</view> -->
+	
+	<canvas  canvas-id="share" style="width:750rpx;height:{{availHeight}}px;" hidden="{{false}}"></canvas>
 	<view class="bottom-options">
-		<view class="preserve">
+		
+		<button hover-class="clicked" style="width: 350rpx;text-align: center;line-height: 80rpx;color: #fff;font-size: 34rpx;background: #62912f;border-radius: 5rpx;" bindtap="perserve">
 			保存
-		</view>
-		<view class="send">
+		</button>
+
+		<button hover-class="clicked"  open-type="share" style="width: 350rpx;text-align: center;line-height: 80rpx;color: #fff;font-size: 34rpx;background: #62912f;border-radius: 5rpx;position:relative">
 			转发
-		</view>
+			
+			  
+		</button>
+		
 	</view>
 </view>
 
