@@ -18,10 +18,10 @@
 					<text class="certificate_num" selectable="false" space="false" decode="false">{{number}}</text>
 				</view>
 			</view>
-			<view class="form-group" wx:if="{{number.length}}">
+			<view class="form-group" >
 				<text class="form-text">考试分数</text>
 				<view class="form-control" style="margin:20rpx 0">
-					<text style="font-size:30rpx;color:#666">90分</text>
+					<text style="font-size:30rpx;color:#666">{{score}}分</text>
 				</view>
 			</view>
 			<view class="form-group" wx:if="{{nowImg.length}}" wx:for="{{nowImg}}" wx:key="{{index}}">
@@ -37,6 +37,6 @@
 	</view>
 	  
 	<!--底部生成电子证书按钮-->
-	<bottom-btn text="生成电子版证书" bindtap="toElectrical" />
+	<bottom-btn text="生成电子版证书" bindtap="toElectrical" wx:if="{{number.length}}" />
 </view>
 

@@ -1,6 +1,7 @@
 // import Toast from './../../../miniprogram_npm/vant-weapp/toast/toast.js';
 import {upLoadFile} from '../../../utils/request';
 import {request} from '../../../utils/request';
+const app =  getApp();
 Page({
 
     /**
@@ -30,7 +31,17 @@ Page({
       this.getNowDate();
       this.getParticipantInfo();
     },
-    
+    onShow(){
+      if(app.globalData.itchImage){
+        this.setData({
+          photoUrl:app.globalData.itchImage
+        })
+      }
+    },
+    onUnload(){
+      console.log("asds")
+      app.globalData.itchImage = undefined
+    },
     getNowDate(){
       let now = new Date();
       let month=now.getMonth()<10 ? '0'+(now.getMonth()+1): now.getMonth();
@@ -77,6 +88,22 @@ Page({
     // 上传图片
     uploadImg:function(){
       let that = this;
+      // chooseImage(){
+      //   let that = this;
+      //   app.globalData.uploadImage=[];
+      //   wx.chooseImage({
+      //     count: 1, // 默认9
+      //     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      //     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      //     success: function (res) {
+      //       // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+      //       var tempFilePaths = res.tempFilePaths[0];
+      //       wx.navigateTo({
+      //         url: `/pages/wx-cropper/index?imageSrc=${tempFilePaths}`,
+      //       })
+      //     }
+      //   })
+      // },
       wx.chooseImage({
         count: 1,
         sizeType: ['original','compressed'],
@@ -84,13 +111,11 @@ Page({
         success: (res)=>{
           var tempFilesSize = res.tempFiles[0].size;  //获取图片的大小，单位B
             if(tempFilesSize <= 2000000){   //图片小于或者等于2M时 可以执行获取图片
-                upLoadFile(res.tempFilePaths).then(function(result){
-                  that.setData({
-                    photoUrl:result
-                  })
-                }).catch(function(err){
-                  console.log("上传失败")
-                })
+              var tempFilePaths = res.tempFilePaths[0];
+              wx.navigateTo({
+                url: `/pages/itch-cropper/index?imageSrc=${tempFilePaths}`,
+              })
+                
             }else{    //图片大于2M，弹出一个提示框
                 wx.showToast({
                     title:'上传图片不能大于2M!',  //标题
@@ -139,7 +164,7 @@ Page({
         method:"POST",
         data:{}
       }).then(function(res){
-        console.log(res.userSignInfo.userSex)
+        
 				if(!that.data.isSign){
           
           that.setData({
@@ -160,6 +185,7 @@ Page({
             isSign:res.flg
           })
         }
+        console.log(that.data.photoUrl)
       }).catch(function(err){
         console.log("获取参加者信息失败")
       })
@@ -168,39 +194,85 @@ Page({
     sendParticipantInfo(){
       let that = this;
       wx.showLoading({title:"报名中..."});
-      request("/userSign/creatSign",{
-        method:"POST",
-        data:{
-          userName:that.data.Name,
-          userSex:parseInt(that.data.sexIndex)+1,
-          birthday:that.data.birthDay,
-          cerdCard:that.data.identityNum,
-          cityAdress:that.data.city.join(','),
-          imgUrl:that.data.photoUrl,
-          motherName:that.data.motherName,
-          motherPhone:that.data.motherPhone,
-          fatherName:that.data.dadName,
-          fatherPhone:that.data.dadPhone,
-          commuAddress:that.data.address,
-          postalCode:that.data.emailNum,
-          email:that.data.email
-        }
-      }).then(function(res){
-        if(res.flg==true && res.message=="报名成功"){
-          wx.hideLoading();
-          wx.navigateTo({
-            url: '/pages/star/sign_up/sign_up_success'
-          });
-        }else{
-          wx.hideLoading();
-          wx.showToast({
-            title: res.message,
-            icon: 'none',
-            duration:1500
-          });
-        }
-      }).catch(function(err){
-        console.log("获取参加者信息失败")
-      })
-    }
+      console.log(this.data.photoUrl)
+      if(!this.data.photoUrl.startsWith("https://")){
+        upLoadFile([this.data.photoUrl]).then(function(result){
+          console.log(result)
+          request("/userSign/creatSign",{
+            method:"POST",
+            data:{
+              userName:that.data.Name,
+              userSex:parseInt(that.data.sexIndex)+1,
+              birthday:that.data.birthDay,
+              cerdCard:that.data.identityNum,
+              cityAdress:that.data.city.join(','),
+              imgUrl:result,
+              motherName:that.data.motherName,
+              motherPhone:that.data.motherPhone,
+              fatherName:that.data.dadName,
+              fatherPhone:that.data.dadPhone,
+              commuAddress:that.data.address,
+              postalCode:that.data.emailNum,
+              email:that.data.email
+            }
+          }).then(function(res){
+            if(res.flg==true){
+              wx.hideLoading();
+              wx.reLaunch({
+                url: '/pages/star/sign_up/sign_up_success'
+              });
+            }else{
+              wx.hideLoading();
+              wx.showToast({
+                title: res.message,
+                icon: 'none',
+                duration:1500
+              });
+            }
+          }).catch(function(err){
+            console.log("获取参加者信息失败")
+          })
+          
+        }).catch(function(err){
+          console.log("上传失败")
+        })
+      }else{
+        request("/userSign/creatSign",{
+          method:"POST",
+          data:{
+            userName:that.data.Name,
+            userSex:parseInt(that.data.sexIndex)+1,
+            birthday:that.data.birthDay,
+            cerdCard:that.data.identityNum,
+            cityAdress:that.data.city.join(','),
+            imgUrl:that.data.photoUrl,
+            motherName:that.data.motherName,
+            motherPhone:that.data.motherPhone,
+            fatherName:that.data.dadName,
+            fatherPhone:that.data.dadPhone,
+            commuAddress:that.data.address,
+            postalCode:that.data.emailNum,
+            email:that.data.email
+          }
+        }).then(function(res){
+          if(res.flg==true){
+            wx.hideLoading();
+            wx.reLaunch({
+              url: '/pages/star/sign_up/sign_up_success'
+            });
+          }else{
+            wx.hideLoading();
+            wx.showToast({
+              title: res.message,
+              icon: 'none',
+              duration:1500
+            });
+          }
+        }).catch(function(err){
+          console.log("获取参加者信息失败")
+        })
+      }
+      
+      
+    },
   })

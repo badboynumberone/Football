@@ -18,7 +18,8 @@ Page({
       videoOffset:false,
       imgArr:[],//图片集合
       username:"",
-      inchimg:""
+      inchimg:"",
+      score:""//考试分数
     },
     
     /**
@@ -55,6 +56,7 @@ Page({
       }).then(function(res){
         console.log(res)
         that.setData({
+          score:res.score,
           level:res.level,
           number:res.certNum,
           levelTime:mapTime(res.creatime),
@@ -62,8 +64,9 @@ Page({
           nowVideo:res.voidUrl,
           ratingCertImg:[res.ratingCert],
           username:res.userName,
-          inchimg:res.inchimg
+          inchimg:res.inchimg,
         })
+        console.log(that.data.score)
         if(res.imgUrl.constructor== String){
           that.setData({
             nowImg:[res.imgUrl]
@@ -96,7 +99,8 @@ Page({
           levelTime:mapTime(res.creatime),
           nowImg:res.imgUrl,
           username:res.userName,
-          inchimg:res.inchimg
+          inchimg:res.inchimg,
+          score:res.score
         })
         that.data.nowImg.forEach(function(item){
           arr.push(item.value)

@@ -13,7 +13,8 @@ Page({
         photo:"",
         num:"",
         level:"",
-        back:""
+        back:"",
+        localphotourl:''
     },
     // onChange(event) {
     //   const { picker, value, index } = event.detail;
@@ -25,9 +26,9 @@ Page({
     onLoad: function (options) {
       let level = parseInt(options.level);
       let back="";
-      if(level<=4){
+      if(level<=5){
         back="/images/model02.jpg"
-      }else if(level>=4 && level<=6){
+      }else if(level>5 && level<=7){
         back="/images/model01.jpg"
       }else{
         back="/images/model03.jpg"
@@ -52,8 +53,26 @@ Page({
         num:options.num,
         photo:options.photo
       })
-
-      this.drawImg();  
+      let that = this;
+      console.log(options.photo)
+      wx.getImageInfo({
+        src: options.photo,//服务器返回的图片地址
+        success: function (res) {
+          //res.path是网络图片的本地地址
+          let Path = res.path;
+          console.log(Path)
+          that.setData({
+            localphotourl:Path
+          })
+          that.drawImg();  
+        },
+        fail: function (res) {
+          console.log(res)
+          //失败回调
+        }
+      });
+      
+      
     },
     //写字
     drawText(obj) {   this.ctx.save();        this.ctx.setFillStyle(obj.color);        this.ctx.setFontSize(obj.size);        this.ctx.setTextAlign(obj.align);        this.ctx.setTextBaseline(obj.baseline);        if (obj.bold) {                       this.ctx.fillText(obj.text, obj.x, obj.y - 0.5);            this.ctx.fillText(obj.text, obj.x - 0.5, obj.y);
@@ -67,7 +86,7 @@ Page({
       this.drawText({    x: 20,    y: 332,    color: '#4B76E1',    size: 18,    align: 'left',    baseline: 'middle',    text: this.data.username,    bold: true})
       this.drawText({    x: 93,    y: 362,    color: '#4B76E1',    size: 17,    align: 'left',    baseline: 'middle',    text: this.data.level,    bold: true})
       this.drawText({    x: 50,    y: 512,    color: '#333',    size: 13,    align: 'left',    baseline: 'middle',    text: this.data.num,    bold: false})
-      this.ctx.drawImage(this.data.photo, 255, 180, 90, 110);
+      this.ctx.drawImage(this.data.localphotourl, 255, 180, 90, 110);
       this.ctx.draw();
     },
     //保存图片
@@ -116,7 +135,19 @@ Page({
         },
       }, this);
         
-    }
+    },
     //分享
-    
+    onShareAppMessage: function( options ){
+      　　return {
+            title: "娃娃足球工程",  
+            path: "pages/index/index/index",
+            imageUrl:"/images/logo.jpg",
+            success(res){
+              if(res.errMsg == 'shareAppMessage:ok'){
+                console.log(res)
+              }
+              
+            }
+          }
+    }
   })

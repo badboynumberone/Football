@@ -8,6 +8,7 @@
     "pages/purchase/page/index",
     "pages/star/achievement_query/fail",
     "pages/wx-cropper/index",
+    "pages/itch-cropper/index",
     "pages/index/works_details/works_details",
     "pages/me/edit_profile/edit_profile",
     "pages/imageCut/imageCut",
