@@ -85,6 +85,7 @@
     font-size: 24rpx;
     color:#333;
     width: 170rpx;
+    text-align: center;
 }
 .ending{
     width: 100%;

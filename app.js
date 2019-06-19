@@ -49,7 +49,7 @@ App({
     }
   },
   globalData: {
-    imageBaseUrl: 'https://mini-mall-image.oss-cn-hangzhou.aliyuncs.com/',
+    imageBaseUrl: 'https://wxlittleprogram.oss-cn-shanghai.aliyuncs.com/',
     searchHistory:[],
     uploadImage:[],//上传图片
     uploadVideo:[],//上传的视频

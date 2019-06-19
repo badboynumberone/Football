@@ -16,7 +16,8 @@ Page({
               {dynaicInfo:[],nowPageIndex:1,totalPage:1,totalSize:0,bottomFont:'Loading'}]//分页信息
   },
   onLoad(){
-			this.initData();
+      this.initData();
+      console.log(this);
   },
   onShow(){
   },

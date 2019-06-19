@@ -32,14 +32,14 @@ Component({
     login(e){
       if(!wx.getStorageSync('userName') && this.properties.headerType=='me'){
         //登录流程
-        var that = this
+        var that = this;
+        console.log(e.detail.userInfo.nickName)
         if (e.detail.errMsg === 'getUserInfo:ok') {
           console.log(e)
           let data = {
             'nickName': e.detail.userInfo.nickName,
             'avatarUrl': e.detail.userInfo.avatarUrl,
             'sex':e.detail.userInfo.gender,
-            
           }
           updateUserInfo(data);
           let that =this;
@@ -66,7 +66,6 @@ Component({
                 signature:res.constoSign
               }
               updateUserInfo(userData);
-              
               that.initData();
               that.triggerEvent('refreshMenu', {}, {bubbles: false, composed: true})
               that.triggerEvent('refreshOrder', {}, {bubbles: false, composed: true})
